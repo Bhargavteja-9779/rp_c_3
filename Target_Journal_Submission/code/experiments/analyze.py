@@ -16,7 +16,7 @@ from loom.statistics.tests import friedman_ranks, pairwise_vs, nemenyi_cd  # noq
 
 SMOKE = ["GunPoint", "ECG200", "Coffee", "ItalyPowerDemand", "SonyAIBORobotSurface2", "TwoLeadECG"]   # smoke / quick-mode datasets
 MAIN = ["LOOM", "PreVal", "Ridge-softmax", "Ridge-onehot", "Holdout-TS", "Ridge-Platt-CV5",
-        "Ridge-Isotonic-CV5", "LogReg-CV", "PreVal-Ens5", "LOOM-Ens5", "QUANT"]
+        "Ridge-Isotonic-CV5", "LogReg-CV", "QUANT"]          # ensembles: official split only (RAWCMP)
 RAWCMP = ["LOOM", "LOOM-Ens5", "PreVal", "PreVal-Ens5", "QUANT", "Arsenal"]     # official split only
 ABL = ["LOOM", "PreVal", "PreVal-smooth", "LOOM-nosmooth", "LOOM-free-b", "LOOM-finite-c1", "LOOM-kNN",
        "LOOM-insample", "LOOM-holdout", "LOOM-lambdaSSE"]

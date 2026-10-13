@@ -60,6 +60,7 @@ MAIN_METHODS = {
 }
 SLOW_METHODS = ("LogReg-CV",)
 TEST_CHUNK = 512        # test series transformed and scored per chunk (bounds memory)
+CP_MAX_TEST = 1000      # conformal sets are evaluated on a seeded subset of at most this many test series
 ABLATIONS = {
     "PreVal-smooth": lambda: LOOM("none", smooth=True),
     "LOOM-nosmooth": lambda: LOOM("standard", smooth=False),
@@ -73,10 +74,10 @@ ABLATIONS = {
 
 
 def run_job(name, resample, transform="minirocket", methods="all", n_ens=5, alpha=0.1,
-            outdir=None, skip_slow_n=None, train_frac=1.0):
+            outdir=None, skip_slow_n=None, train_frac=1.0, conds_subset="all", cp_max=CP_MAX_TEST):
     outdir = Path(outdir or ROOT / "results" / "raw")
     outdir.mkdir(parents=True, exist_ok=True)
-    tag = f"{transform}__{name}__r{resample}__{methods}" + (f"__tf{train_frac}" if train_frac < 1 else "")
+    tag = f"{transform}__{name}__r{resample}__{methods}" + (f"__tf{train_frac}" if train_frac < 1 else "") + (f"__{conds_subset}" if conds_subset != "all" else "")
     path = outdir / f"{tag}.json"
     if path.exists():
         return json.load(open(path))
@@ -92,7 +93,11 @@ def run_job(name, resample, transform="minirocket", methods="all", n_ens=5, alph
         keep = np.sort(np.concatenate(keep)); Xtr, ytr = Xtr[keep], ytr[keep]
     classes = np.unique(np.concatenate([ytr, yte]))
     yi_te = np.searchsorted(classes, yte)
-    conds = list(all_conditions())
+    conds = [c for c in all_conditions() if conds_subset == "all" or c[1] in (0, 3)]
+    rng_cp = np.random.default_rng(cond_seed(name, resample, "cp", 0))
+    cp_idx = np.sort(rng_cp.choice(len(yte), min(len(yte), cp_max), replace=False))
+    cp_mask = np.zeros(len(yte), bool); cp_mask[cp_idx] = True
+    yi_cp = yi_te[cp_idx]
 
     def X_of(c):   # corrupted inputs are regenerated deterministically (saves memory)
         return Xte if c[0] == "clean" else corrupt(Xte, c[0], c[1], cond_seed(name, resample, *c))
@@ -165,21 +170,22 @@ def run_job(name, resample, transform="minirocket", methods="all", n_ens=5, alph
                         extra.setdefault("errors", {})[f"{mname}#{j}:{c}"] = traceback.format_exc()[-1500:]
                         failed.add(mname)
                     pred_t[mname] += time.time() - tp
+                loc = np.flatnonzero(cp_mask[st:st + TEST_CHUNK]); Fcp = F[loc] if len(loc) else None
                 if j == 0 and "LOOM" in models and "LOOM" not in failed:
                     lm = models["LOOM"]
                     hs.append(lm.ridge_.leverage(F))
-                    for meth, sc in (("jackknife+", "lac"), ("jackknife", "lac"), ("jackknife+", "aps")):
+                    for meth, sc in ((("jackknife+", "lac"), ("jackknife", "lac"), ("jackknife+", "aps")) if Fcp is not None else ()):
                         tp = time.time(); nm = f"CP-LOOM-{meth}" + ("-APS" if sc == "aps" else "")
-                        add_set(nm, align(lm.conformal_sets(F, alpha=alpha, method=meth, score=sc).astype(float), lm.classes_, classes) > 0.5)
+                        add_set(nm, align(lm.conformal_sets(Fcp, alpha=alpha, method=meth, score=sc).astype(float), lm.classes_, classes) > 0.5)
                         cp_t[nm] = cp_t.get(nm, 0.0) + time.time() - tp
-                    if c[0] == "clean":
+                    if c[0] == "clean" and Fcp is not None:
                         for al in (0.05, 0.2):
-                            add_set(f"CP-LOOM-jackknife+@{al}", align(lm.conformal_sets(F, alpha=al, method="jackknife+").astype(float), lm.classes_, classes) > 0.5)
-                if j == 0 and "PreVal" in models and "PreVal" not in failed:
+                            add_set(f"CP-LOOM-jackknife+@{al}", align(lm.conformal_sets(Fcp, alpha=al, method="jackknife+").astype(float), lm.classes_, classes) > 0.5)
+                if j == 0 and "PreVal" in models and "PreVal" not in failed and Fcp is not None:
                     pv = models["PreVal"]
                     for sc in ("lac", "aps"):
                         tp = time.time(); nm = "CP-PreVal-jackknife+" + ("-APS" if sc == "aps" else "")
-                        add_set(nm, align(pv.conformal_sets(F, alpha=alpha, method="jackknife+", score=sc).astype(float), pv.classes_, classes) > 0.5)
+                        add_set(nm, align(pv.conformal_sets(Fcp, alpha=alpha, method="jackknife+", score=sc).astype(float), pv.classes_, classes) > 0.5)
                         cp_t[nm] = cp_t.get(nm, 0.0) + time.time() - tp
                 del F
             for mname in models:
@@ -196,15 +202,15 @@ def run_job(name, resample, transform="minirocket", methods="all", n_ens=5, alph
                     extra["loom"]["h_test_median"][f"{c[0]}{c[1]}"] = float(np.median(np.concatenate(hs)))
                 for nm, parts in Sm.items():
                     rows.append(dict(method=nm, cond=c[0] if "@" not in nm else "clean", sev=c[1] if "@" not in nm else 0,
-                                     **set_metrics(np.vstack(parts), yi_te)))
+                                     n_cp=len(cp_idx), **set_metrics(np.vstack(parts), yi_cp)))
                 if "Holdout-TS" in models and ("Holdout-TS", c) in probs:
-                    P = probs[("Holdout-TS", c)]
-                    rows.append(dict(method="CP-Split-TS", cond=c[0], sev=c[1], **set_metrics((1 - P) <= ca[alpha], yi_te)))
-                    rows.append(dict(method="CP-Split-TS-APS", cond=c[0], sev=c[1],
-                                     **set_metrics(_score(P, "aps") <= ca_aps, yi_te)))
+                    P = probs[("Holdout-TS", c)][cp_idx]
+                    rows.append(dict(method="CP-Split-TS", cond=c[0], sev=c[1], n_cp=len(cp_idx), **set_metrics((1 - P) <= ca[alpha], yi_cp)))
+                    rows.append(dict(method="CP-Split-TS-APS", cond=c[0], sev=c[1], n_cp=len(cp_idx),
+                                     **set_metrics(_score(P, "aps") <= ca_aps, yi_cp)))
                     if c[0] == "clean":
                         for al in (0.05, 0.2):
-                            rows.append(dict(method=f"CP-Split-TS@{al}", cond="clean", sev=0, **set_metrics((1 - P) <= ca[al], yi_te)))
+                            rows.append(dict(method=f"CP-Split-TS@{al}", cond="clean", sev=0, n_cp=len(cp_idx), **set_metrics((1 - P) <= ca[al], yi_cp)))
         if j == 0:
             extra["feature_time_test_all_conditions"] = t_feat_test
             for m in models:
@@ -225,7 +231,8 @@ def run_job(name, resample, transform="minirocket", methods="all", n_ens=5, alph
                     continue
                 P = np.mean([probs[(mname, c)]] + [probs[(f"{mname}#{j}", c)] for j in range(1, len(seeds)) if (f"{mname}#{j}", c) in probs], 0)
                 add_prob_row(f"{mname}-Ens{len(seeds)}", c, P)
-    res = dict(dataset=name, resample=resample, transform=transform, methods=methods, train_frac=train_frac, n_train=len(ytr),
+    res = dict(dataset=name, resample=resample, transform=transform, methods=methods, train_frac=train_frac, n_ens=len(seeds),
+               conds_subset=conds_subset, n_train=len(ytr),
                n_test=len(yte), n_classes=len(classes), rows=rows, timing=timing, extra=extra,
                wall=time.time() - t0)
     tmp = path.with_suffix(".tmp"); json.dump(res, open(tmp, "w")); os.replace(tmp, path)
@@ -282,6 +289,8 @@ def run_raw_baselines(name, resample, outdir=None):
             ts = time.time(); m = fac().fit(Xtr[:, None, :], ytr); ft = time.time() - ts
             tp = time.time(); Pc = None
             for c in conds:
+                if mname == "Arsenal" and c[1] not in (0, 3):     # compute: clean + severity 3 only
+                    continue
                 Xc = Xte if c[0] == "clean" else corrupt(Xte, c[0], c[1], cond_seed(name, resample, *c))
                 P = align(m.predict_proba(Xc[:, None, :]), m.classes_, classes)
                 if c[0] == "clean":

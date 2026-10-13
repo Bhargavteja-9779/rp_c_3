@@ -83,7 +83,7 @@ def main():
     else:
         dsets = dataset_names()
         raw_dir = ROOT / "results" / "raw"
-        R, R_gen, n_ens, extractors, fracs = [0, 1, 2, 3, 4], [0, 1, 2], 5, ["rocket", "multirocket", "hydra"], [0.25, 0.5]
+        R, R_gen, n_ens, extractors, fracs = [0, 1, 2, 3, 4], [0], 5, ["rocket", "multirocket", "hydra"], [0.25, 0.5]
     if a.datasets:
         dsets = a.datasets.split(",")
     raw_dir.mkdir(parents=True, exist_ok=True)
@@ -93,11 +93,12 @@ def main():
         import subprocess
         subprocess.run([sys.executable, str(ROOT / "experiments" / "leakage_audit.py")], check=True)
     if "main" in stages:
-        schedule([("main", d, r, dict(methods="all", n_ens=n_ens, skip_slow_n=2000)) for d in dsets for r in R], a.workers, raw_dir, log=log)
+        # 5-seed ensembles on the official split only (compute); other resamples use one seed
+        schedule([("main", d, r, dict(methods="all", n_ens=n_ens if r == 0 else 1, skip_slow_n=2000)) for d in dsets for r in R], a.workers, raw_dir, log=log)
     if "raw" in stages:
         schedule([("raw", d, r, {}) for d in dsets for r in R], a.workers, raw_dir, log=log)
     if "extract" in stages:
-        schedule([("extract", d, r, dict(methods="core", transform=t, n_ens=1)) for t in extractors for d in dsets for r in R_gen], a.workers, raw_dir, log=log)
+        schedule([("extract", d, r, dict(methods="core", transform=t, n_ens=1, conds_subset="sev3")) for t in extractors for d in dsets for r in R_gen], a.workers, raw_dir, log=log)
     if "trainsize" in stages:
         schedule([("trainsize", d, 0, dict(methods="core", n_ens=1, train_frac=f)) for f in fracs for d in dsets], a.workers, raw_dir, log=log)
     if "analyze" in stages:

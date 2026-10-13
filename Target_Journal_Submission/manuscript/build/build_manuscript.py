@@ -118,7 +118,10 @@ def render(text):
 
 def build(anonymous=True):
     parts = []
-    for name in ["front.md", "sections_static.md", "sections_results.md", "back.md"]:
+    for name in ["front.md", "sections_static.md", "sections_results.md", "REFS", "back.md"]:
+        if name == "REFS":   # Springer: reference list first, then Statements and Declarations
+            parts.append("# References {-}\n\n::: {#refs}\n:::\n")
+            continue
         p = HERE / name
         if p.exists():
             parts.append(p.read_text())
@@ -129,7 +132,7 @@ def build(anonymous=True):
     cmd = ["pandoc", str(HERE / "manuscript_rendered.md"), "-o", str(docx), "--citeproc",
            f"--bibliography={HERE / 'references.json'}", f"--csl={HERE / 'springer-basic-author-date.csl'}",
            f"--reference-doc={HERE / 'reference_springer.docx'}", "--resource-path", str(RES),
-           "-M", "link-citations=false", "-M", "reference-section-title=References"]
+           "-M", "link-citations=false"]
     subprocess.run(cmd, check=True)
     postprocess(docx)
     print("written", docx)

@@ -89,3 +89,17 @@ the temperature to its bound, which motivated Platt target smoothing (decided be
 benchmark). All results are reported for the 114 datasets and, as a sensitivity analysis,
 for the 100 datasets never seen during development, and for the 98 datasets without
 train/test duplicates (leakage audit, `code/results/leakage_audit.csv`).
+
+
+## 8. Protocol amendments for compute (made before any benchmark result was inspected)
+After the first full launch, one resample of the largest dataset (StarLightCurves) took
+68 CPU-minutes with five-seed ensembles, and the container restarted, which terminated the
+run. Before any result file was opened, the following amendments were made and the four
+completed jobs were discarded:
+1. PreVal-Ens5 and LOOM-Ens5 are computed on the official split (resample 0) only; resamples
+   1–4 use a single MiniRocket seed. Ensembles are compared with the other methods on the
+   official split, in the same table as Arsenal and QUANT.
+2. Conformal prediction sets are evaluated on a seeded random subset of at most 1,000 test
+   series per dataset (the same subset for every set method and condition).
+3. Rocket, MultiRocket and Hydra (generalisation) and Arsenal are evaluated on the official
+   split, on clean data and the six severity-3 corruptions.

@@ -103,3 +103,8 @@ completed jobs were discarded:
    series per dataset (the same subset for every set method and condition).
 3. Rocket, MultiRocket and Hydra (generalisation) and Arsenal are evaluated on the official
    split, on clean data and the six severity-3 corruptions.
+4. (Second amendment, also before inspecting results; 26 main jobs had finished.) Because the
+   cloud container restarts every one to two hours and does not compute while idle, the
+   Rocket extractor was dropped from the generalisation experiment (its transform costs roughly
+   ten times MiniRocket's), keeping MultiRocket and Hydra, and the training-size experiment uses
+   clean data and the six severity-3 corruptions.

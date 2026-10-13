@@ -83,7 +83,7 @@ def main():
     else:
         dsets = dataset_names()
         raw_dir = ROOT / "results" / "raw"
-        R, R_gen, n_ens, extractors, fracs = [0, 1, 2, 3, 4], [0], 5, ["rocket", "multirocket", "hydra"], [0.25, 0.5]
+        R, R_gen, n_ens, extractors, fracs = [0, 1, 2, 3, 4], [0], 5, ["multirocket", "hydra"], [0.25, 0.5]
     if a.datasets:
         dsets = a.datasets.split(",")
     raw_dir.mkdir(parents=True, exist_ok=True)
@@ -100,7 +100,7 @@ def main():
     if "extract" in stages:
         schedule([("extract", d, r, dict(methods="core", transform=t, n_ens=1, conds_subset="sev3")) for t in extractors for d in dsets for r in R_gen], a.workers, raw_dir, log=log)
     if "trainsize" in stages:
-        schedule([("trainsize", d, 0, dict(methods="core", n_ens=1, train_frac=f)) for f in fracs for d in dsets], a.workers, raw_dir, log=log)
+        schedule([("trainsize", d, 0, dict(methods="core", n_ens=1, train_frac=f, conds_subset="sev3")) for f in fracs for d in dsets], a.workers, raw_dir, log=log)
     if "analyze" in stages:
         import importlib.util
         spec = importlib.util.spec_from_file_location("analyze", ROOT / "experiments" / "analyze.py")

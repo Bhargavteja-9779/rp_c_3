@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 results/cache/
 *.npz
+results/raw/
+results/quick/

@@ -1,0 +1,128 @@
+{
+ "guo2017": {
+  "url": "https://proceedings.mlr.press/v70/guo17a.html",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "On Calibration of Modern Neural Networks",
+  "note": "Proceedings of the 34th International Conference on Machine Learning"
+ },
+ "kull2019": {
+  "url": "https://arxiv.org/abs/1910.12656",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "[1910.12656] Beyond temperature scaling: Obtaining well-calibrated multiclass probabilities with Dirichlet calibration",
+  "note": "Comments:</td> <td class=\"tablecell comments mathjax\">Accepted for presentation at NeurIPS 2019"
+ },
+ "ovadia2019": {
+  "url": "https://arxiv.org/abs/1906.02530",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "[1906.02530] Can You Trust Your Model's Uncertainty? Evaluating Predictive Uncertainty Under Dataset Shift",
+  "note": "Comments:</td> <td class=\"tablecell comments mathjax\">Advances in Neural Information Processing Systems, 2019"
+ },
+ "lakshminarayanan2017": {
+  "url": "https://arxiv.org/abs/1612.01474",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "[1612.01474] Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles",
+  "note": "Comments:</td> <td class=\"tablecell comments mathjax\">NIPS 2017"
+ },
+ "liu2020": {
+  "url": "https://arxiv.org/abs/2006.10108",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "[2006.10108] Simple and Principled Uncertainty Estimation with Deterministic Deep Learning via Distance Awareness",
+  "note": ""
+ },
+ "kristiadi2020": {
+  "url": "https://proceedings.mlr.press/v119/kristiadi20a.html",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "Being Bayesian, Even Just a Bit, Fixes Overconfidence in ReLU Networks",
+  "note": "Proceedings of the 37th International Conference on Machine Learning"
+ },
+ "vanamersfoort2020": {
+  "url": "https://proceedings.mlr.press/v119/van-amersfoort20a.html",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "Uncertainty Estimation Using a Single Deep Deterministic Neural Network",
+  "note": "Proceedings of the 37th International Conference on Machine Learning"
+ },
+ "demsar2006": {
+  "url": "https://www.jmlr.org/papers/v7/demsar06a.html",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "Statistical Comparisons of Classifiers over Multiple Data Sets",
+  "note": ""
+ },
+ "benavoli2016": {
+  "url": "https://www.jmlr.org/papers/v17/benavoli16a.html",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "Should We Really Use Post-Hoc Tests Based on Mean-Ranks?",
+  "note": ""
+ },
+ "aeon2024": {
+  "url": "https://www.jmlr.org/papers/v25/23-1444.html",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "aeon: a Python Toolkit for Learning from Time Series",
+  "note": ""
+ },
+ "sklearn2011": {
+  "url": "https://www.jmlr.org/papers/v12/pedregosa11a.html",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "Scikit-learn: Machine Learning in Python",
+  "note": ""
+ },
+ "romano2020": {
+  "url": "https://arxiv.org/abs/2006.02544",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "[2006.02544] Classification with Valid and Adaptive Coverage",
+  "note": "Comments:</td> <td class=\"tablecell comments mathjax\">10 pages, 3 figures; 13 supplementary pages, 4 supplementary figures, 4 supplementary tables"
+ },
+ "hendrycks2019": {
+  "url": "https://arxiv.org/abs/1903.12261",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "[1903.12261] Benchmarking Neural Network Robustness to Common Corruptions and Perturbations",
+  "note": "Comments:</td> <td class=\"tablecell comments mathjax\">ICLR 2019 camera-ready; datasets available at "
+ },
+ "hendrycks2017": {
+  "url": "https://arxiv.org/abs/1610.02136",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "[1610.02136] A Baseline for Detecting Misclassified and Out-of-Distribution Examples in Neural Networks",
+  "note": "Comments:</td> <td class=\"tablecell comments mathjax\">Published as a conference paper at ICLR 2017. 1 Figure in 1 Appendix. Minor changes from the previous version"
+ },
+ "geifman2017": {
+  "url": "https://arxiv.org/abs/1705.08500",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "[1705.08500] Selective Classification for Deep Neural Networks",
+  "note": ""
+ },
+ "preval": {
+  "url": "https://arxiv.org/abs/2401.15610",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "[2401.15610] Prevalidated ridge regression is a highly-efficient drop-in replacement for logistic regression for high-dimensional data",
+  "note": "Comments:</td> <td class=\"tablecell comments mathjax\">25 pages, 11 figures"
+ },
+ "angelopoulos2021": {
+  "url": "https://arxiv.org/abs/2009.14193",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "[2009.14193] Uncertainty Sets for Image Classifiers using Conformal Prediction",
+  "note": "Comments:</td> <td class=\"tablecell comments mathjax\">ICLR 2021 Spotlight, "
+ },
+ "liu2023jmlr": {
+  "url": "https://www.jmlr.org/papers/v24/22-0479.html",
+  "title_found": true,
+  "author_found": true,
+  "page_title": "A Simple Approach to Improve Single-Model Deep Uncertainty via Distance-Awareness",
+  "note": ""
+ }
+}

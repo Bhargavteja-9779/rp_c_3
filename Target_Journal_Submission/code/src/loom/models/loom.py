@@ -79,12 +79,13 @@ class LOOM:
         return out + 1e-12
 
     # -------------------------------------------------------------- fit
-    def fit(self, F, y):
+    def fit(self, F, y, ridge=None):
+        """``ridge``: optional ClosedFormRidge already fitted on (F, y) whose SVD is reused."""
         self.classes_ = np.unique(y)
         self._pairs_kind = self.pairs
         if self.pairs == "holdout":
             return self._fit_holdout(F, y)
-        m = ClosedFormRidge(lambdas=self.lambdas).fit(F, y)
+        m = ridge.view() if ridge is not None else ClosedFormRidge(lambdas=self.lambdas).fit(F, y)
         self.ridge_ = m
         yi = np.searchsorted(self.classes_, y)
         if self.moderation == "knn":

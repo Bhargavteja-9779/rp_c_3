@@ -75,3 +75,11 @@ def set_metrics(S, y):
     size = S.sum(1)
     return dict(coverage=float(cov.mean()), set_size=float(size.mean()), empty=float((size == 0).mean()),
                 singleton_acc=float(cov[size == 1].mean()) if (size == 1).any() else float("nan"))
+
+
+def reliability_bins(P, y, bins=15):
+    """Per-bin [count, sum of confidence, sum of correct] for pooled reliability diagrams."""
+    conf = P.max(1); acc = (P.argmax(1) == y).astype(float)
+    idx = np.minimum((conf * bins).astype(int), bins - 1)
+    return [np.bincount(idx, minlength=bins).tolist(), np.bincount(idx, conf, bins).round(6).tolist(),
+            np.bincount(idx, acc, bins).tolist()]

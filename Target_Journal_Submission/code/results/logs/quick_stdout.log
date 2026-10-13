@@ -1,0 +1,32 @@
+[1/6] raw       ItalyPowerDemand               r0    30.2s
+[2/6] raw       GunPoint                       r0    19.9s
+[3/6] raw       SonyAIBORobotSurface2          r0    51.2s
+[4/6] raw       Coffee                         r0    10.0s
+[5/6] raw       ECG200                         r0    11.4s
+[6/6] raw       TwoLeadECG                     r0    76.3s
+[1/6] extract   ItalyPowerDemand               r0   160.1s
+[2/6] extract   SonyAIBORobotSurface2          r0   184.2s
+[3/6] extract   GunPoint                       r0    28.5s
+[4/6] extract   Coffee                         r0     8.2s
+[5/6] extract   ECG200                         r0    15.9s
+[6/6] extract   TwoLeadECG                     r0   223.2s
+[1/6] trainsize ItalyPowerDemand               r0    15.5s
+[2/6] trainsize SonyAIBORobotSurface2          r0    17.4s
+[3/6] trainsize GunPoint                       r0     3.5s
+[4/6] trainsize ECG200                         r0     2.3s
+[5/6] trainsize Coffee                         r0     1.4s
+[6/6] trainsize TwoLeadECG                     r0    21.6s
+Traceback (most recent call last):
+  File "/home/user/rp_c_3/Target_Journal_Submission/code/run_all.py", line 133, in <module>
+    main()
+    ~~~~^^
+  File "/home/user/rp_c_3/Target_Journal_Submission/code/run_all.py", line 109, in main
+    _analyze_quick(mod, raw_dir)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/user/rp_c_3/Target_Journal_Submission/code/run_all.py", line 128, in _analyze_quick
+    mod.main("quick")
+    ~~~~~~~~^^^^^^^^^
+  File "/home/user/rp_c_3/Target_Journal_Submission/code/experiments/analyze.py", line 95, in main
+    mr = df[(df.transform.isin(["minirocket", "raw"])) & (df.train_frac == 1.0)]
+             ^^^^^^^^^^^^^^^^^
+AttributeError: 'function' object has no attribute 'isin'

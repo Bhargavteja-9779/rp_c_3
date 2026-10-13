@@ -44,8 +44,9 @@ class RidgeOneHot:
     """Default of the ROCKET-family implementations: hard one-hot 'probabilities'."""
     name = "Ridge-onehot"
 
-    def fit(self, F, y):
-        self.m = ClosedFormRidge().fit(F, y); self.classes_ = self.m.classes_; return self
+    def fit(self, F, y, ridge=None):
+        self.m = ridge.view(ridge.lambdas[int(np.argmin(ridge.loo_sse_))]) if ridge is not None else ClosedFormRidge().fit(F, y)
+        self.classes_ = self.m.classes_; return self
 
     def predict_proba(self, F):
         Z = self.m.decision_function(F)
@@ -57,23 +58,26 @@ class RidgeSoftmax:
     """Naive softmax of the raw ridge scores (temperature 1)."""
     name = "Ridge-softmax"
 
-    def fit(self, F, y):
-        self.m = ClosedFormRidge().fit(F, y); self.classes_ = self.m.classes_; return self
+    def fit(self, F, y, ridge=None):
+        self.m = ridge.view(ridge.lambdas[int(np.argmin(ridge.loo_sse_))]) if ridge is not None else ClosedFormRidge().fit(F, y)
+        self.classes_ = self.m.classes_; return self
 
     def predict_proba(self, F):
         return np.exp(log_softmax(self.m.decision_function(F), axis=1))
 
 
 class RidgeCalibratedCV:
-    """CalibratedClassifierCV (k-fold, ensemble of fold models) around the ridge."""
+    """CalibratedClassifierCV around the ridge: the calibrator is fitted on k-fold
+    out-of-fold decision values and the final ridge on all data (ensemble=False),
+    i.e. the k-fold analogue of fitting on exact LOO values."""
 
     def __init__(self, method="sigmoid", cv=5):
         self.method, self.cv = method, cv
         self.name = f"Ridge-{'Platt' if method == 'sigmoid' else 'Isotonic'}-CV{cv}"
 
-    def fit(self, F, y):
+    def fit(self, F, y, ridge=None):
         k = _safe_cv(y, self.cv)
-        self.m = CalibratedClassifierCV(RidgeEstimator(), method=self.method,
+        self.m = CalibratedClassifierCV(RidgeEstimator(), method=self.method, ensemble=False,
                                         cv=StratifiedKFold(k, shuffle=True, random_state=0))
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
@@ -92,7 +96,7 @@ class LogReg:
     def __init__(self, Cs=(1e-3, 1e-2, 1e-1, 1.0), max_iter=300):
         self.Cs, self.max_iter = Cs, max_iter
 
-    def fit(self, F, y):
+    def fit(self, F, y, ridge=None):
         k = _safe_cv(y, 3)
         pipe = make_pipeline(StandardScaler(), LogisticRegression(max_iter=self.max_iter, tol=1e-3))
         self.m = GridSearchCV(pipe, {"logisticregression__C": list(self.Cs)}, cv=StratifiedKFold(k, shuffle=True, random_state=0),

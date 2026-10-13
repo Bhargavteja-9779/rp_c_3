@@ -82,6 +82,7 @@ class ClosedFormRidge:
         self.Y_ = Y
         self.y_ = np.asarray(y)
         self.lam_scale_ = n if self.scale_by_n else 1.0
+        self._shared = {}          # projection cache shared by all views (see _project)
         # LOO squared error for each lambda (the criterion of RidgeClassifierCV)
         self.loo_sse_ = np.array([self._loo(l)[2] for l in self.lambdas])
         self.set_lambda(self.lambdas[int(np.argmin(self.loo_sse_))])
@@ -109,29 +110,51 @@ class ClosedFormRidge:
         self.loo_leverage_ = self.hat_diag_ / (1 - self.hat_diag_)
         return self
 
+    def view(self, lam_raw=None):
+        """Shallow copy sharing the SVD factors (U, s, V) but owning its own
+        lambda-dependent state; lets many readouts share one decomposition."""
+        import copy
+        v = copy.copy(self)
+        if lam_raw is not None:
+            v.set_lambda(lam_raw)
+        return v
+
     # -------------------------------------------------------------- predict
     def _psi(self, X):
-        return (np.asarray(X, dtype=np.float64) - self.mu_) / self.sd_
+        P = np.asarray(X, dtype=np.float64) - self.mu_
+        P /= self.sd_
+        return P
+
+    def _project(self, X):
+        """(psi, V^T psi, ||psi||^2) for X; cached for the most recent X object so that
+        all views sharing this decomposition reuse it (identity check, not hashing)."""
+        c = self._shared.get("last")
+        if c is not None and c[0] is X:
+            return c[1], c[2], c[3]
+        P = self._psi(X)
+        Q = P @ self.V_
+        sq = np.einsum("ij,ij->i", P, P)
+        self._shared["last"] = (X, P, Q, sq)
+        return P, Q, sq
 
     def decision_function(self, X):
-        return self.ybar_ + self._psi(X) @ self.coef_
+        P, _, _ = self._project(X)
+        return self.ybar_ + P @ self.coef_
 
     def predict(self, X):
         return self.classes_[np.argmax(self.decision_function(X), 1)]
 
     def leverage(self, X):
         """h(x) = z^T A^{-1} z for new points (includes out-of-span component)."""
-        P = self._psi(X)
-        Q = P @ self.V_                                   # m x r
+        P, Q, sq = self._project(X)                       # Q: m x r
         inspan = (Q ** 2) @ self._dinv
-        resid = np.maximum((P ** 2).sum(1) - (Q ** 2).sum(1), 0.0) / self._lam
+        resid = np.maximum(sq - (Q ** 2).sum(1), 0.0) / self._lam
         return 1.0 / self.n_ + inspan + resid
 
     def logits_and_leverage(self, X):
-        P = self._psi(X)
+        P, Q, sq = self._project(X)
         Z = self.ybar_ + P @ self.coef_
-        Q = P @ self.V_
-        h = 1.0 / self.n_ + (Q ** 2) @ self._dinv + np.maximum((P ** 2).sum(1) - (Q ** 2).sum(1), 0.0) / self._lam
+        h = 1.0 / self.n_ + (Q ** 2) @ self._dinv + np.maximum(sq - (Q ** 2).sum(1), 0.0) / self._lam
         return Z, h, Q
 
     def cross_leverage(self, Q):

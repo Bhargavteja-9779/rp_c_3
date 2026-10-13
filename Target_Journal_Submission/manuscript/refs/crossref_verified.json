@@ -1,0 +1,618 @@
+{
+ "10.1007/s10618-020-00701-z": {
+  "title": "ROCKET: exceptionally fast and accurate time series classification using random convolutional kernels",
+  "authors": [
+   "Dempster A",
+   "Petitjean F",
+   "Webb GI"
+  ],
+  "year": 2020,
+  "venue": "Data Mining and Knowledge Discovery",
+  "volume": "34",
+  "issue": "5",
+  "page": "1454-1495",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1145/3447548.3467231": {
+  "title": "MiniRocket",
+  "authors": [
+   "Dempster A",
+   "Schmidt DF",
+   "Webb GI"
+  ],
+  "year": 2021,
+  "venue": "Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery &amp; Data Mining",
+  "volume": null,
+  "issue": null,
+  "page": "248-257",
+  "article_number": null,
+  "publisher": "ACM",
+  "type": "proceedings-article"
+ },
+ "10.1007/s10618-022-00844-1": {
+  "title": "MultiRocket: multiple pooling operators and transformations for fast and effective time series classification",
+  "authors": [
+   "Tan CW",
+   "Dempster A",
+   "Bergmeir C",
+   "Webb GI"
+  ],
+  "year": 2022,
+  "venue": "Data Mining and Knowledge Discovery",
+  "volume": "36",
+  "issue": "5",
+  "page": "1623-1646",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1007/s10618-023-00939-3": {
+  "title": "Hydra: competing convolutional kernels for fast and accurate time series classification",
+  "authors": [
+   "Dempster A",
+   "Schmidt DF",
+   "Webb GI"
+  ],
+  "year": 2023,
+  "venue": "Data Mining and Knowledge Discovery",
+  "volume": "37",
+  "issue": "5",
+  "page": "1779-1805",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1007/s10618-024-01036-9": {
+  "title": "quant: a minimalist interval method for time series classification",
+  "authors": [
+   "Dempster A",
+   "Schmidt DF",
+   "Webb GI"
+  ],
+  "year": 2024,
+  "venue": "Data Mining and Knowledge Discovery",
+  "volume": "38",
+  "issue": "4",
+  "page": "2377-2402",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1007/s10994-021-06057-9": {
+  "title": "HIVE-COTE 2.0: a new meta ensemble for time series classification",
+  "authors": [
+   "Middlehurst M",
+   "Large J",
+   "Flynn M",
+   "Lines J",
+   "Bostrom A",
+   "Bagnall A"
+  ],
+  "year": 2021,
+  "venue": "Machine Learning",
+  "volume": "110",
+  "issue": "11-12",
+  "page": "3211-3243",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1007/s10618-024-01022-1": {
+  "title": "Bake off redux: a review and experimental evaluation of recent time series classification algorithms",
+  "authors": [
+   "Middlehurst M",
+   "Sch\u00e4fer P",
+   "Bagnall A"
+  ],
+  "year": 2024,
+  "venue": "Data Mining and Knowledge Discovery",
+  "volume": "38",
+  "issue": "4",
+  "page": "1958-2031",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1109/JAS.2019.1911747": {
+  "title": "The UCR time series archive",
+  "authors": [
+   "Dau HA",
+   "Bagnall A",
+   "Kamgar K",
+   "Yeh CCM",
+   "Zhu Y",
+   "Gharghabi S",
+   "Ratanamahatana CA",
+   "Keogh E"
+  ],
+  "year": 2019,
+  "venue": "IEEE/CAA Journal of Automatica Sinica",
+  "volume": "6",
+  "issue": "6",
+  "page": "1293-1305",
+  "article_number": null,
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "type": "journal-article"
+ },
+ "10.1007/s10618-016-0483-9": {
+  "title": "The great time series classification bake off: a review and experimental evaluation of recent algorithmic advances",
+  "authors": [
+   "Bagnall A",
+   "Lines J",
+   "Bostrom A",
+   "Large J",
+   "Keogh E"
+  ],
+  "year": 2017,
+  "venue": "Data Mining and Knowledge Discovery",
+  "volume": "31",
+  "issue": "3",
+  "page": "606-660",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1007/s10618-019-00619-1": {
+  "title": "Deep learning for time series classification: a review",
+  "authors": [
+   "Ismail Fawaz H",
+   "Forestier G",
+   "Weber J",
+   "Idoumghar L",
+   "Muller PA"
+  ],
+  "year": 2019,
+  "venue": "Data Mining and Knowledge Discovery",
+  "volume": "33",
+  "issue": "4",
+  "page": "917-963",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1007/s10618-020-00710-y": {
+  "title": "InceptionTime: Finding AlexNet for time series classification",
+  "authors": [
+   "Ismail Fawaz H",
+   "Lucas B",
+   "Forestier G",
+   "Pelletier C",
+   "Schmidt DF",
+   "Weber J",
+   "Webb GI",
+   "Idoumghar L",
+   "Muller PA",
+   "Petitjean F"
+  ],
+  "year": 2020,
+  "venue": "Data Mining and Knowledge Discovery",
+  "volume": "34",
+  "issue": "6",
+  "page": "1936-1962",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1145/1102351.1102430": {
+  "title": "Predicting good probabilities with supervised learning",
+  "authors": [
+   "Niculescu-Mizil A",
+   "Caruana R"
+  ],
+  "year": 2005,
+  "venue": "Proceedings of the 22nd international conference on Machine learning  - ICML '05",
+  "volume": null,
+  "issue": null,
+  "page": "625-632",
+  "article_number": null,
+  "publisher": "ACM Press",
+  "type": "proceedings-article"
+ },
+ "10.1145/775047.775151": {
+  "title": "Transforming classifier scores into accurate multiclass probability estimates",
+  "authors": [
+   "Zadrozny B",
+   "Elkan C"
+  ],
+  "year": 2002,
+  "venue": "Proceedings of the eighth ACM SIGKDD international conference on Knowledge discovery and data mining",
+  "volume": null,
+  "issue": null,
+  "page": "694-699",
+  "article_number": null,
+  "publisher": "ACM",
+  "type": "proceedings-article"
+ },
+ "10.1007/s10994-023-06336-7": {
+  "title": "Classifier calibration: a survey on how to assess and improve predicted class probabilities",
+  "authors": [
+   "Silva Filho T",
+   "Song H",
+   "Perello-Nieto M",
+   "Santos-Rodriguez R",
+   "Kull M",
+   "Flach P"
+  ],
+  "year": 2023,
+  "venue": "Machine Learning",
+  "volume": "112",
+  "issue": "9",
+  "page": "3211-3260",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1162/neco.1992.4.5.720": {
+  "title": "The Evidence Framework Applied to Classification Networks",
+  "authors": [
+   "MacKay DJC"
+  ],
+  "year": 1992,
+  "venue": "Neural Computation",
+  "volume": "4",
+  "issue": "5",
+  "page": "720-736",
+  "article_number": null,
+  "publisher": "MIT Press",
+  "type": "journal-article"
+ },
+ "10.1080/00401706.1970.10488634": {
+  "title": "Ridge Regression: Biased Estimation for Nonorthogonal Problems",
+  "authors": [
+   "Hoerl AE",
+   "Kennard RW"
+  ],
+  "year": 1970,
+  "venue": "Technometrics",
+  "volume": "12",
+  "issue": "1",
+  "page": "55-67",
+  "article_number": null,
+  "publisher": "Informa UK Limited",
+  "type": "journal-article"
+ },
+ "10.1080/00401706.1979.10489751": {
+  "title": "Generalized Cross-Validation as a Method for Choosing a Good Ridge Parameter",
+  "authors": [
+   "Golub GH",
+   "Heath M",
+   "Wahba G"
+  ],
+  "year": 1979,
+  "venue": "Technometrics",
+  "volume": "21",
+  "issue": "2",
+  "page": "215-223",
+  "article_number": null,
+  "publisher": "Informa UK Limited",
+  "type": "journal-article"
+ },
+ "10.1080/00401706.1974.10489157": {
+  "title": "The Relationship Between Variable Selection and Data Agumentation and a Method for Prediction",
+  "authors": [
+   "Allen DM"
+  ],
+  "year": 1974,
+  "venue": "Technometrics",
+  "volume": "16",
+  "issue": "1",
+  "page": "125-127",
+  "article_number": null,
+  "publisher": "Informa UK Limited",
+  "type": "journal-article"
+ },
+ "10.1080/00031305.1978.10479237": {
+  "title": "The Hat Matrix in Regression and ANOVA",
+  "authors": [
+   "Hoaglin DC",
+   "Welsch RE"
+  ],
+  "year": 1978,
+  "venue": "The American Statistician",
+  "volume": "32",
+  "issue": "1",
+  "page": "17-22",
+  "article_number": null,
+  "publisher": "Informa UK Limited",
+  "type": "journal-article"
+ },
+ "10.1016/j.neunet.2004.07.002": {
+  "title": "Fast exact leave-one-out cross-validation of sparse least-squares support vector machines",
+  "authors": [
+   "Cawley GC",
+   "Talbot NL"
+  ],
+  "year": 2004,
+  "venue": "Neural Networks",
+  "volume": "17",
+  "issue": "10",
+  "page": "1467-1475",
+  "article_number": null,
+  "publisher": "Elsevier BV",
+  "type": "journal-article"
+ },
+ "10.1023/A:1018628609742": {
+  "title": "Least Squares Support Vector Machine Classifiers",
+  "authors": [
+   "Suykens J",
+   "Vandewalle J"
+  ],
+  "year": 1999,
+  "venue": "Neural Processing Letters",
+  "volume": "9",
+  "issue": "3",
+  "page": "293-300",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1007/978-3-031-06649-8": {
+  "title": "Algorithmic Learning in a Random World",
+  "authors": [
+   "Vovk V",
+   "Gammerman A",
+   "Shafer G"
+  ],
+  "year": 2022,
+  "venue": "",
+  "volume": null,
+  "issue": null,
+  "page": null,
+  "article_number": null,
+  "publisher": "Springer International Publishing",
+  "type": "book"
+ },
+ "10.1214/20-AOS1965": {
+  "title": "Predictive inference with the jackknife+",
+  "authors": [
+   "Barber RF",
+   "Cand\u00e8s EJ",
+   "Ramdas A",
+   "Tibshirani RJ"
+  ],
+  "year": 2021,
+  "venue": "The Annals of Statistics",
+  "volume": "49",
+  "issue": "1",
+  "page": "486-507",
+  "article_number": null,
+  "publisher": "Institute of Mathematical Statistics",
+  "type": "journal-article"
+ },
+ "10.1080/01621459.2017.1395341": {
+  "title": "Least Ambiguous Set-Valued Classifiers With Bounded Error Levels",
+  "authors": [
+   "Sadinle M",
+   "Lei J",
+   "Wasserman L"
+  ],
+  "year": 2019,
+  "venue": "Journal of the American Statistical Association",
+  "volume": "114",
+  "issue": "525",
+  "page": "223-234",
+  "article_number": null,
+  "publisher": "Informa UK Limited",
+  "type": "journal-article"
+ },
+ "10.1561/2200000101": {
+  "title": "Conformal Prediction: A Gentle Introduction",
+  "authors": [
+   "Angelopoulos AN",
+   "Bates S"
+  ],
+  "year": 2023,
+  "venue": "Foundations and Trends\u00ae in Machine Learning",
+  "volume": "16",
+  "issue": "4",
+  "page": "494-591",
+  "article_number": null,
+  "publisher": "Emerald",
+  "type": "journal-article"
+ },
+ "10.1080/01621459.2017.1307116": {
+  "title": "Distribution-Free Predictive Inference for Regression",
+  "authors": [
+   "Lei J",
+   "G\u2019Sell M",
+   "Rinaldo A",
+   "Tibshirani RJ",
+   "Wasserman L"
+  ],
+  "year": 2018,
+  "venue": "Journal of the American Statistical Association",
+  "volume": "113",
+  "issue": "523",
+  "page": "1094-1111",
+  "article_number": null,
+  "publisher": "Informa UK Limited",
+  "type": "journal-article"
+ },
+ "10.2307/3001968": {
+  "title": "Individual Comparisons by Ranking Methods",
+  "authors": [
+   "Wilcoxon F"
+  ],
+  "year": 1945,
+  "venue": "Biometrics Bulletin",
+  "volume": "1",
+  "issue": "6",
+  "page": "80",
+  "article_number": null,
+  "publisher": "JSTOR",
+  "type": "journal-article"
+ },
+ "10.2466/11.IT.3.1": {
+  "title": "The Simple Difference Formula: An Approach to Teaching Nonparametric Correlation",
+  "authors": [
+   "Kerby DS"
+  ],
+  "year": 2014,
+  "venue": "Comprehensive Psychology",
+  "volume": "3",
+  "issue": null,
+  "page": "11.IT.3.1",
+  "article_number": null,
+  "publisher": "Ammons Scientific",
+  "type": "journal-article"
+ },
+ "10.2202/1544-6115.1000": {
+  "title": "Pre-validation and inference in microarrays",
+  "authors": [
+   "Tibshirani RJ",
+   "Efron B"
+  ],
+  "year": 2002,
+  "venue": "Statistical Applications in Genetics and Molecular Biology",
+  "volume": "1",
+  "issue": "1",
+  "page": null,
+  "article_number": null,
+  "publisher": "Walter de Gruyter GmbH",
+  "type": "journal-article"
+ },
+ "10.1007/s10618-020-00727-3": {
+  "title": "The great multivariate time series classification bake off: a review and experimental evaluation of recent algorithmic advances",
+  "authors": [
+   "Ruiz AP",
+   "Flynn M",
+   "Large J",
+   "Middlehurst M",
+   "Bagnall A"
+  ],
+  "year": 2021,
+  "venue": "Data Mining and Knowledge Discovery",
+  "volume": "35",
+  "issue": "2",
+  "page": "401-449",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1371/journal.pone.0254841": {
+  "title": "An empirical survey of data augmentation for time series classification with neural networks",
+  "authors": [
+   "Iwana BK",
+   "Uchida S"
+  ],
+  "year": 2021,
+  "venue": "PLOS ONE",
+  "volume": "16",
+  "issue": "7",
+  "page": "e0254841",
+  "article_number": null,
+  "publisher": "Public Library of Science (PLoS)",
+  "type": "journal-article"
+ },
+ "10.1145/3136755.3136817": {
+  "title": "Data augmentation of wearable sensor data for parkinson\u2019s disease monitoring using convolutional neural networks",
+  "authors": [
+   "Um TT",
+   "Pfister FMJ",
+   "Pichler D",
+   "Endo S",
+   "Lang M",
+   "Hirche S",
+   "Fietzek U",
+   "Kuli\u0107 D"
+  ],
+  "year": 2017,
+  "venue": "Proceedings of the 19th ACM International Conference on Multimodal Interaction",
+  "volume": null,
+  "issue": null,
+  "page": "216-220",
+  "article_number": null,
+  "publisher": "ACM",
+  "type": "proceedings-article"
+ },
+ "10.1145/3587937": {
+  "title": "ADATIME: A Benchmarking Suite for Domain Adaptation on Time Series Data",
+  "authors": [
+   "Ragab M",
+   "Eldele E",
+   "Tan WL",
+   "Foo CS",
+   "Chen Z",
+   "Wu M",
+   "Kwoh CK",
+   "Li X"
+  ],
+  "year": 2023,
+  "venue": "ACM Transactions on Knowledge Discovery from Data",
+  "volume": "17",
+  "issue": "8",
+  "page": "1-18",
+  "article_number": null,
+  "publisher": "Association for Computing Machinery (ACM)",
+  "type": "journal-article"
+ },
+ "10.1016/j.inffus.2021.05.008": {
+  "title": "A review of uncertainty quantification in deep learning: Techniques, applications and challenges",
+  "authors": [
+   "Abdar M",
+   "Pourpanah F",
+   "Hussain S",
+   "Rezazadegan D",
+   "Liu L",
+   "Ghavamzadeh M",
+   "Fieguth P",
+   "Cao X",
+   "Khosravi A",
+   "Acharya UR",
+   "Makarenkov V",
+   "Nahavandi S"
+  ],
+  "year": 2021,
+  "venue": "Information Fusion",
+  "volume": "76",
+  "issue": null,
+  "page": "243-297",
+  "article_number": null,
+  "publisher": "Elsevier BV",
+  "type": "journal-article"
+ },
+ "10.1007/s10462-023-10562-9": {
+  "title": "A survey of uncertainty in deep neural networks",
+  "authors": [
+   "Gawlikowski J",
+   "Tassi CRN",
+   "Ali M",
+   "Lee J",
+   "Humt M",
+   "Feng J",
+   "Kruspe A",
+   "Triebel R",
+   "Jung P",
+   "Roscher R",
+   "Shahzad M",
+   "Yang W",
+   "Bamler R",
+   "Zhu XX"
+  ],
+  "year": 2023,
+  "venue": "Artificial Intelligence Review",
+  "volume": "56",
+  "issue": "S1",
+  "page": "1513-1589",
+  "article_number": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "type": "journal-article"
+ },
+ "10.1109/TPAMI.2023.3272339": {
+  "title": "Conformal Prediction for Time Series",
+  "authors": [
+   "Xu C",
+   "Xie Y"
+  ],
+  "year": 2023,
+  "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+  "volume": "45",
+  "issue": "10",
+  "page": "11575-11587",
+  "article_number": null,
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "type": "journal-article"
+ }
+}

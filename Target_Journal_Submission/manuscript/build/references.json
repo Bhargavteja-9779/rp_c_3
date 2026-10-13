@@ -1,0 +1,3609 @@
+[
+ {
+  "type": "journal-article",
+  "title": "ROCKET: exceptionally fast and accurate time series classification using random convolutional kernels",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0002-6809-0482",
+    "authenticated-orcid": false,
+    "given": "Angus",
+    "family": "Dempster",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-5334-3574",
+    "authenticated-orcid": false,
+    "given": "François",
+    "family": "Petitjean",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-9963-5169",
+    "authenticated-orcid": false,
+    "given": "Geoffrey I.",
+    "family": "Webb",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Data Mining and Knowledge Discovery",
+  "volume": "34",
+  "issue": "5",
+  "page": "1454-1495",
+  "issued": {
+   "date-parts": [
+    [
+     2020,
+     7,
+     13
+    ]
+   ]
+  },
+  "DOI": "10.1007/s10618-020-00701-z",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "dempster2020rocket"
+ },
+ {
+  "type": "proceedings-article",
+  "title": "MiniRocket",
+  "author": [
+   {
+    "given": "Angus",
+    "family": "Dempster",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Monash University, Melbourne, VIC, Australia"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Daniel F.",
+    "family": "Schmidt",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Monash University, Melbourne, VIC, Australia"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Geoffrey I.",
+    "family": "Webb",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Monash University, Melbourne, VIC, Australia"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery &amp; Data Mining",
+  "page": "248-257",
+  "issued": {
+   "date-parts": [
+    [
+     2021,
+     8,
+     14
+    ]
+   ]
+  },
+  "DOI": "10.1145/3447548.3467231",
+  "publisher": "ACM",
+  "event": "KDD '21: The 27th ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
+  "id": "dempster2021minirocket"
+ },
+ {
+  "type": "journal-article",
+  "title": "MultiRocket: multiple pooling operators and transformations for fast and effective time series classification",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0001-8377-3241",
+    "authenticated-orcid": false,
+    "given": "Chang Wei",
+    "family": "Tan",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Angus",
+    "family": "Dempster",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Christoph",
+    "family": "Bergmeir",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Geoffrey I.",
+    "family": "Webb",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Data Mining and Knowledge Discovery",
+  "volume": "36",
+  "issue": "5",
+  "page": "1623-1646",
+  "issued": {
+   "date-parts": [
+    [
+     2022,
+     6,
+     29
+    ]
+   ]
+  },
+  "DOI": "10.1007/s10618-022-00844-1",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "tan2022multirocket"
+ },
+ {
+  "type": "journal-article",
+  "title": "Hydra: competing convolutional kernels for fast and accurate time series classification",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0002-6809-0482",
+    "authenticated-orcid": false,
+    "given": "Angus",
+    "family": "Dempster",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Daniel F.",
+    "family": "Schmidt",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Geoffrey I.",
+    "family": "Webb",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Data Mining and Knowledge Discovery",
+  "volume": "37",
+  "issue": "5",
+  "page": "1779-1805",
+  "issued": {
+   "date-parts": [
+    [
+     2023,
+     5,
+     16
+    ]
+   ]
+  },
+  "DOI": "10.1007/s10618-023-00939-3",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "dempster2023hydra"
+ },
+ {
+  "type": "journal-article",
+  "title": "quant: a minimalist interval method for time series classification",
+  "author": [
+   {
+    "given": "Angus",
+    "family": "Dempster",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Daniel F.",
+    "family": "Schmidt",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Geoffrey I.",
+    "family": "Webb",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Data Mining and Knowledge Discovery",
+  "volume": "38",
+  "issue": "4",
+  "page": "2377-2402",
+  "issued": {
+   "date-parts": [
+    [
+     2024,
+     5,
+     22
+    ]
+   ]
+  },
+  "DOI": "10.1007/s10618-024-01036-9",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "dempster2024quant"
+ },
+ {
+  "type": "journal-article",
+  "title": "HIVE-COTE 2.0: a new meta ensemble for time series classification",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0002-3293-8779",
+    "authenticated-orcid": false,
+    "given": "Matthew",
+    "family": "Middlehurst",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-2357-3798",
+    "authenticated-orcid": false,
+    "given": "James",
+    "family": "Large",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-6811-5395",
+    "authenticated-orcid": false,
+    "given": "Michael",
+    "family": "Flynn",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-1496-5941",
+    "authenticated-orcid": false,
+    "given": "Jason",
+    "family": "Lines",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-7300-6038",
+    "authenticated-orcid": false,
+    "given": "Aaron",
+    "family": "Bostrom",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-2360-8994",
+    "authenticated-orcid": false,
+    "given": "Anthony",
+    "family": "Bagnall",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Machine Learning",
+  "volume": "110",
+  "issue": "11-12",
+  "page": "3211-3243",
+  "issued": {
+   "date-parts": [
+    [
+     2021,
+     9,
+     24
+    ]
+   ]
+  },
+  "DOI": "10.1007/s10994-021-06057-9",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "middlehurst2021hc2"
+ },
+ {
+  "type": "journal-article",
+  "title": "Bake off redux: a review and experimental evaluation of recent time series classification algorithms",
+  "author": [
+   {
+    "given": "Matthew",
+    "family": "Middlehurst",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Patrick",
+    "family": "Schäfer",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Anthony",
+    "family": "Bagnall",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Data Mining and Knowledge Discovery",
+  "volume": "38",
+  "issue": "4",
+  "page": "1958-2031",
+  "issued": {
+   "date-parts": [
+    [
+     2024,
+     4,
+     19
+    ]
+   ]
+  },
+  "DOI": "10.1007/s10618-024-01022-1",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "middlehurst2024bakeoff"
+ },
+ {
+  "type": "journal-article",
+  "title": "The UCR time series archive",
+  "author": [
+   {
+    "given": "Hoang Anh",
+    "family": "Dau",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Department of Computer Science and Engineering,University of California, Riverside, CA 92521 USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Anthony",
+    "family": "Bagnall",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "School of Computing Sciences, University of East Anglia, Norfolk NR4 7TJ, UK"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Kaveh",
+    "family": "Kamgar",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Computer Science and Engineering, University of California, Riverside, CA 92521 USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Chin-Chia Michael",
+    "family": "Yeh",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Computer Science and Engineering, University of California, Riverside, CA 92521 USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Yan",
+    "family": "Zhu",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Computer Science and Engineering, University of California, Riverside, CA 92521 USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Shaghayegh",
+    "family": "Gharghabi",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Computer Science and Engineering, University of California, Riverside, CA 92521 USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Chotirat Ann",
+    "family": "Ratanamahatana",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Computer Engineering, Chulalongkorn University, Bangkok 10330, Thailand"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Eamonn",
+    "family": "Keogh",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Computer Science and Engineering, University of California, Riverside, CA 92521 USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "IEEE/CAA Journal of Automatica Sinica",
+  "volume": "6",
+  "issue": "6",
+  "page": "1293-1305",
+  "issued": {
+   "date-parts": [
+    [
+     2019,
+     11
+    ]
+   ]
+  },
+  "DOI": "10.1109/jas.2019.1911747",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "id": "dau2019ucr"
+ },
+ {
+  "type": "journal-article",
+  "title": "The great time series classification bake off: a review and experimental evaluation of recent algorithmic advances",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0003-2360-8994",
+    "authenticated-orcid": false,
+    "given": "Anthony",
+    "family": "Bagnall",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Jason",
+    "family": "Lines",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Aaron",
+    "family": "Bostrom",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "James",
+    "family": "Large",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Eamonn",
+    "family": "Keogh",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Data Mining and Knowledge Discovery",
+  "volume": "31",
+  "issue": "3",
+  "page": "606-660",
+  "issued": {
+   "date-parts": [
+    [
+     2016,
+     11,
+     23
+    ]
+   ]
+  },
+  "DOI": "10.1007/s10618-016-0483-9",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "bagnall2017bakeoff"
+ },
+ {
+  "type": "journal-article",
+  "title": "Deep learning for time series classification: a review",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0003-1384-5996",
+    "authenticated-orcid": false,
+    "given": "Hassan",
+    "family": "Ismail Fawaz",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-4960-7554",
+    "authenticated-orcid": false,
+    "given": "Germain",
+    "family": "Forestier",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Jonathan",
+    "family": "Weber",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Lhassane",
+    "family": "Idoumghar",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Pierre-Alain",
+    "family": "Muller",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Data Mining and Knowledge Discovery",
+  "volume": "33",
+  "issue": "4",
+  "page": "917-963",
+  "issued": {
+   "date-parts": [
+    [
+     2019,
+     3,
+     2
+    ]
+   ]
+  },
+  "DOI": "10.1007/s10618-019-00619-1",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "ismailfawaz2019review"
+ },
+ {
+  "type": "journal-article",
+  "title": "InceptionTime: Finding AlexNet for time series classification",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0003-1384-5996",
+    "authenticated-orcid": false,
+    "given": "Hassan",
+    "family": "Ismail Fawaz",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-2021-3076",
+    "authenticated-orcid": false,
+    "given": "Benjamin",
+    "family": "Lucas",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-4960-7554",
+    "authenticated-orcid": false,
+    "given": "Germain",
+    "family": "Forestier",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Charlotte",
+    "family": "Pelletier",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Daniel F.",
+    "family": "Schmidt",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-3694-4703",
+    "authenticated-orcid": false,
+    "given": "Jonathan",
+    "family": "Weber",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-9963-5169",
+    "authenticated-orcid": false,
+    "given": "Geoffrey I.",
+    "family": "Webb",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Lhassane",
+    "family": "Idoumghar",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Pierre-Alain",
+    "family": "Muller",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "François",
+    "family": "Petitjean",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Data Mining and Knowledge Discovery",
+  "volume": "34",
+  "issue": "6",
+  "page": "1936-1962",
+  "issued": {
+   "date-parts": [
+    [
+     2020,
+     9,
+     7
+    ]
+   ]
+  },
+  "DOI": "10.1007/s10618-020-00710-y",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "ismailfawaz2020inception"
+ },
+ {
+  "type": "proceedings-article",
+  "title": "Predicting good probabilities with supervised learning",
+  "author": [
+   {
+    "given": "Alexandru",
+    "family": "Niculescu-Mizil",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Rich",
+    "family": "Caruana",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Proceedings of the 22nd international conference on Machine learning  - ICML '05",
+  "page": "625-632",
+  "issued": {
+   "date-parts": [
+    [
+     2005
+    ]
+   ]
+  },
+  "DOI": "10.1145/1102351.1102430",
+  "publisher": "ACM Press",
+  "event": "the 22nd international conference",
+  "id": "niculescu2005"
+ },
+ {
+  "type": "proceedings-article",
+  "title": "Transforming classifier scores into accurate multiclass probability estimates",
+  "author": [
+   {
+    "given": "Bianca",
+    "family": "Zadrozny",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "University of California, San Diego, La Jolla, California"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Charles",
+    "family": "Elkan",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "University of California, San Diego, La Jolla, California"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Proceedings of the eighth ACM SIGKDD international conference on Knowledge discovery and data mining",
+  "page": "694-699",
+  "issued": {
+   "date-parts": [
+    [
+     2002,
+     7,
+     23
+    ]
+   ]
+  },
+  "DOI": "10.1145/775047.775151",
+  "publisher": "ACM",
+  "event": "KDD02: The Eighth ACM SIGKDD International Conference on Knowledge Discovery and Data Mining",
+  "id": "zadrozny2002"
+ },
+ {
+  "type": "journal-article",
+  "title": "Classifier calibration: a survey on how to assess and improve predicted class probabilities",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0003-0826-6885",
+    "authenticated-orcid": false,
+    "given": "Telmo",
+    "family": "Silva Filho",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-0876-485X",
+    "authenticated-orcid": false,
+    "given": "Hao",
+    "family": "Song",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-8925-424X",
+    "authenticated-orcid": false,
+    "given": "Miquel",
+    "family": "Perello-Nieto",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-9576-3905",
+    "authenticated-orcid": false,
+    "given": "Raul",
+    "family": "Santos-Rodriguez",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-9257-595X",
+    "authenticated-orcid": false,
+    "given": "Meelis",
+    "family": "Kull",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-6857-5810",
+    "authenticated-orcid": false,
+    "given": "Peter",
+    "family": "Flach",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Machine Learning",
+  "volume": "112",
+  "issue": "9",
+  "page": "3211-3260",
+  "issued": {
+   "date-parts": [
+    [
+     2023,
+     5,
+     16
+    ]
+   ]
+  },
+  "DOI": "10.1007/s10994-023-06336-7",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "silvafilho2023"
+ },
+ {
+  "type": "journal-article",
+  "title": "The Evidence Framework Applied to Classification Networks",
+  "author": [
+   {
+    "given": "David J. C.",
+    "family": "MacKay",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Computation and Neural Systems, California Institute of Technology, Pasadena, CA 91125 USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Neural Computation",
+  "volume": "4",
+  "issue": "5",
+  "page": "720-736",
+  "issued": {
+   "date-parts": [
+    [
+     1992,
+     9
+    ]
+   ]
+  },
+  "DOI": "10.1162/neco.1992.4.5.720",
+  "publisher": "MIT Press",
+  "id": "mackay1992"
+ },
+ {
+  "type": "journal-article",
+  "title": "Ridge Regression: Biased Estimation for Nonorthogonal Problems",
+  "author": [
+   {
+    "given": "Arthur E.",
+    "family": "Hoerl",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "University of Delaware and E. 1. du Pont de Nemours & Co"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Robert W.",
+    "family": "Kennard",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "University of Delaware and E. 1. du Pont de Nemours & Co"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Technometrics",
+  "volume": "12",
+  "issue": "1",
+  "page": "55-67",
+  "issued": {
+   "date-parts": [
+    [
+     1970,
+     2
+    ]
+   ]
+  },
+  "DOI": "10.1080/00401706.1970.10488634",
+  "publisher": "Informa UK Limited",
+  "id": "hoerl1970"
+ },
+ {
+  "type": "journal-article",
+  "title": "Generalized Cross-Validation as a Method for Choosing a Good Ridge Parameter",
+  "author": [
+   {
+    "given": "Gene H.",
+    "family": "Golub",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Stanford University"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Michael",
+    "family": "Heath",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Computer Sciences Division Oak Ridge National Laboratory"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Grace",
+    "family": "Wahba",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "University of Wisconsin"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Technometrics",
+  "volume": "21",
+  "issue": "2",
+  "page": "215-223",
+  "issued": {
+   "date-parts": [
+    [
+     1979,
+     5
+    ]
+   ]
+  },
+  "DOI": "10.1080/00401706.1979.10489751",
+  "publisher": "Informa UK Limited",
+  "id": "golub1979"
+ },
+ {
+  "type": "journal-article",
+  "title": "The Relationship Between Variable Selection and Data Agumentation and a Method for Prediction",
+  "author": [
+   {
+    "given": "David M.",
+    "family": "Allen",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "University of Kentucky"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Technometrics",
+  "volume": "16",
+  "issue": "1",
+  "page": "125-127",
+  "issued": {
+   "date-parts": [
+    [
+     1974,
+     2
+    ]
+   ]
+  },
+  "DOI": "10.1080/00401706.1974.10489157",
+  "publisher": "Informa UK Limited",
+  "id": "allen1974"
+ },
+ {
+  "type": "journal-article",
+  "title": "The Hat Matrix in Regression and ANOVA",
+  "author": [
+   {
+    "given": "David C.",
+    "family": "Hoaglin",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Abt Associates",
+      "place": [
+       "USA"
+      ]
+     },
+     {
+      "name": "Harvard University",
+      "place": [
+       "USA"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Roy E.",
+    "family": "Welsch",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Massachusetts Institute of Technology",
+      "place": [
+       "USA"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "The American Statistician",
+  "volume": "32",
+  "issue": "1",
+  "page": "17-22",
+  "issued": {
+   "date-parts": [
+    [
+     1978,
+     2
+    ]
+   ]
+  },
+  "DOI": "10.1080/00031305.1978.10479237",
+  "publisher": "Informa UK Limited",
+  "id": "hoaglin1978"
+ },
+ {
+  "type": "journal-article",
+  "title": "Fast exact leave-one-out cross-validation of sparse least-squares support vector machines",
+  "author": [
+   {
+    "given": "Gavin C.",
+    "family": "Cawley",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Nicola L.C.",
+    "family": "Talbot",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Neural Networks",
+  "volume": "17",
+  "issue": "10",
+  "page": "1467-1475",
+  "issued": {
+   "date-parts": [
+    [
+     2004,
+     12
+    ]
+   ]
+  },
+  "DOI": "10.1016/j.neunet.2004.07.002",
+  "publisher": "Elsevier BV",
+  "id": "cawley2004"
+ },
+ {
+  "type": "journal-article",
+  "title": "Least Squares Support Vector Machine Classifiers",
+  "author": [
+   {
+    "given": "J.A.K.",
+    "family": "Suykens",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "J.",
+    "family": "Vandewalle",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Neural Processing Letters",
+  "volume": "9",
+  "issue": "3",
+  "page": "293-300",
+  "issued": {
+   "date-parts": [
+    [
+     1999,
+     6
+    ]
+   ]
+  },
+  "DOI": "10.1023/a:1018628609742",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "suykens1999"
+ },
+ {
+  "type": "book",
+  "title": "Algorithmic Learning in a Random World",
+  "author": [
+   {
+    "given": "Vladimir",
+    "family": "Vovk",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Alexander",
+    "family": "Gammerman",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Glenn",
+    "family": "Shafer",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "",
+  "issued": {
+   "date-parts": [
+    [
+     2022
+    ]
+   ]
+  },
+  "DOI": "10.1007/978-3-031-06649-8",
+  "publisher": "Springer International Publishing",
+  "id": "vovk2022"
+ },
+ {
+  "type": "journal-article",
+  "title": "Predictive inference with the jackknife+",
+  "author": [
+   {
+    "given": "Rina Foygel",
+    "family": "Barber",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Emmanuel J.",
+    "family": "Candès",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Aaditya",
+    "family": "Ramdas",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Ryan J.",
+    "family": "Tibshirani",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "The Annals of Statistics",
+  "volume": "49",
+  "issue": "1",
+  "page": "486-507",
+  "issued": {
+   "date-parts": [
+    [
+     2021,
+     2,
+     1
+    ]
+   ]
+  },
+  "DOI": "10.1214/20-aos1965",
+  "publisher": "Institute of Mathematical Statistics",
+  "id": "barber2021"
+ },
+ {
+  "type": "journal-article",
+  "title": "Least Ambiguous Set-Valued Classifiers With Bounded Error Levels",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0002-7092-3877",
+    "authenticated-orcid": false,
+    "given": "Mauricio",
+    "family": "Sadinle",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Department of Biostatistics, University of Washington, Seattle, WA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-3104-9387",
+    "authenticated-orcid": false,
+    "given": "Jing",
+    "family": "Lei",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Statistics, Carnegie Mellon University, Pittsburgh, PA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Larry",
+    "family": "Wasserman",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Statistics, Carnegie Mellon University, Pittsburgh, PA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Journal of the American Statistical Association",
+  "volume": "114",
+  "issue": "525",
+  "page": "223-234",
+  "issued": {
+   "date-parts": [
+    [
+     2018,
+     6,
+     28
+    ]
+   ]
+  },
+  "DOI": "10.1080/01621459.2017.1395341",
+  "publisher": "Informa UK Limited",
+  "id": "sadinle2019"
+ },
+ {
+  "type": "journal-article",
+  "title": "Conformal Prediction: A Gentle Introduction",
+  "author": [
+   {
+    "given": "Anastasios N.",
+    "family": "Angelopoulos",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "University of California , ,",
+      "place": [
+       "Berkeley, USA"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Stephen",
+    "family": "Bates",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "University of California , ,",
+      "place": [
+       "Berkeley, USA"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Foundations and Trends® in Machine Learning",
+  "volume": "16",
+  "issue": "4",
+  "page": "494-591",
+  "issued": {
+   "date-parts": [
+    [
+     2023,
+     3,
+     27
+    ]
+   ]
+  },
+  "DOI": "10.1561/2200000101",
+  "publisher": "Emerald",
+  "id": "angelopoulos2023"
+ },
+ {
+  "type": "journal-article",
+  "title": "Distribution-Free Predictive Inference for Regression",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0003-3104-9387",
+    "authenticated-orcid": false,
+    "given": "Jing",
+    "family": "Lei",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Department of Statistics, Carnegie Mellon University, Pittsburgh, PA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Max",
+    "family": "G’Sell",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Statistics, Carnegie Mellon University, Pittsburgh, PA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Alessandro",
+    "family": "Rinaldo",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Statistics, Carnegie Mellon University, Pittsburgh, PA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-2158-8304",
+    "authenticated-orcid": false,
+    "given": "Ryan J.",
+    "family": "Tibshirani",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Statistics, Carnegie Mellon University, Pittsburgh, PA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Larry",
+    "family": "Wasserman",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Statistics, Carnegie Mellon University, Pittsburgh, PA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Journal of the American Statistical Association",
+  "volume": "113",
+  "issue": "523",
+  "page": "1094-1111",
+  "issued": {
+   "date-parts": [
+    [
+     2018,
+     6,
+     8
+    ]
+   ]
+  },
+  "DOI": "10.1080/01621459.2017.1307116",
+  "publisher": "Informa UK Limited",
+  "id": "lei2018"
+ },
+ {
+  "type": "journal-article",
+  "title": "Individual Comparisons by Ranking Methods",
+  "author": [
+   {
+    "given": "Frank",
+    "family": "Wilcoxon",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Biometrics Bulletin",
+  "volume": "1",
+  "issue": "6",
+  "page": "80",
+  "issued": {
+   "date-parts": [
+    [
+     1945,
+     12
+    ]
+   ]
+  },
+  "DOI": "10.2307/3001968",
+  "publisher": "JSTOR",
+  "id": "wilcoxon1945"
+ },
+ {
+  "type": "journal-article",
+  "title": "The Simple Difference Formula: An Approach to Teaching Nonparametric Correlation",
+  "author": [
+   {
+    "given": "Dave S.",
+    "family": "Kerby",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Comprehensive Psychology",
+  "volume": "3",
+  "page": "11.IT.3.1",
+  "issued": {
+   "date-parts": [
+    [
+     2014,
+     1
+    ]
+   ]
+  },
+  "DOI": "10.2466/11.it.3.1",
+  "publisher": "Ammons Scientific",
+  "id": "kerby2014"
+ },
+ {
+  "type": "journal-article",
+  "title": "Pre-validation and inference in microarrays",
+  "author": [
+   {
+    "given": "Robert J.",
+    "family": "Tibshirani",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Brad",
+    "family": "Efron",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Statistical Applications in Genetics and Molecular Biology",
+  "volume": "1",
+  "issue": "1",
+  "issued": {
+   "date-parts": [
+    [
+     2002,
+     1,
+     22
+    ]
+   ]
+  },
+  "DOI": "10.2202/1544-6115.1000",
+  "publisher": "Walter de Gruyter GmbH",
+  "id": "tibshirani2002"
+ },
+ {
+  "type": "journal-article",
+  "title": "The great multivariate time series classification bake off: a review and experimental evaluation of recent algorithmic advances",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0001-7129-821X",
+    "authenticated-orcid": false,
+    "given": "Alejandro Pasos",
+    "family": "Ruiz",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-6811-5395",
+    "authenticated-orcid": false,
+    "given": "Michael",
+    "family": "Flynn",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-2357-3798",
+    "authenticated-orcid": false,
+    "given": "James",
+    "family": "Large",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-3293-8779",
+    "authenticated-orcid": false,
+    "given": "Matthew",
+    "family": "Middlehurst",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-2360-8994",
+    "authenticated-orcid": false,
+    "given": "Anthony",
+    "family": "Bagnall",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Data Mining and Knowledge Discovery",
+  "volume": "35",
+  "issue": "2",
+  "page": "401-449",
+  "issued": {
+   "date-parts": [
+    [
+     2020,
+     12,
+     18
+    ]
+   ]
+  },
+  "DOI": "10.1007/s10618-020-00727-3",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "ruiz2021"
+ },
+ {
+  "type": "journal-article",
+  "title": "An empirical survey of data augmentation for time series classification with neural networks",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0002-5146-6818",
+    "authenticated-orcid": true,
+    "given": "Brian Kenji",
+    "family": "Iwana",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Seiichi",
+    "family": "Uchida",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "editor": [
+   {
+    "given": "Friedhelm",
+    "family": "Schwenker",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "editor"
+     }
+    ]
+   }
+  ],
+  "container-title": "PLOS ONE",
+  "volume": "16",
+  "issue": "7",
+  "page": "e0254841",
+  "issued": {
+   "date-parts": [
+    [
+     2021,
+     7,
+     15
+    ]
+   ]
+  },
+  "DOI": "10.1371/journal.pone.0254841",
+  "publisher": "Public Library of Science (PLoS)",
+  "id": "iwana2021"
+ },
+ {
+  "type": "proceedings-article",
+  "title": "Data augmentation of wearable sensor data for parkinson’s disease monitoring using convolutional neural networks",
+  "author": [
+   {
+    "given": "Terry T.",
+    "family": "Um",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "University of Waterloo, Canada"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Franz M. J.",
+    "family": "Pfister",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "LMU Munich, Germany"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Daniel",
+    "family": "Pichler",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "TU Munich, Germany"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Satoshi",
+    "family": "Endo",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "TU Munich, Germany"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Muriel",
+    "family": "Lang",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "TU Munich, Germany"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Sandra",
+    "family": "Hirche",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "TU Munich, Germany"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Urban",
+    "family": "Fietzek",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Schön Klinik München Schwabing, Germany"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Dana",
+    "family": "Kulić",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "University of Waterloo, Canada"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Proceedings of the 19th ACM International Conference on Multimodal Interaction",
+  "page": "216-220",
+  "issued": {
+   "date-parts": [
+    [
+     2017,
+     11,
+     3
+    ]
+   ]
+  },
+  "DOI": "10.1145/3136755.3136817",
+  "publisher": "ACM",
+  "event": "ICMI '17: INTERNATIONAL CONFERENCE ON MULTIMODAL INTERACTION",
+  "id": "um2017"
+ },
+ {
+  "type": "journal-article",
+  "title": "ADATIME: A Benchmarking Suite for Domain Adaptation on Time Series Data",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0002-2138-4395",
+    "authenticated-orcid": false,
+    "given": "Mohamed",
+    "family": "Ragab",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Institute for Infocomm Research and Centre for Frontier AI Research, A*STAR, Singapore"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-9282-0991",
+    "authenticated-orcid": false,
+    "given": "Emadeldeen",
+    "family": "Eldele",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Nanyang Technological University, Singapore"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-2664-8238",
+    "authenticated-orcid": false,
+    "given": "Wee Ling",
+    "family": "Tan",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Institute for Infocomm Research, A*STAR, Singapore"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-4748-5792",
+    "authenticated-orcid": false,
+    "given": "Chuan-Sheng",
+    "family": "Foo",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Institute for Infocomm Research and Centre for Frontier AI Research, A*STAR, Singapore"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-1719-0328",
+    "authenticated-orcid": false,
+    "given": "Zhenghua",
+    "family": "Chen",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Institute for Infocomm Research and Centre for Frontier AI Research, A*STAR, Singapore"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-0977-3600",
+    "authenticated-orcid": false,
+    "given": "Min",
+    "family": "Wu",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Institute for Infocomm Research, A*STAR, Singapore"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-8547-6387",
+    "authenticated-orcid": false,
+    "given": "Chee-Keong",
+    "family": "Kwoh",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Nanyang Technological University, Singapore"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-0762-6562",
+    "authenticated-orcid": false,
+    "given": "Xiaoli",
+    "family": "Li",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Institute for Infocomm Research and Centre for Frontier AI Research, A*STAR and Nanyang Technological University, Singapore"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "ACM Transactions on Knowledge Discovery from Data",
+  "volume": "17",
+  "issue": "8",
+  "page": "1-18",
+  "issued": {
+   "date-parts": [
+    [
+     2023,
+     5,
+     12
+    ]
+   ]
+  },
+  "DOI": "10.1145/3587937",
+  "publisher": "Association for Computing Machinery (ACM)",
+  "id": "ragab2023"
+ },
+ {
+  "type": "journal-article",
+  "title": "A review of uncertainty quantification in deep learning: Techniques, applications and challenges",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0002-3059-6357",
+    "authenticated-orcid": false,
+    "given": "Moloud",
+    "family": "Abdar",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-7122-9975",
+    "authenticated-orcid": false,
+    "given": "Farhad",
+    "family": "Pourpanah",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-9840-4796",
+    "authenticated-orcid": false,
+    "given": "Sadiq",
+    "family": "Hussain",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Dana",
+    "family": "Rezazadegan",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Li",
+    "family": "Liu",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Mohammad",
+    "family": "Ghavamzadeh",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-7260-2260",
+    "authenticated-orcid": false,
+    "given": "Paul",
+    "family": "Fieguth",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-7141-708X",
+    "authenticated-orcid": false,
+    "given": "Xiaochun",
+    "family": "Cao",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Abbas",
+    "family": "Khosravi",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "U. Rajendra",
+    "family": "Acharya",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-3753-5925",
+    "authenticated-orcid": false,
+    "given": "Vladimir",
+    "family": "Makarenkov",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Saeid",
+    "family": "Nahavandi",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Information Fusion",
+  "volume": "76",
+  "page": "243-297",
+  "issued": {
+   "date-parts": [
+    [
+     2021,
+     12
+    ]
+   ]
+  },
+  "DOI": "10.1016/j.inffus.2021.05.008",
+  "publisher": "Elsevier BV",
+  "id": "abdar2021"
+ },
+ {
+  "type": "journal-article",
+  "title": "A survey of uncertainty in deep neural networks",
+  "author": [
+   {
+    "given": "Jakob",
+    "family": "Gawlikowski",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Cedrique Rovile Njieutcheu",
+    "family": "Tassi",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Mohsin",
+    "family": "Ali",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Jongseok",
+    "family": "Lee",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Matthias",
+    "family": "Humt",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Jianxiang",
+    "family": "Feng",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Anna",
+    "family": "Kruspe",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Rudolph",
+    "family": "Triebel",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Peter",
+    "family": "Jung",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Ribana",
+    "family": "Roscher",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Muhammad",
+    "family": "Shahzad",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Wen",
+    "family": "Yang",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Richard",
+    "family": "Bamler",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-5530-3613",
+    "authenticated-orcid": false,
+    "given": "Xiao Xiang",
+    "family": "Zhu",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Artificial Intelligence Review",
+  "volume": "56",
+  "issue": "S1",
+  "page": "1513-1589",
+  "issued": {
+   "date-parts": [
+    [
+     2023,
+     7,
+     29
+    ]
+   ]
+  },
+  "DOI": "10.1007/s10462-023-10562-9",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "gawlikowski2023"
+ },
+ {
+  "type": "journal-article",
+  "title": "Conformal Prediction for Time Series",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0001-6623-7084",
+    "authenticated-orcid": false,
+    "given": "Chen",
+    "family": "Xu",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "School of Industrial and Systems Engineering, Georgia Institute of Technology, Atlanta, GA, USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-6777-2951",
+    "authenticated-orcid": false,
+    "given": "Yao",
+    "family": "Xie",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "School of Industrial and Systems Engineering, Georgia Institute of Technology, Atlanta, GA, USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+  "volume": "45",
+  "issue": "10",
+  "page": "11575-11587",
+  "issued": {
+   "date-parts": [
+    [
+     2023,
+     10
+    ]
+   ]
+  },
+  "DOI": "10.1109/tpami.2023.3272339",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "id": "xu2023"
+ },
+ {
+  "id": "guo2017",
+  "type": "paper-conference",
+  "title": "On calibration of modern neural networks",
+  "author": [
+   {
+    "family": "Guo",
+    "given": "Chuan"
+   },
+   {
+    "family": "Pleiss",
+    "given": "Geoff"
+   },
+   {
+    "family": "Sun",
+    "given": "Yu"
+   },
+   {
+    "family": "Weinberger",
+    "given": "Kilian Q."
+   }
+  ],
+  "container-title": "Proceedings of the 34th International Conference on Machine Learning",
+  "collection-title": "PMLR",
+  "volume": "70",
+  "page": "1321-1330",
+  "issued": {
+   "date-parts": [
+    [
+     2017
+    ]
+   ]
+  }
+ },
+ {
+  "id": "platt1999",
+  "type": "chapter",
+  "title": "Probabilistic outputs for support vector machines and comparisons to regularized likelihood methods",
+  "author": [
+   {
+    "family": "Platt",
+    "given": "John C."
+   }
+  ],
+  "editor": [
+   {
+    "family": "Smola",
+    "given": "Alexander J."
+   },
+   {
+    "family": "Bartlett",
+    "given": "Peter"
+   },
+   {
+    "family": "Schölkopf",
+    "given": "Bernhard"
+   },
+   {
+    "family": "Schuurmans",
+    "given": "Dale"
+   }
+  ],
+  "container-title": "Advances in Large Margin Classifiers",
+  "publisher": "MIT Press",
+  "publisher-place": "Cambridge, MA",
+  "page": "61-74",
+  "issued": {
+   "date-parts": [
+    [
+     2000
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kull2019",
+  "type": "paper-conference",
+  "title": "Beyond temperature scaling: obtaining well-calibrated multi-class probabilities with Dirichlet calibration",
+  "author": [
+   {
+    "family": "Kull",
+    "given": "Meelis"
+   },
+   {
+    "family": "Perello-Nieto",
+    "given": "Miquel"
+   },
+   {
+    "family": "Kängsepp",
+    "given": "Markus"
+   },
+   {
+    "family": "Silva Filho",
+    "given": "Telmo"
+   },
+   {
+    "family": "Song",
+    "given": "Hao"
+   },
+   {
+    "family": "Flach",
+    "given": "Peter"
+   }
+  ],
+  "container-title": "Advances in Neural Information Processing Systems",
+  "volume": "32",
+  "issued": {
+   "date-parts": [
+    [
+     2019
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ovadia2019",
+  "type": "paper-conference",
+  "title": "Can you trust your model's uncertainty? Evaluating predictive uncertainty under dataset shift",
+  "author": [
+   {
+    "family": "Ovadia",
+    "given": "Yaniv"
+   },
+   {
+    "family": "Fertig",
+    "given": "Emily"
+   },
+   {
+    "family": "Ren",
+    "given": "Jie"
+   },
+   {
+    "family": "Nado",
+    "given": "Zachary"
+   },
+   {
+    "family": "Sculley",
+    "given": "D."
+   },
+   {
+    "family": "Nowozin",
+    "given": "Sebastian"
+   },
+   {
+    "family": "Dillon",
+    "given": "Joshua V."
+   },
+   {
+    "family": "Lakshminarayanan",
+    "given": "Balaji"
+   },
+   {
+    "family": "Snoek",
+    "given": "Jasper"
+   }
+  ],
+  "container-title": "Advances in Neural Information Processing Systems",
+  "volume": "32",
+  "issued": {
+   "date-parts": [
+    [
+     2019
+    ]
+   ]
+  }
+ },
+ {
+  "id": "lakshminarayanan2017",
+  "type": "paper-conference",
+  "title": "Simple and scalable predictive uncertainty estimation using deep ensembles",
+  "author": [
+   {
+    "family": "Lakshminarayanan",
+    "given": "Balaji"
+   },
+   {
+    "family": "Pritzel",
+    "given": "Alexander"
+   },
+   {
+    "family": "Blundell",
+    "given": "Charles"
+   }
+  ],
+  "container-title": "Advances in Neural Information Processing Systems",
+  "volume": "30",
+  "issued": {
+   "date-parts": [
+    [
+     2017
+    ]
+   ]
+  }
+ },
+ {
+  "id": "liu2020sngp",
+  "type": "paper-conference",
+  "title": "Simple and principled uncertainty estimation with deterministic deep learning via distance awareness",
+  "author": [
+   {
+    "family": "Liu",
+    "given": "Jeremiah Zhe"
+   },
+   {
+    "family": "Lin",
+    "given": "Zi"
+   },
+   {
+    "family": "Padhy",
+    "given": "Shreyas"
+   },
+   {
+    "family": "Tran",
+    "given": "Dustin"
+   },
+   {
+    "family": "Bedrax-Weiss",
+    "given": "Tania"
+   },
+   {
+    "family": "Lakshminarayanan",
+    "given": "Balaji"
+   }
+  ],
+  "container-title": "Advances in Neural Information Processing Systems",
+  "volume": "33",
+  "issued": {
+   "date-parts": [
+    [
+     2020
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kristiadi2020",
+  "type": "paper-conference",
+  "title": "Being Bayesian, even just a bit, fixes overconfidence in ReLU networks",
+  "author": [
+   {
+    "family": "Kristiadi",
+    "given": "Agustinus"
+   },
+   {
+    "family": "Hein",
+    "given": "Matthias"
+   },
+   {
+    "family": "Hennig",
+    "given": "Philipp"
+   }
+  ],
+  "container-title": "Proceedings of the 37th International Conference on Machine Learning",
+  "collection-title": "PMLR",
+  "volume": "119",
+  "page": "5436-5446",
+  "issued": {
+   "date-parts": [
+    [
+     2020
+    ]
+   ]
+  }
+ },
+ {
+  "id": "vanamersfoort2020",
+  "type": "paper-conference",
+  "title": "Uncertainty estimation using a single deep deterministic neural network",
+  "author": [
+   {
+    "family": "van Amersfoort",
+    "given": "Joost"
+   },
+   {
+    "family": "Smith",
+    "given": "Lewis"
+   },
+   {
+    "family": "Teh",
+    "given": "Yee Whye"
+   },
+   {
+    "family": "Gal",
+    "given": "Yarin"
+   }
+  ],
+  "container-title": "Proceedings of the 37th International Conference on Machine Learning",
+  "collection-title": "PMLR",
+  "volume": "119",
+  "page": "9690-9700",
+  "issued": {
+   "date-parts": [
+    [
+     2020
+    ]
+   ]
+  }
+ },
+ {
+  "id": "demsar2006",
+  "type": "article-journal",
+  "title": "Statistical comparisons of classifiers over multiple data sets",
+  "author": [
+   {
+    "family": "Demšar",
+    "given": "Janez"
+   }
+  ],
+  "container-title": "Journal of Machine Learning Research",
+  "volume": "7",
+  "page": "1-30",
+  "issued": {
+   "date-parts": [
+    [
+     2006
+    ]
+   ]
+  }
+ },
+ {
+  "id": "benavoli2016",
+  "type": "article-journal",
+  "title": "Should we really use post-hoc tests based on mean-ranks?",
+  "author": [
+   {
+    "family": "Benavoli",
+    "given": "Alessio"
+   },
+   {
+    "family": "Corani",
+    "given": "Giorgio"
+   },
+   {
+    "family": "Mangili",
+    "given": "Francesca"
+   }
+  ],
+  "container-title": "Journal of Machine Learning Research",
+  "volume": "17",
+  "issue": "5",
+  "page": "1-10",
+  "issued": {
+   "date-parts": [
+    [
+     2016
+    ]
+   ]
+  }
+ },
+ {
+  "id": "holm1979",
+  "type": "article-journal",
+  "title": "A simple sequentially rejective multiple test procedure",
+  "author": [
+   {
+    "family": "Holm",
+    "given": "Sture"
+   }
+  ],
+  "container-title": "Scandinavian Journal of Statistics",
+  "volume": "6",
+  "issue": "2",
+  "page": "65-70",
+  "issued": {
+   "date-parts": [
+    [
+     1979
+    ]
+   ]
+  }
+ },
+ {
+  "id": "romano2020",
+  "type": "paper-conference",
+  "title": "Classification with valid and adaptive coverage",
+  "author": [
+   {
+    "family": "Romano",
+    "given": "Yaniv"
+   },
+   {
+    "family": "Sesia",
+    "given": "Matteo"
+   },
+   {
+    "family": "Candès",
+    "given": "Emmanuel J."
+   }
+  ],
+  "container-title": "Advances in Neural Information Processing Systems",
+  "volume": "33",
+  "issued": {
+   "date-parts": [
+    [
+     2020
+    ]
+   ]
+  }
+ },
+ {
+  "id": "hendrycks2019",
+  "type": "paper-conference",
+  "title": "Benchmarking neural network robustness to common corruptions and perturbations",
+  "author": [
+   {
+    "family": "Hendrycks",
+    "given": "Dan"
+   },
+   {
+    "family": "Dietterich",
+    "given": "Thomas"
+   }
+  ],
+  "container-title": "International Conference on Learning Representations",
+  "issued": {
+   "date-parts": [
+    [
+     2019
+    ]
+   ]
+  }
+ },
+ {
+  "id": "hendrycks2017",
+  "type": "paper-conference",
+  "title": "A baseline for detecting misclassified and out-of-distribution examples in neural networks",
+  "author": [
+   {
+    "family": "Hendrycks",
+    "given": "Dan"
+   },
+   {
+    "family": "Gimpel",
+    "given": "Kevin"
+   }
+  ],
+  "container-title": "International Conference on Learning Representations",
+  "issued": {
+   "date-parts": [
+    [
+     2017
+    ]
+   ]
+  }
+ },
+ {
+  "id": "geifman2017",
+  "type": "paper-conference",
+  "title": "Selective classification for deep neural networks",
+  "author": [
+   {
+    "family": "Geifman",
+    "given": "Yonatan"
+   },
+   {
+    "family": "El-Yaniv",
+    "given": "Ran"
+   }
+  ],
+  "container-title": "Advances in Neural Information Processing Systems",
+  "volume": "30",
+  "issued": {
+   "date-parts": [
+    [
+     2017
+    ]
+   ]
+  }
+ },
+ {
+  "id": "aeon2024",
+  "type": "article-journal",
+  "title": "aeon: a Python toolkit for learning from time series",
+  "author": [
+   {
+    "family": "Middlehurst",
+    "given": "Matthew"
+   },
+   {
+    "family": "Ismail-Fawaz",
+    "given": "Ali"
+   },
+   {
+    "family": "Guillaume",
+    "given": "Antoine"
+   },
+   {
+    "family": "Holder",
+    "given": "Christopher"
+   },
+   {
+    "family": "Guijo-Rubio",
+    "given": "David"
+   },
+   {
+    "family": "Bulatova",
+    "given": "Guzal"
+   },
+   {
+    "family": "Tsaprounis",
+    "given": "Leonidas"
+   },
+   {
+    "family": "Mentel",
+    "given": "Lukasz"
+   },
+   {
+    "family": "Walter",
+    "given": "Martin"
+   },
+   {
+    "family": "Schäfer",
+    "given": "Patrick"
+   },
+   {
+    "family": "Bagnall",
+    "given": "Anthony"
+   }
+  ],
+  "container-title": "Journal of Machine Learning Research",
+  "volume": "25",
+  "issue": "289",
+  "page": "1-10",
+  "issued": {
+   "date-parts": [
+    [
+     2024
+    ]
+   ]
+  }
+ },
+ {
+  "id": "pedregosa2011",
+  "type": "article-journal",
+  "title": "Scikit-learn: machine learning in Python",
+  "author": [
+   {
+    "family": "Pedregosa",
+    "given": "Fabian"
+   },
+   {
+    "family": "Varoquaux",
+    "given": "Gaël"
+   },
+   {
+    "family": "Gramfort",
+    "given": "Alexandre"
+   },
+   {
+    "family": "Michel",
+    "given": "Vincent"
+   },
+   {
+    "family": "Thirion",
+    "given": "Bertrand"
+   },
+   {
+    "family": "Grisel",
+    "given": "Olivier"
+   },
+   {
+    "family": "Blondel",
+    "given": "Mathieu"
+   },
+   {
+    "family": "Prettenhofer",
+    "given": "Peter"
+   },
+   {
+    "family": "Weiss",
+    "given": "Ron"
+   },
+   {
+    "family": "Dubourg",
+    "given": "Vincent"
+   },
+   {
+    "family": "Vanderplas",
+    "given": "Jake"
+   },
+   {
+    "family": "Passos",
+    "given": "Alexandre"
+   },
+   {
+    "family": "Cournapeau",
+    "given": "David"
+   },
+   {
+    "family": "Brucher",
+    "given": "Matthieu"
+   },
+   {
+    "family": "Perrot",
+    "given": "Matthieu"
+   },
+   {
+    "family": "Duchesnay",
+    "given": "Édouard"
+   }
+  ],
+  "container-title": "Journal of Machine Learning Research",
+  "volume": "12",
+  "page": "2825-2830",
+  "issued": {
+   "date-parts": [
+    [
+     2011
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dempster2025preval",
+  "type": "article",
+  "title": "Prevalidated ridge regression is a highly-efficient drop-in replacement for logistic regression for high-dimensional data",
+  "author": [
+   {
+    "family": "Dempster",
+    "given": "Angus"
+   },
+   {
+    "family": "Webb",
+    "given": "Geoffrey I."
+   },
+   {
+    "family": "Schmidt",
+    "given": "Daniel F."
+   }
+  ],
+  "DOI": "10.48550/arXiv.2401.15610",
+  "container-title": "arXiv preprint arXiv:2401.15610 (version 2)",
+  "issued": {
+   "date-parts": [
+    [
+     2025
+    ]
+   ]
+  }
+ },
+ {
+  "id": "liu2023sngp",
+  "type": "article-journal",
+  "title": "A simple approach to improve single-model deep uncertainty via distance-awareness",
+  "author": [
+   {
+    "family": "Liu",
+    "given": "Jeremiah Zhe"
+   },
+   {
+    "family": "Padhy",
+    "given": "Shreyas"
+   },
+   {
+    "family": "Ren",
+    "given": "Jie"
+   },
+   {
+    "family": "Lin",
+    "given": "Zi"
+   },
+   {
+    "family": "Wen",
+    "given": "Yeming"
+   },
+   {
+    "family": "Jerfel",
+    "given": "Ghassen"
+   },
+   {
+    "family": "Nado",
+    "given": "Zachary"
+   },
+   {
+    "family": "Snoek",
+    "given": "Jasper"
+   },
+   {
+    "family": "Tran",
+    "given": "Dustin"
+   },
+   {
+    "family": "Lakshminarayanan",
+    "given": "Balaji"
+   }
+  ],
+  "container-title": "Journal of Machine Learning Research",
+  "volume": "24",
+  "issue": "42",
+  "page": "1-63",
+  "issued": {
+   "date-parts": [
+    [
+     2023
+    ]
+   ]
+  }
+ },
+ {
+  "id": "angelopoulos2021raps",
+  "type": "paper-conference",
+  "title": "Uncertainty sets for image classifiers using conformal prediction",
+  "author": [
+   {
+    "family": "Angelopoulos",
+    "given": "Anastasios N."
+   },
+   {
+    "family": "Bates",
+    "given": "Stephen"
+   },
+   {
+    "family": "Malik",
+    "given": "Jitendra"
+   },
+   {
+    "family": "Jordan",
+    "given": "Michael I."
+   }
+  ],
+  "container-title": "International Conference on Learning Representations",
+  "issued": {
+   "date-parts": [
+    [
+     2021
+    ]
+   ]
+  }
+ }
+]

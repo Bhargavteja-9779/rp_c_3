@@ -10,6 +10,8 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[3]
 RAW = ROOT / "data" / "raw" / "Univariate_arff"
 LIST = ROOT / "data" / "raw" / "ucr_equal_length.csv"
+if not LIST.exists():                       # committed copy of the dataset list
+    LIST = ROOT / "data" / "ucr_equal_length.csv"
 # datasets used to design the method (chosen at random, seed 0, before any other
 # dataset was evaluated); results are reported with and without them.
 DEV_DATASETS = ["Adiac", "Beef", "Car", "EthanolLevel", "Fish", "Lightning2",

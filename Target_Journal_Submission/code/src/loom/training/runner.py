@@ -59,6 +59,7 @@ MAIN_METHODS = {
     "LogReg-CV": LogReg,
 }
 SLOW_METHODS = ("LogReg-CV",)
+TEST_CHUNK = 512        # test series transformed and scored per chunk (bounds memory)
 ABLATIONS = {
     "PreVal-smooth": lambda: LOOM("none", smooth=True),
     "LOOM-nosmooth": lambda: LOOM("standard", smooth=False),
@@ -147,40 +148,56 @@ def run_job(name, resample, transform="minirocket", methods="all", n_ens=5, alph
         pred_t = {m: 0.0 for m in models}; cp_t = {}
         t_feat_test = 0.0
         for c in conds:
-            tt = time.time(); F = _feats(tf, X_of(c)); t_feat_test += time.time() - tt
-            for mname, model in models.items():
-                tp = time.time()
-                try:
-                    P = align(model.predict_proba(F), model.classes_, classes)
-                except Exception:
-                    extra.setdefault("errors", {})[f"{mname}#{j}:{c}"] = traceback.format_exc()[-1500:]
+            Xc = X_of(c)
+            Pm = {m: [] for m in models}; failed = set(); Sm = {}; hs = []
+
+            def add_set(nm, S):
+                Sm.setdefault(nm, []).append(S)
+            for st in range(0, len(Xc), TEST_CHUNK):     # bounded memory: features of one chunk at a time
+                tt = time.time(); F = _feats(tf, Xc[st:st + TEST_CHUNK]); t_feat_test += time.time() - tt
+                for mname, model in models.items():
+                    if mname in failed:
+                        continue
+                    tp = time.time()
+                    try:
+                        Pm[mname].append(align(model.predict_proba(F), model.classes_, classes))
+                    except Exception:
+                        extra.setdefault("errors", {})[f"{mname}#{j}:{c}"] = traceback.format_exc()[-1500:]
+                        failed.add(mname)
+                    pred_t[mname] += time.time() - tp
+                if j == 0 and "LOOM" in models and "LOOM" not in failed:
+                    lm = models["LOOM"]
+                    hs.append(lm.ridge_.leverage(F))
+                    for meth, sc in (("jackknife+", "lac"), ("jackknife", "lac"), ("jackknife+", "aps")):
+                        tp = time.time(); nm = f"CP-LOOM-{meth}" + ("-APS" if sc == "aps" else "")
+                        add_set(nm, align(lm.conformal_sets(F, alpha=alpha, method=meth, score=sc).astype(float), lm.classes_, classes) > 0.5)
+                        cp_t[nm] = cp_t.get(nm, 0.0) + time.time() - tp
+                    if c[0] == "clean":
+                        for al in (0.05, 0.2):
+                            add_set(f"CP-LOOM-jackknife+@{al}", align(lm.conformal_sets(F, alpha=al, method="jackknife+").astype(float), lm.classes_, classes) > 0.5)
+                if j == 0 and "PreVal" in models and "PreVal" not in failed:
+                    pv = models["PreVal"]
+                    for sc in ("lac", "aps"):
+                        tp = time.time(); nm = "CP-PreVal-jackknife+" + ("-APS" if sc == "aps" else "")
+                        add_set(nm, align(pv.conformal_sets(F, alpha=alpha, method="jackknife+", score=sc).astype(float), pv.classes_, classes) > 0.5)
+                        cp_t[nm] = cp_t.get(nm, 0.0) + time.time() - tp
+                del F
+            for mname in models:
+                if mname in failed:
                     continue
-                pred_t[mname] += time.time() - tp
+                P = np.vstack(Pm[mname])
                 if j == 0:
                     add_prob_row(mname, c, P)
                 else:
                     probs[(f"{mname}#{j}", c)] = P
+            del Pm
             if j == 0:
-                if "LOOM" in models:
-                    lm = models["LOOM"]
-                    extra["loom"]["h_test_median"][f"{c[0]}{c[1]}"] = float(np.median(lm.ridge_.leverage(F)))
-                    for meth, sc in (("jackknife+", "lac"), ("jackknife", "lac"), ("jackknife+", "aps")):
-                        tp = time.time(); nm = f"CP-LOOM-{meth}" + ("-APS" if sc == "aps" else "")
-                        S = align(lm.conformal_sets(F, alpha=alpha, method=meth, score=sc).astype(float), lm.classes_, classes) > 0.5
-                        cp_t[nm] = cp_t.get(nm, 0.0) + time.time() - tp
-                        rows.append(dict(method=nm, cond=c[0], sev=c[1], **set_metrics(S, yi_te)))
-                    if c[0] == "clean":
-                        for al in (0.05, 0.2):
-                            S = align(lm.conformal_sets(F, alpha=al, method="jackknife+").astype(float), lm.classes_, classes) > 0.5
-                            rows.append(dict(method=f"CP-LOOM-jackknife+@{al}", cond="clean", sev=0, **set_metrics(S, yi_te)))
-                if "PreVal" in models:
-                    pv = models["PreVal"]; tp = time.time()
-                    for sc in ("lac", "aps"):
-                        nm = "CP-PreVal-jackknife+" + ("-APS" if sc == "aps" else "")
-                        S = align(pv.conformal_sets(F, alpha=alpha, method="jackknife+", score=sc).astype(float), pv.classes_, classes) > 0.5
-                        cp_t[nm] = cp_t.get(nm, 0.0) + time.time() - tp
-                        rows.append(dict(method=nm, cond=c[0], sev=c[1], **set_metrics(S, yi_te)))
-                if "Holdout-TS" in models:
+                if hs:
+                    extra["loom"]["h_test_median"][f"{c[0]}{c[1]}"] = float(np.median(np.concatenate(hs)))
+                for nm, parts in Sm.items():
+                    rows.append(dict(method=nm, cond=c[0] if "@" not in nm else "clean", sev=c[1] if "@" not in nm else 0,
+                                     **set_metrics(np.vstack(parts), yi_te)))
+                if "Holdout-TS" in models and ("Holdout-TS", c) in probs:
                     P = probs[("Holdout-TS", c)]
                     rows.append(dict(method="CP-Split-TS", cond=c[0], sev=c[1], **set_metrics((1 - P) <= ca[alpha], yi_te)))
                     rows.append(dict(method="CP-Split-TS-APS", cond=c[0], sev=c[1],
@@ -188,7 +205,6 @@ def run_job(name, resample, transform="minirocket", methods="all", n_ens=5, alph
                     if c[0] == "clean":
                         for al in (0.05, 0.2):
                             rows.append(dict(method=f"CP-Split-TS@{al}", cond="clean", sev=0, **set_metrics((1 - P) <= ca[al], yi_te)))
-            del F
         if j == 0:
             extra["feature_time_test_all_conditions"] = t_feat_test
             for m in models:

@@ -20,7 +20,8 @@ MAIN = ["LOOM", "PreVal", "Ridge-softmax", "Ridge-onehot", "Holdout-TS", "Ridge-
 RAWCMP = ["LOOM", "LOOM-Ens5", "PreVal", "PreVal-Ens5", "QUANT", "Arsenal"]     # official split only
 ABL = ["LOOM", "PreVal", "PreVal-smooth", "LOOM-nosmooth", "LOOM-free-b", "LOOM-finite-c1", "LOOM-kNN",
        "LOOM-insample", "LOOM-holdout", "LOOM-lambdaSSE"]
-CP = ["CP-LOOM-jackknife+", "CP-LOOM-jackknife", "CP-PreVal-jackknife+", "CP-Split-TS"]
+CP = ["CP-LOOM-jackknife+", "CP-LOOM-jackknife", "CP-PreVal-jackknife+", "CP-Split-TS",
+      "CP-LOOM-jackknife+-APS", "CP-PreVal-jackknife+-APS", "CP-Split-TS-APS"]
 LOWER = {"nll": True, "ece": True, "brier": True, "cwece": True, "aurc": True, "acc": False, "bacc": False,
          "shift_auroc": False, "mean_conf": None}
 
@@ -92,13 +93,13 @@ def main(mode="full"):
     ex.to_csv(out_res / "loom_fit_details.csv", index=False)
     info = dataset_info()
 
-    mr = df[(df.transform.isin(["minirocket", "raw"])) & (df.train_frac == 1.0)]
+    mr = df[(df["transform"].isin(["minirocket", "raw"])) & (df.train_frac == 1.0)]
     all_ds = sorted(mr[mr.method == "LOOM"].dataset.unique())
     unseen = [d for d in all_ds if d not in DEV_DATASETS + SMOKE]
     leak = pd.read_csv(out_res / "leakage_audit.csv") if (out_res / "leakage_audit.csv").exists() else None
     nodup = [d for d in all_ds if leak is None or d not in set(leak[leak.test_in_train > 0].dataset)]
     stats = {"n_datasets": len(all_ds), "n_unseen": len(unseen), "n_nodup": len(nodup),
-             "resamples": sorted(int(x) for x in mr.resample.unique())}
+             "resamples": sorted(int(x) for x in mr["resample"].unique())}
 
     # ---------------- E1/E2 main: clean
     mets = ["nll", "ece", "brier", "cwece", "acc", "bacc", "aurc"]
@@ -115,7 +116,7 @@ def main(mode="full"):
     famtab = fam.groupby(["cond", "sev", "method"])[["nll", "ece", "acc", "shift_auroc"]].median().reset_index()
     famtab.to_csv(out_tab / "table_robustness_by_family.csv", index=False)
     # ---------------- E2b raw-series probabilistic classifiers, official split (resample 0)
-    r0 = mr[mr.resample == 0]
+    r0 = mr[mr["resample"] == 0]
     for cond in ("clean", "shifted"):
         t, s_ = summary_table(r0, RAWCMP, ["nll", "ece", "acc"] + (["shift_auroc"] if cond == "shifted" else []), cond)
         t.to_csv(out_tab / f"table_rawbaselines_{cond}.csv", index=False); stats[f"E2b_raw_{cond}"] = s_
@@ -148,13 +149,14 @@ def main(mode="full"):
         stats["E9_conformal"] = cps.to_dict(orient="records")
         # paired set-size test on clean: jackknife+ vs split
         ss = cpt[cpt.cond == "clean"].pivot_table(index="dataset", columns="method", values="set_size")
-        if {"CP-LOOM-jackknife+", "CP-Split-TS"} <= set(ss.columns):
-            stats["E9_setsize_test"] = pairwise_vs(ss[["CP-LOOM-jackknife+", "CP-Split-TS", "CP-PreVal-jackknife+"]].dropna(),
-                                                   "CP-LOOM-jackknife+", True).to_dict(orient="records")
+        for ref, comps in (("CP-LOOM-jackknife+", ["CP-Split-TS", "CP-PreVal-jackknife+"]),
+                           ("CP-LOOM-jackknife+-APS", ["CP-Split-TS-APS", "CP-PreVal-jackknife+-APS"])):
+            if {ref, *comps} <= set(ss.columns):
+                stats[f"E9_setsize_test_{ref}"] = pairwise_vs(ss[[ref] + comps].dropna(), ref, True).to_dict(orient="records")
         cv = cpt[cpt.cond == "clean"].pivot_table(index="dataset", columns="method", values="coverage")
         stats["E9_coverage_by_dataset_quantiles"] = cv.quantile([0.05, 0.1, 0.25, 0.5]).to_dict()
     # ---------------- E5 generalisation: other extractors
-    gen = df[df.transform.isin(["rocket", "multirocket", "hydra"])]
+    gen = df[df["transform"].isin(["rocket", "multirocket", "hydra"])]
     if not gen.empty:
         rows = []
         for tfm, g in gen.groupby("transform"):
@@ -192,8 +194,8 @@ def main(mode="full"):
                                          shift_frac_better=("shift_delta", lambda x: (x > 0).mean())).reset_index()
             agg.to_csv(out_tab / "table_by_type.csv", index=False); stats["E5_by_type"] = agg.to_dict(orient="records")
     # ---------------- E7 training-size sensitivity
-    ts_ = df[(df.train_frac < 1.0) | ((df.train_frac == 1.0) & (df.transform == "minirocket"))]
-    ts_ = ts_[ts_.method.isin(["LOOM", "PreVal", "Ridge-softmax", "Holdout-TS"]) & (ts_.resample == 0)]
+    ts_ = df[(df.train_frac < 1.0) | ((df.train_frac == 1.0) & (df["transform"] == "minirocket"))]
+    ts_ = ts_[ts_.method.isin(["LOOM", "PreVal", "Ridge-softmax", "Holdout-TS"]) & (ts_["resample"] == 0)]
     if (df.train_frac < 1).any():
         r = []
         for tfv, g in ts_.groupby("train_frac"):
@@ -208,7 +210,7 @@ def main(mode="full"):
         tst = pd.DataFrame(r); tst.to_csv(out_tab / "table_train_size.csv", index=False); stats["E7_train_size"] = tst.to_dict(orient="records")
     # ---------------- E6 efficiency
     if not tm.empty:
-        tmm = tm[(tm.transform.isin(["minirocket", "raw"])) & (tm.train_frac == 1.0)].copy()
+        tmm = tm[(tm["transform"].isin(["minirocket", "raw"])) & (tm.train_frac == 1.0)].copy()
         svd = ex.dropna(subset=["lam"]) if "lam" in ex else None
         eff = tmm.groupby(["dataset", "method"])[["fit", "predict_all"]].mean().reset_index()
         effs = eff.groupby("method").agg(fit_median=("fit", "median"), fit_mean=("fit", "mean"), fit_total=("fit", "sum"),
@@ -228,7 +230,7 @@ def main(mode="full"):
     err["acc_shift"] = acc_s.reindex(err.index).LOOM
     if not lev.empty:
         hcols = [c for c in lev.columns if c.startswith("h_") and c != "h_ref" and c != "h_clean0"]
-        lv = lev[lev.transform == "minirocket"].copy()
+        lv = lev[lev["transform"] == "minirocket"].copy()
         lv["lev_ratio_clean"] = lv["h_clean0"] / lv["h_ref"]
         lv["lev_ratio_shift"] = lv[hcols].mean(1) / lv["h_ref"]
         g = lv.groupby("dataset")[["lev_ratio_clean", "lev_ratio_shift", "lam", "a"]].median()
@@ -251,11 +253,11 @@ def main(mode="full"):
     stats["E8_win_rate_by_condition"] = pc.groupby(["cond", "sev"]).loom_better.mean().reset_index().to_dict(orient="records")
     # ---------------- leverage diagnostics
     if not lev.empty:
-        lv = lev[lev.transform == "minirocket"]
+        lv = lev[lev["transform"] == "minirocket"]
         hcols = [c for c in lv.columns if c.startswith("h_") and c != "h_ref"]
         ratio = lv[hcols].div(lv["h_ref"], axis=0)
         stats["leverage_ratio_median_by_condition"] = ratio.median().to_dict()
-        ratio.assign(dataset=lv.dataset.values, resample=lv.resample.values).to_csv(out_tab / "table_leverage_ratios.csv", index=False)
+        ratio.assign(dataset=lv.dataset.values, resample=lv["resample"].values).to_csv(out_tab / "table_leverage_ratios.csv", index=False)
     # ---------------- metrics.json (headline medians)
     metrics = {}
     for cond in ("clean", "shifted"):

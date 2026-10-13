@@ -74,6 +74,11 @@ Seeds are a hash of (dataset, resample, family, severity): identical inputs for 
   the median paired difference; Friedman test and average ranks over all methods.
 * Significance level 0.05 after Holm correction. No claim of superiority without it.
 
+Conformal scores: both LAC (1 − p) and deterministic APS (Romano et al. 2020) are reported
+for jackknife+ (LOOM, PreVal) and split conformal (Holdout-TS). APS was added after the
+quick-mode run on the six development-exposed datasets showed that LAC sets become empty
+when moderated probabilities are flat under shift; it was added before the full benchmark.
+
 ## 7. Development exposure (disclosed)
 Method design used 8 randomly chosen development datasets (Adiac, Beef, Car,
 EthanolLevel, Fish, Lightning2, NonInvasiveFetalECGThorax2, SonyAIBORobotSurface1) with the

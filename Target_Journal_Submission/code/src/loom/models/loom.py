@@ -166,8 +166,10 @@ class LOOM:
         sig = self._knn_loo if self.moderation == "knn" else m.loo_leverage_
         return self._moderate(m.loo_logits_, sig, self.a_, self.b_)
 
-    def conformal_sets(self, F, alpha=0.1, method="jackknife+", chunk=None):
-        """Prediction sets with the LAC score s(x, y) = 1 - p(y | x).
+    def conformal_sets(self, F, alpha=0.1, method="jackknife+", chunk=None, score="lac"):
+        """Prediction sets with the LAC score s(x, y) = 1 - p(y | x) (Sadinle et al.) or the
+        deterministic APS score s(x, y) = sum of p_k over classes with p_k >= p_y
+        (Romano et al. 2020), which yields larger rather than empty sets when p is flat.
 
         jackknife : threshold = ceil((n+1)(1-alpha))-th smallest LOO score.
         jackknife+: y in C(x) iff #{i : s_i < s_{-i}(x, y)} < (1-alpha)(n+1), where
@@ -179,12 +181,12 @@ class LOOM:
         m = self.ridge_
         yi = np.searchsorted(self.classes_, m.y_)
         n = len(yi)
-        s_loo = 1.0 - np.exp(self.loo_log_proba()[np.arange(n), yi])
+        s_loo = _score(np.exp(self.loo_log_proba()), score)[np.arange(n), yi]
         if method == "jackknife":
             P = self.predict_proba(F)
             k = int(np.ceil((n + 1) * (1 - alpha)))
             q = np.inf if k > n else np.sort(s_loo)[k - 1]
-            return (1.0 - P) <= q
+            return _score(P, score) <= q
         Z, h, Q = m.logits_and_leverage(F)
         E = m.Y_ - (m.ybar_ + m.U_ @ ((m.s_ ** 2 * m._dinv)[:, None] * m.UtY_))   # full-fit residuals (n x K)
         Ed = E / (1 - m.hat_diag_)[:, None]
@@ -199,7 +201,21 @@ class LOOM:
                 hm = h[st:st + chunk, None] + Kx ** 2 / (1 - m.hat_diag_)[None, :]
                 Zm = Zm / np.sqrt(hm / self.h_ref_)[:, :, None]
             LP = log_softmax(self.a_ * Zm, axis=2)
-            S = 1.0 - np.exp(LP)                                      # c x n x K
+            S = _score(np.exp(LP), score)                             # c x n x K
             cnt = (s_loo[None, :, None] < S).sum(1)                   # c x K
             out[st:st + chunk] = cnt < thr
         return out
+
+
+def _score(P, score):
+    """Non-conformity scores for every class; P has classes on the last axis."""
+    if score == "lac":
+        return 1.0 - P
+    if score == "aps":
+        # deterministic APS: mass of all classes at least as probable as y
+        order = np.argsort(-P, axis=-1, kind="stable")
+        cum = np.cumsum(np.take_along_axis(P, order, -1), -1)
+        out = np.empty_like(P)
+        np.put_along_axis(out, order, cum, -1)
+        return out
+    raise ValueError(score)

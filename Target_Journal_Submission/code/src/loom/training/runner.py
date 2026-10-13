@@ -16,7 +16,7 @@ from ..evaluation.metrics import all_metrics, align, reliability_bins, set_metri
 
 REL_METHODS = {"LOOM", "PreVal", "Holdout-TS", "Ridge-Platt-CV5", "LogReg-CV", "PreVal-Ens5", "LOOM-Ens5", "Arsenal", "QUANT", "Ridge-softmax"}
 from ..models.baselines import LogReg, RidgeCalibratedCV, RidgeOneHot, RidgeSoftmax
-from ..models.loom import LOOM
+from ..models.loom import LOOM, _score
 from ..models.readout import ClosedFormRidge
 from ..preprocessing.corruptions import all_conditions, corrupt
 
@@ -142,6 +142,7 @@ def run_job(name, resample, transform="minirocket", methods="all", n_ens=5, alph
             if "Holdout-TS" in models:
                 for al in (alpha, 0.05, 0.2):
                     ca[al] = _split_conformal_threshold(models["Holdout-TS"], Ftr, ytr, al)
+                ca_aps = _split_conformal_threshold(models["Holdout-TS"], Ftr, ytr, alpha, score="aps")
         del Ftr
         pred_t = {m: 0.0 for m in models}; cp_t = {}
         t_feat_test = 0.0
@@ -163,23 +164,27 @@ def run_job(name, resample, transform="minirocket", methods="all", n_ens=5, alph
                 if "LOOM" in models:
                     lm = models["LOOM"]
                     extra["loom"]["h_test_median"][f"{c[0]}{c[1]}"] = float(np.median(lm.ridge_.leverage(F)))
-                    for meth in ("jackknife+", "jackknife"):
-                        tp = time.time()
-                        S = align(lm.conformal_sets(F, alpha=alpha, method=meth).astype(float), lm.classes_, classes) > 0.5
-                        cp_t[f"CP-LOOM-{meth}"] = cp_t.get(f"CP-LOOM-{meth}", 0.0) + time.time() - tp
-                        rows.append(dict(method=f"CP-LOOM-{meth}", cond=c[0], sev=c[1], **set_metrics(S, yi_te)))
+                    for meth, sc in (("jackknife+", "lac"), ("jackknife", "lac"), ("jackknife+", "aps")):
+                        tp = time.time(); nm = f"CP-LOOM-{meth}" + ("-APS" if sc == "aps" else "")
+                        S = align(lm.conformal_sets(F, alpha=alpha, method=meth, score=sc).astype(float), lm.classes_, classes) > 0.5
+                        cp_t[nm] = cp_t.get(nm, 0.0) + time.time() - tp
+                        rows.append(dict(method=nm, cond=c[0], sev=c[1], **set_metrics(S, yi_te)))
                     if c[0] == "clean":
                         for al in (0.05, 0.2):
                             S = align(lm.conformal_sets(F, alpha=al, method="jackknife+").astype(float), lm.classes_, classes) > 0.5
                             rows.append(dict(method=f"CP-LOOM-jackknife+@{al}", cond="clean", sev=0, **set_metrics(S, yi_te)))
                 if "PreVal" in models:
                     pv = models["PreVal"]; tp = time.time()
-                    S = align(pv.conformal_sets(F, alpha=alpha, method="jackknife+").astype(float), pv.classes_, classes) > 0.5
-                    cp_t["CP-PreVal-jackknife+"] = cp_t.get("CP-PreVal-jackknife+", 0.0) + time.time() - tp
-                    rows.append(dict(method="CP-PreVal-jackknife+", cond=c[0], sev=c[1], **set_metrics(S, yi_te)))
+                    for sc in ("lac", "aps"):
+                        nm = "CP-PreVal-jackknife+" + ("-APS" if sc == "aps" else "")
+                        S = align(pv.conformal_sets(F, alpha=alpha, method="jackknife+", score=sc).astype(float), pv.classes_, classes) > 0.5
+                        cp_t[nm] = cp_t.get(nm, 0.0) + time.time() - tp
+                        rows.append(dict(method=nm, cond=c[0], sev=c[1], **set_metrics(S, yi_te)))
                 if "Holdout-TS" in models:
                     P = probs[("Holdout-TS", c)]
                     rows.append(dict(method="CP-Split-TS", cond=c[0], sev=c[1], **set_metrics((1 - P) <= ca[alpha], yi_te)))
+                    rows.append(dict(method="CP-Split-TS-APS", cond=c[0], sev=c[1],
+                                     **set_metrics(_score(P, "aps") <= ca_aps, yi_te)))
                     if c[0] == "clean":
                         for al in (0.05, 0.2):
                             rows.append(dict(method=f"CP-Split-TS@{al}", cond="clean", sev=0, **set_metrics((1 - P) <= ca[al], yi_te)))
@@ -219,7 +224,7 @@ def shift_auroc(P_clean, P_shift):
     return float(roc_auc_score(lab, u)) if np.ptp(u) > 0 else 0.5
 
 
-def _split_conformal_threshold(model, Ftr, ytr, alpha):
+def _split_conformal_threshold(model, Ftr, ytr, alpha, score="lac"):
     """Recover the 20 % calibration split used by the holdout model and compute the
     split-conformal LAC threshold on it."""
     rng = np.random.default_rng(model.seed)
@@ -232,7 +237,7 @@ def _split_conformal_threshold(model, Ftr, ytr, alpha):
         ica.append(idx[:k])
     ica = np.concatenate(ica)
     P = model.predict_proba(Ftr[ica]); yi = np.searchsorted(model.classes_, ytr[ica])
-    s = 1 - P[np.arange(len(ica)), yi]
+    s = _score(P, score)[np.arange(len(ica)), yi]
     n = len(s); k = int(np.ceil((n + 1) * (1 - alpha)))
     return np.inf if k > n else np.sort(s)[k - 1]
 

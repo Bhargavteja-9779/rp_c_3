@@ -108,7 +108,7 @@ def fig_robustness(root, out, methods=("LOOM", "PreVal", "Holdout-TS", "Ridge-Pl
         return
     t = pd.read_csv(p)
     raw = pd.read_csv(root / "results/raw_results.csv", usecols=["dataset", "method", "cond", "sev", "resample", "transform", "train_frac", metric])
-    raw = raw[raw.transform.isin(["minirocket", "raw"]) & (raw.train_frac == 1.0)]
+    raw = raw[raw["transform"].isin(["minirocket", "raw"]) & (raw.train_frac == 1.0)]
     clean = raw[raw.cond == "clean"].groupby(["dataset", "method"])[metric].mean().groupby("method").median()
     fig, axs = plt.subplots(2, 3, figsize=(7.0, 4.0), sharex=True)
     for ax, f in zip(axs.ravel(), FAMILY_LABEL):
@@ -132,7 +132,7 @@ def fig_robustness(root, out, methods=("LOOM", "PreVal", "Holdout-TS", "Ridge-Pl
 
 def fig_scatter(root, out):
     raw = pd.read_csv(root / "results/raw_results.csv", usecols=["dataset", "method", "cond", "resample", "transform", "train_frac", "nll"])
-    raw = raw[(raw.transform == "minirocket") & (raw.train_frac == 1.0) & raw.method.isin(["LOOM", "PreVal"])]
+    raw = raw[(raw["transform"] == "minirocket") & (raw.train_frac == 1.0) & raw.method.isin(["LOOM", "PreVal"])]
     fig, axs = plt.subplots(1, 2, figsize=(7.0, 3.2))
     for ax, (nm, sel) in zip(axs, [("Clean test", raw.cond == "clean"), ("Mean over 18 corruptions", raw.cond != "clean")]):
         T = raw[sel].groupby(["dataset", "method", "resample"]).nll.mean().groupby(["dataset", "method"]).mean().unstack().dropna()
@@ -184,15 +184,15 @@ def fig_ablation(root, out):
 
 def fig_conformal(root, out):
     raw = pd.read_csv(root / "results/raw_results.csv", usecols=["dataset", "method", "cond", "transform", "train_frac", "coverage", "set_size", "n_classes"])
-    raw = raw[(raw.transform == "minirocket") & (raw.train_frac == 1.0) & raw.method.isin(["CP-LOOM-jackknife+", "CP-PreVal-jackknife+", "CP-Split-TS"])]
+    raw = raw[(raw["transform"] == "minirocket") & (raw.train_frac == 1.0) & raw.method.isin(["CP-LOOM-jackknife+", "CP-PreVal-jackknife+", "CP-Split-TS", "CP-LOOM-jackknife+-APS", "CP-Split-TS-APS"])]
     if raw.empty:
         return
     raw["kind"] = np.where(raw.cond == "clean", "Clean", "Corrupted")
     d = raw.groupby(["dataset", "method", "kind"]).agg(cov=("coverage", "mean"), size=("set_size", "mean"), K=("n_classes", "first")).reset_index()
     d["rel_size"] = d["size"] / d["K"]
     fig, axs = plt.subplots(1, 2, figsize=(7.0, 2.6))
-    meths = ["CP-LOOM-jackknife+", "CP-PreVal-jackknife+", "CP-Split-TS"]
-    cols = ["#2a78d6", "#eb6834", "#1baf7a"]
+    meths = ["CP-LOOM-jackknife+", "CP-PreVal-jackknife+", "CP-Split-TS", "CP-LOOM-jackknife+-APS", "CP-Split-TS-APS"]
+    cols = ["#2a78d6", "#eb6834", "#1baf7a", "#6250d6", "#eda100"]
     for ax, val, lab in zip(axs, ["cov", "rel_size"], ["Empirical coverage", "Mean set size / number of classes"]):
         pos = 0; ticks = []
         for kind in ["Clean", "Corrupted"]:
@@ -203,13 +203,13 @@ def fig_conformal(root, out):
                 bp = ax.boxplot(v, positions=[pos], widths=0.6, showfliers=False, patch_artist=True)
                 bp["boxes"][0].set(facecolor="white", edgecolor=c, lw=1.2); bp["medians"][0].set(color=c, lw=1.6)
                 pos += 1
-            ticks.append((pos - 2, kind)); pos += 0.8
+            ticks.append((pos - 3, kind)); pos += 0.8
         if val == "cov":
             ax.axhline(0.9, color=INK2, ls="--", lw=0.8)
         ax.set_xticks([t[0] for t in ticks]); ax.set_xticklabels([t[1] for t in ticks]); ax.set_ylabel(lab)
     from matplotlib.patches import Patch
-    fig.legend([Patch(fc="white", ec=c) for c in cols], ["LOOM jackknife+", "PreVal jackknife+", "Split conformal (TS)"],
-               loc="upper center", ncol=3, bbox_to_anchor=(0.5, 1.05), fontsize=7)
+    fig.legend([Patch(fc="white", ec=c) for c in cols], ["LOOM jackknife+ (LAC)", "PreVal jackknife+ (LAC)", "Split TS (LAC)",
+               "LOOM jackknife+ (APS)", "Split TS (APS)"], loc="upper center", ncol=5, bbox_to_anchor=(0.5, 1.07), fontsize=6.5)
     fig.tight_layout(); _save(fig, out, "fig_conformal")
 
 
@@ -218,7 +218,7 @@ def fig_efficiency(root, out):
     if not p.exists():
         return
     tm = pd.read_csv(p)
-    tm = tm[(tm.transform.isin(["minirocket", "raw"])) & (tm.train_frac == 1.0)]
+    tm = tm[(tm["transform"].isin(["minirocket", "raw"])) & (tm.train_frac == 1.0)]
     g = tm.groupby(["dataset", "method"]).agg(fit=("fit", "mean"), n=("n_train", "first")).reset_index()
     fig, ax = plt.subplots(figsize=(3.4, 2.8))
     for m in ["LOOM", "PreVal", "Holdout-TS", "Ridge-Platt-CV5", "LogReg-CV", "LOOM-Ens5", "Arsenal", "QUANT"]:

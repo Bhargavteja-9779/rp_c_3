@@ -23,3 +23,9 @@
 [4/6] trainsize ECG200                         r0     2.3s
 [5/6] trainsize Coffee                         r0     1.4s
 [6/6] trainsize TwoLeadECG                     r0    21.6s
+[1/6] main      GunPoint                       r0    14.7s
+[2/6] main      ECG200                         r0     9.5s
+[3/6] main      Coffee                         r0     4.7s
+[4/6] main      SonyAIBORobotSurface2          r0    53.6s
+[5/6] main      ItalyPowerDemand               r0    54.1s
+[6/6] main      TwoLeadECG                     r0    66.8s

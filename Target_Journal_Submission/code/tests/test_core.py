@@ -121,3 +121,16 @@ def test_corruptions_deterministic_and_shape():
 def test_stats_helpers():
     assert np.allclose(holm([0.01, 0.04, 0.03]), [0.03, 0.06, 0.06])
     assert rank_biserial([1, 2, 3]) == 1.0 and rank_biserial([-1, -2]) == -1.0
+
+
+def test_aps_score_and_sets():
+    from loom.models.loom import _score
+    P = np.array([[0.5, 0.3, 0.2], [1 / 3, 1 / 3, 1 / 3]])
+    S = _score(P, "aps")
+    assert np.allclose(S[0], [0.5, 0.8, 1.0]) and np.allclose(np.sort(S[1]), [1 / 3, 2 / 3, 1.0])
+    rng = np.random.default_rng(9)
+    mu = rng.normal(0, 1.2, (3, 20)); y = rng.integers(0, 3, 300); X = mu[y] + rng.normal(size=(300, 20))
+    m = LOOM().fit(X[:100], y[:100])
+    for sc in ("lac", "aps"):
+        Sj = m.conformal_sets(X[100:], alpha=0.1, method="jackknife+", score=sc)
+        assert Sj.shape == (200, 3)

@@ -1,0 +1,183 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  International Journal on Document Analysis and Recognition (IJDAR)
+International Journal on Document Analysis and Recognition (IJDAR)
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+Sponsored by the International Association for Pattern Recognition, this journal is focused on publishing articles that cover all areas related to document analysis and recognition. This includes contributions dealing with computer recognition of characters, symbols, text, lines, graphics, images, handwriting, signatures, as well as automatic analyses of the overall physical and logical structures of documents, with the ultimate objective of a high-level understanding of their semantic content.
+
+The International Journal on Document Analysis and Recognition (IJDAR) publishes articles of four primary types: original research papers, correspondence, overviews and summaries, and system descriptions. It also features special issues on active areas of research.
+
+Currently indexed in:
+Academic Search Alumni Edition, Academic Search Complete, Academic Search Premier, Bibliography of Linguistic Literature, Compendex, Compuscience, Computer Science Index, Current Abstracts, Current Contents/Engineering, Computing, and Technology, DBLP, Google, INSPEC, Journal Citation Reports/Science Edition, OCLC ArticleFirst Database, OCLC FirstSearch Electronic Collections Online, PASCAL, SCOPUS, Science Citation Index Expanded, Summon by Serial Solutions, TOC Premier.
+
+ 
+
+Editors-in-Chief
+Koichi Kise
+Josep Lladós
+Richard Zanibbi
+View all editors 
+Journal metrics
+Journal Impact Factor
+1.7 (2025)
+5-year Journal Impact Factor
+2.3 (2025)
+Submission to first decision (median)
+7 days
+Downloads
+109k (2025)
+Call for papers
+
+Collection
+
+ICDAR 2027
+
+Guest edited by: Shivakumara Palaiahnakote, Jean-Christophe Burie, Lianwen Jin, and Josep Llados The ICDAR-IJDAR journal track invites high-quality...
+
+Status
+Open for submissions
+Submission deadline
+15 November 2026
+View all calls for papers
+Latest issue
+September 2026
+Volume 29, Issue 3
+
+Special Issue: ICDAR 2026
+
+View all volumes and issues
+Latest articles
+Shirorekhanet: a multi-scale attention network for text line-level segmentation of sanskrit manuscripts
+Latikkumar KothwarParul Sahare
+Original Paper
+06 October 2026
+Part of 1 collection:
+Special issue on Computer Vision Systems for Document Analysis and Recognition
+HSB-GDL: a heterogeneous subgraph benchmark for classification and query spotting
+Muhammad FarhanMalik Daler Ali AwanNadeem Iqbal Kajla
+Original Paper
+06 October 2026
+Part of 1 collection:
+Special issue on Computer Vision Systems for Document Analysis and Recognition
+CA-DIFF: enhancing stylistic consistency in handwriting generation—a diffusion model perspective
+Aniket GuravSukalpa ChandaNarayanan C. Krishnan
+Original Paper
+Open access
+03 October 2026
+Hallucination-aware evaluation and confidence-guided selective routing for hybrid VLM-OCR: an empirical study on scene text and receipt documents
+Juran KimChang yup HanJinhong Yang
+Special Issue Paper
+Open access
+30 September 2026
+Part of 1 collection:
+Special issue on Computer Vision Systems for Document Analysis and Recognition
+Trace the scribbles: a text restoration and artifact correction network for child handwriting enhancement
+Sumi Suresh Mini SureshSahana RangasrinivasanVenu Govindaraju
+Original Paper
+Open access
+01 September 2026
+View all articles
+This journal has 
+73 open access articles
+Journal updates
+Springer Nature Editor of Distinction Awards 2026
+Proposals for Special Issues
+
+Guidelines for IJDAR special issue papers and proposals
+
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+1433-2825
+ 
+Print ISSN
+1433-2833
+Abstracted and indexed in
+ACM Digital Library
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chinese Academy of Medical Science (CAMS)
+Current Contents/Engineering, Computing and Technology
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Springer-Verlag GmbH Germany, part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.137
+
+Not affiliated
+
+© 2026 Springer Nature

@@ -1,0 +1,175 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Knowledge and Information Systems
+Knowledge and Information Systems
+
+An International Journal
+
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+Knowledge and Information Systems is an international forum publishing state-of-the-art research on emerging topics in knowledge and advanced information systems.
+
+Examines theoretical foundations, infrastructure, and enabling technologies of knowledge and information systems.
+Each individual issue focuses on a small number of theme areas.
+Publishes original research, critical reviews, and experience and vision papers.
+Encourages submissions of high-quality papers from relevant conferences.
+Aims for a target turnaround time of 3 months for reviews.
+Editor-in-Chief
+Xindong Wu
+View all editors 
+Journal metrics
+Journal Impact Factor
+3.6 (2025)
+5-year Journal Impact Factor
+3.6 (2025)
+Submission to first decision (median)
+12 days
+Downloads
+668.2k (2025)
+Call for papers
+
+Collection
+
+ICDM- By Invitation Only
+
+This is for authors that received a specific invitation at ICDM.
+
+Status
+Open for submissions
+Submission deadline
+Ongoing
+View all calls for papers
+Latest articles
+Entity resolution across SQL and NoSQL database management systems: a comprehensive review
+Nour MekkiDjamel BerrabahFaouzi Boufarès
+Review
+12 October 2026
+Article: 281
+Sparcent: faster multi-vector dense retrieval with sparse centroid indices
+Erman YafayIsmail Sengor Altingovde
+Research
+12 October 2026
+Article: 280
+High utility itemsets mining in data stream using cuckoo search
+Meng HanWenyan YangShineng Zhu
+Research
+07 October 2026
+Article: 279
+Discovering session-level demand patterns for reinforcement learning-based dynamic inventory allocation in live-streaming e-commerce
+Thi-Linh HoHiep PhamThanh Thi Nguyen
+Research
+07 October 2026
+Article: 278
+A topic semantic relational knowledge-enhanced conversational model for improving response accuracy
+Kai LiXinyao GuoJietao Liu
+Research
+06 October 2026
+Article: 277
+View all articles
+This journal has 
+262 open access articles
+Journal updates
+Springer Nature Editor of Distinction Awards 2026
+Call for Survey Papers
+
+Knowledge and Information Systems seeks to publish survey papers on areas covered by the journal.
+
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+0219-3116
+ 
+Print ISSN
+0219-1377
+Abstracted and indexed in
+ACM Digital Library
+ANVUR
+Australian Business Deans Council (ABDC) Journal Quality List
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chinese Academy of Medical Science (CAMS)
+Current Contents/Engineering, Computing and Technology
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+Google Scholar
+INIS Atomindex
+INSPEC
+Japanese Science and Technology Agency (JST)
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Springer-Verlag London Ltd., part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.130
+
+Not affiliated
+
+© 2026 Springer Nature

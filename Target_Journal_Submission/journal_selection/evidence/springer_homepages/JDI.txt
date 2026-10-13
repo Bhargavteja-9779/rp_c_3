@@ -1,0 +1,199 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Journal of Imaging Informatics in Medicine
+Journal of Imaging Informatics in Medicine
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+The Journal of Imaging Informatics in Medicine enhances the exchange of knowledge encompassed by the general topic of Imaging Informatics in Medicine including, but not limited to, research and practice in clinical, engineering, information technologies and techniques in all medical imaging environments.
+
+Covers a broad range of topics from PACS and component systems to teleradiology and archiving.
+Official peer-reviewed journal of the Society for Imaging Informatics in Medicine (SIIM).
+Journal is of interest to researchers, developers, educators, physicians, and imaging informatics professionals.
+Editor-in-Chief
+Elizabeth A. Krupinski FSIIM, FSPIE, FATA, FAIMBE, PhD
+View all editors 
+Societies and partnerships
+Society for Imaging Informatics in Medicine
+Journal metrics
+Journal Impact Factor
+3.1 (2025)
+5-year Journal Impact Factor
+3.1 (2025)
+Submission to first decision (median)
+5 days
+Downloads
+941.3k (2025)
+Calls for papers
+
+Collection
+
+Visible Light Imaging
+
+This collection explores the rapidly evolving field of imaging informatics as applied to visible light medical imaging, including endoscopy,...
+
+Status
+Open for submissions
+Submission deadline
+Ongoing
+
+Collection
+
+Ophthalmology
+
+This collection explores the intersection of advanced imaging technologies and computational methods in ophthalmic care.
+
+Status
+Open for submissions
+Submission deadline
+Ongoing
+
+Collection
+
+Dermatology
+
+This collection explores the transformative impact of imaging informatics on dermatological practice, research, and patient care.
+
+Status
+Open for submissions
+Submission deadline
+Ongoing
+View all calls for papers
+Latest issue
+October 2026
+Volume 39, Issue 1 supplement
+
+Selected Abstracts from the SIIM 2026 Annual Meeting of the Society for Imaging Informatics in Medicine (SIIM)
+
+View all volumes and issues
+Latest articles
+A Bayesian-Optimized Weighted Fuzzy Rank-Based Ensemble for Coronary Stenosis Detection in X-ray Angiography
+Marzieh Sadat HosseiniAhmad R. Naghsh-NilchiManizheh Danesh
+OriginalPaper
+09 October 2026
+A Hands-On Imaging Informatics Curriculum for Medical Students: Developing a Foundational Understanding of Healthcare Imaging Informatics
+Jennifer M. FernandezPamela Garcia-FilionJames T. Whitfill
+OriginalPaper
+09 October 2026
+CXR-CoRe: Two-Stage View- and Section-Aware Study-Level Chest X-ray Report Retrieval
+Yan TianJianbing Ma
+OriginalPaper
+09 October 2026
+Deep Learning–Based Scapular Morphology Assessment Pipeline for Glenoid Segmentation and Landmark Localization
+Kuan LiuYin ZhangBo Chen
+OriginalPaper
+09 October 2026
+A Statistically Validated and Explainable Deep Learning Framework for Oral Cancer Classification
+Nada MohamedMuhammad H. ZayyanSara El-Metwally
+OriginalPaper
+09 October 2026
+View all articles
+This journal has 
+627 open access articles
+Journal updates
+Springer Nature Editor of Distinction Awards 2026
+Collections, Collaborations and Community Impact 2025
+
+An update from the Editor-in-Chief, Elizabeth Krupinski.
+
+Former Editors-in-Chief and Founding Editor
+
+We would like to honour the former Editors-in-Chief of the Journal of Digital Imaging and thank them for their valuable contribution to the journal. Please see the list of names here.
+
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+2948-2933
+Abstracted and indexed in
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chinese Academy of Medical Science (CAMS)
+Current Contents/Clinical Medicine
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+EMCare
+Google Scholar
+INIS Atomindex
+INSPEC
+Japanese Science and Technology Agency (JST)
+Medline
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+PubMedCentral
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+Semantic Scholar
+TD Net Discovery Service
+WTI AG
+Wanfang
+eLibrary.ru
+© Society for Imaging Informatics in Medicine
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.128
+
+Not affiliated
+
+© 2026 Springer Nature

@@ -1,0 +1,212 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  International Journal of Data Science and Analytics
+International Journal of Data Science and Analytics
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+The International Journal of Data Science and Analytics is a pioneering journal in data science and analytics, publishing original and applied research outcomes.
+
+Focuses on fundamental and applied research outcomes in data and analytics theories, technologies and applications.
+Promotes new scientific and technological approaches for strategic value creation in data-rich applications.
+Encourages transdisciplinary and cross-domain collaborations.
+Strives to bring together researchers, industry practitioners, and potential users of data science and analytics.
+Addresses challenges ranging from data capture, creation, storage, retrieval, sharing, analysis, optimization, and visualization.
+Editor-in-Chief
+João Gama
+View all editors 
+Journal metrics
+Journal Impact Factor
+2.9 (2025)
+5-year Journal Impact Factor
+3.5 (2025)
+Submission to first decision (median)
+18 days
+Downloads
+582.9k (2025)
+Calls for papers
+
+Collection
+
+Data-Centric Generative AI and Large Language Models for Intelligent Cybersecurity Analytics
+
+The exponential growth of cyber threats has created an urgent demand for intelligent, adaptive, and scalable analytics systems capable of...
+
+Status
+Open for submissions
+Submission deadline
+10 May 2027
+
+Collection
+
+Special Issue on Data Science and AI for Smart Disaster Resilience
+
+-.
+
+Status
+Open for submissions
+Submission deadline
+31 December 2026
+
+Collection
+
+PAKDD 2024
+
+Guest Editors: De-Nian Yang and Xing Xie.
+
+Status
+Open for submissions
+Submission deadline
+Ongoing
+View all calls for papers
+Latest articles
+Measuring firm-level technological similarity from patent texts using semantic embeddings: a data-driven framework and financial market application
+Chuan ShiRui LuoDi Wu
+Regular Paper
+11 October 2026
+Article: 339
+Part of 1 collection:
+Special Issue on Data Science and AI in Finance
+Robust multimodal knowledge graph completion under missing text modality
+Songjiang LiShiqiang LiPeng Wang
+Regular Paper
+11 October 2026
+Article: 338
+Prediction set size as a diagnostic for data corruption: a conformal perspective on label noise and distribution shift
+Amrith AlurBhaskarjyoti Das
+Regular Paper
+10 October 2026
+Article: 337
+Mathematical foundations, structural embeddings, and complement operations in hyperbolic fuzzy set theory
+Palash Dutta
+Regular Paper
+09 October 2026
+Article: 336
+Part of 1 collection:
+Special Issue on Statistics for Data Science and AI
+AI-modulated pólya urns (AIM-PU): a unified framework for risk-sensitive contextual bandits, resource allocation and portfolio design
+Debashis ChatterjeeSaran Ishika Maiti
+Regular Paper
+09 October 2026
+Article: 335
+Part of 1 collection:
+Special Issue on Data Science and AI in Finance
+View all articles
+This journal has 
+338 open access articles
+Journal updates
+Springer Nature Editor of Distinction Awards 2026
+Call for Papers: IEEE DSAA 2026 Journal Track with JDSA on Data Science and Generative AI
+
+Guest Editors
+
+
+
+
+Hady W. Lauw, Singapore Management University, Singapore 
+
+Benjamin C. M. Fung, McGill University, Canada
+
+Lan Du, Monash University, Australia
+
+Longbing Cao, Macquarie University, Australia
+
+
+
+
+Manuscript submission deadline: 15 February 2026
+
+CfP: PAKDD 2025
+CfP: AI4Tech - AI Advancing Critical Technologies
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+2364-4168
+ 
+Print ISSN
+2364-415X
+Abstracted and indexed in
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+Emerging Sources Citation Index
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+TD Net Discovery Service
+WTI AG
+Wanfang
+eLibrary.ru
+© Springer Nature Switzerland AG
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.130
+
+Not affiliated
+
+© 2026 Springer Nature

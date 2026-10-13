@@ -1,0 +1,175 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Journal of Intelligent Manufacturing
+Journal of Intelligent Manufacturing
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+The Journal of Intelligent Manufacturing is peer-reviewed publication dedicated to the application of artificial intelligence in manufacturing.
+
+Publishes research related to product development, manufacturing, and service systems.
+Connects the research community with industry.
+Features articles covering new methodologies and developments, case studies, and surveys.
+Covers emerging areas including additive manufacturing, digital manufacturing, cyber-physical solutions, cloud applications, and deep learning.
+Offers special issues on topics of interest to the readership.
+
+ 
+
+Editor-in-Chief
+Andrew Kusiak PhD
+View all editors 
+Journal metrics
+Journal Impact Factor
+7.7 (2025)
+5-year Journal Impact Factor
+9.2 (2025)
+Submission to first decision (median)
+8 days
+Downloads
+1.1M (2025)
+Latest issue
+November 2026
+Volume 37, Issue 11
+View all volumes and issues
+Latest articles
+Monitoring centerless grinding processes for workpiece roundness prediction using internal machine sensors and Bayesian sparse regression models
+Lohit Kumar PentakotaMarco LeonesioGiacomo Bianchi
+OriginalPaper
+Open access
+12 October 2026
+Enhanced language-guided robotic grasping via a synergized VLM-based two-stage decoupled policy
+Qing JiaoWeifei HuJianrong Tan
+OriginalPaper
+12 October 2026
+Agent swarms for semiconductor fab scheduling, dispatching, and material handling: a systematic review
+Kian Lun SoonLam Tatt SoonChee Jie Teng
+ReviewPaper
+12 October 2026
+Sensitivity-driven dual-stream framework with interchangeable feature streams for porosity prediction in laser additive manufacturing
+Xin LiuZhenying XuYulong Yang
+OriginalPaper
+12 October 2026
+Hybrid physics-informed neural network-based energy optimizer: a singularity-free processor for workpiece setup and tool orientation in five-axis machining
+Jiancheng HaoXin ZhangFubao Xie
+Original Research
+10 October 2026
+View all articles
+This journal has 
+400 open access articles
+Journal updates
+Indexed by Scopus
+
+The Journal of Intelligent Manufacturing is indexed by Scopus and has a CiteScore of 18.5 for 2025.
+
+Recent Top Cited Papers
+
+The Journal of Intelligent Manufacturing highlights some of the recent top cited papers from the journal.
+
+Top Downloaded Papers for 2025
+
+The Journal of Intelligent Manufacturing highlights some of the top downloaded papers from the journal in 2025.
+
+SDG 12 Related Publications from Journal of Intelligent Manufacturing
+
+The UN's Sustainable Development Goal 12 is focused on "responsible consumption and production." Learn more about SDG 12 and discover related research published in Journal of Intelligent Manufacturing.
+
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+1572-8145
+ 
+Print ISSN
+0956-5515
+Abstracted and indexed in
+ABS Academic Journal Quality Guide
+ACM Digital Library
+ANVUR
+Australian Business Deans Council (ABDC) Journal Quality List
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chinese Academy of Medical Science (CAMS)
+Current Contents/Engineering, Computing and Technology
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Naver
+Norwegian Register for Scientific Journals and Series
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+Research Papers in Economics (RePEc)
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Springer Science+Business Media, LLC, part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.128
+
+Not affiliated
+
+© 2026 Springer Nature

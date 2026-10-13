@@ -1,0 +1,155 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Neural Processing Letters
+Neural Processing Letters
+Publishing model
+Open access
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+Neural Processing Letters is an international journal that promotes fast exchange of the current state-of-the art contributions among the artificial neural network community of researchers and users. The Journal publishes technical articles on various aspects of artificial neural networks and machine learning systems. Coverage includes novel architectures, supervised and unsupervised learning algorithms, deep nets, learning theory, network dynamics, self-organization, optimization, biological neural network modelling, and hybrid neural/fuzzy logic/genetic systems. The Journal publishes articles on methodological innovations for the applications of the aforementioned systems in classification, pattern recognition, signal processing, image and video processing, robotics, control, autonomous vehicles, financial forecasting, big data analytics, and other multidisciplinary applications.
+
+Editors-in-Chief
+Mohamad Hassoun PhD
+Michel Verleysen PhD
+View all editors 
+Journal metrics
+Journal Impact Factor
+2.8 (2025)
+5-year Journal Impact Factor
+2.7 (2025)
+Submission to first decision (median)
+14 days
+Downloads
+513.1k (2025)
+Latest articles
+An Explainable Educational Prediction Model Based on a Hierarchical Temporal Graph Network
+Junling LiXin LiZun Jiao
+OriginalPaper
+Open access
+12 October 2026
+Progressive Diffusion for Single Image Dehazing
+Xinyue LiuJiayu LiuWenxin Liang
+OriginalPaper
+Open access
+09 October 2026
+TamperNet: A Spatio-Temporal Deep Learning Framework for Video Manipulation Detection
+Muhammad Hasaan MujtabaMuhammad ImranHussain Dawood
+OriginalPaper
+Open access
+01 October 2026
+Distance-Based Representation Learning with Nonlinear Feature Algebras
+Koffi Enakoutsa
+OriginalPaper
+Open access
+29 September 2026
+Launch An In-Aepth Analysis on the Global Mittag Leffler Synchronization Problem of Fractional-Order Octonion-Valued Fuzzy BAM Neural Networks
+Benkun HuangJianying Xiao
+OriginalPaper
+Open access
+31 August 2026
+View all articles
+Journal updates
+Articles in Press
+Springer Nature Editor of Distinction Awards 2026
+Neural Processing Letters is now fully open access!
+
+We are excited to announce that Neural Processing Letters has now become a fully open access (OA) journal as of January 2024. This means that we will only be publishing articles as Open Access meaning content will be and freely available to readers worldwide, enabling the widest possible dissemination and reuse. 
+
+Collections - Guest Editor Guidelines
+
+Instructions and submission form for call for papers
+
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+1573-773X
+ 
+Print ISSN
+1370-4621
+Abstracted and indexed in
+ACM Digital Library
+ANVUR
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chinese Academy of Medical Science (CAMS)
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Springer Science+Business Media, LLC, part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.25
+
+Not affiliated
+
+© 2026 Springer Nature

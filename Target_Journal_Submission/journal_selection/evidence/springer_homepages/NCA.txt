@@ -1,0 +1,217 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Neural Computing and Applications
+Neural Computing and Applications
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+Neural Computing & Applications is an international journal which publishes original research and other information in the field of practical applications of neural computing and related techniques such as genetic algorithms, fuzzy logic and neuro-fuzzy systems.
+
+All items relevant to building practical systems are within its scope, including but not limited to:
+
+adaptive computing
+algorithms
+applicable neural networks theory
+applied statistics
+architectures
+artificial intelligence
+benchmarks
+case histories of innovative applications
+fuzzy logic
+genetic algorithms
+hardware implementations
+hybrid intelligent systems
+intelligent agents
+intelligent control systems
+intelligent diagnostics
+intelligent forecasting
+machine learning
+neural networks
+neuro-fuzzy systems
+pattern recognition
+performance measures
+self-learning systems
+software simulations
+supervised and unsupervised learning methods
+system engineering and integration
+
+
+Featured contributions fall into several categories: Original Articles, Review Articles, Book Reviews, and Announcements.
+
+The Original Articles will be high-quality contributions, representing new and significant research, developments or applications of practical use and value. They will be reviewed by at least two referees.
+For all queries relating to papers after submission, please contact the Journal Editorial Office via “contact us” at Editorial Manager.
+
+Editor-in-Chief
+Prof. John MacIntyre PhD
+View all editors 
+Journal metrics
+Submission to first decision (median)
+14 days
+Downloads
+3.1M (2025)
+Calls for papers
+
+Collection
+
+Foretell of Future AI from Mathematical Foundation
+
+Deep neural network architectures have evolved significantly to meet the demands of modern applications in AI.
+
+Status
+Open for submissions
+Submission deadline
+31 March 2027
+
+Collection
+
+Emerging Trends in Smart Waste Monitoring and Environmental Surveillance
+
+The growing global concern around waste management, illegal dumping, and environmental pollution highlights the urgent need for intelligent...
+
+Status
+Open for submissions
+Submission deadline
+30 November 2026
+
+Collection
+
+Machine Learning and Big Data Analytics for IoT Security and Privacy (SPIOT 2024)
+
+The "Internet of Things" heralds the connections of a nearly countless number of devices to the internet thus promising accessibility, boundless...
+
+Status
+Open for submissions
+Submission deadline
+30 October 2026
+View all calls for papers
+Latest articles
+Network data transmission security protection and attack detection based on artificial intelligence
+Cuihe Chen
+S.I.: Cognitive based Information Processing and Applications 2024
+12 October 2026
+Article: 805
+A multi-objective evolutionary algorithm based on non-negative matrix factorization for community detection in complex networks
+Mehdi RahimiKeyhan KhamforooshVafa Maihami
+Original Article
+12 October 2026
+Article: 804
+Spawning tasks from chitchatting - reinforcement learning-based policy
+Atheer AlgherairyMoataz Ahmed
+Original Article
+12 October 2026
+Article: 803
+A ConvNeXt-based facial expression recognition network integrating ALDS downsampling and SCSA semantic enhancement
+Yanqiu LiShengzhao LiGuangling Sun
+Original Article
+12 October 2026
+Article: 802
+A machine learning framework for prediction and inverse design of micro-hole diameters in titanium drilled by µEDM
+Anshul AgrawalYash YalamalliPriyadarshan Venkatesh
+Original Article
+12 October 2026
+Article: 801
+View all articles
+This journal has 
+1332 open access articles
+Journal updates
+Topical Collections - Peer Review Policy
+Topical Collections – Guidelines for Guest Editors
+Topical Collections – Proposal Form for Guest Editors
+Topical Collections - Call for Papers
+
+Please note that we are not accepting unsolicited topical collection proposals at this time, but we welcome manuscript submissions for the upcoming topical collections of Neural Computing and Applications
+
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+1433-3058
+ 
+Print ISSN
+0941-0643
+Abstracted and indexed in
+ACM Digital Library
+ANVUR
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chinese Academy of Medical Science (CAMS)
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Springer-Verlag London Ltd., part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.143
+
+Not affiliated
+
+© 2026 Springer Nature

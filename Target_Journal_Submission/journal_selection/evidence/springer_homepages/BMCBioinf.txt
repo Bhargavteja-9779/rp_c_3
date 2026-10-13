@@ -1,0 +1,198 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+BMC journals have moved to Springer Nature Link. Learn more about website changes.
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  BMC Bioinformatics
+BMC Bioinformatics
+Publishing model
+Open access
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+BMC Bioinformatics is an open access, peer-reviewed journal that considers articles describing novel computational algorithms and software, models and tools, including statistical methods, machine learning and artificial intelligence, for the modelling and analysis of all kinds of biological data, as well as systems biology.
+
+Publishes on all aspects of bioinformatics and computational biology. 
+Topics include novel computational algorithms and software, models and tools, and more. 
+Indexed in PubMed, Scopus, Web of Science (SCIE), DOAJ and more.  
+Lead Editor
+Alison Cuff PhD
+View all editors 
+Journal metrics
+Journal Impact Factor
+4.4 (2025)
+5-year Journal Impact Factor
+4.0 (2025)
+Submission to first decision (median)
+5 days
+Downloads
+10.6M (2025)
+Calls for papers
+
+Collection
+
+Bioinformatics and ecology
+
+BMC Bioinformatics is calling for submissions to our Collection on Bioinformatics and ecology.
+
+Status
+Open for submissions
+Submission deadline
+30 April 2027
+
+Collection
+
+Protein modelling: intrinsically disordered proteins and regions
+
+BMC Bioinformatics is welcoming submissions to our Collection on modelling intrinsically disordered proteins and regions.
+
+Status
+Open for submissions
+Submission deadline
+30 March 2027
+
+Collection
+
+Simulated and synthetic data in bioinformatics: statistical methods, models, and applications
+
+BMC Bioinformatics is welcoming submissions to our Collection on Simulated and synthetic data in bioinformatics: statistical methods, models, and...
+
+Status
+Open for submissions
+Submission deadline
+09 March 2027
+View all calls for papers
+Latest articles
+GraTools, a user-friendly tool for exploring and manipulating pangenome variation graphs
+Sebastien RavelNina MartheChristine Tranchant-Dubreuil
+Software
+Open access
+12 October 2026
+Wild-AC: A fast, index-free multi-pattern string matching algorithm with wildcard support for proteomics
+Chris Bielow
+Research
+Open access
+09 October 2026
+Article: 234
+Phenotypic Inflation and composition-driven fragility: a pre-validation diagnostic framework for immune biomarker translation failure
+Hoang Minh Quan PhamPo-Hao FengChiou-Feng Lin
+Research
+Open access
+08 October 2026
+Ionizing radiation-induced repair foci identification using deep convolutional neural networks
+Saeed UllahR. I. AnuGianluca Valentino
+Research
+Open access
+07 October 2026
+stMCP: spatial transcriptomics with a Model Context Protocol server
+Jordan J. SmithXi WangMichael W. Jenkins
+Software
+Open access
+07 October 2026
+View all articles
+Journal updates
+Join the Editorial Board
+
+BMC Bioinformatics is recruiting Editorial Board Members.
+
+Articles in Press
+Springer Nature Editor of Distinction Awards 2026
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+1471-2105
+Abstracted and indexed in
+ACM Digital Library
+ANVUR
+BFI List
+BIOSIS
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chemical Abstracts Service (CAS)
+Chinese Academy of Medical Science (CAMS)
+DBLP
+DOAJ
+Dimensions
+EI Compendex
+EMBiology
+EMCare
+Gale
+GoOA - The Chinese Academy of Sciences (CAS)
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Medline
+Meta
+Naver
+Norwegian Register for Scientific Journals and Series
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+PubMedCentral
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+WTI AG
+Wanfang
+eLibrary.ru
+© BioMed Central Ltd., part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.130
+
+Not affiliated
+
+© 2026 Springer Nature

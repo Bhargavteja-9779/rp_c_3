@@ -1,0 +1,201 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Health Information Science and Systems
+Health Information Science and Systems
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+Health Information Science and Systems is a multidisciplinary journal that integrates computer science/information technology with health science and services, embracing information science research coupled with topics related to the modeling, design, development, integration, and management of health information systems.
+
+The scope includes:
+
+Medical/health/biomedicine information resources, such as patient medical records, devices and equipments, software and tools to capture, store, retrieve, process, analyze, optimize the use of information in the health domain,
+Data management, data mining, and knowledge discovery, all of which play a key role in decision making, management of public health, examination of standards, privacy and security issues,
+Development of new architectures and applications for health information systems.
+Editor-in-Chief
+Prof. Yanchun Zhang PhD
+View all editors 
+Journal metrics
+Journal Impact Factor
+4.4 (2025)
+5-year Journal Impact Factor
+4.4 (2025)
+Submission to first decision (median)
+7 days
+Downloads
+250.6k (2025)
+Calls for papers
+
+Collection
+
+Artificial Intelligence in Health: Selected & Extended Papers from aiHealth 2026 Conference
+
+This Special Issue invites extended, journal-ready versions of the strongest contributions presented at aiHealth 2026 - the International...
+
+Status
+Open for submissions
+Submission deadline
+30 October 2026
+
+Collection
+
+Toward Trustworthy and Generalizable AI in Healthcare: Advances in Explainability, Causal Learning, and Cost-effectiveness
+
+Artificial intelligence (AI) has shown great promise in transforming healthcare and medicine.
+
+Status
+Open for submissions
+Submission deadline
+31 October 2026
+View all calls for papers
+Latest articles
+Hybrid quaternion-based denoising and deep feature fusion for early Alzheimer’s prognosis
+Saravanan SubramaniS. Baghavathi Priya
+Research
+17 September 2026
+Article: 84
+Machine learning-ready genomic biomarkers: ATF3 polymorphisms predict postoperative analgesic demand through AI-compatible phenotyping
+Shilian ZhouZhongyuan LinFang Ye
+Research
+02 September 2026
+Article: 83
+Surgfm-Slam: robust surgical scene reconstruction via 3D foundation adaptation model
+Lu XiaoxiLiu GanLiu Jiang
+Research
+24 August 2026
+Article: 82
+Medrecord-CLIP: enhancing fundus disease diagnosis via EHR-guided vision-language pre-training
+Lei ShiWenbin ZhaiCuiyun Gao
+Research
+21 August 2026
+Article: 81
+Dermel: a light weight meta-learning technique for skin disease diagnosis
+Sambhavi TiwariManas GogoiKrishna Pratap Singh
+Research
+02 August 2026
+Article: 80
+View all articles
+This journal has 
+130 open access articles
+Journal updates
+Springer Nature Editor of Distinction Awards 2026
+Meet the Editors of Health Information Science and Systems
+
+Professor Yanchun Zhang (Editor-in-Chief), Zhejiang Normal University, China; Victoria University, Australia; Foreign Academician of the Russian Academy of Natural Sciences (RANS), and Fellow of Royal Society of Medicine of United Kingdom (FRSM)
+Learn more about Prof Zhang.
+
+Dr. Siuly Siuly (Managing Editor), Victoria University, Australia
+Learn more about Dr. Siuly.
+
+Call for Papers: Special Issue on Artificial Intelligence in Health: Selected & Extended Papers from aiHealth 2026 Conference
+
+Guest Editors:
+
+Prof. Panagiotis Symeonidis, University of the Aegean, Greece 
+Prof. Evangelos Rizos, University of Ioannina, Greece
+Prof. Yannis Manolopoulos, University of York, Europe Campus, Greece
+
+Submission deadline:  November 30, 2026
+
+Call for Papers: Toward Trustworthy and Generalizable AI in Healthcare: Advances in Explainability, Causal Learning and Cost-effectiveness
+
+Guest Editors: Prof. Xin Zhu, Prof. Faouzi Alaya Cheikh, Prof. Qun Jin, Prof. Jie Li, Prof. Jinhua She and Prof. M. Jamal Deen.
+
+
+
+
+Submission Deadline : October 31, 2026
+
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+2047-2501
+Abstracted and indexed in
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chinese Academy of Medical Science (CAMS)
+Current Contents/Clinical Medicine
+DBLP
+Dimensions
+EBSCO
+EMBASE
+Gale
+Google Scholar
+Japanese Science and Technology Agency (JST)
+Naver
+Norwegian Register for Scientific Journals and Series
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+PubMedCentral
+Reaxys
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Springer Nature Switzerland AG
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.132
+
+Not affiliated
+
+© 2026 Springer Nature

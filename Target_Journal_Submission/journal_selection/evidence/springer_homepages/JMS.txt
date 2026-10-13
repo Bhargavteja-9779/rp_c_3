@@ -1,0 +1,210 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Journal of Medical Systems
+Journal of Medical Systems
+
+The Home of Clinical Informatics Research
+
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+The Journal of Medical Systems is a leading Q1 journal in health informatics and medical systems, focused on how health information technologies are designed, implemented, evaluated, governed, and used in clinical and health care delivery settings. The journal publishes work on clinical decision support, electronic health record-driven analytics, mHealth and consumer health technologies, workflow engineering and simulation, imaging and signal processing, education and training, health policy, and the application, evaluation, safety, ethics, and governance of clinical and generative artificial intelligence.
+
+The journal is organized into seven sections: Mobile Health; Implementation Science & Operations Management; Clinical Systems & Electronic Health Records; Image & Signal Processing; Consumer Health; Education & Training; and Health Policy.
+
+
+The Journal does not consider pre-submission inquiries, nor does it accept unsolicited requests or submissions for special issues, topical collections, or Editorial Board positions.
+
+Median days from submission to acceptance: 76
+
+Journal metrics
+Journal Impact Factor
+8.8 (2025)
+5-year Journal Impact Factor
+6.0 (2025)
+Submission to first decision (median)
+8 days
+Downloads
+1M (2025)
+Calls for papers
+
+Collection
+
+Clinical AI Governance, Safety, and Algorithmovigilance
+
+This collection is about making AI safe and sustainable in healthcare, including oversight structures, risk assessment, monitoring for drift, and...
+
+Status
+Open for submissions
+Submission deadline
+Ongoing
+
+Collection
+
+Multimodal Foundation Models for Health Systems
+
+This collection focuses on models that combine text with images, physiologic signals, and structured EHR data to support clinical decision-making...
+
+Status
+Open for submissions
+Submission deadline
+Ongoing
+
+Collection
+
+Agentic & Ambient AI in Real Clinical Workflows
+
+This collection highlights generative AI that is used in day-to-day care, including AI scribes, workflow copilots, and agentic tools that carry out...
+
+Status
+Open for submissions
+Submission deadline
+Ongoing
+View all calls for papers
+Latest articles
+Decision-Use Qualification of Digital Therapeutic Alliance for Version Selection in Generative Mental-Health AI
+Mohammad Mahdi Akbarzadeh
+Comment
+12 October 2026
+Article: 146
+Part of 1 collection:
+Clinical AI Governance, Safety, and Algorithmovigilance
+A Controlled Single-Speaker Evaluation of Ambient Voice Technologies’ Speech-to-Text Function Using Narrated Surgical Case-Reports
+Ruairi O’KaneDaniel Stonehouse-SmithMartyn T Cobourne
+Research
+Open access
+09 October 2026
+Article: 145
+Real-World Deployment and Operational Evaluation of an On-Premise Thermal IoMT System in an Intensive Care Unit
+Eva AvilésJose-Luis LafuenteJuan-Jose Beunza
+Research
+Open access
+07 October 2026
+Article: 144
+Development and Nationwide Multicentre Evaluation of Guideline-Grounded Large Language Model Chatbots to Support Patient Self-Management and Education in Rheumatology
+Tim WilhelmiVanessa BartschJohannes Knitza
+Research
+Open access
+05 October 2026
+Article: 143
+Association of Chest Compression Depth, Rate, and Spring Resistance with “Quality CardioPulmonary Resuscitation” (QCPR) Scores in a Manikin Model
+Špela MetličarKasper G LauridsenNino Fijačko
+Brief Report
+Open access
+05 October 2026
+Article: 142
+View all articles
+This journal has 
+367 open access articles
+Journal updates
+Springer Nature Editor of Distinction Awards 2026
+Journal of Medical Systems 2025 Impact Factor
+
+Journal Citation Reports has released the 2025 Impact Factor for Journal of Medical Systems
+
+Welcoming New Associate Editors and Editorial Board Members to the Journal of Medical Systems, May 2026
+
+A message from our EIC announcing new members of the journal.
+
+Thank you to our peer reviewers in 2025
+
+We are grateful to the colleagues who completed reviews over the year 2025.
+
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+1573-689X
+Abstracted and indexed in
+ACM Digital Library
+ANVUR
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chemical Abstracts Service (CAS)
+Chinese Academy of Medical Science (CAMS)
+Current Contents/Clinical Medicine
+DBLP
+Dimensions
+EBSCO
+EMBASE
+EMCare
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Medline
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+Reaxys
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+Semantic Scholar
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Springer Science+Business Media, LLC, part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.133
+
+Not affiliated
+
+© 2026 Springer Nature

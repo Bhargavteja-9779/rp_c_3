@@ -1,0 +1,166 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Statistics and Computing
+Statistics and Computing
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+Announcement 
+
+We are pleased to announce that Statistics and Computing will become a fully open access (OA) on 1 January 2027. As a result, all submissions received from 1 July 2026 are subject to an article publication charge (APC) if accepted and published in the journal (unless a waiver is applied). Please see our FAQs which can be found at the bottom of this page for more information on APCs, funding options, waivers and the journal's transition to fully open access.  
+
+Statistics and Computing is a bi-monthly refereed journal publishing papers at the intersection of statistical and computing sciences.
+
+Addresses the use of statistical concepts in computing science and the use of computers in data modelling, prediction and analysis.
+Includes techniques for evaluating analytically intractable problems and big data analytics.
+Publishes original research reports, authoritative review papers, and discussion papers.
+Features special issues dedicated to emerging topics or proceedings of relevant conferences.
+
+ 
+
+Editor-in-Chief
+Ajay Jasra
+View all editors 
+Journal metrics
+Journal Impact Factor
+1.8 (2025)
+5-year Journal Impact Factor
+2.1 (2025)
+Submission to first decision (median)
+3 days
+Downloads
+539.3k (2025)
+Latest articles
+Estimation of Tsallis entropy and its applications to goodness-of-fit tests
+Siddhartha ChakrabortyAsok K. NandaNarayanaswamy Balakrishnan
+Original Paper
+10 October 2026
+Article: 231
+A fast and stable algorithm for non-parametric maximum likelihood estimation of survival functions for left-truncated and interval-censored data
+Zachary WallerAdele H. MarshallFelicity Lamrock
+Original Paper
+Open access
+09 October 2026
+Article: 230
+SAT-sampling for statistical significance testing in sparse contingency tables
+Patrick ScharpfeneckerTobias Windisch
+Original Paper
+Open access
+08 October 2026
+Article: 229
+Statistical commutators with applications to estimation, inference, and regularization tuning
+Ivo D. DinovEric Tatt Wei HoS. Ejaz Ahmed
+Original Paper
+Open access
+07 October 2026
+Article: 228
+Bayesian modelling of clustered extreme events using a nonparametric Hawkes process
+Gordon J. RossDean Markwick
+Original Paper
+Open access
+06 October 2026
+Article: 227
+View all articles
+This journal has 
+538 open access articles
+Journal updates
+Statistics and Computing is transitioning to full open access!
+Transition to fully OA FAQ
+Springer Nature Editor of Distinction Awards 2026
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+1573-1375
+ 
+Print ISSN
+0960-3174
+Abstracted and indexed in
+ACM Digital Library
+ANVUR
+Australian Business Deans Council (ABDC) Journal Quality List
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chinese Academy of Medical Science (CAMS)
+Current Index to Statistics
+DBLP
+Dimensions
+EBSCO
+Google Scholar
+Japanese Science and Technology Agency (JST)
+Mathematical Reviews
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+zbMATH
+© Springer Science+Business Media, LLC, part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.143
+
+Not affiliated
+
+© 2026 Springer Nature

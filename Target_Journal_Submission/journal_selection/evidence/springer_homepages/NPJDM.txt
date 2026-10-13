@@ -1,0 +1,177 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Journal of Healthcare Informatics Research
+Journal of Healthcare Informatics Research
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+Journal of Healthcare Informatics Research is dedicated to advancing areas such as artificial intelligence (AI), machine learning (ML), foundational principles of computer and information sciences and technology, communication technology to address challenges and problems in healthcare, and everyday wellness.
+
+The journal explores three major tracks: Analytics, focusing on advancing AI/ML-based decision support, generative AI, data analytics, knowledge discovery, predictive modeling for healthcare research; Systems, focusing on building and deploying novel healthcare informatics systems (e.g., architecture, framework, design, engineering, and application); and Human-centered Computing, focusing on intelligent communication with healthcare stakeholders (e.g., doctors, nurses, and patients), adaptive interface design for healthcare systems, user experiences of healthcare informatics applications, and understanding and motivating health behavior.
+
+ 
+
+Editor-in-Chief
+Christopher C. Yang PhD
+View all editors 
+Journal metrics
+Journal Impact Factor
+4.6 (2025)
+5-year Journal Impact Factor
+6.4 (2025)
+Submission to first decision (median)
+6 days
+Downloads
+177.1k (2025)
+Call for papers
+
+Collection
+
+Adaptation and Evidence-grounding of Generative Interventional Systems for Healthcare Decision Making
+
+The proposed collection focuses on this shift from predictive AI toward causal health AI: AI methods designed to support decision making by...
+
+Status
+Open for submissions
+Submission deadline
+30 November 2026
+View all calls for papers
+Latest issue
+September 2026
+Volume 10, Issue 3
+View all volumes and issues
+Latest articles
+DisMed-LLM: De-Identifying Spanish Medical Text with Large Language Models
+Jesús Alejandro Alzate-GrisalesJoshua Bernal-SalcedoMaría de la Iglesia-Vayá
+Research
+Open access
+07 October 2026
+Swarm Learning And Clinical Data: Evaluating The Benefit of a New Node For The Whole Network
+Matteo MantovaniSimone ScagliaStefano Diciotti
+Research
+Open access
+03 October 2026
+The Impact of Bias Mitigation on Fairness and Accuracy in Automated Skin Lesion Classification
+Matheus B. RochaRenato A. Krohling
+Research
+Open access
+26 September 2026
+PPIE-Informed User-Centred Development and Early Usability Evaluation of a Digital Patient Portal to Support Stroke Survivors’ Self-Management
+Zhiqiang HuoTimothy NeateVasa Curcin
+Research
+Open access
+17 September 2026
+Evaluating RAG Configurations for Clinical Information Extraction from EHR Notes: Aged Care Case Study
+Dinithi VithanageQuang Vinh DuongPing Yu
+Research
+Open access
+14 September 2026
+View all articles
+This journal has 
+96 open access articles
+Journal updates
+Supporting the Sustainable Development Goals
+
+We are proud to acknowledge that over 50% of the articles published in this journal in 2025 were related to one or more of the 17 Sustainable Development Goals (SDGs).
+
+Springer Nature Editor of Distinction Awards 2026
+Top 10 Most Cited Articles
+
+Explore the journal's most influential research through this curated collection of the Top 10 Most Cited Articles.
+
+Editorial Board Research Areas of Interest
+
+Learn more about the research areas and specialties of the Editorial Board here.
+
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+2509-498X
+ 
+Print ISSN
+2509-4971
+Abstracted and indexed in
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+Emerging Sources Citation Index
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+PubMedCentral
+SCImago
+SCOPUS
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Springer Nature Switzerland AG
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.25
+
+Not affiliated
+
+© 2026 Springer Nature

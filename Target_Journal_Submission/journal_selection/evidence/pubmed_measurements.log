@@ -1,0 +1,16 @@
+Bioinformatics_OUP {'n_ids': 600, 'n_dates': 526, 'median': 144.5, 'q1': 103.0, 'q3': 199.25, 'pct_le_72': 10.8}
+BriefBioinform_OUP {'n_ids': 600, 'n_dates': 595, 'median': 126, 'q1': 94.0, 'q3': 170.0, 'pct_le_72': 11.6}
+GigaScience_OUP {'n_ids': 110, 'n_dates': 105, 'median': 197, 'q1': 131.5, 'q3': 249.5, 'pct_le_72': 12.4}
+JAMIA_OUP {'n_ids': 340, 'n_dates': 330, 'median': 123.0, 'q1': 90.5, 'q3': 164.0, 'pct_le_72': 14.8}
+NARGAB_OUP {'n_ids': 239, 'n_dates': 238, 'median': 152.0, 'q1': 113.75, 'q3': 204.25, 'pct_le_72': 5.9}
+ComputBiolMed_Elsevier {'n_ids': 600, 'n_dates': 588, 'median': 140.5, 'q1': 86.0, 'q3': 239.0, 'pct_le_72': 16.8}
+JBiomedInform_Elsevier {'n_ids': 239, 'n_dates': 239, 'median': 148, 'q1': 113.0, 'q3': 187.0, 'pct_le_72': 2.9}
+ArtifIntellMed_Elsevier {'n_ids': 271, 'n_dates': 271, 'median': 287, 'q1': 165.0, 'q3': 384.0, 'pct_le_72': 1.1}
+CMPB_Elsevier {'n_ids': 600, 'n_dates': 600, 'median': 165.0, 'q1': 122.25, 'q3': 226.0, 'pct_le_72': 3.2}
+CSBJ_Elsevier {'n_ids': 539, 'n_dates': 536, 'median': 91.0, 'q1': 66.0, 'q3': 117.0, 'pct_le_72': 32.1}
+IJMI_Elsevier {'n_ids': 600, 'n_dates': 600, 'median': 91.0, 'q1': 56.0, 'q3': 150.0, 'pct_le_72': 37.8}
+NeuralNetw_Elsevier {'n_ids': 600, 'n_dates': 600, 'median': 212.0, 'q1': 157.0, 'q3': 284.75, 'pct_le_72': 0.8}
+Methods_Elsevier {'n_ids': 233, 'n_dates': 232, 'median': 87.5, 'q1': 59.25, 'q3': 123.25, 'pct_le_72': 39.7}
+FrontPhysiol {'n_ids': 600, 'n_dates': 600, 'median': 63.0, 'q1': 43.0, 'q3': 97.0, 'pct_le_72': 57.8}
+PLOSCompBiol {'n_ids': 600, 'n_dates': 556, 'median': 198.5, 'q1': 141.25, 'q3': 278.0, 'pct_le_72': 1.8}
+JNeuralEng_IOP {'n_ids': 438, 'n_dates': 422, 'median': 141.5, 'q1': 110.0, 'q3': 193.25, 'pct_le_72': 6.4}

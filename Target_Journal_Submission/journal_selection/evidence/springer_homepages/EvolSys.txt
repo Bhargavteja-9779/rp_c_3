@@ -1,0 +1,176 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Evolving Systems
+Evolving Systems
+
+An Interdisciplinary Journal for Advanced Science and Technology
+
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+Evolving Systems is a scientific journal focusing on continuous, adaptive machine learning and dynamically evolving AI systems.
+
+Devoted to self-learning, self-developing, self-organized, and evolving AI systems.
+Covers original, methodological, and application-oriented papers.
+Encourages submissions related to machine learning, AI, computational intelligence and mathematical modelling.
+Seeks inspiration from nature, including neuroscience, bioinformatics, and quantum physics.
+Welcomes applications in engineering, health, environment, security, transport business, and social sciences.
+Editor-in-Chief
+Plamen Angelov
+Honorary Co-Editor-in-Chief
+Dimitar Filev
+Nikola Kasabov
+View all editors 
+Journal metrics
+Journal Impact Factor
+3.7 (2025)
+5-year Journal Impact Factor
+3.4 (2025)
+Submission to first decision (median)
+26 days
+Downloads
+115.3k (2025)
+Call for papers
+
+Collection
+
+Verifiable and Composable Trust in Dynamically Evolving Federated and Distributed Learning Systems
+
+The collection addresses an emerging frontier at the intersection of evolving systems and trustworthy distributed AI: how to design federated and...
+
+Status
+Open for submissions
+Submission deadline
+31 December 2026
+View all calls for papers
+Latest articles
+Effective modelling of conditional mutual information-guided feature reduction with multi-layer extreme learning machines enabled real-time human activity recognition for disabled people
+Hana AlmagrabiAmani Abdulrahman AlbraikanSultan Almutairi
+Original Paper
+10 October 2026
+Article: 122
+A novel sequence modeling and corticobasal degeneration classification method: leaky integrator RNN
+H. ShineS. Neelakandan
+Original Paper
+30 September 2026
+Article: 121
+Gene ontology-based evolutionary algorithms for complex detection in protein-protein interaction networks: a review of design principles, limitations, and future directions
+Bara’a AtteaIsra AbdulateefMayyadah Al-Ani
+Review
+30 September 2026
+Article: 120
+FWM: an efficient optimal subset selection based feature weighting matrix for early prediction of cardiovascular disease
+Subham Kumar PadhyAnjali MohapatraZestha Patra
+Original Paper
+27 September 2026
+Article: 119
+Adaptive blockchain-enabled unified smart contract for secure and quality aware transactions in the agricultural supply chain
+Rangu ManjulaA. SubeeshNaveen Chauhan
+Original Paper
+27 September 2026
+Article: 118
+View all articles
+This journal has 
+43 open access articles
+Journal updates
+Springer Nature Editor of Distinction Awards 2026
+Updated Policy on Author Changes Post-Submission
+Guidelines for Special Issue/Article Collection Proposals
+Top Downloaded Articles 2024
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+1868-6486
+ 
+Print ISSN
+1868-6478
+Abstracted and indexed in
+ACM Digital Library
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chemical Abstracts Service (CAS)
+Chinese Academy of Medical Science (CAMS)
+Current Contents/Engineering, Computing and Technology
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Naver
+Norwegian Register for Scientific Journals and Series
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Springer-Verlag GmbH Germany, part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.129
+
+Not affiliated
+
+© 2026 Springer Nature

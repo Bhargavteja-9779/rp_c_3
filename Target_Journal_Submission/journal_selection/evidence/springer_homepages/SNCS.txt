@@ -1,0 +1,232 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  SN Computer Science
+SN Computer Science
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+SN Computer Science is a broad-based, hybrid, peer reviewed journal that publishes original research in all the disciplines of computer science including various inter-disciplinary aspects. The journal aims to be a global forum of, for, and by the community and offers:
+
+Rapid peer review under the expert guidance of a global Editorial Board
+No color or page charges and free submission
+High visibility
+Opportunities to Societies/Conferences/Institutes/Laboratories/Corporates to ‘partner’ with the Journal and enjoy the benefit of planning and publishing issues in hot areas of research, without being under the pressure of publishing a full-fledge journal
+
+SN Computer Science welcomes submissions from a wide range of topics including, but not limited to:
+
+Artificial Intelligence
+Robotics
+Machine learning
+Computer Vision
+Pattern Recognition
+Image Processing
+Computer Graphics
+Human-Computer Interface
+Document and Handwriting  Processing
+Video Technologies
+Biometrics and Computer Forensics
+Soft Computing
+Brain Computing
+Quantum Computing
+Information Retrieval
+Internet Computing and Data Mining
+Theoretical Computer Science: Logic, Algorithms, and Complexity
+Automated Proofs and Formal Verification
+Computational Geometry
+Information Theory
+Speech and Signal Processing
+Algorithms and Data Structures
+Programming Languages
+Software Engineering
+Computer Architecture
+Computer and Communication Networks
+Computer and Network Performance
+Modeling and Simulation
+Energy Consumption and Harvesting Computers & Networks
+Green ICT
+Computer and Network Security/Privacy
+Cryptography
+High Performance Computing
+Parallel Computing and Architecture
+Distributed and Cloud Computing
+Social Networks
+Database Systems and Theory
+Computers and Networks in Supply Chains and Manufacturing
+Computers and Networks for Health Systems
+Computational Biology and Bioinformatics
+Cyber-Physical Systems
+Internet of Things (IoT)
+Mathematical Programming and Combinatorial Optimization
+Economics and Computation
+
+SN Computer Science publishes papers in the following categories:  Original Research, as well as relevant hardware, and/or software architectures, Survey and Review Articles. All papers are evaluated on the basis of scientific content.  Submissions are first screened for research and publication ethics prior to peer review.  The journal reviews each submission from a sound science perspective.
+
+SN Computer Science is an online-only journal and its print ISSN (2662-995X) is ceased.
+
+Editors-in-Chief
+Zhipeng Cai PhD
+Umapada Pal PhD,FIAPR
+View all editors 
+Journal metrics
+Submission to first decision (median)
+96 days
+Downloads
+1.7M (2025)
+Calls for papers
+
+Collection
+
+Generative AI in Computing Education: Tools, Assessment Integrity, and System Studies of Adoption
+
+Generative AI became infrastructure in computing education faster than the discipline could study it.
+
+Status
+Open for submissions
+Submission deadline
+15 January 2027
+
+Collection
+
+Innovative Computational Intelligence Approaches for Next-Generation Analytics
+
+The Special Issue aims to bring together recent advances in machine learning, deep learning, and computational intelligence for analytics in...
+
+Status
+Open for submissions
+Submission deadline
+30 June 2027
+
+Collection
+
+Recent Advances in Software and Computer Applications: Selected Contributions from the 16th (ICSCA2027)
+
+The International Conference on Software and Computer Applications (ICSCA) has evolved into a multidisciplinary forum that brings together recent...
+
+Status
+Open for submissions
+Submission deadline
+15 March 2027
+View all calls for papers
+Latest articles
+A Geo-computational Analysis of Health Inequality in London
+Sijie TanYijing LiXiaohui Chen
+Original Research
+Open access
+09 October 2026
+Article: 799
+Rubric-Guided Transformer Networks for Explainable Automated Essay Scoring
+Muyassar KholovaDilafruz SarimsakovaEremuk Vladimir
+Original Research
+09 October 2026
+Article: 798
+Real-Time Ocular Disease Detection on a Single-Board Multicore Computer System: A Translation-Based Deep Neural Network with ARRA Fusion Optimizer
+Sayantan DuttaIndrajit Chakrabarti
+Original Research
+09 October 2026
+Article: 797
+Trust-Gated Ensemble Fusion for Unsupervised UAV Intrusion Detection with Temporal Smoothing
+Amir EtemadiMuhammad Ahmed
+Original Research
+09 October 2026
+Article: 796
+Secure and Scalable Data Fusion Using Paillier’s Homomorphic Encryption
+ShobhaN. Nalini
+Original Research
+09 October 2026
+Article: 795
+View all articles
+This journal has 
+762 open access articles
+Journal updates
+Springer Nature Editor of Distinction Awards 2026
+SN Computer Science now Indexed in Scopus
+Meet the Editors-in Chief of SN Computer Science
+SN Computer Science Partnerships
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+2661-8907
+Abstracted and indexed in
+ACM Digital Library
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+DBLP
+Dimensions
+EBSCO
+Google Scholar
+INSPIRE
+Japanese Science and Technology Agency (JST)
+Naver
+Norwegian Register for Scientific Journals and Series
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Springer Nature Singapore Pte Ltd
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.130
+
+Not affiliated
+
+© 2026 Springer Nature

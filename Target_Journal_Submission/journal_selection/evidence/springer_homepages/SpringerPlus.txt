@@ -1,0 +1,157 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Network Modeling Analysis in Health Informatics and Bioinformatics
+Network Modeling Analysis in Health Informatics and Bioinformatics
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Overview
+
+NetMAHIB publishes original research articles and reviews reporting how graph theory, statistics, linear algebra and machine learning techniques can be effectively used for modelling and analysis in health informatics and bioinformatics. It aims at creating a synergy between these disciplines by providing a forum for disseminating the latest developments and research findings; hence, results can be shared with readers across institutions, governments, researchers, students, and the industry. The journal emphasizes fundamental contributions on new methodologies, discoveries and techniques that have general applicability and which form the basis for network based modelling, knowledge discovery, knowledge sharing and decision support to the benefit of patients, healthcare professionals and society in traditional and advanced emerging settings, including eHealth and mHealth .
+
+Topics covered by NetMAHIB include but are not limited to cutting-edge and novel findings on the latest trends and developments in network modelling and analysis in health informatics and bioinformatics, encompassing areas such as:
+
+Clinical and hospital human resource management and performance analysis
+Metabolic pathway and regulatory network modelling, evolution, simulation, analysis, control and engineering
+Controlled and optimized utilization of resources
+Decision support systems for healthcare and wellbeing
+Models, methods, simulation, evaluation and systems for healthcare services
+eHealth and mHealth services and interventions
+Patient tracking, prediction and monitoring, e.g., diagnostics and deterioration detection
+Spread and control of epidemics
+Drug design, disease diagnosis and control
+Signal pathways and cell control
+Modular biology and systems biology
+Computational biomedicine, genomics, proteomics, transcriptomics, metabolomics, sociogenomics
+Social network modelling and analysis in health informatics and bioinformatics
+Future developments in technologies and applications
+Editor-in-Chief and Founder
+Reda Alhajj PhD, MSc, BSc
+View all editors 
+Journal metrics
+Journal Impact Factor
+2.4 (2025)
+5-year Journal Impact Factor
+2.0 (2025)
+Submission to first decision (median)
+11 days
+Downloads
+121.6k (2025)
+Latest articles
+Latent graph learning with residual graph attention networks for brain age estimation in structural connectomes
+Mansooreh Pakravan
+Original Article
+30 September 2026
+Article: 207
+Cross-dataset transcriptomic analysis identifies oxidative Stress–inflammation gene networks modulated by nutrigenomic interventions in Parkinson’s disease
+Masoumeh RafieeFaezeh AbajReza Ghiasvand
+Original Article
+Open access
+28 September 2026
+Article: 206
+Discovery of EGFR inhibitors via multi-omics and molecular dynamics: dibenzylidene-cyclohexanone curcumin analogs for rheumatoid arthritis
+Feti RahmawatiRanti Kamila HabibieAdam Hermawan
+Original Article
+23 September 2026
+Article: 205
+Tongue-pulse synergistic prescription recommendation via topology reconstruction and multi-source alignment in heterogeneous graphs
+KeShuang LiJin LiuTongtong Huo
+Original Article
+22 September 2026
+Article: 204
+Integrated transcriptomic and machine learning analysis identifies shared molecular signatures between thyroid cancer and type 2 diabetes
+Mst. Khadeja SarkerMd. Abul Basar
+Original Article
+22 September 2026
+Article: 203
+View all articles
+This journal has 
+54 open access articles
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+2192-6670
+Abstracted and indexed in
+ACM Digital Library
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+EMBASE
+Emerging Sources Citation Index
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Naver
+Norwegian Register for Scientific Journals and Series
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+Reaxys
+SCImago
+SCOPUS
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Springer-Verlag GmbH Austria, part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.140
+
+Not affiliated
+
+© 2026 Springer Nature

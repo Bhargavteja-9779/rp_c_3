@@ -1,0 +1,188 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Data Mining and Knowledge Discovery
+Data Mining and Knowledge Discovery
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+Data Mining and Knowledge Discovery is a leading technical journal focusing on the extraction of information from vast databases.
+
+Publishes original research papers and practice in data mining and knowledge discovery.
+Provides surveys and tutorials of important areas and techniques.
+Offers detailed descriptions of significant applications.
+Addresses theory, foundational issues, data mining methods, and knowledge discovery processes.
+Renowned for its focus on techniques and applications.
+Editor in Chief
+Eyke Hüllermeier
+View all editors 
+Journal metrics
+Journal Impact Factor
+5.5 (2025)
+5-year Journal Impact Factor
+6.7 (2025)
+Submission to first decision (median)
+3 days
+Downloads
+563.9k (2025)
+Call for papers
+
+Collection
+
+Quantification and Classification under Dataset Shift (QCDS 2026) - By Invitation Only
+
+Real-world machine learning systems are frequently deployed in environments where the data distribution encountered at prediction time differs from...
+
+Status
+Open for submissions
+Submission deadline
+30 November 2026
+View all calls for papers
+Latest articles
+Feature selection for partial multi-label learning via noise removal and dynamic label correlation
+Zhenzhen SunShuhao ShanYuanlong Yu
+OriginalPaper
+12 October 2026
+Article: 114
+Critical node identification through triplet node influence in complex networks
+Chommaphat MalangAniwat Phaphuangwittayakul
+OriginalPaper
+10 October 2026
+Article: 113
+Part of 1 collection:
+Special Issue on Knowledge Discovery from Graphs
+A novel graph-based patient embedding method for the diagnosis of Alzheimer’s disease from microRNA expression data
+Veronica ButtaroAntonio PellicaniMichelangelo Ceci
+OriginalPaper
+Open access
+08 October 2026
+Article: 112
+Part of 1 collection:
+Special Issue on Knowledge Discovery from Graphs
+IGA: isomorphism-aware graph alignment for robust unsupervised anchor link prediction
+Qiming YangWei WeiXiangnan Feng
+OriginalPaper
+05 October 2026
+Article: 111
+Evolution of sentiment analysis toward aspect-based sentiment analysis: a scientometric analysis of research trends, knowledge structures, and emerging technologies (2015–2025)
+Neha GoyalRajiv Bansal
+ReviewPaper
+03 October 2026
+Article: 110
+View all articles
+This journal has 
+335 open access articles
+Journal updates
+Springer Nature Editor of Distinction Awards 2026
+Special Issue on Knowledge Discovery from Graphs
+
+Submission deadline: June 9th, 2025
+
+Call for Papers: Special Issue on Explainable and Interpretable Machine Learning and Data Mining
+
+Guest Editors: Martin Atzmueller, Johannes Fuernkranz, Tomas Klieger, Ute Schmid
+Submission Deadline: extended to June 15th, 2021
+
+Call for Papers: Special issue on Bias and Fairness in AI
+
+Guest Editors: T. Calders, E. Ntoutsi, M. Pechenizkiy, B. Rosenhahn, S. Ruggieri
+Submission deadline: August 31, 2021
+
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+1573-756X
+ 
+Print ISSN
+1384-5810
+Abstracted and indexed in
+ACM Digital Library
+ANVUR
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chinese Academy of Medical Science (CAMS)
+Current Contents/Engineering, Computing and Technology
+Current Index to Statistics
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Mathematical Reviews
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+zbMATH
+© Springer Science+Business Media, LLC, part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.133
+
+Not affiliated
+
+© 2026 Springer Nature

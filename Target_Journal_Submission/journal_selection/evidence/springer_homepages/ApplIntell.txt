@@ -1,0 +1,159 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Applied Intelligence
+Applied Intelligence
+
+The International Journal of Research on Intelligent Systems for Real Life Complex Problems
+
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+Applied Intelligence is a scholarly journal focused on research in artificial intelligence and neural networks. The journal presents new and original research and technological developments, addressing real and complex issues applicable to difficult problems. It provides a medium for exchanging scientific research and technological achievements accomplished by the international community.
+
+Dedicated to addressing real-life problems that require unconventional approaches.
+A platform for new and original research and technological developments.
+
+ 
+
+Editors-in-Chief
+Hamido Fujita PhD
+Founding Editor-in-Chief
+Moonis Ali PhD
+View all editors 
+Journal metrics
+Journal Impact Factor
+3.5 (2025)
+5-year Journal Impact Factor
+4.0 (2025)
+Submission to first decision (median)
+45 days
+Downloads
+1.6M (2025)
+Latest articles
+MATE-Hard and the count-invariance problem in multi-agent active perception
+Huy Hoang Son Tran
+OriginalPaper
+12 October 2026
+Article: 487
+KVCB: Key-Value cache merging towards consistent behavior for efficient inference of large language models
+Zhaohong JiaJie YuChunchun Li
+OriginalPaper
+12 October 2026
+Article: 486
+FedGPA: a multi-level aggregation framework for federated learning with collaborative optimization of generalization and personalization
+Zigang ChenHaichong JiangHaihua Zhu
+OriginalPaper
+12 October 2026
+Article: 485
+Residual gated AutoEncoder with patchwise nearest neighbor reconstruction for visual anomaly detection
+Nighil NatarajanNithilan MChandrakala S
+OriginalPaper
+09 October 2026
+Article: 484
+DACD: a dynamic adaptive concept drift learning method for streaming data
+Hui QiChang LiuGaoxia Jiang
+OriginalPaper
+09 October 2026
+Article: 483
+View all articles
+This journal has 
+515 open access articles
+Journal updates
+Springer Nature Editor of Distinction Awards 2026
+Editor’s Note: 30th Anniversary of Applied Intelligence
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+1573-7497
+ 
+Print ISSN
+0924-669X
+Abstracted and indexed in
+ACM Digital Library
+ANVUR
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chinese Academy of Medical Science (CAMS)
+Current Contents/Engineering, Computing and Technology
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Springer Science+Business Media, LLC, part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.128
+
+Not affiliated
+
+© 2026 Springer Nature

@@ -1,0 +1,162 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Archives of Computational Methods in Engineering
+Archives of Computational Methods in Engineering
+
+State of the Art Reviews
+
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+Archives of Computational Methods in Engineering is a forum for disseminating the state of the art on research and advanced practice in computational engineering.
+
+Publishes issues specialized on extended state-of-the-art reviews, a unique feature of the journal.
+Emphasizes advances on computational mechanics, while examining computational engineering research and practices.
+Offers a survey of the current literature and detailed critical expositions of recent research and applications in the field chosen.
+Covers a variety of topics including modelling, solution techniques, and applications of computational methods.
+Editor-in-Chief
+Eugenio Oñate PhD
+View all editors 
+Societies and partnerships
+CIMNE
+Journal metrics
+Journal Impact Factor
+12.9 (2025)
+5-year Journal Impact Factor
+14.4 (2025)
+Submission to first decision (median)
+9 days
+Downloads
+1.3M (2025)
+Latest issue
+September 2026
+Volume 33, Issue 8
+View all volumes and issues
+Latest articles
+Space–Time Computational Analysis of the Orion Spacecraft Parachute Aerodynamics and Fluid–Structure Interaction: Virtual Test and Evaluation in Parachute Design
+Tayfun E. TezduyarKenji Takizawa
+Review
+Open access
+05 September 2026
+Pages: 9275 - 9313
+Deterministic Mathematical Models Applied to Forest Fire Phenomena: A Systematic Review
+Alex Altamirano-FernándezJosé A. Vásquez-Coronel
+Review
+22 August 2026
+A Comprehensive Survey on Symbolic Regression: State-of-the-Art Approaches, Key Applications, Benchmark Evaluations, and Future Research Directions
+Vikas PalakondaSamira GhorbanpourSunghwan Moon
+Review
+Open access
+20 August 2026
+Hybrid machine learning models for predicting Marshall stability and flow in asphalt mixtures with optimal feature selection
+Haydar GundogduOmer Faruk CansizNurullah Karaca
+Research
+19 August 2026
+Shape Descriptors for Image Classification: A Survey of Feature Representation and Learning Approaches
+Neethu C. T.Leena MaryLidiya Lilly Thampi
+Review
+18 August 2026
+View all articles
+This journal has 
+249 open access articles
+Journal updates
+Temporary Delay in Publication Processing
+Springer Nature Editor of Distinction Awards 2026
+Top 10 Downloaded Articles 2025
+Guidelines for State‑of‑the‑Art Review Articles
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+1886-1784
+ 
+Print ISSN
+1134-3060
+Abstracted and indexed in
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chinese Academy of Medical Science (CAMS)
+Current Contents/Engineering, Computing and Technology
+Dimensions
+EBSCO
+EI Compendex
+Google Scholar
+ICYT
+INSPEC
+Japanese Science and Technology Agency (JST)
+Mathematical Reviews
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+zbMATH
+© International Center for Numerical Methods in Engineering (CIMNE)
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.137
+
+Not affiliated
+
+© 2026 Springer Nature

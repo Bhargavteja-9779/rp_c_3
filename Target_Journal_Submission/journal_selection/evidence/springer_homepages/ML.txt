@@ -1,0 +1,176 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  Machine Learning
+Machine Learning
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+Machine Learning is an international forum focusing on computational approaches to learning.
+
+Reports substantive results on a wide range of learning methods applied to various learning problems.
+Provides robust support through empirical studies, theoretical analysis, or comparison to psychological phenomena.
+Demonstrates how to apply learning methods to solve significant application problems.
+Improves how machine learning research is conducted.
+Prioritizes verifiable and replicable supporting evidence in all published papers.
+Editor-in-Chief
+Michelangelo Ceci
+View all editors 
+Journal metrics
+Journal Impact Factor
+4.9 (2025)
+5-year Journal Impact Factor
+8.0 (2025)
+Submission to first decision (median)
+5 days
+Downloads
+2.4M (2025)
+Latest articles
+MMT: Achieving Exact Federated Unlearning with Improved Post-unlearning Performance
+Ze Yu ZhangNhung BuiBryan Kian Hsiang Low
+OriginalPaper
+12 October 2026
+Article: 245
+Part of 1 collection:
+ECML PKDD 2026
+A Survey on Loss-based Regularization for Model Generalization
+Yaxing HuangChenhe ZhangQinghai Zhang
+OriginalPaper
+10 October 2026
+Article: 244
+KARAMEL: Knowledge-Aware Ranking for Multimodal Entity Linking in the Arts via Heterogeneous Graphs
+Raffaele ScaringiAlejandro Sierra-MúneraRalf Krestel
+OriginalPaper
+10 October 2026
+Article: 243
+Part of 1 collection:
+Special Issue on Discovery Science 2025
+Grid-based Decision Tree Learning
+Qin-Cheng ZhengShao-Qun ZhangZhi-Hua Zhou
+OriginalPaper
+08 October 2026
+Article: 242
+TACCO: Actor–Critic Contrastive Optimization for OOD Action Mitigation in Offline Reinforcement Learning
+Haotian ZhangChen WangJun Moon
+OriginalPaper
+07 October 2026
+Article: 241
+View all articles
+This journal has 
+680 open access articles
+Journal updates
+Springer Nature Editor of Distinction Awards 2026
+DS 2025
+
+Submission Deadline: February 13, 2026
+
+Guest Editors: 
+
+Gianvito Pio, University of Bari Aldo Moro, Bari, Italy
+Jurica Levatić, Jožef Stefan Institute, Ljubljana Slovenia
+Nikola Simidjievski, Télécom Paris, Institut Polytechnique de Paris, Paris, France
+Call for Papers: Special Issue on Explainable AI for Secure Applications
+
+Submissions Open: October 15, 2024
+Submission Deadline: February 25, 2025
+
+Guest Editors: Annalisa Appice, Giuseppeina Andresini, Przemysław Biecek, Christian Wressnegger
+
+CfP: Discovery Science 2024
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+1573-0565
+ 
+Print ISSN
+0885-6125
+Abstracted and indexed in
+ACM Digital Library
+ANVUR
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+Chinese Academy of Medical Science (CAMS)
+Current Contents/Engineering, Computing and Technology
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Mathematical Reviews
+Naver
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+zbMATH
+© Springer Science+Business Media LLC, part of Springer Nature
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.131
+
+Not affiliated
+
+© 2026 Springer Nature

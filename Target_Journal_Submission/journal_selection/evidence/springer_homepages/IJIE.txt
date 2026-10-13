@@ -1,0 +1,185 @@
+Your privacy, your choice
+
+We use essential cookies to make sure the site can function. We also use optional cookies for advertising, personalisation of content, usage analysis, and social media, as well as to allow video information to be shared for both marketing, analytics and editorial purposes.
+
+By accepting optional cookies, you consent to the processing of your personal data - including transfers to third parties. Some third parties are outside of the European Economic Area, with varying standards of data protection.
+
+See our privacy policy for more information on the use of your personal data.
+
+Manage preferences for further information and to change your choices.
+
+Accept all cookies
+Reject optional cookies
+Skip to main content
+Log in
+Find a journal
+Publish with us
+Track your research
+Search
+ Saved research
+ Cart
+Home  International Journal of Fuzzy Systems
+International Journal of Fuzzy Systems
+Publishing model
+Hybrid
+Submit your manuscript
+Save journal
+Explore open access funding Select institution
+About this journal
+Articles
+For authors
+Journal updates
+Overview
+
+International Journal of Fuzzy Systems is an international, transdisciplinary journal focusing on the theory, design, and application of fuzzy systems, ranging from hardware to software.
+
+Serves as a popular forum for researchers interested in fuzzy-related research.
+Publishes regular papers, reviews, surveys, and expository essays.
+
+ 
+
+Editor-in-Chief
+Chin-Wang Tao PhD
+View all editors 
+Societies and partnerships
+Taiwan Fuzzy Systems Association (TFSA)
+Journal metrics
+Journal Impact Factor
+3.1 (2025)
+5-year Journal Impact Factor
+2.8 (2025)
+Submission to first decision (median)
+7 days
+Downloads
+258.2k (2025)
+Journal highlights
+
+Article
+
+Scikit-ANFIS: A Scikit-Learn Compatible Python Implementation for Adaptive Neuro-Fuzzy Inference System
+
+The Adaptative neuro-fuzzy inference system (ANFIS) has shown great potential in processing practical data from control, prediction, and inference applications, reflecting advantages in both high p…
+
+Article
+
+Ranking of Fuzzy Numbers on the Basis of New Fuzzy Distance
+
+Real-world problems often deal with uncertainties related to imprecision and vagueness, for which fuzzy modeling has provided a successful approach. Ranking fuzzy numbers is a necessary and complex task in multiple processes, such as decisio…
+
+Article
+
+A Narrative Review on the Interpretability of Fuzzy Rule-Based Models from a Modern Interpretable Machine Learning Perspective
+
+Interpretable machine learning is an increasingly popular field as machine learning grows in prevalence and power. Though the fuzzy (rule-based) modeling field has long consi…
+
+Latest issue
+September 2026
+Volume 28, Issue 6
+View all volumes and issues
+Latest articles
+Stability Analysis of T–S Fuzzy Digital Manufacturing Supply Chains Under External Disturbances via Novel Dissipative Sampled-Data Control
+Nivetha Thirumalairaj KannadasanAruna Polisetty
+OriginalPaper
+06 October 2026
+An Integrated FAHP–TOPSIS–GIS Framework for Multi-criteria Site Selection of Offshore Hybrid Wind-Solar Systems: A Case Study of Officially Designated Renewable Energy Resource Areas in Türkiye
+Büşra Dağcı YükselMuharrem ÜnverAyten Yılmaz Yalçıner
+Original Research
+05 October 2026
+Adaptive Fuzzy Sliding Mode Control with Scalar Sign Function for High-Precision Trajectory Tracking of 3-DOF Planar Robotic Manipulators
+Lotfi ChaouechJaouher Ben AliMichael Short
+OriginalPaper
+05 October 2026
+Vision-Based Adaptive Fuzzy Control Systems for Tracking and Landing Autonomous Unmanned Aerial Vehicles
+Xue-Qian LinCheng-Jian LinSheng-Fu Liang
+OriginalPaper
+05 October 2026
+Disturbance Observer Based Adaptive Fuzzy Prescribed-Time Control for UAH with Output Constraints
+Fazhan TaoHao FanZhikai Wang
+Original Research
+05 October 2026
+View all articles
+This journal has 
+100 open access articles
+Journal updates
+Springer Nature Editor of Distinction Awards 2026
+Publication charges
+
+Taiwan Fuzzy Systems Association will charge publication fees for subscription articles. Please contact ijfs2015@gmail.com if you have any questions.
+
+Changes to authorship
+
+Changes of authorship by adding or deleting authors, and/or changes in Corresponding Author, and/or changes in the sequence of authors are not accepted after submission.
+
+Journal Metrics 2025
+
+Impact Factor 2025: 3.1
+CiteScore 2025: 8.3
+
+View all updates
+Sign up for alerts
+
+Get notified when new articles are published.
+
+Journal information
+Electronic ISSN
+2199-3211
+ 
+Print ISSN
+1562-2479
+Abstracted and indexed in
+ANVUR
+BFI List
+Baidu
+CLOCKSS
+CNKI
+CNPIEC
+DBLP
+Dimensions
+EBSCO
+EI Compendex
+Google Scholar
+INSPEC
+Japanese Science and Technology Agency (JST)
+Naver
+Norwegian Register for Scientific Journals and Series
+OCLC WorldCat Discovery Service
+Ovid Discovery
+Portico
+ProQuest
+SCImago
+SCOPUS
+Science Citation Index Expanded (SCIE)
+TD Net Discovery Service
+Wanfang
+eLibrary.ru
+© Taiwan Fuzzy Systems Association
+Footer Navigation
+Discover content
+Journals A-Z
+Books A-Z
+Subjects A-Z
+Publish with us
+Journal finder
+Publish your research
+Language editing
+Open access publishing
+Products and services
+Our products
+Librarians
+Societies
+Partners and advertisers
+Our brands
+Springer
+Nature Portfolio
+BMC
+Palgrave Macmillan
+Apress
+Discover
+Corporate Navigation
+Your privacy choices/Manage cookies Your US state privacy rights Accessibility statement Terms and conditions Privacy policy Help and support Legal notice Cancel contracts here
+
+160.79.106.16
+
+Not affiliated
+
+© 2026 Springer Nature

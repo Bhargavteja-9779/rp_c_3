@@ -108,3 +108,8 @@ completed jobs were discarded:
    Rocket extractor was dropped from the generalisation experiment (its transform costs roughly
    ten times MiniRocket's), keeping MultiRocket and Hydra, and the training-size experiment uses
    clean data and the six severity-3 corruptions.
+5. (Third amendment, before inspecting results for these datasets.) For the two datasets with more
+   than 3,000 training and more than 2,000 test series (Crop, ElectricDevices) the leverage
+   projection costs about 10^13 operations per readout and seed. Their test sets are therefore
+   evaluated on a seeded random subsample of 2,000 test series (identical for all methods and
+   conditions). The other 112 datasets use their full test sets.

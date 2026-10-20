@@ -60,6 +60,7 @@ MAIN_METHODS = {
 }
 SLOW_METHODS = ("LogReg-CV",)
 TEST_CHUNK = 512        # test series transformed and scored per chunk (bounds memory)
+HEAVY_N_TRAIN, HEAVY_MAX_TEST = 3000, 2000   # datasets with > 3000 training series: at most 2000 test series
 CP_MAX_TEST = 1000      # conformal sets are evaluated on a seeded subset of at most this many test series
 ABLATIONS = {
     "PreVal-smooth": lambda: LOOM("none", smooth=True),
@@ -91,6 +92,10 @@ def run_job(name, resample, transform="minirocket", methods="all", n_ens=5, alph
             k = max(min(2, len(idx)), int(round(train_frac * len(idx))))
             keep.append(rng.choice(idx, k, replace=False))
         keep = np.sort(np.concatenate(keep)); Xtr, ytr = Xtr[keep], ytr[keep]
+    if len(ytr) > HEAVY_N_TRAIN and len(yte) > HEAVY_MAX_TEST:   # compute: seeded test subsample (Crop, ElectricDevices)
+        rng_t = np.random.default_rng(cond_seed(name, resample, "testsub", 0))
+        sub = np.sort(rng_t.choice(len(yte), HEAVY_MAX_TEST, replace=False))
+        Xte, yte = Xte[sub], yte[sub]
     classes = np.unique(np.concatenate([ytr, yte]))
     yi_te = np.searchsorted(classes, yte)
     conds = [c for c in all_conditions() if conds_subset == "all" or c[1] in (0, 3)]
@@ -276,6 +281,10 @@ def run_raw_baselines(name, resample, outdir=None):
         return json.load(open(path))
     t0 = time.time()
     Xtr, ytr, Xte, yte = load_split(name, resample)
+    if len(ytr) > HEAVY_N_TRAIN and len(yte) > HEAVY_MAX_TEST:   # same test subsample as run_job
+        rng_t = np.random.default_rng(cond_seed(name, resample, "testsub", 0))
+        sub = np.sort(rng_t.choice(len(yte), HEAVY_MAX_TEST, replace=False))
+        Xte, yte = Xte[sub], yte[sub]
     classes = np.unique(np.concatenate([ytr, yte])); yi_te = np.searchsorted(classes, yte)
     conds = list(all_conditions())
     rows, timing, errors = [], {}, {}

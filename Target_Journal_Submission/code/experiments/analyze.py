@@ -34,26 +34,33 @@ def pval(p):
     return "–" if pd.isna(p) else ("<0.001" if p < 1e-3 else f"{p:.3f}")
 
 
-def summary_table(df, methods, metrics, cond, ref="LOOM", subset=None, min_cover=0.9):
-    """Median over datasets, mean rank, W/D/L and Holm-adjusted Wilcoxon p vs ref."""
+def summary_table(df, methods, metrics, cond, ref="LOOM", subset=None, min_cover=0.5):
+    """Median over datasets, mean rank, W/D/L and Holm-adjusted Wilcoxon p vs ref.
+    Pairwise tests use every dataset on which both methods are available (n is reported);
+    Friedman test and mean ranks use the methods available on all datasets."""
     out, stats_out = [], {}
     for met in metrics:
         T = dataset_table(df, met, cond=cond, methods=methods)
         if subset is not None:
             T = T.loc[T.index.intersection(subset)]
-        # keep methods available on (almost) all datasets; compare on common datasets
+        if ref not in T.columns:
+            continue
+        T = T[T[ref].notna()]
         keep = [m for m in T.columns if T[m].notna().mean() >= min_cover]
-        T = T[keep].dropna()
-        if ref not in T.columns or len(T) < 5:
+        T = T[keep]
+        if len(T) < 5:
             continue
         lower = LOWER[met]
-        ranks, fstat, fp, n = friedman_ranks(T, lower_is_better=lower)
+        full = [m for m in T.columns if T[m].notna().all()]
+        ranks, fstat, fp, n = friedman_ranks(T[full], lower_is_better=lower)
         pw = pairwise_vs(T, ref, lower_is_better=lower).set_index("competitor")
-        stats_out[met] = dict(n_datasets=int(n), friedman_chi2=fstat, friedman_p=fp, mean_ranks=ranks.to_dict(),
-                              nemenyi_cd=nemenyi_cd(T.shape[1], n), pairwise=pw.reset_index().to_dict(orient="records"),
-                              medians=T.median().to_dict(), means=T.mean().to_dict())
+        stats_out[met] = dict(n_datasets=int(len(T)), n_ranked=int(n), ranked_methods=full, friedman_chi2=fstat, friedman_p=fp,
+                              mean_ranks=ranks.to_dict(), nemenyi_cd=nemenyi_cd(len(full), n),
+                              pairwise=pw.reset_index().to_dict(orient="records"),
+                              medians=T.median().to_dict(), means=T.mean().to_dict(), n_available=T.notna().sum().to_dict())
         for m in T.columns:
-            r = dict(metric=met, method=m, n=len(T), median=T[m].median(), mean=T[m].mean(), mean_rank=ranks[m])
+            r = dict(metric=met, method=m, n=int(T[m].notna().sum()), median=T[m].median(), mean=T[m].mean(),
+                     mean_rank=ranks.get(m, np.nan))
             if m != ref:
                 rr = pw.loc[m]
                 r.update(wdl=f"{rr.ref_wins}/{rr.draws}/{rr.ref_losses}", median_diff=rr.median_diff, ci=f"[{rr.ci_low:.3f}, {rr.ci_high:.3f}]",
@@ -67,11 +74,11 @@ def to_markdown(tab, path, title, note=""):
     if tab.empty:
         Path(path).write_text("\n".join(lines + ["(no data)"])); return
     for met, g in tab.groupby("metric", sort=False):
-        lines += [f"*Metric: {met}* (n = {int(g.n.iloc[0])} datasets)", "",
-                  "| Method | Median | Mean | Mean rank | W/D/L (LOOM vs method) | Median Δ (method − LOOM) [95% CI] | r_rb | p (Holm) |",
-                  "|---|---|---|---|---|---|---|---|"]
-        for _, r in g.sort_values("mean_rank").iterrows():
-            lines.append(f"| {r.method} | {fmt(r['median'])} | {fmt(r['mean'])} | {r.mean_rank:.2f} | {r.get('wdl', '–') if isinstance(r.get('wdl'), str) else '–'} | "
+        lines += [f"*Metric: {met}* (n = {int(g.n.max())} datasets; methods with fewer datasets show their n)", "",
+                  "| Method | n | Median | Mean | Mean rank | W/D/L (LOOM vs method) | Median Δ (method − LOOM) [95% CI] | r_rb | p (Holm) |",
+                  "|---|---|---|---|---|---|---|---|---|"]
+        for _, r in g.sort_values(["mean_rank", "median"], na_position="last").iterrows():
+            lines.append(f"| {r.method} | {int(r.n)} | {fmt(r['median'])} | {fmt(r['mean'])} | {fmt(r.mean_rank, 2)} | {r.get('wdl', '–') if isinstance(r.get('wdl'), str) else '–'} | "
                          f"{fmt(r.get('median_diff'))} {r.get('ci') if isinstance(r.get('ci'), str) else ''} | {fmt(r.get('r_rb'), 2)} | {pval(r.get('p_holm'))} |")
         lines.append("")
     if note:
@@ -196,6 +203,7 @@ def main(mode="full"):
     # ---------------- E7 training-size sensitivity
     ts_ = df[(df.train_frac < 1.0) | ((df.train_frac == 1.0) & (df["transform"] == "minirocket"))]
     ts_ = ts_[ts_.method.isin(["LOOM", "PreVal", "Ridge-softmax", "Holdout-TS"]) & (ts_["resample"] == 0)]
+    ts_ = ts_[ts_.sev.isin([0, 3])]          # reduced-data runs use clean + severity-3 conditions only
     if (df.train_frac < 1).any():
         r = []
         for tfv, g in ts_.groupby("train_frac"):

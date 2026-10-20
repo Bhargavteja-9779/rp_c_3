@@ -22,6 +22,8 @@ SUB = HERE.parents[1]                       # Target_Journal_Submission/
 CODE = SUB / "code"
 OUT = SUB / "manuscript"
 RES = Path(sys.argv[1]) if len(sys.argv) > 1 else CODE   # root holding results/, tables/, figures/
+import os
+DRAFT = os.environ.get("DRAFT") == "1"
 
 S = json.load(open(RES / "results" / "statistics.json"))
 M = json.load(open(RES / "results" / "metrics.json"))
@@ -86,11 +88,11 @@ def tab_compare(key, metrics, methods, caption, names=None, lower=None):
     for m in methods:
         if m not in S[key][m0]["medians"]:
             continue
-        row = {"Method": (names or {}).get(m, m)}
+        row = {"Method": (names or NAMES).get(m, m), "n": str(S[key][m0]["n_available"][m])}
         for mt in metrics:
             if mt in S[key] and m in S[key][mt]["medians"]:
                 row[mt.upper() if mt != "shift_auroc" else "Shift AUROC"] = f(S[key][mt]["medians"][m])
-        row["Mean rank"] = f2(S[key][m0]["mean_ranks"][m])
+        row["Mean rank"] = f2(S[key][m0]["mean_ranks"][m]) if m in S[key][m0]["mean_ranks"] else "–"
         if m == "LOOM":
             row["W/D/L"] = "–"; row["r_rb"] = "–"; row["p (Holm)"] = "–"
         else:
@@ -103,7 +105,100 @@ def tab_compare(key, metrics, methods, caption, names=None, lower=None):
     return md_table(df, caption)
 
 
+def cmp(key, metric, comp, lower=True, name=None):
+    """Data-driven comparison phrase of LOOM vs `comp` (direction and significance from the stats)."""
+    r = pw(key, metric, comp)
+    nm = name or NAMES.get(comp, comp)
+    better = (r["median_diff"] > 0) if lower else (r["median_diff"] < 0)
+    stats = (f"W/D/L {r['ref_wins']}/{r['draws']}/{r['ref_losses']}, median difference {r['median_diff']:+.3f} "
+             f"[95 % CI {r['ci_low']:+.3f}, {r['ci_high']:+.3f}], r_rb = {r['rank_biserial']:.2f}, Holm-adjusted p {pv(r['p_holm'])}")
+    if r["p_holm"] < 0.05:
+        return f"{'better' if better else 'worse'} than {nm} ({stats})"
+    return f"not significantly different from {nm} ({stats})"
+
+
+def sigword(key, metric, comp, lower=True):
+    r = pw(key, metric, comp)
+    better = (r["median_diff"] > 0) if lower else (r["median_diff"] < 0)
+    if r["p_holm"] >= 0.05:
+        return "not significantly different"
+    return "significantly better" if better else "significantly worse"
+
+
+def cp(method, shifted=False, field="cov_mean"):
+    for r in S["E9_conformal"]:
+        if r["method"] == method and bool(r["shifted"]) == shifted:
+            return r[field]
+    raise KeyError((method, shifted))
+
+
+def eff(method, field="fit_median"):
+    for r in S["E6_efficiency"]:
+        if r["method"] == method:
+            return r[field]
+    raise KeyError(method)
+
+
+def lev(cond):
+    return S["leverage_ratio_median_by_condition"][f"h_{cond}"]
+
+
+def ncomp(key, metric="nll"):
+    return S[key][metric]["n_datasets"]
+
+
+NAMES = {"LOOM": "LOOM (ours)", "PreVal": "PreVal", "Ridge-softmax": "Ridge softmax (T = 1)", "Ridge-onehot": "Ridge one-hot",
+         "Holdout-TS": "Hold-out temperature scaling", "Ridge-Platt-CV5": "Ridge + Platt (5-fold)",
+         "Ridge-Isotonic-CV5": "Ridge + isotonic (5-fold)", "LogReg-CV": "Logistic regression (CV)", "QUANT": "QUANT",
+         "Arsenal": "Arsenal", "PreVal-Ens5": "PreVal, 5-seed ensemble", "LOOM-Ens5": "LOOM, 5-seed ensemble",
+         "PreVal-smooth": "No leverage (PreVal + smoothing)", "LOOM-nosmooth": "No target smoothing",
+         "LOOM-free-b": "Free moderation b", "LOOM-finite-c1": "Finite moderation (c = 1)", "LOOM-kNN": "k-NN distance instead of leverage",
+         "LOOM-insample": "In-sample instead of LOO pairs", "LOOM-holdout": "80/20 hold-out instead of LOO pairs",
+         "LOOM-lambdaSSE": "λ by LOO squared error"}
+
+
+def tab_conformal(caption):
+    rows = []
+    for m, lab in [("CP-LOOM-jackknife+", "LOOM, jackknife+, LAC"), ("CP-LOOM-jackknife", "LOOM, jackknife, LAC"),
+                   ("CP-LOOM-jackknife+-APS", "LOOM, jackknife+, APS"), ("CP-PreVal-jackknife+", "PreVal, jackknife+, LAC"),
+                   ("CP-PreVal-jackknife+-APS", "PreVal, jackknife+, APS"), ("CP-Split-TS", "Split conformal (TS), LAC"),
+                   ("CP-Split-TS-APS", "Split conformal (TS), APS")]:
+        try:
+            rows.append({"Method": lab,
+                         "Coverage, clean (mean / 10th pct.)": f"{f(cp(m, False))} / {f(cp(m, False, 'cov_q10'))}",
+                         "Set size, clean": f2(cp(m, False, "size_mean")),
+                         "Empty sets, clean": pct(cp(m, False, "empty_mean")),
+                         "Coverage, corrupted": f(cp(m, True)),
+                         "Set size, corrupted": f2(cp(m, True, "size_mean")),
+                         "Empty sets, corrupted": pct(cp(m, True, "empty_mean"))})
+        except KeyError:
+            pass
+    return md_table(pd.DataFrame(rows), caption)
+
+
+def tab_eff(caption, methods):
+    rows = []
+    for m in methods:
+        try:
+            rows.append({"Method": NAMES.get(m, m), "Median fit time (s)": f(eff(m), 3), "Mean fit time (s)": f(eff(m, "fit_mean"), 2),
+                         "Total fit time, all datasets (h)": f(eff(m, "fit_total") / 3600, 2),
+                         "Median prediction time, 19 test sets (s)": f(eff(m, "pred_median"), 2)})
+        except KeyError:
+            pass
+    return md_table(pd.DataFrame(rows), caption)
+
+
 CTX = {k: v for k, v in globals().items() if not k.startswith("__")}
+
+
+NARRATIVE = ["ERROR_ANALYSIS", "DISCUSSION", "LIMITATIONS", "CONCLUSION", "ABSTRACT", "COVER_RESULT"]
+
+
+def load_narrative():
+    """Narrative paragraphs live in narr_<name>.md and may themselves contain {{ }} expressions."""
+    for nm in NARRATIVE:
+        p = HERE / f"narr_{nm.lower()}.md"
+        CTX[nm] = render(p.read_text().strip()) if p.exists() else f"[{nm} — to be written after the final results]"
 
 
 def render(text):
@@ -112,11 +207,14 @@ def render(text):
         try:
             return str(eval(expr, CTX))
         except Exception as e:
+            if DRAFT:                      # draft builds mark missing values; final builds abort
+                return f"**[MISSING: {expr[:60]}]**"
             raise RuntimeError(f"manuscript expression failed: {{{{{expr}}}}}: {e!r}")
     return re.sub(r"\{\{(.+?)\}\}", repl, text, flags=re.S)
 
 
 def build(anonymous=True):
+    load_narrative()
     parts = []
     for name in ["front.md", "sections_static.md", "sections_results.md", "REFS", "back.md"]:
         if name == "REFS":   # Springer: reference list first, then Statements and Declarations

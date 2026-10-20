@@ -66,6 +66,7 @@ class ClosedFormRidge:
         if n <= p:
             G = Xc @ Xc.T
             w, U = np.linalg.eigh(G)
+            del G
             keep = w > max(w.max(), 1e-300) * 1e-10
             w, U = w[keep], U[:, keep]
             s = np.sqrt(w)
@@ -73,6 +74,7 @@ class ClosedFormRidge:
         else:
             G = Xc.T @ Xc
             w, V = np.linalg.eigh(G)
+            del G
             keep = w > max(w.max(), 1e-300) * 1e-10
             w, V = w[keep], V[:, keep]
             s = np.sqrt(w)
@@ -125,20 +127,21 @@ class ClosedFormRidge:
         P /= self.sd_
         return P
 
-    def _project(self, X):
-        """(psi, V^T psi, ||psi||^2) for X; cached for the most recent X object so that
-        all views sharing this decomposition reuse it (identity check, not hashing)."""
+    def _project(self, X, need_q=True):
+        """psi (and lazily V^T psi, ||psi||^2) for X; cached for the most recent X object so that
+        all views sharing this decomposition reuse it (identity check, not hashing). The
+        O(m p r) projection onto V is computed only when leverage is requested."""
         c = self._shared.get("last")
-        if c is not None and c[0] is X:
-            return c[1], c[2], c[3]
-        P = self._psi(X)
-        Q = P @ self.V_
-        sq = np.einsum("ij,ij->i", P, P)
-        self._shared["last"] = (X, P, Q, sq)
-        return P, Q, sq
+        if c is None or c[0] is not X:
+            c = [X, self._psi(X), None, None]
+            self._shared["last"] = c
+        if need_q and c[2] is None:
+            c[2] = c[1] @ self.V_
+            c[3] = np.einsum("ij,ij->i", c[1], c[1])
+        return c[1], c[2], c[3]
 
     def decision_function(self, X):
-        P, _, _ = self._project(X)
+        P, _, _ = self._project(X, need_q=False)
         return self.ybar_ + P @ self.coef_
 
     def predict(self, X):

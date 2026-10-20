@@ -147,6 +147,9 @@ class LOOM:
 
     # ---------------------------------------------------------- predict
     def predict_log_proba(self, F, return_h=False):
+        if self.moderation == "none" and not return_h:      # no leverage needed: skip the projection
+            Z = self._expand(self.ridge_.decision_function(F), self.ridge_.classes_)
+            return log_softmax(self.a_ * Z, axis=1)
         Z, h, Q = self.ridge_.logits_and_leverage(F)
         Z = self._expand(Z, self.ridge_.classes_)
         sig = self._signal_test(self.ridge_, F, h)

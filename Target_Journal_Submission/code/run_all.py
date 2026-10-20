@@ -52,15 +52,23 @@ def schedule(jobs, workers, raw_dir, heavy_n=3000, log=None):
     from loom.data.ucr import dataset_info
     info = dataset_info()
     cost = lambda j: (info[j[1]]["n_train"] + 19 * info[j[1]]["n_test"]) * info[j[1]]["length"]
-    heavy = sorted([j for j in jobs if info[j[1]]["n_train"] > heavy_n], key=cost, reverse=True)
-    light = sorted([j for j in jobs if info[j[1]]["n_train"] <= heavy_n], key=cost, reverse=True)
-    n_light = max(1, workers - (1 if heavy else 0))
+    stage_rank = {"main": 0, "raw": 1, "extract": 2, "trainsize": 3}
+    key = lambda j: (stage_rank[j[0]], -cost(j))
+    heavy = sorted([j for j in jobs if info[j[1]]["n_train"] > heavy_n], key=key)
+    light = sorted([j for j in jobs if info[j[1]]["n_train"] <= heavy_n], key=key)
+    # memory: a heavy job peaks at ~7 GB, so it runs next to at most two light jobs (~14 GB limit)
+    n_light = max(1, workers - (2 if heavy else 0))
     done = 0
     with ProcessPoolExecutor(n_light) as pl, ProcessPoolExecutor(1) as ph:
-        futs = [pl.submit(_job, *j, raw_dir) for j in light] + [ph.submit(_job, *j, raw_dir) for j in heavy]
+        futs = {pl.submit(_job, *j, raw_dir): j for j in light}
+        futs.update({ph.submit(_job, *j, raw_dir): j for j in heavy})
         for f in as_completed(futs):
             done += 1
-            msg = f"[{done}/{len(futs)}] {f.result()}"
+            try:
+                res = f.result()
+            except Exception as e:   # e.g. a worker killed by the OOM killer: log, keep going, retry on resume
+                res = f"{futs[f][0]:9s} {futs[f][1]:30s} r{futs[f][2]} FAILED (worker crashed: {e!r})"
+            msg = f"[{done}/{len(futs)}] {res}"
             print(msg, flush=True)
             if log:
                 with open(log, "a") as fh:
@@ -92,15 +100,19 @@ def main():
     if "audit" in stages:
         import subprocess
         subprocess.run([sys.executable, str(ROOT / "experiments" / "leakage_audit.py")], check=True)
-    if "main" in stages:
-        # 5-seed ensembles on the official split only (compute); other resamples use one seed
-        schedule([("main", d, r, dict(methods="all", n_ens=n_ens if r == 0 else 1, skip_slow_n=2000)) for d in dsets for r in R], a.workers, raw_dir, log=log)
+    # all compute stages are queued together so that light jobs of later stages fill workers
+    # that would otherwise idle while the few heavy jobs finish
+    jobs = []
+    if "main" in stages:   # 5-seed ensembles on the official split only (compute); other resamples use one seed
+        jobs += [("main", d, r, dict(methods="all", n_ens=n_ens if r == 0 else 1, skip_slow_n=2000)) for r in R for d in dsets]
     if "raw" in stages:
-        schedule([("raw", d, r, {}) for d in dsets for r in R], a.workers, raw_dir, log=log)
+        jobs += [("raw", d, r, {}) for r in R for d in dsets]
     if "extract" in stages:
-        schedule([("extract", d, r, dict(methods="core", transform=t, n_ens=1, conds_subset="sev3")) for t in extractors for d in dsets for r in R_gen], a.workers, raw_dir, log=log)
+        jobs += [("extract", d, r, dict(methods="core", transform=t, n_ens=1, conds_subset="sev3")) for t in extractors for d in dsets for r in R_gen]
     if "trainsize" in stages:
-        schedule([("trainsize", d, 0, dict(methods="core", n_ens=1, train_frac=f, conds_subset="sev3")) for f in fracs for d in dsets], a.workers, raw_dir, log=log)
+        jobs += [("trainsize", d, 0, dict(methods="core", n_ens=1, train_frac=f, conds_subset="sev3")) for f in fracs for d in dsets]
+    if jobs:
+        schedule(jobs, a.workers, raw_dir, log=log)
     if "analyze" in stages:
         import importlib.util
         spec = importlib.util.spec_from_file_location("analyze", ROOT / "experiments" / "analyze.py")

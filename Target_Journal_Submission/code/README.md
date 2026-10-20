@@ -113,6 +113,11 @@ P = model.predict_proba(F_test)               # leverage-moderated probabilities
 S = model.conformal_sets(F_test, alpha=0.1, method="jackknife+", score="aps")  # boolean sets
 ```
 
+**Bitwise reproducibility.** `run_all.py` pins one BLAS/OpenMP thread per job. With a different
+thread count, matrix products change in the last bits; this does not affect the probabilistic
+metrics materially, but it can flip exact ties of the deterministic APS score (which equals
+1.0 for many classes in binary problems), changing APS coverage/size in the third decimal.
+
 ## 7. Runtime of the full study
 
 Measured runtimes are in `tables/table_efficiency.csv` and `results/timing.csv`. With 4 cores

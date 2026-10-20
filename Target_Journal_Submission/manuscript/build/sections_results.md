@@ -1,0 +1,77 @@
+# 6 Results
+
+All results are computed on {{S['n_datasets']}} datasets (official split plus four resamples unless stated otherwise); per-dataset values are means over resamples. Complete per-dataset results are in Online Resource 3 and the repository.
+
+## 6.1 In-distribution calibration (RQ1)
+
+Table 1 summarises clean test performance. LOOM has a median test NLL of {{f(med('E1_clean','nll','LOOM'))}}. It is {{cmp('E1_clean','nll','PreVal')}}; {{cmp('E1_clean','nll','Holdout-TS')}}; {{cmp('E1_clean','nll','Ridge-Platt-CV5')}}; and {{cmp('E1_clean','nll','LogReg-CV')}}. The naive readouts are clearly worse: LOOM is {{cmp('E1_clean','nll','Ridge-softmax')}} and {{cmp('E1_clean','nll','Ridge-onehot')}}. For ECE, LOOM is {{cmp('E1_clean','ece','PreVal')}}; the target smoothing that keeps the temperature finite (Section 4.4) slightly lowers confidence on easy datasets, which costs ECE (Section 6.4). Accuracy is essentially unchanged: median accuracy {{f(med('E1_clean','acc','LOOM'))}} for LOOM versus {{f(med('E1_clean','acc','PreVal'))}} for PreVal ({{sigword('E1_clean','acc','PreVal', lower=False)}}), because both use the same ridge logits and differ only through the selected λ.
+
+{{tab_compare('E1_clean', ['nll', 'ece', 'brier', 'acc'], ['LOOM', 'PreVal', 'Holdout-TS', 'Ridge-Platt-CV5', 'Ridge-Isotonic-CV5', 'LogReg-CV', 'QUANT', 'Ridge-softmax', 'Ridge-onehot'], '**Table 1** Clean test performance (median over datasets of the mean over five resamples). Mean rank, W/D/L, rank-biserial correlation (r_rb) and Holm-adjusted Wilcoxon p-value refer to NLL; W/D/L counts datasets on which LOOM is better/equal/worse')}}
+
+## 6.2 Behaviour under test-time corruptions (RQ3)
+
+**Leverage reacts to corruption.** For clean test series the median ratio h(x)/h_ref is {{f2(lev('clean0'))}}, confirming that exact held-out leverages are on the scale of in-distribution test leverages. Under corruption the ratio grows with severity, for example to {{f1(lev('noise3'))}} for strong Gaussian noise, {{f1(lev('wander3'))}} for strong baseline wander, {{f1(lev('missing3'))}} for a 30 % missing segment and {{f2(lev('shift3'))}} for a 20 % circular shift (Fig. 3).
+
+**Calibration under corruption.** Averaged over the 18 corruption conditions (Table 2), LOOM has a median NLL of {{f(med('E4_shifted','nll','LOOM'))}} against {{f(med('E4_shifted','nll','PreVal'))}} for PreVal. LOOM is {{cmp('E4_shifted','nll','PreVal')}}, {{cmp('E4_shifted','nll','Holdout-TS')}}, {{cmp('E4_shifted','nll','LogReg-CV')}} and {{cmp('E4_shifted','nll','QUANT')}}. For ECE under corruption LOOM is {{cmp('E4_shifted','ece','PreVal')}}. Accuracy under corruption is the same for the ridge-based readouts by construction; the improvement comes from lower confidence on the misclassified corrupted series, visible in the pooled reliability diagrams (Fig. 6). LOOM also flags corrupted inputs: the median AUROC for separating corrupted from clean test series by 1 − max p̂ is {{f(med('E4_shifted','shift_auroc','LOOM'))}} for LOOM versus {{f(med('E4_shifted','shift_auroc','PreVal'))}} for PreVal ({{sigword('E4_shifted','shift_auroc','PreVal', lower=False)}}).
+
+{{tab_compare('E4_shifted', ['nll', 'ece', 'acc', 'shift_auroc'], ['LOOM', 'PreVal', 'Holdout-TS', 'Ridge-Platt-CV5', 'Ridge-Isotonic-CV5', 'LogReg-CV', 'QUANT', 'Ridge-softmax', 'Ridge-onehot'], '**Table 2** Performance under test-time corruption: per-dataset mean over 18 conditions (six families × three severities), then median over datasets. Statistics as in Table 1 (NLL)')}}
+
+![**Fig. 3** Distribution over datasets of the median test leverage ratio h(x)/h_ref (log scale) for clean test data and each corruption family at severities 1–3](figures/fig_leverage_ratio.png){width=95%}
+
+![**Fig. 4** Median test NLL over datasets versus corruption severity for each family (severity 0 = clean)](figures/fig_robustness_nll.png){width=100%}
+
+![**Fig. 5** Per-dataset NLL of LOOM versus PreVal on clean data (left) and averaged over the 18 corruption conditions (right); points below the diagonal favour LOOM](figures/fig_scatter_loom_vs_preval.png){width=95%}
+
+![**Fig. 6** Reliability diagrams pooled over all datasets and resamples for clean test data (left) and severity-3 corruptions (right)](figures/fig_reliability.png){width=95%}
+
+## 6.3 Ensembles, QUANT and the Arsenal (official split)
+
+Table 3 compares LOOM with five-member ensembles and the two raw-series probabilistic classifiers on the official split. On clean data LOOM is {{cmp('E2b_raw_clean','nll','PreVal-Ens5')}}, {{cmp('E2b_raw_clean','nll','QUANT')}} and {{cmp('E2b_raw_clean','nll','Arsenal')}}. Under corruption (severity-3 conditions for the Arsenal, all 18 for the others), LOOM is {{cmp('E2b_raw_shifted','nll','PreVal-Ens5')}}, {{cmp('E2b_raw_shifted','nll','QUANT')}} and {{cmp('E2b_raw_shifted','nll','Arsenal')}}. Averaging five LOOM models gives a median clean NLL of {{f(med('E2b_raw_clean','nll','LOOM-Ens5'))}} and a corrupted NLL of {{f(med('E2b_raw_shifted','nll','LOOM-Ens5'))}}.
+
+{{tab_compare('E2b_raw_shifted', ['nll', 'ece', 'acc', 'shift_auroc'], ['LOOM', 'LOOM-Ens5', 'PreVal', 'PreVal-Ens5', 'QUANT', 'Arsenal'], '**Table 3** Official split, under corruption (mean over the available corruption conditions, see text). Statistics as in Table 1 (NLL)')}}
+
+## 6.4 Ablation (RQ2)
+
+Fig. 7 shows the median NLL difference of each variant to LOOM. Removing the leverage moderation while keeping smoothing (PreVal-smooth) makes calibration under corruption {{sigword('E3_ablation_shifted','nll','PreVal-smooth')}} relative to LOOM (median NLL {{f(med('E3_ablation_shifted','nll','PreVal-smooth'))}} vs {{f(med('E3_ablation_shifted','nll','LOOM'))}}). On clean data the same comparison is {{sigword('E3_ablation_clean','nll','PreVal-smooth')}}, so moderation does not hurt in-distribution calibration. Fitting the calibrator on in-sample pairs instead of exact LOO pairs is {{sigword('E3_ablation_clean','nll','LOOM-insample')}} on clean data (median NLL {{f(med('E3_ablation_clean','nll','LOOM-insample'))}}), and replacing LOO pairs by an 80/20 hold-out split is {{sigword('E3_ablation_clean','nll','LOOM-holdout')}} (median {{f(med('E3_ablation_clean','nll','LOOM-holdout'))}}), because the ridge is then trained on fewer series. Without target smoothing LOOM is {{sigword('E3_ablation_clean','nll','LOOM-nosmooth')}} on clean NLL and {{sigword('E3_ablation_shifted','nll','LOOM-nosmooth')}} under corruption. Learning the moderation strength b on the LOO pairs (LOOM-free-b) is {{sigword('E3_ablation_shifted','nll','LOOM-free-b')}} under corruption, confirming the identifiability problem found during development. Replacing leverage by a k-NN distance is {{sigword('E3_ablation_shifted','nll','LOOM-kNN')}} under corruption, a finite moderation strength (c = 1) is {{sigword('E3_ablation_shifted','nll','LOOM-finite-c1')}}, and choosing λ by LOO squared error is {{sigword('E3_ablation_clean','nll','LOOM-lambdaSSE')}} on clean data.
+
+![**Fig. 7** Ablation: median paired NLL difference (variant − LOOM) with bootstrap 95 % confidence intervals on clean data (left) and under corruption (right); positive values mean the variant is worse](figures/fig_ablation.png){width=100%}
+
+## 6.5 Generalisation (RQ4)
+
+**Other random-kernel extractors.** With MultiRocket features (official split, clean and severity-3 conditions), LOOM is {{cmp('E5_multirocket_shifted','nll','PreVal')}} under corruption and {{cmp('E5_multirocket_clean','nll','PreVal')}} on clean data. With Hydra features the corresponding comparisons are {{cmp('E5_hydra_shifted','nll','PreVal')}} and {{cmp('E5_hydra_clean','nll','PreVal')}}.
+
+**Subsets.** On the {{S['n_unseen']}} datasets never used during development LOOM is {{cmp('sens_unseen_shifted','nll','PreVal')}} under corruption and {{cmp('sens_unseen_clean','nll','PreVal')}} on clean data. Excluding the 16 datasets with train/test duplicates ({{S['n_nodup']}} datasets), the comparisons are {{cmp('sens_nodup_shifted','nll','PreVal')}} and {{cmp('sens_nodup_clean','nll','PreVal')}}.
+
+## 6.6 Conformal prediction sets (RQ8)
+
+Table 4 reports coverage and set size at α = 0.1. On clean data the closed-form jackknife+ sets of LOOM cover on average {{f(cp('CP-LOOM-jackknife+'))}} of the test series with a mean set size of {{f2(cp('CP-LOOM-jackknife+', False, 'size_mean'))}}, against {{f(cp('CP-Split-TS'))}} and {{f2(cp('CP-Split-TS', False, 'size_mean'))}} for split conformal prediction. Under corruption coverage drops for every method, because exchangeability no longer holds. With the LAC score, LOOM's flattened probabilities lead to empty sets ({{pct(cp('CP-LOOM-jackknife+', True, 'empty_mean'))}} of corrupted test series), whereas the APS score turns flat probabilities into larger sets ({{pct(cp('CP-LOOM-jackknife+-APS', True, 'empty_mean'))}} empty, coverage {{f(cp('CP-LOOM-jackknife+-APS', True))}}).
+
+{{tab_conformal('**Table 4** Conformal prediction sets at α = 0.1 (target coverage 0.9). Coverage and set size are averaged over datasets (corrupted: over datasets and the 18 conditions); 10th pct. is the 10th percentile of per-dataset coverage')}}
+
+## 6.7 Computational cost (RQ5)
+
+{{tab_eff('**Table 5** Fit and prediction time per dataset (mean over resamples; single CPU core). Ridge-based readouts include the shared SVD; ensembles include four additional MiniRocket transforms', ['Ridge-onehot', 'PreVal', 'LOOM', 'Holdout-TS', 'Ridge-Platt-CV5', 'Ridge-Isotonic-CV5', 'LogReg-CV', 'LOOM-Ens5', 'QUANT', 'Arsenal'])}}
+
+LOOM's median fit time is {{f(eff('LOOM'), 2)}} s, versus {{f(eff('PreVal'), 2)}} s for PreVal, {{f(eff('Ridge-Platt-CV5'), 2)}} s for five-fold Platt scaling, {{f(eff('LogReg-CV'), 2)}} s for cross-validated logistic regression and {{f(eff('LOOM-Ens5'), 2)}} s for a five-seed ensemble (including its additional transforms). The extra prediction cost of LOOM over plain ridge is the projection onto V (Section 4.6).
+
+![**Fig. 8** Fit time versus number of training series (log–log, single core)](figures/fig_efficiency.png){width=60%}
+
+## 6.8 Sensitivity (RQ6)
+
+The moderation limit c → ∞ chosen during development and the finite value c = 1 give similar results (Section 6.4). For conformal sets, the clean coverage of LOOM's jackknife+ is {{f(cp('CP-LOOM-jackknife+@0.05'))}} at α = 0.05 and {{f(cp('CP-LOOM-jackknife+@0.2'))}} at α = 0.2. With 25 % and 50 % of the training data (official split, clean and severity-3 conditions; Online Resource 3) the comparison with PreVal is summarised in Table S4.
+
+## 6.9 Error analysis (RQ7)
+
+{{ERROR_ANALYSIS}}
+
+# 7 Discussion
+
+{{DISCUSSION}}
+
+# 8 Limitations
+
+{{LIMITATIONS}}
+
+# 9 Conclusion
+
+{{CONCLUSION}}

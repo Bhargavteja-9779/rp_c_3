@@ -1,0 +1,13 @@
+The study has the following limitations.
+
+*Scope of data and shift.* All experiments use univariate, equal-length UCR datasets. The corruptions are synthetic and test-time only: they model sensor noise, drift, dropouts, artefacts and misalignment, but not real deployment shifts such as new subjects, devices or recording sites, and not label shift. Multivariate series and real domain-shift benchmarks [@ragab2023; @ruiz2021] remain to be studied.
+
+*Approximations in the LOO quantities.* The identities in Section 4.2 are exact for fixed standardisation and fixed MiniRocket biases, but both are estimated on all n training series. In addition, λ and the temperature are selected on the same LOO pairs used to fit them. The LOO negative log-likelihood is therefore slightly optimistic, and the jackknife+ coverage guarantee [@barber2021] holds only approximately. We assessed coverage empirically instead.
+
+*Behaviour of the moderation.* Leverage measures distance from the training data in the regularised feature geometry. It does not detect shifts that leave the features inside the span of the training data (for example, label noise or a change of class priors), and it lowers confidence even for shifted inputs that are still classified correctly (Section 6.9). Platt target smoothing, needed when LOO predictions are separable, slightly lowers in-distribution confidence on easy datasets, which raised the clean ECE.
+
+*Compute-driven protocol choices.* All experiments ran on a 4-core CPU without a GPU in a cloud container that restarted several times. For this reason, and decided before results were inspected (Online Resource 2): ensembles, other extractors and the Arsenal were evaluated on the official split only; the Arsenal used aeon's MiniRocket-kernel configuration; Rocket features were not evaluated; logistic regression was skipped for the 13 datasets with more than 2,000 training series; and conformal sets were evaluated on at most 1,000 test series per dataset. Deep-learning classifiers such as InceptionTime [@ismailfawaz2020inception] and the full HIVE-COTE 2.0 ensemble [@middlehurst2021hc2] were not run.
+
+*Development exposure.* The method was designed on eight datasets and the pipeline was tested on six more. Results restricted to the remaining datasets are reported (Section 6.5), but some optimism from design choices made on development data cannot be fully excluded.
+
+*Memory.* LOOM stores the factors U and V, i.e. O((n + p)r) numbers. For training sets much larger than those in the UCR archive, randomised or incremental SVDs would be needed, and the exactness of the LOO identities would then be lost.

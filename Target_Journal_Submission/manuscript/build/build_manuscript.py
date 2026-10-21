@@ -344,6 +344,13 @@ def _allbetter_shift():
 
 
 ALLBETTER_SHIFT = _allbetter_shift()
+JNAME = {"jksu": "Journal of King Saud University – Computer and Information Sciences",
+         "eswa": "Expert Systems with Applications"}[JOURNAL]
+PUBLISHER = {"jksu": "Springer Nature", "eswa": "Elsevier"}[JOURNAL]
+FIT = {"jksu": "The work addresses machine learning, pattern recognition and data mining for time series, which are explicitly "
+               "within the journal's aims and scope.",
+       "eswa": "The work contributes a closed-form uncertainty component for intelligent decision systems that classify sensor "
+               "and monitoring time series, an application area central to the journal's scope."}[JOURNAL]
 CTX = {k: v for k, v in globals().items() if not k.startswith("__")}
 
 
@@ -453,6 +460,28 @@ def to_pdf(docx):
     return docx.with_suffix(".pdf")
 
 
+def build_aux(md_main):
+    """Cover letter and separate title page (DOCX), rendered with the same expression engine."""
+    body = md_main.split("# 1 Introduction", 1)[1].split("# References", 1)[0]
+    body = re.sub(r"!\[.*?\]\(.*?\)\{.*?\}", "", body)              # drop figure captions
+    body = "\n".join(l for l in body.splitlines() if not l.startswith("|") and not l.startswith(": **Table"))
+    nwords = len(re.findall(r"[A-Za-z0-9][\w'’-]*", body))
+    CTX["WORDS"] = f"{nwords:,}"
+    CTX["NFIG"] = len(re.findall(r"\*\*Fig\. \d+\*\*", md_main))
+    CTX["NTAB"] = len(re.findall(r"^: \*\*Table \d+\*\*", md_main, flags=re.M))
+    sub = OUT if JOURNAL == "jksu" else OUT / "alternative_ESWA"
+    out = []
+    for src, name in (("cover_letter.md", "Cover_Letter.docx"), ("title_page.md", "Title_Page.docx")):
+        md = render((HERE / src).read_text())
+        tmp = HERE / f"_{src}"; tmp.write_text(md)
+        dst = sub / name
+        subprocess.run(["pandoc", str(tmp), "-o", str(dst), f"--reference-doc={HERE / 'reference_springer.docx'}"], check=True)
+        tmp.unlink(); out.append(dst)
+    return out
+
+
 if __name__ == "__main__":
     dx = build()
     print("pdf:", to_pdf(dx))
+    for f in build_aux((HERE / "manuscript_rendered.md").read_text()):
+        print("written", f)

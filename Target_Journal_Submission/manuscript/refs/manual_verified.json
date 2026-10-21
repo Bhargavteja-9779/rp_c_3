@@ -1,0 +1,7 @@
+{
+ "_note": "References without a Crossref DOI record, verified 2026-10-21 against official or bibliographic landing pages. Alias keys in landing_pages_verified.json: liu2020->liu2020sngp, sklearn2011->pedregosa2011, preval->dempster2025preval, angelopoulos2021->angelopoulos2021raps, liu2023jmlr->liu2023sngp.",
+ "burnaev2014": {"source": "https://proceedings.mlr.press/v35/burnaev14.html", "checked": "title, authors Burnaev & Vovk, PMLR 35:605-622 found on page"},
+ "nouretdinov2001": {"source": "https://mlanthology.org/icml/2001/nouretdinov2001icml-ridge ; Royal Holloway research portal", "checked": "Nouretdinov, Melluish, Vovk; Proc. 18th ICML (2001) pp. 385-392"},
+ "holm1979": {"source": "JSTOR stable 4615733 (bot-blocked; confirmed via search records and MR 0538597)", "checked": "Scand. J. Stat. 6(2):65-70, 1979"},
+ "platt1999": {"source": "MIT Press, Advances in Large Margin Classifiers (Smola, Bartlett, Schoelkopf, Schuurmans, eds.); CiteSeerX 10.1.1.41.1639", "checked": "pp. 61-74; book dated 2000 (MIT Press), widely cited as 1999"}
+}

@@ -54,7 +54,7 @@ Let 𝒟 = {(xᵢ, yᵢ)}ᵢ₌₁ⁿ be univariate series with labels in {1, �
 
 ## 4.1 Ridge readout from one thin SVD
 
-Features are standardised with the training mean and standard deviation; $\Phi_c$ ∈ ℝⁿˣᵖ denotes the centred training matrix and Y ∈ {−1, +1}ⁿˣᴷ the one-vs-rest targets. With an unpenalised intercept and penalty λ, the readout uses the augmented feature vector x̃(x) = (1, ψ(x)), where ψ(x) are the centred standardised features; with X̃ stacking the training vectors,
+Features are standardised with the training mean and standard deviation; $\Phi_c$ ∈ ℝⁿˣᵖ denotes the centred training matrix and Y ∈ {−1, +1}ⁿˣᴷ the one-vs-rest targets. The readout is ridge regression [@hoerl1970] with an unpenalised intercept and penalty λ; it uses the augmented feature vector x̃(x) = (1, ψ(x)), where ψ(x) are the centred standardised features; with X̃ stacking the training vectors,
 
 $$A = \tilde X^\top \tilde X + \operatorname{diag}(0, \lambda I_p), \qquad B = A^{-1} \tilde X^\top Y, \qquad \hat Y = \tilde X B = H Y. \qquad (1)$$
 

@@ -189,7 +189,7 @@ def main(mode="full"):
         tk.to_csv(out_tab / "table_natural_shift_tasks.csv", index=False)
         summ = tk.groupby("method")[["nll_in", "nll_shift", "ece_shift", "acc_in", "acc_shift", "shift_auroc"]].mean()
         summ.to_csv(out_tab / "table_natural_shift.csv")
-        E10 = dict(n_tasks=int(tk.task.nunique()), n_resamples=int(nsr.resample.nunique()), means=summ.to_dict(orient="index"),
+        E10 = dict(n_tasks=int(tk.task.nunique()), n_resamples=int(nsr["resample"].nunique()), means=summ.to_dict(orient="index"),
                    lev_ratio=tk[tk.method == "LOOM"].set_index("task").lev_ratio.to_dict())
         for met in ("nll_shift", "nll_in", "shift_auroc"):
             P = tk.pivot(index="task", columns="method", values=met)
@@ -272,6 +272,13 @@ def main(mode="full"):
     if not tm.empty:
         tmm = tm[(tm["transform"].isin(["minirocket", "raw"])) & (tm.train_frac == 1.0)].copy()
         svd = ex.dropna(subset=["lam"]) if "lam" in ex else None
+        # Ridge-onehot / Ridge-softmax reuse the shared ridge fit: charge them its SVD as well
+        uses_svd = tmm.method.isin(["Ridge-onehot", "Ridge-softmax"])
+        tmm.loc[uses_svd, "fit"] = tmm.loc[uses_svd, "fit"] + tmm.loc[uses_svd, "svd_time"].fillna(0.0)
+        # MiniRocket transform of the training set (shared by all readouts; not included in their fit times)
+        tr = tmm[(tmm["transform"] == "minirocket") & (tmm["method"] == "LOOM")].copy()
+        tr["method"] = "MiniRocket-transform"; tr["fit"] = tr["feature_time"]; tr["predict_all"] = np.nan
+        tmm = pd.concat([tmm, tr.dropna(subset=["fit"])], ignore_index=True)
         eff = tmm.groupby(["dataset", "method"])[["fit", "predict_all"]].mean().reset_index()
         effs = eff.groupby("method").agg(fit_median=("fit", "median"), fit_mean=("fit", "mean"), fit_total=("fit", "sum"),
                                          pred_median=("predict_all", "median"), pred_total=("predict_all", "sum"),

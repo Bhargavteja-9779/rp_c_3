@@ -8,8 +8,10 @@ Stages (each is resumable: finished jobs are cached in results/raw/*.json):
   audit     leakage audit of the official splits
   main      MiniRocket features, all readouts + ablations + conformal, 5 resamples, 5-seed ensembles
   raw       Arsenal and QUANT (raw-series probabilistic baselines)
-  extract   Rocket / MultiRocket / Hydra features, core readouts (generalisation)
+  extract   MultiRocket / Hydra features, core readouts (generalisation)
   trainsize 25 % / 50 % training data, core readouts (sensitivity)
+  natural   natural cross-axis shift on UWaveGestureLibrary X/Y/Z (full mode only)
+  logreg    convergence check of the logistic-regression baseline on 12 datasets (full mode only)
   analyze   statistics, tables, figures
 """
 import argparse
@@ -93,7 +95,7 @@ def schedule(jobs, workers, raw_dir, heavy_n=3000, log=None, max_retries=2):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["quick", "full"], default="quick")
-    ap.add_argument("--stages", default="audit,main,raw,extract,trainsize,analyze")
+    ap.add_argument("--stages", default="audit,main,raw,extract,trainsize,natural,logreg,analyze")
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2)))
     ap.add_argument("--datasets", default=None, help="comma-separated subset (default: mode-dependent)")
     a = ap.parse_args()
@@ -138,6 +140,12 @@ def main():
         light = [j for j in jobs if info[j[1]]["n_train"] <= 5000]
         schedule(light, max(1, a.workers - 1), raw_dir, log=log)
         schedule(heavy, 1, raw_dir, log=log)
+    if a.mode == "full":
+        import subprocess
+        for st, script in (("natural", "natural_shift.py"), ("logreg", "check_logreg_convergence.py")):
+            cached = st == "logreg" and (ROOT / "results" / "check_logreg_convergence.json").exists()
+            if st in stages and not cached:   # natural_shift.py resumes from its own cache
+                subprocess.run([sys.executable, str(ROOT / "experiments" / script)], check=True, cwd=ROOT)
     if "analyze" in stages:
         import importlib.util
         spec = importlib.util.spec_from_file_location("analyze", ROOT / "experiments" / "analyze.py")

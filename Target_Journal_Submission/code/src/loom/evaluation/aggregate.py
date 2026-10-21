@@ -47,7 +47,8 @@ def load_timing(raw_dir) -> pd.DataFrame:
             recs.append(dict(dataset=r["dataset"], resample=r["resample"], transform=r["transform"], job=r["methods"],
                              train_frac=r.get("train_frac", 1.0), n_train=r["n_train"], n_test=r["n_test"],
                              method=m, fit=t["fit"], predict_all=t["predict_all"],
-                             feature_time=r["extra"].get("feature_time", np.nan)))
+                             feature_time=r["extra"].get("feature_time_train", np.nan),
+                             svd_time=r["extra"].get("svd_time", np.nan)))
     return pd.DataFrame(recs)
 
 

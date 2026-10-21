@@ -121,8 +121,8 @@ def cmp(key, metric, comp, lower=True, name=None):
     r = pw(key, metric, comp)
     nm = name or NAMES.get(comp, comp)
     better = (r["median_diff"] > 0) if lower else (r["median_diff"] < 0)
-    stats = (f"W/D/L {r['ref_wins']}/{r['draws']}/{r['ref_losses']}, median difference {r['median_diff']:+.3f} "
-             f"[95 % CI {r['ci_low']:+.3f}, {r['ci_high']:+.3f}], r_rb = {r['rank_biserial']:.2f}, Holm-adjusted p {pv(r['p_holm'])}")
+    stats = (f"W/D/L {r['ref_wins']}/{r['draws']}/{r['ref_losses']}; Δ = {r['median_diff']:+.3f} "
+             f"[{r['ci_low']:+.3f}, {r['ci_high']:+.3f}]; r_rb = {r['rank_biserial']:.2f}; p {pv(r['p_holm'])}")
     if r["p_holm"] < 0.05:
         return f"{'better' if better else 'worse'} than {nm} ({stats})"
     return f"not significantly different from {nm} ({stats})"
@@ -134,6 +134,42 @@ def sigword(key, metric, comp, lower=True):
     if r["p_holm"] >= 0.05:
         return "not significantly different"
     return "significantly better" if better else "significantly worse"
+
+
+def dd(key, metric, comp):
+    """Compact paired statistic: median difference (competitor - LOOM) and Holm-adjusted p."""
+    r = pw(key, metric, comp)
+    return f"Δ = {r['median_diff']:+.3f}, p {pv(r['p_holm'])}"
+
+
+def ts(frac, cond, comp, field):
+    for r in S["E7_train_size"]:
+        if r["train_frac"] == frac and r["cond"] == cond and r["competitor"] == comp:
+            return r[field]
+    raise KeyError((frac, cond, comp))
+
+
+def tsp(frac, cond, comp="PreVal"):
+    """Train-size comparison phrase: medians, W/D/L, Holm p."""
+    return (f"median NLL {ts(frac, cond, comp, 'median_loom'):.3f} vs {ts(frac, cond, comp, 'median_comp'):.3f}, "
+            f"W/D/L {ts(frac, cond, comp, 'wdl')}, p {pv(ts(frac, cond, comp, 'p_holm'))}, n = {ts(frac, cond, comp, 'n')}")
+
+
+def tsclaim():
+    ok = all(ts(fr, "shifted", "PreVal", "p_holm") < 0.05 and
+             ts(fr, "shifted", "PreVal", "median_loom") < ts(fr, "shifted", "PreVal", "median_comp") for fr in (0.25, 0.5))
+    return ("The advantage under corruption is therefore retained with reduced training sets." if ok else
+            "The advantage under corruption is therefore not consistently retained with reduced training sets.")
+
+
+def both(w1, w2):
+    return f"both {w1}" if w1 == w2 else f"{w1} and {w2}, respectively,"
+
+
+def varword(key, metric, comp, lower=True):
+    """Like sigword, but from the perspective of the competitor/variant (the sentence subject)."""
+    w = sigword(key, metric, comp, lower)
+    return {"significantly better": "significantly worse", "significantly worse": "significantly better"}.get(w, w)
 
 
 def cp(method, shifted=False, field="cov_mean"):
@@ -193,6 +229,37 @@ def worst(kind, i, field="dataset"):
     return S["E8_worst_clean" if kind == "clean" else "E8_worst_shift"][i][field]
 
 
+FAMS = ["noise", "wander", "missing", "spikes", "warp", "shift"]
+
+
+def monotone_except():
+    """Families whose LOOM win rate does NOT increase strictly with severity."""
+    return [c for c in FAMS if not (winrate(c, 1) < winrate(c, 2) < winrate(c, 3))]
+
+
+def trendclaim():
+    bad = monotone_except()
+    if not bad:
+        return "grows with severity for every corruption family"
+    names = {"noise": "Gaussian noise", "wander": "baseline wander", "missing": "missing segments",
+             "spikes": "spikes", "warp": "time warping", "shift": "circular shifts"}
+    return "grows with severity for every family except " + " and ".join(names[c] for c in bad)
+
+
+def sev1range(exclude=("warp",)):
+    v = [winrate(c, 1) for c in FAMS if c not in exclude]
+    return f"{min(v)*100:.0f} %–{max(v)*100:.0f} %"
+
+
+def worstlist(kind, k):
+    return ", ".join(worst(kind, i) for i in range(k - 1)) + " and " + worst(kind, k - 1)
+
+
+def perclass_range(kind, k):
+    v = [worst(kind, i, "n_train") / worst(kind, i, "n_classes") for i in range(k)]
+    return f"{min(v):.0f} to {max(v):.0f}"
+
+
 def lev(cond):
     return S["leverage_ratio_median_by_condition"][f"h_{cond}"]
 
@@ -204,7 +271,7 @@ def ncomp(key, metric="nll"):
 NAMES = {"LOOM": "LOOM (ours)", "PreVal": "PreVal", "Ridge-softmax": "Ridge softmax (T = 1)", "Ridge-onehot": "Ridge one-hot",
          "Holdout-TS": "Hold-out temperature scaling", "Ridge-Platt-CV5": "Ridge + Platt (5-fold)",
          "Ridge-Isotonic-CV5": "Ridge + isotonic (5-fold)", "LogReg-CV": "Logistic regression (CV)", "QUANT": "QUANT",
-         "Arsenal": "Arsenal", "PreVal-Ens5": "PreVal, 5-seed ensemble", "LOOM-Ens5": "LOOM, 5-seed ensemble",
+         "Arsenal": "Arsenal", "MiniRocket-transform": "MiniRocket transform of the training set (shared)", "PreVal-Ens5": "PreVal, 5-seed ensemble", "LOOM-Ens5": "LOOM, 5-seed ensemble",
          "PreVal-smooth": "No leverage (PreVal + smoothing)", "LOOM-nosmooth": "No target smoothing",
          "LOOM-free-b": "Free moderation b", "LOOM-finite-c1": "Finite moderation (c = 1)", "LOOM-kNN": "k-NN distance instead of leverage",
          "LOOM-insample": "In-sample instead of LOO pairs", "LOOM-holdout": "80/20 hold-out instead of LOO pairs",
@@ -236,7 +303,7 @@ def tab_eff(caption, methods):
         try:
             rows.append({"Method": NAMES.get(m, m), "Median fit time (s)": f(eff(m), 3), "Mean fit time (s)": f(eff(m, "fit_mean"), 2),
                          "Total fit time, all datasets (h)": f(eff(m, "fit_total") / 3600, 2),
-                         "Median prediction time, 19 test sets (s)": f(eff(m, "pred_median"), 2)})
+                         "Median prediction time, 19 test sets (s)": "–" if pd.isna(eff(m, "pred_median")) else f(eff(m, "pred_median"), 2)})
         except KeyError:
             pass
     return md_table(pd.DataFrame(rows), caption)

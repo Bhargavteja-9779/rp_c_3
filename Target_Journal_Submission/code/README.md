@@ -51,10 +51,10 @@ finished jobs are cached as `results/raw/*.json`):
 | Stage | What it runs | Output |
 |---|---|---|
 | `audit` | duplicate / leakage audit of the official splits | `results/leakage_audit.csv` |
-| `main` | MiniRocket features; LOOM, 7 baselines, 8 ablations, 5-seed ensembles, conformal sets; clean + 18 corruption conditions; 5 resamples | `results/raw/minirocket__*__all.json` |
-| `raw` | QUANT (5 resamples) and Arsenal (official split) on raw series | `results/raw/raw__*.json` |
-| `extract` | Rocket, MultiRocket, Hydra features with the core readouts (3 resamples) | `results/raw/{rocket,multirocket,hydra}__*.json` |
-| `trainsize` | 25 % and 50 % of the training data (official split) | `results/raw/minirocket__*__tf*.json` |
+| `main` | MiniRocket features; LOOM, 7 baselines, 8 ablations, 5-seed ensembles (official split), conformal sets; clean + 18 corruption conditions; 5 resamples (3 for the four datasets with > 3,000 training series) | `results/raw/minirocket__*__all.json` |
+| `raw` | QUANT (all resamples) and Arsenal (official split; clean + severity-3) on raw series | `results/raw/raw__*.json` |
+| `extract` | MultiRocket and Hydra features with the core readouts (official split; clean + severity-3 conditions; datasets with ≤ 3,000 training series) | `results/raw/{multirocket,hydra}__*.json` |
+| `trainsize` | 25 % and 50 % of the training data (official split; clean + severity-3; datasets with ≤ 3,000 training series) | `results/raw/minirocket__*__tf*.json` |
 | `analyze` | statistics, tables, figures | `results/*.csv|json`, `tables/`, `figures/` |
 
 Then rebuild the manuscript from the generated results:
@@ -70,14 +70,17 @@ leverage, test leverage, cross-leverage, jackknife+ sets) against explicit refit
 
 | Paper item | File |
 |---|---|
-| Main clean results (Table 3) | `tables/table_main_clean.{md,csv}` |
-| Robustness (Table 4, Fig. 4–5) | `tables/table_robustness_shifted.*`, `tables/table_robustness_by_family.csv`, `figures/fig_robustness_*.png` |
-| Arsenal / QUANT on the official split | `tables/table_rawbaselines_*.md` |
-| Ablation (Table 5, Fig. 7) | `tables/table_ablation_*.md`, `figures/fig_ablation.png` |
+| Clean results (Table 1) | `tables/table_main_clean.{md,csv}` |
+| Robustness (Table 2, Figs. 3–6) | `tables/table_robustness_shifted.*`, `tables/table_robustness_by_family.csv`, `figures/fig_robustness_*.png` |
+| Ensembles, Arsenal, QUANT on the official split (Table 3) | `tables/table_rawbaselines_*.md` |
+| Ablation (Fig. 7) | `tables/table_ablation_*.md`, `figures/fig_ablation.png` |
 | Extractors and dataset types | `tables/table_generalisation_*.md`, `tables/table_by_type.csv` |
-| Conformal sets (Table 6, Fig. 8) | `tables/table_conformal.csv`, `figures/fig_conformal.png` |
-| Efficiency (Fig. 9) | `tables/table_efficiency.csv`, `figures/fig_efficiency.png` |
-| Training-set size | `tables/table_train_size.csv` |
+| Conformal sets (Table 4) | `tables/table_conformal.csv`, `figures/fig_conformal.png` |
+| Efficiency (Table 5, Fig. 8) | `tables/table_efficiency.csv`, `figures/fig_efficiency.png` |
+| Training-set size (Table S4) | `tables/table_train_size.csv` |
+| Natural cross-axis shift (§6.5) | `experiments/natural_shift.py` → `results/natural_shift.json`, `tables/table_natural_shift*.csv` |
+| Grouped-by-source sensitivity | `results/statistics.json` (`sens_grouped_*`) |
+| LogReg convergence check (§6.8) | `experiments/check_logreg_convergence.py` → `results/check_logreg_convergence.json` |
 | Sensitivity subsets | `tables/table_sensitivity_{unseen,nodup}_*.md` |
 | Error analysis | `tables/table_error_analysis_datasets.csv`, `figures/fig_error_analysis.png` |
 | All statistics (Wilcoxon, Holm, effect sizes, CIs, Friedman) | `results/statistics.json` |
@@ -122,7 +125,7 @@ metrics materially, but it can flip exact ties of the deterministic APS score (w
 
 Measured runtimes are in `tables/table_efficiency.csv` and `results/timing.csv`. With 4 cores
 the `main` stage dominates; the scheduler runs datasets with more than 3,000 training series
-one at a time to stay within ~14 GB of RAM.
+(n_train > 5,000) one at a time and the rest on `workers − 1` processes, to stay within ~14 GB of RAM. A worker killed by the out-of-memory killer is replaced and its jobs are retried; `scripts/resume_full.sh` restarts an interrupted run, and cached jobs are never recomputed. The full study took roughly two days of wall-clock time on 4 cores.
 
 ## 8. Development disclosure
 

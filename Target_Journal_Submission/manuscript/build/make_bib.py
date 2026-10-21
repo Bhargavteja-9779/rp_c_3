@@ -94,6 +94,14 @@ MANUAL = [
       author=A("Angelopoulos, Anastasios N.", "Bates, Stephen", "Malik, Jitendra", "Jordan, Michael I."),
       **{"container-title": "International Conference on Learning Representations", "issued": {"date-parts": [[2021]]}}),
 ]
+MANUAL += [
+ dict(id="nouretdinov2001", type="paper-conference", title="Ridge regression confidence machine",
+      author=A("Nouretdinov, Ilia", "Melluish, Thomas", "Vovk, Volodya"),
+      **{"container-title": "Proceedings of the 18th International Conference on Machine Learning", "publisher": "Morgan Kaufmann", "publisher-place": "San Francisco", "page": "385-392", "issued": {"date-parts": [[2001]]}}),
+ dict(id="burnaev2014", type="paper-conference", title="Efficiency of conformalized ridge regression",
+      author=A("Burnaev, Evgeny", "Vovk, Vladimir"),
+      **{"container-title": "Proceedings of the 27th Conference on Learning Theory", "collection-title": "PMLR", "volume": "35", "page": "605-622", "issued": {"date-parts": [[2014]]}}),
+]
 items += MANUAL
 json.dump(items, open("references.json", "w"), indent=1, ensure_ascii=False)
 print(len(items), "references;", sum("DOI" in i for i in items), "with DOI")

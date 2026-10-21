@@ -139,6 +139,21 @@ def eff(method, field="fit_median"):
     raise KeyError(method)
 
 
+def winrate(cond, sev):
+    for r in S["E8_win_rate_by_condition"]:
+        if r["cond"] == cond and int(r["sev"]) == sev:
+            return r["loom_better"]
+    raise KeyError((cond, sev))
+
+
+def corr(key, field="rho"):
+    return S["E8_correlations"][key][field]
+
+
+def worst(kind, i, field="dataset"):
+    return S["E8_worst_clean" if kind == "clean" else "E8_worst_shift"][i][field]
+
+
 def lev(cond):
     return S["leverage_ratio_median_by_condition"][f"h_{cond}"]
 

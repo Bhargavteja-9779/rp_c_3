@@ -3605,5 +3605,61 @@
     ]
    ]
   }
+ },
+ {
+  "id": "nouretdinov2001",
+  "type": "paper-conference",
+  "title": "Ridge regression confidence machine",
+  "author": [
+   {
+    "family": "Nouretdinov",
+    "given": "Ilia"
+   },
+   {
+    "family": "Melluish",
+    "given": "Thomas"
+   },
+   {
+    "family": "Vovk",
+    "given": "Volodya"
+   }
+  ],
+  "container-title": "Proceedings of the 18th International Conference on Machine Learning",
+  "publisher": "Morgan Kaufmann",
+  "publisher-place": "San Francisco",
+  "page": "385-392",
+  "issued": {
+   "date-parts": [
+    [
+     2001
+    ]
+   ]
+  }
+ },
+ {
+  "id": "burnaev2014",
+  "type": "paper-conference",
+  "title": "Efficiency of conformalized ridge regression",
+  "author": [
+   {
+    "family": "Burnaev",
+    "given": "Evgeny"
+   },
+   {
+    "family": "Vovk",
+    "given": "Vladimir"
+   }
+  ],
+  "container-title": "Proceedings of the 27th Conference on Learning Theory",
+  "collection-title": "PMLR",
+  "volume": "35",
+  "page": "605-622",
+  "issued": {
+   "date-parts": [
+    [
+     2014
+    ]
+   ]
+  }
  }
 ]

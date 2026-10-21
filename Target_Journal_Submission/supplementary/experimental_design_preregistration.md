@@ -113,3 +113,10 @@ completed jobs were discarded:
    projection costs about 10^13 operations per readout and seed. Their test sets are therefore
    evaluated on a seeded random subsample of 2,000 test series (identical for all methods and
    conditions). The other 112 datasets use their full test sets.
+6. (Fourth amendment, before inspecting results of the affected datasets.) The worker running the
+   largest datasets was killed twice by the out-of-memory killer (9 GB peak) and the remaining serial
+   work on them was estimated at ~16 h. For the four datasets with more than 3,000 training series
+   (Crop, ElectricDevices, FordA, FordB): the main experiment and QUANT use resamples 0–2 (Crop:
+   0–4, already completed); ElectricDevices is evaluated without the five-seed ensembles (single
+   seed) and is therefore absent from the ensemble comparison; the extractor and training-size
+   experiments exclude these four datasets. ElectricDevices and Crop jobs run alone at the end.

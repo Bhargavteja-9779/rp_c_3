@@ -46,33 +46,48 @@ def _job(kind, ds, r, kw, raw_dir):
         return f"{kind:9s} {ds:30s} r{r} FAILED {e!r} {traceback.format_exc()[-300:]}"
 
 
-def schedule(jobs, workers, raw_dir, heavy_n=3000, log=None):
-    """Run light jobs on `workers-1` processes and heavy jobs (n_train > heavy_n) on one
-    dedicated process, so at most one memory-hungry job runs at a time."""
+def schedule(jobs, workers, raw_dir, heavy_n=3000, log=None, max_retries=2):
+    """Run jobs on a process pool, largest first. If a worker is killed (e.g. by the
+    out-of-memory killer) the broken pool is replaced and the lost jobs are retried up to
+    `max_retries` times; finished jobs are cached, so nothing is computed twice."""
+    from concurrent.futures.process import BrokenProcessPool
     from loom.data.ucr import dataset_info
     info = dataset_info()
     cost = lambda j: (info[j[1]]["n_train"] + 19 * info[j[1]]["n_test"]) * info[j[1]]["length"]
     stage_rank = {"main": 0, "raw": 1, "extract": 2, "trainsize": 3}
-    key = lambda j: (stage_rank[j[0]], -cost(j))
-    heavy = sorted([j for j in jobs if info[j[1]]["n_train"] > heavy_n], key=key)
-    light = sorted([j for j in jobs if info[j[1]]["n_train"] <= heavy_n], key=key)
-    # memory: a heavy job peaks at ~7 GB, so it runs next to at most two light jobs (~14 GB limit)
-    n_light = max(1, workers - (2 if heavy else 0))
+    pending = sorted(jobs, key=lambda j: (stage_rank[j[0]], -cost(j)))
+    tries = {}
     done = 0
-    with ProcessPoolExecutor(n_light) as pl, ProcessPoolExecutor(1) as ph:
-        futs = {pl.submit(_job, *j, raw_dir): j for j in light}
-        futs.update({ph.submit(_job, *j, raw_dir): j for j in heavy})
-        for f in as_completed(futs):
-            done += 1
-            try:
-                res = f.result()
-            except Exception as e:   # e.g. a worker killed by the OOM killer: log, keep going, retry on resume
-                res = f"{futs[f][0]:9s} {futs[f][1]:30s} r{futs[f][2]} FAILED (worker crashed: {e!r})"
-            msg = f"[{done}/{len(futs)}] {res}"
-            print(msg, flush=True)
-            if log:
-                with open(log, "a") as fh:
-                    fh.write(msg + "\n")
+    total = len(pending)
+
+    def emit(msg):
+        print(msg, flush=True)
+        if log:
+            with open(log, "a") as fh:
+                fh.write(msg + "\n")
+    while pending:
+        retry = []
+        with ProcessPoolExecutor(max(1, workers)) as pool:
+            futs = {pool.submit(_job, *j, raw_dir): j for j in pending}
+            for f in as_completed(futs):
+                j = futs[f]
+                try:
+                    res = f.result(); done += 1
+                    emit(f"[{done}/{total}] {res}")
+                except BrokenProcessPool as e:
+                    k = (j[0], j[1], j[2], str(sorted(j[3].items())))
+                    tries[k] = tries.get(k, 0) + 1
+                    if tries[k] <= max_retries:
+                        retry.append(j)
+                    else:
+                        done += 1
+                        emit(f"[{done}/{total}] {j[0]:9s} {j[1]:30s} r{j[2]} FAILED after {max_retries} retries ({e!r})")
+                except Exception as e:  # noqa: BLE001
+                    done += 1
+                    emit(f"[{done}/{total}] {j[0]:9s} {j[1]:30s} r{j[2]} FAILED ({e!r})")
+        if retry:
+            emit(f"pool broke; retrying {len(retry)} jobs in a fresh pool")
+        pending = sorted(retry, key=lambda j: (stage_rank[j[0]], -cost(j)))
 
 
 def main():
@@ -103,16 +118,26 @@ def main():
     # all compute stages are queued together so that light jobs of later stages fill workers
     # that would otherwise idle while the few heavy jobs finish
     jobs = []
-    if "main" in stages:   # 5-seed ensembles on the official split only (compute); other resamples use one seed
-        jobs += [("main", d, r, dict(methods="all", n_ens=n_ens if r == 0 else 1, skip_slow_n=2000)) for r in R for d in dsets]
+    LARGE = {"Crop", "ElectricDevices", "FordA", "FordB"}      # n_train > 3000 (amendment 6)
+    def R_of(d):
+        return [r for r in R if r <= 2] if (d in LARGE and a.mode == "full") else R
+    def ens_of(d, r):
+        return 1 if (d == "ElectricDevices" or r != 0) else n_ens
+    if "main" in stages:
+        jobs += [("main", d, r, dict(methods="all", n_ens=ens_of(d, r), skip_slow_n=2000)) for d in dsets for r in R_of(d)]
     if "raw" in stages:
-        jobs += [("raw", d, r, {}) for r in R for d in dsets]
+        jobs += [("raw", d, r, {}) for d in dsets for r in R_of(d)]
     if "extract" in stages:
-        jobs += [("extract", d, r, dict(methods="core", transform=t, n_ens=1, conds_subset="sev3")) for t in extractors for d in dsets for r in R_gen]
+        jobs += [("extract", d, r, dict(methods="core", transform=t, n_ens=1, conds_subset="sev3")) for t in extractors for d in dsets for r in R_gen if d not in LARGE]
     if "trainsize" in stages:
-        jobs += [("trainsize", d, 0, dict(methods="core", n_ens=1, train_frac=f, conds_subset="sev3")) for f in fracs for d in dsets]
+        jobs += [("trainsize", d, 0, dict(methods="core", n_ens=1, train_frac=f, conds_subset="sev3")) for f in fracs for d in dsets if d not in LARGE]
     if jobs:
-        schedule(jobs, a.workers, raw_dir, log=log)
+        from loom.data.ucr import dataset_info
+        info = dataset_info()
+        heavy = [j for j in jobs if info[j[1]]["n_train"] > 5000]       # Crop, ElectricDevices: run alone at the end
+        light = [j for j in jobs if info[j[1]]["n_train"] <= 5000]
+        schedule(light, max(1, a.workers - 1), raw_dir, log=log)
+        schedule(heavy, 1, raw_dir, log=log)
     if "analyze" in stages:
         import importlib.util
         spec = importlib.util.spec_from_file_location("analyze", ROOT / "experiments" / "analyze.py")

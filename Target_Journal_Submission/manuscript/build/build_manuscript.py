@@ -21,13 +21,24 @@ HERE = Path(__file__).resolve().parent
 SUB = HERE.parents[1]                       # Target_Journal_Submission/
 CODE = SUB / "code"
 OUT = SUB / "manuscript"
-RES = Path(sys.argv[1]) if len(sys.argv) > 1 else CODE   # root holding results/, tables/, figures/
+ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
+JOURNAL = "eswa" if "--journal=eswa" in sys.argv else "jksu"
+RES = Path(ARGS[0]) if ARGS else CODE   # root holding results/, tables/, figures/
 import os
 DRAFT = os.environ.get("DRAFT") == "1"
 
 S = json.load(open(RES / "results" / "statistics.json"))
 M = json.load(open(RES / "results" / "metrics.json"))
 T = {p.stem: p for p in (RES / "tables").glob("*.csv")}
+_lr = RES / "results" / "check_logreg_convergence.json"
+if not _lr.exists():
+    _lr = CODE / "results" / "check_logreg_convergence.json"
+LR = {}
+if _lr.exists():
+    _d = json.load(open(_lr))
+    _g = sorted(_d, key=lambda r: r["nll_long"] - r["nll_default"])[0]
+    LR = dict(med_def=float(np.median([r["nll_default"] for r in _d])), med_long=float(np.median([r["nll_long"] for r in _d])),
+              max_gain=_g["nll_default"] - _g["nll_long"], max_ds=_g["dataset"], n=len(_d))
 
 
 # ------------------------------------------------------------------ formatting helpers
@@ -139,6 +150,34 @@ def eff(method, field="fit_median"):
     raise KeyError(method)
 
 
+def ds_total(name):
+    d = pd.read_csv(CODE / "data" / "ucr_equal_length.csv").set_index("dataset")
+    return int(d.loc[name, "n_train"] + d.loc[name, "n_test"])
+
+
+def ns(method, field):
+    return S["E10_natural_shift"]["means"][method][field]
+
+
+def nsw(metric, comp):
+    for r in S["E10_natural_shift"][f"pairwise_{metric}"]:
+        if r["competitor"] == comp:
+            return r
+    raise KeyError((metric, comp))
+
+
+def nslev():
+    v = list(S["E10_natural_shift"]["lev_ratio"].values())
+    return min(v), max(v)
+
+
+def pwg(cond, metric, comp):
+    for r in S[f"sens_grouped_{cond}"][metric]["pairwise"]:
+        if r["competitor"] == comp:
+            return r
+    raise KeyError((cond, metric, comp))
+
+
 def winrate(cond, sev):
     for r in S["E8_win_rate_by_condition"]:
         if r["cond"] == cond and int(r["sev"]) == sev:
@@ -203,6 +242,16 @@ def tab_eff(caption, methods):
     return md_table(pd.DataFrame(rows), caption)
 
 
+def _allbetter_shift():
+    """True only if LOOM is significantly better than every competitor in the corrupted-data NLL tables."""
+    try:
+        recs = S["E4_shifted"]["nll"]["pairwise"] + [r for r in S["E2b_raw_shifted"]["nll"]["pairwise"] if r["competitor"] != "LOOM-Ens5"]
+        return all(r["p_holm"] < 0.05 and r["median_diff"] > 0 for r in recs)
+    except KeyError:
+        return False
+
+
+ALLBETTER_SHIFT = _allbetter_shift()
 CTX = {k: v for k, v in globals().items() if not k.startswith("__")}
 
 
@@ -241,9 +290,14 @@ def build(anonymous=True):
     md = render("\n\n".join(parts))
     md = md.replace("](figures/", f"]({RES / 'figures'}/")
     (HERE / "manuscript_rendered.md").write_text(md)
-    docx = OUT / "Final_Manuscript.docx"
+    docx = OUT / ("Final_Manuscript.docx" if JOURNAL == "jksu" else "alternative_ESWA" / Path("Manuscript_ESWA.docx"))
+    docx.parent.mkdir(exist_ok=True, parents=True)
+    if JOURNAL == "eswa":   # Elsevier: highlights after the keywords, Harvard references
+        hl = (HERE / "narr_highlights.md").read_text()
+        md = md.replace("**Keywords**", "**Highlights**\n\n" + hl + "\n\n**Keywords**", 1)
+        (HERE / "manuscript_rendered.md").write_text(md)
     cmd = ["pandoc", str(HERE / "manuscript_rendered.md"), "-o", str(docx), "--citeproc",
-           f"--bibliography={HERE / 'references.json'}", f"--csl={HERE / 'springer-basic-author-date.csl'}",
+           f"--bibliography={HERE / 'references.json'}", f"--csl={HERE / ('springer-basic-author-date.csl' if JOURNAL == 'jksu' else 'elsevier-harvard.csl')}",
            f"--reference-doc={HERE / 'reference_springer.docx'}", "--resource-path", str(RES),
            "-M", "link-citations=false"]
     subprocess.run(cmd, check=True)

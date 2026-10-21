@@ -1,0 +1,134 @@
+[
+ {
+  "dataset": "ArrowHead",
+  "nll_default": 0.42747216016963935,
+  "acc_default": 0.8685714285714285,
+  "C_default": 0.01,
+  "iters_default": 32,
+  "nll_long": 0.43448709828589277,
+  "acc_long": 0.8628571428571429,
+  "C_long": 0.01,
+  "iters_long": 85
+ },
+ {
+  "dataset": "Car",
+  "nll_default": 0.34750151961948317,
+  "acc_default": 0.9166666666666666,
+  "C_default": 0.01,
+  "iters_default": 31,
+  "nll_long": 0.3447984624163222,
+  "acc_long": 0.9166666666666666,
+  "C_long": 0.01,
+  "iters_long": 112
+ },
+ {
+  "dataset": "DiatomSizeReduction",
+  "nll_default": 0.3930532561626327,
+  "acc_default": 0.8660130718954249,
+  "C_default": 0.001,
+  "iters_default": 32,
+  "nll_long": 0.39375732748240994,
+  "acc_long": 0.8660130718954249,
+  "C_long": 0.001,
+  "iters_long": 76
+ },
+ {
+  "dataset": "GunPointAgeSpan",
+  "nll_default": 0.06981909588924425,
+  "acc_default": 0.9683544303797469,
+  "C_default": 0.01,
+  "iters_default": 13,
+  "nll_long": 0.06924355152399993,
+  "acc_long": 0.9683544303797469,
+  "C_long": 0.01,
+  "iters_long": 44
+ },
+ {
+  "dataset": "GunPointMaleVersusFemale",
+  "nll_default": 0.00751303813405847,
+  "acc_default": 0.9968354430379747,
+  "C_default": 0.1,
+  "iters_default": 9,
+  "nll_long": 0.0014607084606043793,
+  "acc_long": 1.0,
+  "C_long": 1.0,
+  "iters_long": 42
+ },
+ {
+  "dataset": "GunPointOldVersusYoung",
+  "nll_default": 4.004865201887345e-09,
+  "acc_default": 1.0,
+  "C_default": 1.0,
+  "iters_default": 1,
+  "nll_long": 4.1837046503194774e-05,
+  "acc_long": 1.0,
+  "C_long": 1.0,
+  "iters_long": 22
+ },
+ {
+  "dataset": "InsectWingbeatSound",
+  "nll_default": 0.9330914700622617,
+  "acc_default": 0.657070707070707,
+  "C_default": 0.001,
+  "iters_default": 100,
+  "nll_long": 0.932526710534042,
+  "acc_long": 0.6590909090909091,
+  "C_long": 0.001,
+  "iters_long": 481
+ },
+ {
+  "dataset": "OSULeaf",
+  "nll_default": 0.19390861730586062,
+  "acc_default": 0.9545454545454546,
+  "C_default": 0.01,
+  "iters_default": 45,
+  "nll_long": 0.19740400094675373,
+  "acc_long": 0.9545454545454546,
+  "C_long": 0.01,
+  "iters_long": 188
+ },
+ {
+  "dataset": "Phoneme",
+  "nll_default": 2.5833199221033563,
+  "acc_default": 0.3159282700421941,
+  "C_default": 0.001,
+  "iters_default": 203,
+  "nll_long": 2.5836424192046907,
+  "acc_long": 0.3159282700421941,
+  "C_long": 0.001,
+  "iters_long": 925
+ },
+ {
+  "dataset": "ShapesAll",
+  "nll_default": 0.5985095853008527,
+  "acc_default": 0.8866666666666667,
+  "C_default": 0.1,
+  "iters_default": 26,
+  "nll_long": 0.4371329853433476,
+  "acc_long": 0.9,
+  "C_long": 1.0,
+  "iters_long": 187
+ },
+ {
+  "dataset": "SmoothSubspace",
+  "nll_default": 0.16844067984462177,
+  "acc_default": 0.94,
+  "C_default": 0.01,
+  "iters_default": 30,
+  "nll_long": 0.13767193769488126,
+  "acc_long": 0.9466666666666667,
+  "C_long": 1.0,
+  "iters_long": 41
+ },
+ {
+  "dataset": "Strawberry",
+  "nll_default": 0.07414002883406207,
+  "acc_default": 0.9756756756756757,
+  "C_default": 0.1,
+  "iters_default": 72,
+  "nll_long": 0.07580634685017544,
+  "acc_long": 0.9756756756756757,
+  "C_long": 0.1,
+  "iters_long": 141
+ }
+]

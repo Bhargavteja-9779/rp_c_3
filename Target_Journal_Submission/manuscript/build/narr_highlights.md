@@ -1,0 +1,5 @@
+- Closed-form, leverage-moderated probabilities for random-kernel series classifiers.
+- Temperature and ridge penalty fitted on exact leave-one-out scores and leverages.
+- Exact jackknife+ prediction sets obtained without refitting any model.
+- Pre-registered benchmark: 114 UCR datasets, 18 test-time corruptions, 5 resamples.
+- Far better calibration and shift detection under corruption at ridge-level cost.

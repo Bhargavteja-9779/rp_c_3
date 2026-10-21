@@ -26,6 +26,33 @@ LOWER = {"nll": True, "ece": True, "brier": True, "cwece": True, "aurc": True, "
          "shift_auroc": False, "mean_conf": None}
 
 
+GROUP_RULES = [  # datasets derived from the same source are merged into one unit (sensitivity analysis)
+    (r"^UWaveGestureLibrary", "UWaveGestureLibrary"), (r"Phalan", "PhalanxOutlines"), (r"^Pig", "Pig"),
+    (r"^Freezer", "Freezer"), (r"^InsectEPG", "InsectEPG"), (r"^MixedShapes", "MixedShapes"), (r"^GunPoint", "GunPoint"),
+    (r"^SemgHand", "SemgHand"), (r"^NonInvasiveFetalECG", "NonInvasiveFetalECG"), (r"^EOG", "EOG"), (r"^Worms", "Worms"),
+    (r"^SonyAIBORobotSurface", "SonyAIBO"), (r"^ToeSegmentation", "ToeSegmentation"), (r"^Ford[AB]$", "Ford"),
+    (r"^(SmallKitchenAppliances|LargeKitchenAppliances|RefrigerationDevices|Computers|ScreenType|ElectricDevices)$", "UKHouseholdAppliances"),
+    (r"^Face(All|sUCR)$", "Faces"), (r"^(CricketX|CricketY|CricketZ)$", "Cricket"), (r"^Lightning", "Lightning"),
+    (r"^(ECGFiveDays|TwoLeadECG)$", "ECG-TwoLead"), (r"^(Strawberry|Coffee|Beef|Meat|OliveOil|Ham|Wine)$", "FoodSpectrographs"),
+]
+
+
+def group_of(name):
+    import re
+    for pat, g in GROUP_RULES:
+        if re.search(pat, name):
+            return g
+    return name
+
+
+def grouped_test(df, methods, metric, cond, ref="LOOM"):
+    """Wilcoxon/Holm on group means (one unit per data source)."""
+    T = dataset_table(df, metric, cond=cond, methods=methods)
+    T = T[T[ref].notna()]
+    G = T.groupby([group_of(d) for d in T.index]).mean()
+    return G, pairwise_vs(G, ref, lower_is_better=LOWER[metric])
+
+
 def fmt(x, nd=3):
     return "–" if pd.isna(x) else f"{x:.{nd}f}"
 
@@ -143,6 +170,31 @@ def main(mode="full"):
         pd.concat([a.assign(cond="clean"), b.assign(cond="shifted")]).to_csv(out_tab / f"table_sensitivity_{nm}.csv", index=False)
         to_markdown(a, out_tab / f"table_sensitivity_{nm}_clean.md", f"Table: clean, subset={nm} ({len(sub)} datasets)")
         to_markdown(b, out_tab / f"table_sensitivity_{nm}_shifted.md", f"Table: shifted, subset={nm} ({len(sub)} datasets)")
+    # ---------------- sensitivity: related datasets merged into one unit per source
+    for cond in ("clean", "shifted"):
+        out_g = {}
+        for met in (["nll", "ece"] + (["shift_auroc"] if cond == "shifted" else [])):
+            G, pwg = grouped_test(mr, MAIN, met, cond)
+            out_g[met] = dict(n_units=int(len(G)), pairwise=pwg.to_dict(orient="records"), medians=G.median().to_dict())
+        stats[f"sens_grouped_{cond}"] = out_g
+    # ---------------- E10 natural sensor shift (UWaveGestureLibrary cross-axis transfer)
+    ns = out_res / "natural_shift.json"
+    if ns.exists():
+        d = json.load(open(ns))
+        nsr = pd.DataFrame([dict(task=f"{r['source']}->{r['target']}", resample=r["resample"], method=r["method"],
+                                 nll_in=r["indomain"]["nll"], nll_shift=r["shifted"]["nll"], ece_shift=r["shifted"]["ece"],
+                                 acc_in=r["indomain"]["acc"], acc_shift=r["shifted"]["acc"], shift_auroc=r["shift_auroc"],
+                                 lev_ratio=r["lev_ratio"]) for r in d])
+        tk = nsr.groupby(["task", "method"]).mean(numeric_only=True).reset_index()
+        tk.to_csv(out_tab / "table_natural_shift_tasks.csv", index=False)
+        summ = tk.groupby("method")[["nll_in", "nll_shift", "ece_shift", "acc_in", "acc_shift", "shift_auroc"]].mean()
+        summ.to_csv(out_tab / "table_natural_shift.csv")
+        E10 = dict(n_tasks=int(tk.task.nunique()), n_resamples=int(nsr.resample.nunique()), means=summ.to_dict(orient="index"),
+                   lev_ratio=tk[tk.method == "LOOM"].set_index("task").lev_ratio.to_dict())
+        for met in ("nll_shift", "nll_in", "shift_auroc"):
+            P = tk.pivot(index="task", columns="method", values=met)
+            E10[f"pairwise_{met}"] = pairwise_vs(P, "LOOM", lower_is_better=(met != "shift_auroc")).to_dict(orient="records")
+        stats["E10_natural_shift"] = E10
     # ---------------- E9 conformal
     cp = mr[mr.method.isin(CP + [m for m in mr.method.unique() if "@" in str(m)])]
     if not cp.empty:

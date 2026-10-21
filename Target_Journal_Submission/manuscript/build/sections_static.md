@@ -6,7 +6,7 @@ A ridge readout, however, returns scores, not probabilities. Decision-making app
 
 All of these approaches apply *one* global transformation to the scores. A global temperature cannot distinguish a test series that resembles the training data from one that has been corrupted by sensor noise, a baseline drift or a missing segment; under such shifts globally calibrated models are known to become overconfident [@ovadia2019]. In deep learning, "distance-aware" models address this [@liu2020sngp; @vanamersfoort2020; @kristiadi2020], but they require retraining the network and have no counterpart for random-kernel classifiers.
 
-This paper observes that ridge regression already provides a closed-form distance measure, the leverage h(x) = z(x)ᵀA⁻¹z(x), which is the posterior predictive variance factor of the equivalent Bayesian linear model [@mackay1992] and a classical diagnostic of extrapolation [@hoaglin1978]. The difficulty is calibrating how leverage should change confidence without held-out data. We show that the same Sherman–Morrison algebra behind the LOO shortcut also gives the *held-out leverage* of every training example, h₋ᵢ = dᵢ/(1 − dᵢ). The n exact LOO pairs (z₋ᵢ, h₋ᵢ) are therefore out-of-sample observations of both the score and its uncertainty, and a leverage-aware calibrator can be fitted on them without refitting anything.
+This paper observes that ridge regression already provides a closed-form distance measure, the leverage h(x) = x̃(x)ᵀA⁻¹x̃(x) (with x̃(x) the intercept-augmented, standardised features), which is the posterior predictive variance factor of the equivalent Bayesian linear model [@mackay1992] and a classical diagnostic of extrapolation [@hoaglin1978]. The difficulty is calibrating how leverage should change confidence without held-out data. We show that the same Sherman–Morrison algebra behind the LOO shortcut also gives the *held-out leverage* of every training example, h₋ᵢ = dᵢ/(1 − dᵢ). The n exact LOO pairs (z₋ᵢ, h₋ᵢ) are therefore out-of-sample observations of both the score and its uncertainty, and a leverage-aware calibrator can be fitted on them without refitting anything.
 
 The resulting method, LOOM (Leave-One-Out-fitted, leverage-Moderated readout), outputs p(y | x) = softmax(a·z(x)/√(h(x)/$h_{\mathrm{ref}}$)): ridge logits are standardised by their predictive standard deviation, and a single temperature a and the ridge penalty λ are selected by the LOO negative log-likelihood. The same identities yield every LOO model's prediction at a test point in closed form, which gives exact jackknife+ prediction sets [@barber2021] without the n refits that jackknife+ normally requires.
 
@@ -54,11 +54,11 @@ Let 𝒟 = {(xᵢ, yᵢ)}ᵢ₌₁ⁿ be univariate series with labels in {1, �
 
 ## 4.1 Ridge readout from one thin SVD
 
-Features are standardised with the training mean and standard deviation; $\Phi_c$ ∈ ℝⁿˣᵖ denotes the centred training matrix and Y ∈ {−1, +1}ⁿˣᴷ the one-vs-rest targets. With an unpenalised intercept and penalty λ, the readout has the augmented design z(x) = (1, ψ(x)), where ψ(x) are the centred standardised features, and
+Features are standardised with the training mean and standard deviation; $\Phi_c$ ∈ ℝⁿˣᵖ denotes the centred training matrix and Y ∈ {−1, +1}ⁿˣᴷ the one-vs-rest targets. With an unpenalised intercept and penalty λ, the readout uses the augmented feature vector x̃(x) = (1, ψ(x)), where ψ(x) are the centred standardised features; with X̃ stacking the training vectors,
 
-$$A = Z^\top Z + \operatorname{diag}(0, \lambda I_p), \qquad B = A^{-1} Z^\top Y, \qquad \hat Y = Z B = H Y. \qquad (1)$$
+$$A = \tilde X^\top \tilde X + \operatorname{diag}(0, \lambda I_p), \qquad B = A^{-1} \tilde X^\top Y, \qquad \hat Y = \tilde X B = H Y. \qquad (1)$$
 
-With the thin SVD $\Phi_c$ = U S Vᵀ (rank r ≤ min(n − 1, p)) and $D_\lambda$ = diag(1/($s_j^2$ + λ)), the hat diagonal, the logits z(x) := Bᵀz(x) of a test series and its leverage are
+With the thin SVD $\Phi_c$ = U S Vᵀ (rank r ≤ min(n − 1, p)) and $D_\lambda$ = diag(1/($s_j^2$ + λ)), the hat diagonal, the logits z(x) := Bᵀx̃(x) of a test series and its leverage h(x) := x̃(x)ᵀA⁻¹x̃(x) are
 
 $$d_i = \frac1n + \sum_{j=1}^{r} u_{ij}^2\frac{s_j^2}{s_j^2+\lambda}, \qquad h(x) = \frac1n + \big\lVert D_\lambda^{1/2} V^\top\psi\big\rVert^2 + \frac{\lVert\psi\rVert^2 - \lVert V^\top\psi\rVert^2}{\lambda}. \qquad (2)$$
 
@@ -68,7 +68,7 @@ The last term of h(x) measures the part of ψ(x) outside the span of the trainin
 
 For example i, let B₋ᵢ denote the fit without it (same λ and standardisation). By the Sherman–Morrison identity (proofs in Online Resource 1):
 
-$$z_{-i} := B_{-i}^\top z(x_i) = Y_i - \frac{Y_i - \hat Y_i}{1 - d_i}, \qquad h_{-i} := z(x_i)^\top A_{-i}^{-1} z(x_i) = \frac{d_i}{1 - d_i}. \qquad (3)$$
+$$z_{-i} := B_{-i}^\top \tilde x_i = Y_i - \frac{Y_i - \hat Y_i}{1 - d_i}, \qquad h_{-i} := \tilde x_i^\top A_{-i}^{-1} \tilde x_i = \frac{d_i}{1 - d_i}. \qquad (3)$$
 
 The first identity is the PRESS shortcut [@allen1974] used by RidgeClassifierCV and PreVal. The second is what LOOM adds: h₋ᵢ is the leverage that example i would have as a *test* point of the model trained without it. Thus (z₋ᵢ, h₋ᵢ) is an exact out-of-sample observation of a score together with its uncertainty, available for all n examples at O(nr) cost.
 
@@ -90,7 +90,7 @@ and the pair (λ, a) with the smallest value is kept, as PreVal does for its sca
 
 ## 4.5 Closed-form jackknife+ prediction sets
 
-Let s(x, y; f) be a non-conformity score of a probabilistic model f. We use LAC, s = 1 − p̂(y | x) [@sadinle2019], and deterministic APS, the total probability of classes at least as probable as y [@romano2020]. Jackknife+ predicts the set C(x) = {y : #{i : sᵢ < s(x, y; f₋ᵢ)} < (1 − α)(n + 1)}, where sᵢ = s(xᵢ, yᵢ; f₋ᵢ) [@barber2021]. It requires every LOO model at every test point, which for ridge is available in closed form. With k(x, i) = z(x)ᵀA⁻¹z(xᵢ) = 1/n + (Vᵀψ)ᵀ$D_\lambda$ S uᵢ and residuals E = Y − Ŷ,
+Let s(x, y; f) be a non-conformity score of a probabilistic model f. We use LAC, s = 1 − p̂(y | x) [@sadinle2019], and deterministic APS, the total probability of classes at least as probable as y [@romano2020]. Jackknife+ predicts the set C(x) = {y : #{i : sᵢ < s(x, y; f₋ᵢ)} < (1 − α)(n + 1)}, where sᵢ = s(xᵢ, yᵢ; f₋ᵢ) [@barber2021]. It requires every LOO model at every test point, which for ridge is available in closed form. With k(x, i) = x̃(x)ᵀA⁻¹x̃ᵢ = 1/n + (Vᵀψ)ᵀ$D_\lambda$ S uᵢ and residuals E = Y − Ŷ,
 
 $$z_{-i}(x) = z(x) - \frac{k(x,i)\,E_i}{1-d_i}, \qquad h_{-i}(x) = h(x) + \frac{k(x,i)^2}{1-d_i}. \qquad (6)$$
 
@@ -112,7 +112,7 @@ We use the 114 univariate datasets of the UCR 2018 archive [@dau2019ucr] whose o
 
 ## 5.2 Methods compared
 
-All readouts share identical MiniRocket features within a resample. **Ridge-onehot** is the default output of ROCKET-family implementations. **Ridge-softmax** applies a softmax with temperature 1 to the ridge scores. **PreVal** fits a global LOO scale with λ selected jointly [@dempster2025preval], reimplemented without target smoothing as published. **Holdout-TS** is temperature scaling with a stratified 80/20 split: the ridge (λ by LOO squared error) is fitted on 80 % and the temperature on the remaining 20 %. **Ridge-Platt-CV5** and **Ridge-Isotonic-CV5** use scikit-learn's CalibratedClassifierCV [@pedregosa2011] with five-fold out-of-fold calibration and a final model fitted on all data. **LogReg-CV** is L2 logistic regression on standardised features, with C ∈ {10⁻³, 10⁻², 10⁻¹, 1} chosen by three-fold cross-validated log-loss; for cost reasons it is skipped on the 13 datasets with more than 2,000 training series. **PreVal-Ens5** and **LOOM-Ens5** average five models fitted on independently seeded MiniRocket transforms, the analogue of deep ensembles. Two raw-series classifiers with native probabilities are also included: **QUANT** [@dempster2024quant], on all resamples, and the **Arsenal** [@middlehurst2021hc2], in aeon's MiniRocket-kernel configuration on the official split only, because the default configuration was computationally prohibitive (Online Resource 2).
+All readouts share identical MiniRocket features within a resample. **Ridge-onehot** is the default output of ROCKET-family implementations. **Ridge-softmax** applies a softmax with temperature 1 to the ridge scores. **PreVal** fits a global LOO scale with λ selected jointly [@dempster2025preval], reimplemented without target smoothing as published. **Holdout-TS** is temperature scaling with a stratified 80/20 split: the ridge (λ by LOO squared error) is fitted on 80 % and the temperature on the remaining 20 %. **Ridge-Platt-CV5** and **Ridge-Isotonic-CV5** use scikit-learn's CalibratedClassifierCV [@pedregosa2011] with five-fold out-of-fold calibration and a final model fitted on all data. **LogReg-CV** is L2 logistic regression on standardised features, with C ∈ {10⁻³, 10⁻², 10⁻¹, 1} chosen by three-fold cross-validated log-loss; for cost reasons it is skipped on the four datasets with more than 2,000 training series. **PreVal-Ens5** and **LOOM-Ens5** average five models fitted on independently seeded MiniRocket transforms, the analogue of deep ensembles. Two raw-series classifiers with native probabilities are also included: **QUANT** [@dempster2024quant], on all resamples, and the **Arsenal** [@middlehurst2021hc2], in aeon's MiniRocket-kernel configuration on the official split only, because the default configuration was computationally prohibitive (Online Resource 2).
 
 Ablations: **PreVal-smooth** (PreVal with target smoothing, i.e. LOOM without leverage); **LOOM-nosmooth**; **LOOM-free-b** (moderation 1/√(1 + b h) with b fitted on the LOO pairs); **LOOM-finite-c1** (c = 1); **LOOM-kNN** (leverage replaced by the mean squared Euclidean distance to the five nearest training series in the standardised feature space); **LOOM-insample** (calibrator fitted on in-sample instead of LOO pairs); **LOOM-holdout** (80/20 split instead of LOO pairs); and **LOOM-lambdaSSE** (λ chosen by the LOO squared error, as in RidgeClassifierCV).
 

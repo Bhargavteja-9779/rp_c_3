@@ -181,6 +181,16 @@ def fam_vs(comp, sev=3, who="comp"):
     return names[0] if len(names) == 1 else ", ".join(names[:-1]) + " and " + names[-1]
 
 
+def quant_phrase():
+    """Abstract/conclusion phrase for LOOM vs QUANT under corruption (all 18 conditions, and severity 3)."""
+    a, b = pw("E4_shifted", "nll", "QUANT"), pw("E2b_raw_shifted", "nll", "QUANT")
+    word = lambda r: ("on par with" if r["p_holm"] >= 0.05 else ("better than" if r["median_diff"] > 0 else "worse than"))
+    w18, w3 = word(a), word(b)
+    if w18 == w3:
+        return f"is {w18} the tree-based QUANT classifier"
+    return f"is {w18} the tree-based QUANT classifier on average but {w3} it under the strongest corruptions"
+
+
 def varword(key, metric, comp, lower=True):
     """Like sigword, but from the perspective of the competitor/variant (the sentence subject)."""
     w = sigword(key, metric, comp, lower)

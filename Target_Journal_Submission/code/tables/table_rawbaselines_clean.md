@@ -11,6 +11,17 @@
 | QUANT | 112 | 0.396 | 0.518 | – | 69.0/0.0/43.0 | 0.028 [0.004, 0.062] | 0.31 | 0.005 |
 | Arsenal | 111 | 1.656 | 2.806 | – | 92.0/0.0/19.0 | 1.404 [0.923, 1.981] | 0.93 | <0.001 |
 
+*Metric: brier* (n = 114 datasets; methods with fewer datasets show their n)
+
+| Method | n | Median | Mean | Mean rank | W/D/L (LOOM vs method) | Median Δ (method − LOOM) [95% CI] | r_rb | p (Holm) |
+|---|---|---|---|---|---|---|---|---|
+| PreVal-Ens5 | 114 | 0.137 | 0.204 | 1.82 | 24.0/0.0/90.0 | -0.007 [-0.010, -0.004] | -0.63 | <0.001 |
+| PreVal | 114 | 0.140 | 0.206 | 2.35 | 33.0/0.0/81.0 | -0.004 [-0.007, -0.002] | -0.51 | <0.001 |
+| LOOM-Ens5 | 114 | 0.165 | 0.213 | 2.67 | 38.0/0.0/76.0 | -0.000 [-0.001, -0.000] | -0.45 | <0.001 |
+| LOOM | 114 | 0.163 | 0.214 | 3.17 | – | –  | – | – |
+| Arsenal | 111 | 0.171 | 0.235 | – | 67.0/0.0/44.0 | 0.007 [0.002, 0.018] | 0.43 | <0.001 |
+| QUANT | 112 | 0.211 | 0.236 | – | 68.0/0.0/44.0 | 0.010 [0.000, 0.020] | 0.30 | 0.005 |
+
 *Metric: ece* (n = 114 datasets; methods with fewer datasets show their n)
 
 | Method | n | Median | Mean | Mean rank | W/D/L (LOOM vs method) | Median Δ (method − LOOM) [95% CI] | r_rb | p (Holm) |

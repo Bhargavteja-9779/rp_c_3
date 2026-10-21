@@ -150,9 +150,10 @@ def main(mode="full"):
     famtab = fam.groupby(["cond", "sev", "method"])[["nll", "ece", "acc", "shift_auroc"]].median().reset_index()
     famtab.to_csv(out_tab / "table_robustness_by_family.csv", index=False)
     # ---------------- E2b raw-series probabilistic classifiers, official split (resample 0)
-    r0 = mr[mr["resample"] == 0]
+    # the Arsenal was run on clean + severity-3 data only, so every method is compared on the same conditions
+    r0 = mr[(mr["resample"] == 0) & (mr["sev"].isin([0, 3]))]
     for cond in ("clean", "shifted"):
-        t, s_ = summary_table(r0, RAWCMP, ["nll", "ece", "acc"] + (["shift_auroc"] if cond == "shifted" else []), cond)
+        t, s_ = summary_table(r0, RAWCMP, ["nll", "brier", "ece", "acc"] + (["shift_auroc"] if cond == "shifted" else []), cond)
         t.to_csv(out_tab / f"table_rawbaselines_{cond}.csv", index=False); stats[f"E2b_raw_{cond}"] = s_
         to_markdown(t, out_tab / f"table_rawbaselines_{cond}.md", f"Table: comparison with Arsenal and QUANT on the official split — {cond}")
     # ---------------- E3 ablation (clean and shifted)

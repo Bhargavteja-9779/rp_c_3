@@ -120,3 +120,23 @@ completed jobs were discarded:
    0–4, already completed); ElectricDevices is evaluated without the five-seed ensembles (single
    seed) and is therefore absent from the ensemble comparison; the extractor and training-size
    experiments exclude these four datasets. ElectricDevices and Crop jobs run alone at the end.
+
+   *Note added 2026-10-21:* the official-split ElectricDevices job had already finished with the
+   five-seed ensembles before this amendment took effect, so ElectricDevices **is** included in the
+   ensemble comparison (114 datasets); the single-seed rule affects only its resamples 1–2, which
+   carry no ensembles for any dataset.
+
+## 9. Post-hoc analysis changes (made after results were inspected; reported as such)
+
+7. (Review round 8.) The Arsenal was run on clean and severity-3 data only (amendment 3), but the
+   corrupted-data comparison of the official-split table originally averaged LOOM, PreVal, the
+   ensembles and QUANT over all 18 conditions. This mixed different condition sets and favoured
+   LOOM against the Arsenal. The official-split comparison (manuscript Table 3) now uses the six
+   severity-3 conditions **for every method**. As a result QUANT becomes significantly better than
+   LOOM in NLL on this table, which is reported in the abstract, results, discussion and
+   conclusion. The Brier score was added to this table because the Arsenal's vote-based
+   probabilities contain exact zeros that dominate its NLL. The primary endpoint and the main
+   analysis (Tables 1–2, all 18 conditions, five resamples) are unchanged.
+8. (Review round 7.) Fit times of Ridge-onehot/softmax now include the shared SVD they use, and
+   the MiniRocket transform time is reported separately (it was recorded but not loaded because
+   of a key mismatch). No benchmark job was rerun.

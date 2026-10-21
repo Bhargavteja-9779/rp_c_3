@@ -17,7 +17,7 @@ The contributions are:
 3. **Shift benchmark.** A test-time corruption benchmark for univariate TSC (six corruption families × three severities on 114 UCR datasets, five resamples) that evaluates calibration, selective prediction and shift detection, not only accuracy (Section 5).
 4. **Evidence.** A pre-registered comparison against eleven baselines including PreVal, cross-validated calibration, logistic regression, five-member ensembles, QUANT [@dempster2024quant] and Arsenal, with ablations of every component, three further feature extractors, training-set reduction, efficiency measurements and an error analysis. Statistical tests are corrected for multiple comparisons (Sections 6–7).
 
-We also report where LOOM does not help: its in-distribution advantage is small, smoothing of the calibration targets costs some in-distribution calibration error, and LAC prediction sets can become empty under shift.
+We also report where LOOM does not help: its in-distribution advantage is small, smoothing of the calibration targets costs some in-distribution calibration error, a tree-based raw-series classifier (QUANT) is more robust to the strongest corruptions, shifts that leave the random-kernel features in the span of the training data are not detected, and LAC prediction sets can become empty under shift.
 
 # 2 Related work
 

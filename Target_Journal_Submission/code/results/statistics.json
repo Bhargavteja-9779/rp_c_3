@@ -6472,185 +6472,185 @@
  },
  "E5_hydra_clean": {
   "nll": {
-   "n_datasets": 41,
-   "n_ranked": 41,
+   "n_datasets": 43,
+   "n_ranked": 43,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 61.712195121951254,
-   "friedman_p": 2.531433302843013e-13,
+   "friedman_chi2": 58.78604651162789,
+   "friedman_p": 1.067965452195585e-12,
    "mean_ranks": {
-    "PreVal": 1.7317073170731707,
-    "LOOM": 1.8048780487804879,
-    "Holdout-TS": 2.8048780487804876,
-    "Ridge-softmax": 3.658536585365854
+    "PreVal": 1.7906976744186047,
+    "LOOM": 1.813953488372093,
+    "Holdout-TS": 2.7906976744186047,
+    "Ridge-softmax": 3.604651162790698
    },
-   "nemenyi_cd": 0.7325156702646004,
+   "nemenyi_cd": 0.7152775927960215,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 41,
-     "ref_wins": 20,
+     "n": 43,
+     "ref_wins": 22,
      "draws": 0,
      "ref_losses": 21,
-     "median_diff": -0.001425126967995377,
-     "ci_low": -0.005125147179965761,
-     "ci_high": 0.00828519254618193,
-     "rank_biserial": 0.04994192799070848,
-     "p": 0.7877521902091758,
-     "p_holm": 0.7877521902091758
+     "median_diff": 0.003504423998475198,
+     "ci_low": -0.00437298691731351,
+     "ci_high": 0.008987018857989165,
+     "rank_biserial": 0.12684989429175475,
+     "p": 0.4763190854800996,
+     "p_holm": 0.4763190854800996
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 41,
-     "ref_wins": 39,
+     "n": 43,
+     "ref_wins": 40,
      "draws": 0,
-     "ref_losses": 2,
+     "ref_losses": 3,
      "median_diff": 0.36160926118218645,
      "ci_low": 0.1634401749554495,
      "ci_high": 0.6272693780375035,
-     "rank_biserial": 0.9396051103368177,
-     "p": 9.722498361952603e-10,
-     "p_holm": 2.916749508585781e-09
+     "rank_biserial": 0.919661733615222,
+     "p": 1.501121005276218e-09,
+     "p_holm": 4.503363015828654e-09
     },
     {
      "competitor": "Holdout-TS",
-     "n": 41,
-     "ref_wins": 31,
+     "n": 43,
+     "ref_wins": 32,
      "draws": 0,
-     "ref_losses": 10,
+     "ref_losses": 11,
      "median_diff": 0.02386999718748717,
      "ci_low": 0.009889789987297892,
      "ci_high": 0.07551906820321475,
-     "rank_biserial": 0.6213704994192799,
-     "p": 0.00032366586219723104,
-     "p_holm": 0.0006473317243944621
+     "rank_biserial": 0.5983086680761099,
+     "p": 0.0004122852192267601,
+     "p_holm": 0.0008245704384535202
     }
    ],
    "medians": {
-    "LOOM": 0.34670831020404014,
-    "PreVal": 0.3245532872461278,
+    "LOOM": 0.3565280572217166,
+    "PreVal": 0.41342710686593215,
     "Ridge-softmax": 1.0483548736215733,
-    "Holdout-TS": 0.6232476607285397
+    "Holdout-TS": 0.6391595779932153
    },
    "means": {
-    "LOOM": 0.5835848693015333,
-    "PreVal": 0.6768309458248208,
-    "Ridge-softmax": 1.2322600488182078,
-    "Holdout-TS": 0.8452576551782448
+    "LOOM": 0.5983605506834423,
+    "PreVal": 0.6941271705165022,
+    "Ridge-softmax": 1.2458038502634912,
+    "Holdout-TS": 0.856149482017484
    },
    "n_available": {
-    "LOOM": 41,
-    "PreVal": 41,
-    "Ridge-softmax": 41,
-    "Holdout-TS": 41
+    "LOOM": 43,
+    "PreVal": 43,
+    "Ridge-softmax": 43,
+    "Holdout-TS": 43
    }
   },
   "ece": {
-   "n_datasets": 41,
-   "n_ranked": 41,
+   "n_datasets": 43,
+   "n_ranked": 43,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 58.60975609756099,
-   "friedman_p": 1.1646814881306251e-12,
+   "friedman_chi2": 55.883720930232585,
+   "friedman_p": 4.447947960303685e-12,
    "mean_ranks": {
-    "PreVal": 1.9268292682926829,
-    "Holdout-TS": 2.097560975609756,
-    "LOOM": 2.1463414634146343,
-    "Ridge-softmax": 3.8292682926829267
+    "PreVal": 1.9534883720930232,
+    "Holdout-TS": 2.116279069767442,
+    "LOOM": 2.1627906976744184,
+    "Ridge-softmax": 3.7674418604651163
    },
-   "nemenyi_cd": 0.7325156702646004,
+   "nemenyi_cd": 0.7152775927960215,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 41,
-     "ref_wins": 15,
+     "n": 43,
+     "ref_wins": 16,
      "draws": 0,
-     "ref_losses": 26,
+     "ref_losses": 27,
      "median_diff": -0.004913749192505548,
      "ci_low": -0.011143575242945732,
      "ci_high": 0.0012721350623085895,
-     "rank_biserial": -0.3356562137049942,
-     "p": 0.061566552753902215,
-     "p_holm": 0.12313310550780443
+     "rank_biserial": -0.321353065539112,
+     "p": 0.06700697058067817,
+     "p_holm": 0.13401394116135634
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 41,
-     "ref_wins": 39,
+     "n": 43,
+     "ref_wins": 40,
      "draws": 0,
-     "ref_losses": 2,
+     "ref_losses": 3,
      "median_diff": 0.22373329949992743,
      "ci_low": 0.15266038587823377,
      "ci_high": 0.3572483399445944,
-     "rank_biserial": 0.9581881533101045,
-     "p": 2.3010215954855084e-10,
-     "p_holm": 6.903064786456525e-10
+     "rank_biserial": 0.9534883720930233,
+     "p": 1.2187229003757238e-10,
+     "p_holm": 3.6561687011271715e-10
     },
     {
      "competitor": "Holdout-TS",
-     "n": 41,
-     "ref_wins": 22,
+     "n": 43,
+     "ref_wins": 23,
      "draws": 0,
-     "ref_losses": 19,
+     "ref_losses": 20,
      "median_diff": 0.0008624341771678815,
      "ci_low": -0.007969843810918947,
      "ci_high": 0.006120876913578044,
-     "rank_biserial": -0.08478513356562137,
-     "p": 0.6442444748572598,
-     "p_holm": 0.6442444748572598
+     "rank_biserial": -0.07822410147991543,
+     "p": 0.6625169348963027,
+     "p_holm": 0.6625169348963027
     }
    ],
    "medians": {
-    "LOOM": 0.05710516130058473,
-    "PreVal": 0.030523644157623035,
+    "LOOM": 0.058352977865533256,
+    "PreVal": 0.030700941303579872,
     "Ridge-softmax": 0.371366751541587,
-    "Holdout-TS": 0.04105826565155196
+    "Holdout-TS": 0.046195712916772706
    },
    "means": {
-    "LOOM": 0.08077364445180164,
-    "PreVal": 0.059730056822489365,
-    "Ridge-softmax": 0.3804035192126311,
-    "Holdout-TS": 0.07720932637896301
+    "LOOM": 0.08241080868315612,
+    "PreVal": 0.062316495394582436,
+    "Ridge-softmax": 0.3789772384329719,
+    "Holdout-TS": 0.07971698142299767
    },
    "n_available": {
-    "LOOM": 41,
-    "PreVal": 41,
-    "Ridge-softmax": 41,
-    "Holdout-TS": 41
+    "LOOM": 43,
+    "PreVal": 43,
+    "Ridge-softmax": 43,
+    "Holdout-TS": 43
    }
   },
   "acc": {
-   "n_datasets": 41,
-   "n_ranked": 41,
+   "n_datasets": 43,
+   "n_ranked": 43,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 20.236749116607818,
-   "friedman_p": 0.00015160511800864154,
+   "friedman_chi2": 19.70134228187911,
+   "friedman_p": 0.00019573294009025518,
    "mean_ranks": {
-    "LOOM": 2.1707317073170733,
-    "PreVal": 2.231707317073171,
-    "Ridge-softmax": 2.475609756097561,
-    "Holdout-TS": 3.1219512195121952
+    "LOOM": 2.1744186046511627,
+    "PreVal": 2.2325581395348837,
+    "Ridge-softmax": 2.5,
+    "Holdout-TS": 3.0930232558139537
    },
-   "nemenyi_cd": 0.7325156702646004,
+   "nemenyi_cd": 0.7152775927960215,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 41,
+     "n": 43,
      "ref_wins": 5,
-     "draws": 32,
+     "draws": 34,
      "ref_losses": 4,
      "median_diff": 0.0,
      "ci_low": 0.0,
@@ -6661,109 +6661,109 @@
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 41,
-     "ref_wins": 12,
-     "draws": 24,
+     "n": 43,
+     "ref_wins": 13,
+     "draws": 25,
      "ref_losses": 5,
      "median_diff": 0.0,
      "ci_low": 0.0,
      "ci_high": 0.0,
-     "rank_biserial": -0.5032679738562091,
-     "p": 0.06837655952437323,
-     "p_holm": 0.13675311904874646
+     "rank_biserial": -0.543859649122807,
+     "p": 0.04285796577660062,
+     "p_holm": 0.08571593155320124
     },
     {
      "competitor": "Holdout-TS",
-     "n": 41,
-     "ref_wins": 27,
+     "n": 43,
+     "ref_wins": 28,
      "draws": 6,
-     "ref_losses": 8,
+     "ref_losses": 9,
      "median_diff": -0.0032467532467532756,
      "ci_low": -0.011049723756906049,
      "ci_high": -0.0004444444444444695,
-     "rank_biserial": -0.7333333333333333,
-     "p": 0.0001545873449879327,
-     "p_holm": 0.0004637620349637981
+     "rank_biserial": -0.7155049786628734,
+     "p": 0.00014811973504404356,
+     "p_holm": 0.00044435920513213065
     }
    ],
    "medians": {
-    "LOOM": 0.9177514792899408,
-    "PreVal": 0.9177514792899408,
-    "Ridge-softmax": 0.9165680473372781,
-    "Holdout-TS": 0.855
+    "LOOM": 0.8964912280701754,
+    "PreVal": 0.8968421052631579,
+    "Ridge-softmax": 0.8964912280701754,
+    "Holdout-TS": 0.8533333333333334
    },
    "means": {
-    "LOOM": 0.8157505823025016,
-    "PreVal": 0.8152882951995877,
-    "Ridge-softmax": 0.8079144799999163,
-    "Holdout-TS": 0.7857957743465901
+    "LOOM": 0.81134926484905,
+    "PreVal": 0.8109084794718532,
+    "Ridge-softmax": 0.8035131212305099,
+    "Holdout-TS": 0.7815320356257967
    },
    "n_available": {
-    "LOOM": 41,
-    "PreVal": 41,
-    "Ridge-softmax": 41,
-    "Holdout-TS": 41
+    "LOOM": 43,
+    "PreVal": 43,
+    "Ridge-softmax": 43,
+    "Holdout-TS": 43
    }
   }
  },
  "E5_hydra_shifted": {
   "nll": {
-   "n_datasets": 41,
-   "n_ranked": 41,
+   "n_datasets": 43,
+   "n_ranked": 43,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 86.9121951219513,
-   "friedman_p": 1.008440930265049e-18,
+   "friedman_chi2": 91.43720930232553,
+   "friedman_p": 1.076063499400643e-19,
    "mean_ranks": {
-    "LOOM": 1.146341463414634,
-    "Ridge-softmax": 2.1219512195121952,
-    "Holdout-TS": 3.1951219512195124,
-    "PreVal": 3.5365853658536586
+    "LOOM": 1.1627906976744187,
+    "Ridge-softmax": 2.0930232558139537,
+    "Holdout-TS": 3.186046511627907,
+    "PreVal": 3.558139534883721
    },
-   "nemenyi_cd": 0.7325156702646004,
+   "nemenyi_cd": 0.7152775927960215,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 41,
-     "ref_wins": 41,
+     "n": 43,
+     "ref_wins": 43,
      "draws": 0,
      "ref_losses": 0,
      "median_diff": 7.912773151317422,
      "ci_low": 1.5648759186991132,
      "ci_high": 9.061077100144027,
      "rank_biserial": 1.0,
-     "p": 9.094947017729282e-13,
-     "p_holm": 2.7284841053187847e-12
+     "p": 2.2737367544323206e-13,
+     "p_holm": 6.821210263296962e-13
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 41,
-     "ref_wins": 36,
+     "n": 43,
+     "ref_wins": 37,
      "draws": 0,
-     "ref_losses": 5,
+     "ref_losses": 6,
      "median_diff": 4.209525035832279,
      "ci_low": 0.49967112261465507,
      "ci_high": 7.040002477499707,
-     "rank_biserial": 0.9140534262485482,
-     "p": 5.218680598773062e-09,
-     "p_holm": 5.218680598773062e-09
+     "rank_biserial": 0.9006342494714588,
+     "p": 4.943103704135865e-09,
+     "p_holm": 4.943103704135865e-09
     },
     {
      "competitor": "Holdout-TS",
-     "n": 41,
-     "ref_wins": 40,
+     "n": 43,
+     "ref_wins": 42,
      "draws": 0,
      "ref_losses": 1,
      "median_diff": 7.781801215178412,
      "ci_low": 4.154460679840943,
      "ci_high": 9.066104786724487,
-     "rank_biserial": 0.9907084785133565,
-     "p": 6.366462912410498e-12,
-     "p_holm": 1.2732925824820995e-11
+     "rank_biserial": 0.9915433403805497,
+     "p": 1.5916157281026244e-12,
+     "p_holm": 3.183231456205249e-12
     }
    ],
    "medians": {
@@ -6773,75 +6773,75 @@
     "Holdout-TS": 8.787739940984205
    },
    "means": {
-    "LOOM": 1.5022495326449525,
-    "PreVal": 7.263756222731069,
-    "Ridge-softmax": 5.6474638345591455,
-    "Holdout-TS": 7.544939666916123
+    "LOOM": 1.5109526001528892,
+    "PreVal": 7.2619994724104195,
+    "Ridge-softmax": 5.705661540009968,
+    "Holdout-TS": 7.523252604277692
    },
    "n_available": {
-    "LOOM": 41,
-    "PreVal": 41,
-    "Ridge-softmax": 41,
-    "Holdout-TS": 41
+    "LOOM": 43,
+    "PreVal": 43,
+    "Ridge-softmax": 43,
+    "Holdout-TS": 43
    }
   },
   "ece": {
-   "n_datasets": 41,
-   "n_ranked": 41,
+   "n_datasets": 43,
+   "n_ranked": 43,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 50.73658536585367,
-   "friedman_p": 5.566870680463503e-11,
+   "friedman_chi2": 52.0325581395349,
+   "friedman_p": 2.947606465849274e-11,
    "mean_ranks": {
-    "LOOM": 1.2682926829268293,
-    "PreVal": 2.8292682926829267,
-    "Holdout-TS": 2.8292682926829267,
-    "Ridge-softmax": 3.073170731707317
+    "LOOM": 1.2790697674418605,
+    "PreVal": 2.8372093023255816,
+    "Holdout-TS": 2.8372093023255816,
+    "Ridge-softmax": 3.046511627906977
    },
-   "nemenyi_cd": 0.7325156702646004,
+   "nemenyi_cd": 0.7152775927960215,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 41,
-     "ref_wins": 39,
+     "n": 43,
+     "ref_wins": 41,
      "draws": 0,
      "ref_losses": 2,
      "median_diff": 0.12876466201191486,
      "ci_low": 0.07856254270499433,
      "ci_high": 0.15341198585083632,
-     "rank_biserial": 0.9210220673635308,
-     "p": 3.3878677641041577e-09,
-     "p_holm": 7.54425855120644e-09
+     "rank_biserial": 0.9260042283298098,
+     "p": 9.799805411603302e-10,
+     "p_holm": 2.9399416234809905e-09
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 41,
-     "ref_wins": 36,
+     "n": 43,
+     "ref_wins": 37,
      "draws": 0,
-     "ref_losses": 5,
+     "ref_losses": 6,
      "median_diff": 0.17632347827077982,
      "ci_low": 0.14594129847685103,
      "ci_high": 0.2884814897584358,
-     "rank_biserial": 0.8885017421602788,
-     "p": 2.239085006294772e-08,
-     "p_holm": 2.239085006294772e-08
+     "rank_biserial": 0.8773784355179705,
+     "p": 1.8377704691374674e-08,
+     "p_holm": 1.8377704691374674e-08
     },
     {
      "competitor": "Holdout-TS",
-     "n": 41,
-     "ref_wins": 37,
+     "n": 43,
+     "ref_wins": 39,
      "draws": 0,
      "ref_losses": 4,
      "median_diff": 0.1259270002323096,
      "ci_low": 0.08264237362250776,
      "ci_high": 0.19671186166666707,
-     "rank_biserial": 0.9256678281068524,
-     "p": 2.5147528504021466e-09,
-     "p_holm": 7.54425855120644e-09
+     "rank_biserial": 0.9260042283298098,
+     "p": 9.799805411603302e-10,
+     "p_holm": 2.9399416234809905e-09
     }
    ],
    "medians": {
@@ -6851,75 +6851,75 @@
     "Holdout-TS": 0.3241746655372343
    },
    "means": {
-    "LOOM": 0.19542620368359806,
-    "PreVal": 0.3364669960363893,
-    "Ridge-softmax": 0.40080457104510375,
-    "Holdout-TS": 0.34470359574633813
+    "LOOM": 0.1937897343861144,
+    "PreVal": 0.33744223578149884,
+    "Ridge-softmax": 0.40033347561700644,
+    "Holdout-TS": 0.3459054959040419
    },
    "n_available": {
-    "LOOM": 41,
-    "PreVal": 41,
-    "Ridge-softmax": 41,
-    "Holdout-TS": 41
+    "LOOM": 43,
+    "PreVal": 43,
+    "Ridge-softmax": 43,
+    "Holdout-TS": 43
    }
   },
   "acc": {
-   "n_datasets": 41,
-   "n_ranked": 41,
+   "n_datasets": 43,
+   "n_ranked": 43,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 15.120000000000015,
-   "friedman_p": 0.0017169197165364705,
+   "friedman_chi2": 12.61583577712604,
+   "friedman_p": 0.005545516477159331,
    "mean_ranks": {
-    "Ridge-softmax": 2.2195121951219514,
-    "LOOM": 2.317073170731707,
-    "PreVal": 2.3658536585365852,
-    "Holdout-TS": 3.097560975609756
+    "Ridge-softmax": 2.2093023255813953,
+    "LOOM": 2.3488372093023258,
+    "PreVal": 2.4186046511627906,
+    "Holdout-TS": 3.0232558139534884
    },
-   "nemenyi_cd": 0.7325156702646004,
+   "nemenyi_cd": 0.7152775927960215,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 41,
-     "ref_wins": 6,
-     "draws": 29,
+     "n": 43,
+     "ref_wins": 7,
+     "draws": 30,
      "ref_losses": 6,
      "median_diff": 0.0,
      "ci_low": 0.0,
      "ci_high": 0.0,
-     "rank_biserial": 0.10256410256410256,
-     "p": 0.7536837177261574,
-     "p_holm": 1.0
+     "rank_biserial": 0.07692307692307693,
+     "p": 0.8067663226228976,
+     "p_holm": 0.894062322350317
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 41,
+     "n": 43,
      "ref_wins": 10,
-     "draws": 19,
-     "ref_losses": 12,
+     "draws": 20,
+     "ref_losses": 13,
      "median_diff": 0.0,
      "ci_low": 0.0,
      "ci_high": 0.0,
-     "rank_biserial": 0.13043478260869565,
-     "p": 0.5921774964028619,
-     "p_holm": 1.0
+     "rank_biserial": 0.18115942028985507,
+     "p": 0.4470311611751585,
+     "p_holm": 0.894062322350317
     },
     {
      "competitor": "Holdout-TS",
-     "n": 41,
+     "n": 43,
      "ref_wins": 29,
      "draws": 0,
-     "ref_losses": 12,
-     "median_diff": -0.005723905723905631,
-     "ci_low": -0.00935231714126189,
-     "ci_high": -0.0018659881255300714,
-     "rank_biserial": -0.41231126596980255,
-     "p": 0.020675064274655597,
-     "p_holm": 0.06202519282396679
+     "ref_losses": 14,
+     "median_diff": -0.005098452883263022,
+     "ci_low": -0.009026614554252688,
+     "ci_high": -9.861932938848295e-05,
+     "rank_biserial": -0.3890063424947146,
+     "p": 0.025656865341261437,
+     "p_holm": 0.07697059602378431
     }
    ],
    "medians": {
@@ -6929,488 +6929,488 @@
     "Holdout-TS": 0.5258333333333334
    },
    "means": {
-    "LOOM": 0.5261371162975947,
-    "PreVal": 0.5264231570661986,
-    "Ridge-softmax": 0.5264533834545773,
-    "Holdout-TS": 0.5108258085197482
+    "LOOM": 0.5230903266547284,
+    "PreVal": 0.5233448376420119,
+    "Ridge-softmax": 0.5237260189693385,
+    "Holdout-TS": 0.5086133082765755
    },
    "n_available": {
-    "LOOM": 41,
-    "PreVal": 41,
-    "Ridge-softmax": 41,
-    "Holdout-TS": 41
+    "LOOM": 43,
+    "PreVal": 43,
+    "Ridge-softmax": 43,
+    "Holdout-TS": 43
    }
   }
  },
  "E5_multirocket_clean": {
   "nll": {
-   "n_datasets": 42,
-   "n_ranked": 42,
+   "n_datasets": 44,
+   "n_ranked": 44,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 53.11428571428564,
-   "friedman_p": 1.7333346570441702e-11,
+   "friedman_chi2": 57.24545454545455,
+   "friedman_p": 2.2777974839726482e-12,
    "mean_ranks": {
-    "PreVal": 1.8333333333333333,
-    "LOOM": 1.9523809523809523,
-    "Holdout-TS": 2.5476190476190474,
-    "Ridge-softmax": 3.6666666666666665
+    "PreVal": 1.7954545454545454,
+    "LOOM": 1.9772727272727273,
+    "Holdout-TS": 2.5454545454545454,
+    "Ridge-softmax": 3.6818181818181817
    },
-   "nemenyi_cd": 0.7237427110334673,
+   "nemenyi_cd": 0.7071027232580058,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 42,
+     "n": 44,
      "ref_wins": 20,
      "draws": 0,
-     "ref_losses": 22,
-     "median_diff": -0.0012378152820964189,
+     "ref_losses": 24,
+     "median_diff": -0.00240587620142918,
      "ci_low": -0.009285577391214932,
-     "ci_high": 0.0071007456601963614,
-     "rank_biserial": -0.023255813953488372,
-     "p": 0.9015424782878654,
-     "p_holm": 0.9015424782878654
+     "ci_high": 0.006028689224897105,
+     "rank_biserial": -0.06060606060606061,
+     "p": 0.7331740415289687,
+     "p_holm": 0.7331740415289687
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 42,
-     "ref_wins": 39,
+     "n": 44,
+     "ref_wins": 41,
      "draws": 0,
      "ref_losses": 3,
-     "median_diff": 0.3721715337376669,
-     "ci_low": 0.15725469364889005,
-     "ci_high": 0.5733570262357623,
-     "rank_biserial": 0.9490586932447398,
-     "p": 2.9103830456733704e-10,
-     "p_holm": 8.731149137020111e-10
+     "median_diff": 0.39226110829233,
+     "ci_low": 0.16637834617881703,
+     "ci_high": 0.6189561443769023,
+     "rank_biserial": 0.9535353535353536,
+     "p": 7.275957614183426e-11,
+     "p_holm": 2.1827872842550278e-10
     },
     {
      "competitor": "Holdout-TS",
-     "n": 42,
-     "ref_wins": 27,
+     "n": 44,
+     "ref_wins": 28,
      "draws": 0,
-     "ref_losses": 15,
+     "ref_losses": 16,
      "median_diff": 0.012700462379470229,
-     "ci_low": 6.457590245009153e-05,
-     "ci_high": 0.04871469657701438,
-     "rank_biserial": 0.521594684385382,
-     "p": 0.002657982327946229,
-     "p_holm": 0.005315964655892458
+     "ci_low": -0.0008984781045062304,
+     "ci_high": 0.05116650725978378,
+     "rank_biserial": 0.5050505050505051,
+     "p": 0.00295601836228343,
+     "p_holm": 0.00591203672456686
     }
    ],
    "medians": {
-    "LOOM": 0.3977807082531001,
-    "PreVal": 0.3226715031679062,
-    "Ridge-softmax": 0.9904918228737366,
-    "Holdout-TS": 0.4293377306945919
+    "LOOM": 0.41878421848003045,
+    "PreVal": 0.3526888974184271,
+    "Ridge-softmax": 1.0094747668171844,
+    "Holdout-TS": 0.44074295052754275
    },
    "means": {
-    "LOOM": 0.5471160737251568,
-    "PreVal": 0.5659386147464006,
-    "Ridge-softmax": 1.168311201877204,
-    "Holdout-TS": 0.7212361368268125
+    "LOOM": 0.5557895327340615,
+    "PreVal": 0.5696762117818989,
+    "Ridge-softmax": 1.1949856206303346,
+    "Holdout-TS": 0.7248634571343522
    },
    "n_available": {
-    "LOOM": 42,
-    "PreVal": 42,
-    "Ridge-softmax": 42,
-    "Holdout-TS": 42
+    "LOOM": 44,
+    "PreVal": 44,
+    "Ridge-softmax": 44,
+    "Holdout-TS": 44
    }
   },
   "ece": {
-   "n_datasets": 42,
-   "n_ranked": 42,
+   "n_datasets": 44,
+   "n_ranked": 44,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 61.17142857142858,
-   "friedman_p": 3.303243869733636e-13,
+   "friedman_chi2": 65.15454545454543,
+   "friedman_p": 4.6483750227834005e-14,
    "mean_ranks": {
-    "PreVal": 1.7619047619047619,
-    "Holdout-TS": 2.1666666666666665,
-    "LOOM": 2.261904761904762,
-    "Ridge-softmax": 3.8095238095238093
+    "PreVal": 1.75,
+    "Holdout-TS": 2.159090909090909,
+    "LOOM": 2.272727272727273,
+    "Ridge-softmax": 3.8181818181818183
    },
-   "nemenyi_cd": 0.7237427110334673,
+   "nemenyi_cd": 0.7071027232580058,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 42,
+     "n": 44,
      "ref_wins": 16,
      "draws": 0,
-     "ref_losses": 26,
-     "median_diff": -0.004035661293986169,
-     "ci_low": -0.016025593561584853,
-     "ci_high": 0.002009545009369197,
-     "rank_biserial": -0.38870431893687707,
-     "p": 0.02760080871757964,
-     "p_holm": 0.05520161743515928
+     "ref_losses": 28,
+     "median_diff": -0.006491478788310244,
+     "ci_low": -0.01741785672575775,
+     "ci_high": 0.00012091192032136818,
+     "rank_biserial": -0.4262626262626263,
+     "p": 0.012996403585248117,
+     "p_holm": 0.025992807170496235
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 42,
-     "ref_wins": 39,
+     "n": 44,
+     "ref_wins": 41,
      "draws": 0,
      "ref_losses": 3,
-     "median_diff": 0.26740590657225516,
-     "ci_low": 0.178299112186188,
-     "ci_high": 0.390061980332011,
-     "rank_biserial": 0.9712070874861573,
-     "p": 4.001776687800884e-11,
-     "p_holm": 1.2005330063402653e-10
+     "median_diff": 0.30211077836747613,
+     "ci_low": 0.18319234597397596,
+     "ci_high": 0.3994261327966122,
+     "rank_biserial": 0.9737373737373738,
+     "p": 1.000444171950221e-11,
+     "p_holm": 3.001332515850663e-11
     },
     {
      "competitor": "Holdout-TS",
-     "n": 42,
-     "ref_wins": 18,
+     "n": 44,
+     "ref_wins": 19,
      "draws": 0,
-     "ref_losses": 24,
+     "ref_losses": 25,
      "median_diff": -0.0022688400530457963,
-     "ci_low": -0.011560279865156502,
-     "ci_high": 0.004715794895825556,
-     "rank_biserial": -0.09634551495016612,
-     "p": 0.5944014424017041,
-     "p_holm": 0.5944014424017041
+     "ci_low": -0.012683992454096387,
+     "ci_high": 0.005020053899081771,
+     "rank_biserial": -0.09494949494949495,
+     "p": 0.5908024405393917,
+     "p_holm": 0.5908024405393917
     }
    ],
    "medians": {
-    "LOOM": 0.05007761000561382,
-    "PreVal": 0.030261650495498497,
-    "Ridge-softmax": 0.34130719705493934,
-    "Holdout-TS": 0.03513571618936544
+    "LOOM": 0.05601378235619811,
+    "PreVal": 0.03135676945111107,
+    "Ridge-softmax": 0.36038826152400627,
+    "Holdout-TS": 0.03617381579867495
    },
    "means": {
-    "LOOM": 0.07607409684994143,
-    "PreVal": 0.05290521776147275,
-    "Ridge-softmax": 0.3767932971017397,
-    "Holdout-TS": 0.07355374916884796
+    "LOOM": 0.07789201373319134,
+    "PreVal": 0.05423093334325569,
+    "Ridge-softmax": 0.3881103993410168,
+    "Holdout-TS": 0.07436256067543877
    },
    "n_available": {
-    "LOOM": 42,
-    "PreVal": 42,
-    "Ridge-softmax": 42,
-    "Holdout-TS": 42
+    "LOOM": 44,
+    "PreVal": 44,
+    "Ridge-softmax": 44,
+    "Holdout-TS": 44
    }
   },
   "acc": {
-   "n_datasets": 42,
-   "n_ranked": 42,
+   "n_datasets": 44,
+   "n_ranked": 44,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 48.53409090909093,
-   "friedman_p": 1.639103398675184e-10,
+   "friedman_chi2": 53.118279569892394,
+   "friedman_p": 1.7299394825010957e-11,
    "mean_ranks": {
-    "Ridge-softmax": 2.1547619047619047,
-    "LOOM": 2.1904761904761907,
-    "PreVal": 2.2023809523809526,
-    "Holdout-TS": 3.4523809523809526
+    "Ridge-softmax": 2.1363636363636362,
+    "PreVal": 2.1818181818181817,
+    "LOOM": 2.2045454545454546,
+    "Holdout-TS": 3.477272727272727
    },
-   "nemenyi_cd": 0.7237427110334673,
+   "nemenyi_cd": 0.7071027232580058,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 42,
+     "n": 44,
      "ref_wins": 3,
-     "draws": 36,
-     "ref_losses": 3,
+     "draws": 37,
+     "ref_losses": 4,
      "median_diff": 0.0,
      "ci_low": 0.0,
      "ci_high": 0.0,
-     "rank_biserial": 0.23809523809523808,
-     "p": 0.6001794871405538,
-     "p_holm": 1.0
+     "rank_biserial": 0.42857142857142855,
+     "p": 0.3104944343172349,
+     "p_holm": 0.6209888686344698
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 42,
+     "n": 44,
      "ref_wins": 5,
-     "draws": 31,
-     "ref_losses": 6,
+     "draws": 32,
+     "ref_losses": 7,
      "median_diff": 0.0,
      "ci_low": 0.0,
      "ci_high": 0.0,
-     "rank_biserial": -0.09090909090909091,
-     "p": 0.789675102094056,
-     "p_holm": 1.0
+     "rank_biserial": 0.05128205128205128,
+     "p": 0.875329249147922,
+     "p_holm": 0.875329249147922
     },
     {
      "competitor": "Holdout-TS",
-     "n": 42,
-     "ref_wins": 31,
+     "n": 44,
+     "ref_wins": 33,
      "draws": 7,
      "ref_losses": 4,
-     "median_diff": -0.004455611390284775,
-     "ci_low": -0.01014439147350546,
-     "ci_high": -0.0023269611074488994,
-     "rank_biserial": -0.8444444444444444,
-     "p": 1.3190238817418992e-05,
-     "p_holm": 3.957071645225697e-05
+     "median_diff": -0.004600253073387961,
+     "ci_low": -0.010578560877524096,
+     "ci_high": -0.002702702702702675,
+     "rank_biserial": -0.8605974395448079,
+     "p": 5.026794486099091e-06,
+     "p_holm": 1.5080383458297275e-05
     }
    ],
    "medians": {
-    "LOOM": 0.9205093579720445,
-    "PreVal": 0.9205093579720445,
-    "Ridge-softmax": 0.9205093579720445,
-    "Holdout-TS": 0.883623188405797
+    "LOOM": 0.903888888888889,
+    "PreVal": 0.913888888888889,
+    "Ridge-softmax": 0.913888888888889,
+    "Holdout-TS": 0.8700944335202583
    },
    "means": {
-    "LOOM": 0.8341851499353956,
-    "PreVal": 0.8343726732861036,
-    "Ridge-softmax": 0.832189973687787,
-    "Holdout-TS": 0.8043340184807822
+    "LOOM": 0.834163767372074,
+    "PreVal": 0.834797312388659,
+    "Ridge-softmax": 0.8327138264084476,
+    "Holdout-TS": 0.8033305200630892
    },
    "n_available": {
-    "LOOM": 42,
-    "PreVal": 42,
-    "Ridge-softmax": 42,
-    "Holdout-TS": 42
+    "LOOM": 44,
+    "PreVal": 44,
+    "Ridge-softmax": 44,
+    "Holdout-TS": 44
    }
   }
  },
  "E5_multirocket_shifted": {
   "nll": {
-   "n_datasets": 42,
-   "n_ranked": 42,
+   "n_datasets": 44,
+   "n_ranked": 44,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 92.85714285714289,
-   "friedman_p": 5.3306363189354336e-20,
+   "friedman_chi2": 98.20909090909083,
+   "friedman_p": 3.771718565413453e-21,
    "mean_ranks": {
-    "LOOM": 1.1428571428571428,
-    "Ridge-softmax": 2.0476190476190474,
-    "PreVal": 3.380952380952381,
-    "Holdout-TS": 3.4285714285714284
+    "LOOM": 1.1363636363636365,
+    "Ridge-softmax": 2.0454545454545454,
+    "PreVal": 3.3863636363636362,
+    "Holdout-TS": 3.4318181818181817
    },
-   "nemenyi_cd": 0.7237427110334673,
+   "nemenyi_cd": 0.7071027232580058,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 42,
-     "ref_wins": 40,
+     "n": 44,
+     "ref_wins": 42,
      "draws": 0,
      "ref_losses": 2,
-     "median_diff": 5.668279056201712,
-     "ci_low": 3.797662585338725,
-     "ci_high": 8.529983685389597,
-     "rank_biserial": 0.991140642303433,
-     "p": 3.183231456205249e-12,
-     "p_holm": 9.549694368615746e-12
+     "median_diff": 6.137075226882445,
+     "ci_low": 4.0470590896226595,
+     "ci_high": 8.291430255092248,
+     "rank_biserial": 0.9919191919191919,
+     "p": 7.958078640513122e-13,
+     "p_holm": 2.3874235921539366e-12
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 42,
-     "ref_wins": 39,
+     "n": 44,
+     "ref_wins": 41,
      "draws": 0,
      "ref_losses": 3,
      "median_diff": 1.8892866762689053,
-     "ci_low": 0.8339185838158917,
-     "ci_high": 4.488125730408118,
-     "rank_biserial": 0.9800664451827242,
-     "p": 1.5006662579253316e-11,
-     "p_holm": 1.5006662579253316e-11
+     "ci_low": 0.9625566157031037,
+     "ci_high": 4.233320529859733,
+     "rank_biserial": 0.9818181818181818,
+     "p": 3.751665644813329e-12,
+     "p_holm": 3.751665644813329e-12
     },
     {
      "competitor": "Holdout-TS",
-     "n": 42,
-     "ref_wins": 41,
+     "n": 44,
+     "ref_wins": 43,
      "draws": 0,
      "ref_losses": 1,
-     "median_diff": 6.053192262652768,
-     "ci_low": 4.377860920986524,
+     "median_diff": 6.594446065828027,
+     "ci_low": 4.612857676793876,
      "ci_high": 8.678050247947398,
-     "rank_biserial": 0.991140642303433,
-     "p": 3.183231456205249e-12,
-     "p_holm": 9.549694368615746e-12
+     "rank_biserial": 0.9919191919191919,
+     "p": 7.958078640513122e-13,
+     "p_holm": 2.3874235921539366e-12
     }
    ],
    "medians": {
-    "LOOM": 1.2787514236169204,
-    "PreVal": 6.731684019343321,
+    "LOOM": 1.3287461559567584,
+    "PreVal": 6.760797148899934,
     "Ridge-softmax": 4.061561563433775,
-    "Holdout-TS": 7.018620205959532
+    "Holdout-TS": 7.663131786831524
    },
    "means": {
-    "LOOM": 1.4950518262208625,
-    "PreVal": 7.923808083419195,
-    "Ridge-softmax": 4.951599872901302,
-    "Holdout-TS": 8.1912802925561
+    "LOOM": 1.5230142424738182,
+    "PreVal": 7.994206875981192,
+    "Ridge-softmax": 4.935352889935416,
+    "Holdout-TS": 8.275255187208723
    },
    "n_available": {
-    "LOOM": 42,
-    "PreVal": 42,
-    "Ridge-softmax": 42,
-    "Holdout-TS": 42
+    "LOOM": 44,
+    "PreVal": 44,
+    "Ridge-softmax": 44,
+    "Holdout-TS": 44
    }
   },
   "ece": {
-   "n_datasets": 42,
-   "n_ranked": 42,
+   "n_datasets": 44,
+   "n_ranked": 44,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 44.428571428571445,
-   "friedman_p": 1.2237540698542402e-09,
+   "friedman_chi2": 47.809090909090855,
+   "friedman_p": 2.338287002243961e-10,
    "mean_ranks": {
-    "LOOM": 1.3571428571428572,
-    "PreVal": 2.761904761904762,
-    "Ridge-softmax": 2.9285714285714284,
-    "Holdout-TS": 2.9523809523809526
+    "LOOM": 1.3409090909090908,
+    "PreVal": 2.772727272727273,
+    "Ridge-softmax": 2.9318181818181817,
+    "Holdout-TS": 2.9545454545454546
    },
-   "nemenyi_cd": 0.7237427110334673,
+   "nemenyi_cd": 0.7071027232580058,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 42,
-     "ref_wins": 37,
+     "n": 44,
+     "ref_wins": 39,
      "draws": 0,
      "ref_losses": 5,
-     "median_diff": 0.14066189913142213,
-     "ci_low": 0.07940645223996293,
+     "median_diff": 0.15430157056766694,
+     "ci_low": 0.08182655736767704,
      "ci_high": 0.23078275148316485,
-     "rank_biserial": 0.867109634551495,
-     "p": 4.592266122926958e-08,
-     "p_holm": 5.201491148909554e-08
+     "rank_biserial": 0.8787878787878788,
+     "p": 1.1523411558300722e-08,
+     "p_holm": 1.3032149581704289e-08
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 42,
-     "ref_wins": 37,
+     "n": 44,
+     "ref_wins": 39,
      "draws": 0,
      "ref_losses": 5,
-     "median_diff": 0.19639038941027717,
-     "ci_low": 0.12368957811486782,
-     "ci_high": 0.26397028976927245,
-     "rank_biserial": 0.9446290143964563,
-     "p": 4.1109160520136356e-10,
-     "p_holm": 1.2332748156040907e-09
+     "median_diff": 0.20659497045362005,
+     "ci_low": 0.13302091861173604,
+     "ci_high": 0.27281407671635255,
+     "rank_biserial": 0.9494949494949495,
+     "p": 1.0277290130034089e-10,
+     "p_holm": 3.0831870390102267e-10
     },
     {
      "competitor": "Holdout-TS",
-     "n": 42,
-     "ref_wins": 37,
+     "n": 44,
+     "ref_wins": 39,
      "draws": 0,
      "ref_losses": 5,
-     "median_diff": 0.16968860983702894,
-     "ci_low": 0.07835964793110399,
-     "ci_high": 0.23424039342409134,
-     "rank_biserial": 0.8781838316722038,
-     "p": 2.600745574454777e-08,
-     "p_holm": 5.201491148909554e-08
+     "median_diff": 0.17152437420006522,
+     "ci_low": 0.08383800728510246,
+     "ci_high": 0.2463574487269328,
+     "rank_biserial": 0.8888888888888888,
+     "p": 6.516074790852144e-09,
+     "p_holm": 1.3032149581704289e-08
     }
    ],
    "medians": {
-    "LOOM": 0.2038165756677894,
-    "PreVal": 0.3566404429326376,
+    "LOOM": 0.1958302067506016,
+    "PreVal": 0.3662523511187335,
     "Ridge-softmax": 0.39997798693860165,
-    "Holdout-TS": 0.35525317224249464
+    "Holdout-TS": 0.37153001505922767
    },
    "means": {
-    "LOOM": 0.19589011596107186,
-    "PreVal": 0.3686379876455531,
-    "Ridge-softmax": 0.3976067585239316,
-    "Holdout-TS": 0.3752987335778834
+    "LOOM": 0.19294275659297055,
+    "PreVal": 0.37270310537185264,
+    "Ridge-softmax": 0.40177438916674135,
+    "Holdout-TS": 0.3796247250801134
    },
    "n_available": {
-    "LOOM": 42,
-    "PreVal": 42,
-    "Ridge-softmax": 42,
-    "Holdout-TS": 42
+    "LOOM": 44,
+    "PreVal": 44,
+    "Ridge-softmax": 44,
+    "Holdout-TS": 44
    }
   },
   "acc": {
-   "n_datasets": 42,
-   "n_ranked": 42,
+   "n_datasets": 44,
+   "n_ranked": 44,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 28.092651757188534,
-   "friedman_p": 3.4729785854288436e-06,
+   "friedman_chi2": 26.917682926829187,
+   "friedman_p": 6.125994293907044e-06,
    "mean_ranks": {
-    "PreVal": 2.1666666666666665,
-    "LOOM": 2.2738095238095237,
-    "Ridge-softmax": 2.2738095238095237,
-    "Holdout-TS": 3.2857142857142856
+    "PreVal": 2.1704545454545454,
+    "Ridge-softmax": 2.272727272727273,
+    "LOOM": 2.3068181818181817,
+    "Holdout-TS": 3.25
    },
-   "nemenyi_cd": 0.7237427110334673,
+   "nemenyi_cd": 0.7071027232580058,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 42,
+     "n": 44,
      "ref_wins": 4,
-     "draws": 31,
-     "ref_losses": 7,
-     "median_diff": 0.0,
-     "ci_low": 0.0,
-     "ci_high": 0.0,
-     "rank_biserial": 0.24242424242424243,
-     "p": 0.47690655496758394,
-     "p_holm": 0.9538131099351679
-    },
-    {
-     "competitor": "Ridge-softmax",
-     "n": 42,
-     "ref_wins": 8,
-     "draws": 26,
+     "draws": 32,
      "ref_losses": 8,
      "median_diff": 0.0,
      "ci_low": 0.0,
      "ci_high": 0.0,
-     "rank_biserial": 0.029411764705882353,
-     "p": 0.9176178742687193,
-     "p_holm": 0.9538131099351679
+     "rank_biserial": 0.358974358974359,
+     "p": 0.272095182736126,
+     "p_holm": 0.544190365472252
+    },
+    {
+     "competitor": "Ridge-softmax",
+     "n": 44,
+     "ref_wins": 8,
+     "draws": 27,
+     "ref_losses": 9,
+     "median_diff": 0.0,
+     "ci_low": 0.0,
+     "ci_high": 0.0,
+     "rank_biserial": 0.12418300653594772,
+     "p": 0.6528726765278284,
+     "p_holm": 0.6528726765278284
     },
     {
      "competitor": "Holdout-TS",
-     "n": 42,
-     "ref_wins": 32,
+     "n": 44,
+     "ref_wins": 33,
      "draws": 0,
-     "ref_losses": 10,
+     "ref_losses": 11,
      "median_diff": -0.008447191210349092,
-     "ci_low": -0.013114410681399652,
+     "ci_low": -0.013127147766322955,
      "ci_high": -0.0027777777777777263,
-     "rank_biserial": -0.5968992248062015,
-     "p": 0.0004998449321647058,
-     "p_holm": 0.0014995347964941175
+     "rank_biserial": -0.5515151515151515,
+     "p": 0.0010821552800734935,
+     "p_holm": 0.0032464658402204805
     }
    ],
    "medians": {
-    "LOOM": 0.5003673716360284,
-    "PreVal": 0.5005925968612536,
-    "Ridge-softmax": 0.5012532575219142,
-    "Holdout-TS": 0.47291585063324193
+    "LOOM": 0.49839093868133455,
+    "PreVal": 0.49875325752191424,
+    "Ridge-softmax": 0.49875325752191424,
+    "Holdout-TS": 0.47158138037535025
    },
    "means": {
-    "LOOM": 0.5096259170912256,
-    "PreVal": 0.5096896321460116,
-    "Ridge-softmax": 0.5104313344836203,
-    "Holdout-TS": 0.49314500423927976
+    "LOOM": 0.5014128933115969,
+    "PreVal": 0.5016252273790441,
+    "Ridge-softmax": 0.5023332159740342,
+    "Holdout-TS": 0.4858738315852951
    },
    "n_available": {
-    "LOOM": 42,
-    "PreVal": 42,
-    "Ridge-softmax": 42,
-    "Holdout-TS": 42
+    "LOOM": 44,
+    "PreVal": 44,
+    "Ridge-softmax": 44,
+    "Holdout-TS": 44
    }
   }
  },

@@ -39,19 +39,27 @@ def _save(fig, out, name):
 
 
 def fig_method(out):
-    fig, ax = plt.subplots(figsize=(7.0, 2.3)); ax.axis("off"); ax.set_xlim(0, 10); ax.set_ylim(0, 3)
-    boxes = [(0.1, "Time series\n$x$"), (1.75, "Random-kernel\ntransform\n(MiniRocket)"), (3.55, "Standardise +\nthin SVD\n$\\Phi_c=USV^\\top$"),
-             (5.45, "Exact LOO for every $\\lambda$:\n$z_{-i}$, $h_{-i}=d_i/(1-d_i)$"), (7.55, "Fit $\\lambda$, $a$ by LOO NLL\n(Platt-smoothed targets)")]
-    for x, t in boxes:
-        ax.add_patch(plt.Rectangle((x, 1.55), 1.6 if x < 5 else 1.9, 1.15, fc="#eef4fc", ec="#2a78d6", lw=1.0))
-        ax.text(x + (0.8 if x < 5 else 0.95), 2.12, t, ha="center", va="center", fontsize=7, color=INK)
-    for x0, x1 in [(1.7, 1.75), (3.35, 3.55), (5.15, 5.45), (7.35, 7.55)]:
-        ax.annotate("", (x1, 2.12), (x0, 2.12), arrowprops=dict(arrowstyle="->", color=INK2, lw=1))
-    ax.add_patch(plt.Rectangle((2.2, 0.15), 5.6, 1.0, fc="#fdf0ea", ec="#eb6834", lw=1.0))
-    ax.text(5.0, 0.65, "Test point: logits $z(x)$, leverage $h(x)=z^\\top A^{-1}z$ (closed form)\n"
-            "$p(y\\mid x)=\\mathrm{softmax}\\left(a\\, z(x)/\\sqrt{h(x)/h_{ref}}\\right)$;  jackknife+ sets via exact $f_{-i}(x)$",
-            ha="center", va="center", fontsize=7, color=INK)
-    ax.annotate("", (5.0, 1.15), (8.5, 1.55), arrowprops=dict(arrowstyle="->", color=INK2, lw=1))
+    fig, ax = plt.subplots(figsize=(7.0, 2.5)); ax.axis("off"); ax.set_xlim(0, 10); ax.set_ylim(0, 3.1)
+    texts = ["Time series\n$x$",
+             "Random-kernel\ntransform\n(MiniRocket)",
+             "Standardise,\nthin SVD\n$\\Phi_c = U S V^\\top$",
+             "Exact LOO pairs\n$(z_{-i},\\, h_{-i})$ for\nevery $\\lambda$",
+             "Fit $\\lambda$ and $a$\nby LOO NLL\n(smoothed targets)"]
+    w, gap, x0, y0, hgt = 1.7, 0.3, 0.15, 1.75, 1.15
+    for k, t in enumerate(texts):
+        x = x0 + k * (w + gap)
+        ax.add_patch(plt.Rectangle((x, y0), w, hgt, fc="#eef4fc", ec="#2a78d6", lw=1.0))
+        ax.text(x + w / 2, y0 + hgt / 2, t, ha="center", va="center", fontsize=6.8, color=INK, linespacing=1.3)
+        if k:
+            ax.annotate("", (x, y0 + hgt / 2), (x - gap, y0 + hgt / 2), arrowprops=dict(arrowstyle="->", color=INK2, lw=1))
+    bx, bw = 1.5, 7.0
+    ax.add_patch(plt.Rectangle((bx, 0.1), bw, 1.15, fc="#fdf0ea", ec="#eb6834", lw=1.0))
+    ax.text(bx + bw / 2, 0.675, "Test series: logits $z(x)$ and leverage $h(x) = \\tilde x^\\top A^{-1} \\tilde x$ from the same SVD\n"
+            "$\\hat p(y\\mid x) = \\mathrm{softmax}\\left(a\\, z(x) / \\sqrt{h(x)/h_{\\mathrm{ref}}}\\right)$;"
+            "  jackknife+ sets from the exact LOO models $f_{-i}(x)$",
+            ha="center", va="center", fontsize=6.8, color=INK, linespacing=1.6)
+    xl = x0 + 4 * (w + gap) + w / 2
+    ax.annotate("", (bx + bw, 0.675), (xl, y0), arrowprops=dict(arrowstyle="->", color=INK2, lw=1, connectionstyle="angle,angleA=-90,angleB=0"))
     _save(fig, out, "fig1_method")
 
 
@@ -137,6 +145,7 @@ def fig_scatter(root, out):
     for ax, (nm, sel) in zip(axs, [("Clean test", raw.cond == "clean"), ("Mean over 18 corruptions", raw.cond != "clean")]):
         T = raw[sel].groupby(["dataset", "method", "resample"]).nll.mean().groupby(["dataset", "method"]).mean().unstack().dropna()
         better = T.LOOM < T.PreVal
+        T = T.clip(lower=1e-3)       # near-zero NLLs (perfectly separated datasets) are drawn at 1e-3
         ax.scatter(T.PreVal[better], T.LOOM[better], s=14, color="#2a78d6", marker="o", label=f"LOOM better ({better.sum()})", edgecolor="white", linewidth=0.4)
         ax.scatter(T.PreVal[~better], T.LOOM[~better], s=14, color="#eb6834", marker="s", label=f"PreVal better ({(~better).sum()})", edgecolor="white", linewidth=0.4)
         lo, hi = np.nanmin(T.values) * 0.8, np.nanmax(T.values) * 1.2
@@ -179,6 +188,8 @@ def fig_ablation(root, out):
         ax.set_yticks(y); ax.set_yticklabels(pw.index, fontsize=7)
         ax.set_xlabel("Median ΔNLL (variant − LOOM), 95% CI"); ax.set_title(title, fontsize=8)
         ax.set_xscale("symlog", linthresh=0.01)
+        lo, hi = float(np.nanmin(pw.ci_low)), float(np.nanmax(pw.ci_high))
+        ax.set_xlim(min(lo * 1.6, -0.02), max(hi * 1.6, 0.02))      # keep every interval inside the panel
     fig.tight_layout(); _save(fig, out, "fig_ablation")
 
 
@@ -220,7 +231,7 @@ def fig_efficiency(root, out):
     tm = pd.read_csv(p)
     tm = tm[(tm["transform"].isin(["minirocket", "raw"])) & (tm.train_frac == 1.0)]
     g = tm.groupby(["dataset", "method"]).agg(fit=("fit", "mean"), n=("n_train", "first")).reset_index()
-    fig, ax = plt.subplots(figsize=(3.4, 2.8))
+    fig, ax = plt.subplots(figsize=(4.6, 2.8))
     for m in ["LOOM", "PreVal", "Holdout-TS", "Ridge-Platt-CV5", "LogReg-CV", "LOOM-Ens5", "Arsenal", "QUANT"]:
         v = g[g.method == m].sort_values("n")
         if v.empty:
@@ -228,8 +239,11 @@ def fig_efficiency(root, out):
         c, mk, _ = STYLE[m]
         ax.scatter(v.n, v.fit.clip(lower=1e-3), s=8, color=c, marker=mk, label=m, alpha=0.8, linewidths=0)
     ax.set_xscale("log"); ax.set_yscale("log"); ax.set_xlabel("Training series"); ax.set_ylabel("Fit time (s, single core)")
-    ax.legend(fontsize=6, ncol=2, loc="upper left")
-    _save(fig, out, "fig_efficiency")
+    ax.legend(fontsize=6, ncol=1, loc="upper left", bbox_to_anchor=(1.01, 1.0), frameon=False, markerscale=1.5)
+    fig.tight_layout(); _save(fig, out, "fig_efficiency")
+
+
+MIN_BIN = 200   # minimum pooled test predictions for a reliability bin to be drawn
 
 
 def fig_reliability(root, out):
@@ -245,11 +259,11 @@ def fig_reliability(root, out):
             if (m, kind) not in pooled:
                 continue
             cnt, sc, sa = pooled[(m, kind)]
-            ok = cnt > 0
             c, mk, ls = STYLE[m]
-            e = (np.abs(sa[ok] - sc[ok])).sum() / cnt.sum()
+            e = (np.abs(sa[cnt > 0] - sc[cnt > 0])).sum() / cnt.sum()     # ECE over all bins
+            ok = cnt >= MIN_BIN                                           # plot only bins with enough support
             ax.plot(sc[ok] / cnt[ok], sa[ok] / cnt[ok], color=c, marker=mk, ls=ls, label=f"{m} (pooled ECE {e:.3f})")
-        ax.set_xlabel("Mean confidence"); ax.set_ylabel("Accuracy"); ax.set_title(title, fontsize=8); ax.legend(fontsize=6.5, loc="upper left")
+        ax.set_xlabel("Mean confidence"); ax.set_ylabel("Accuracy"); ax.set_title(title, fontsize=8); ax.legend(fontsize=6.5, loc="lower right")
         ax.set_xlim(0, 1); ax.set_ylim(0, 1)
     fig.tight_layout(); _save(fig, out, "fig_reliability")
 

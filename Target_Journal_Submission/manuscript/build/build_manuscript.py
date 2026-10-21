@@ -166,6 +166,21 @@ def both(w1, w2):
     return f"both {w1}" if w1 == w2 else f"{w1} and {w2}, respectively,"
 
 
+FAMNAMES = {"noise": "Gaussian noise", "wander": "baseline wander", "missing": "missing segments",
+            "spikes": "spikes", "warp": "time warping", "shift": "circular shifts"}
+
+
+def fam_vs(comp, sev=3, who="comp"):
+    """Corruption families at severity `sev` where `comp` (who='comp') or LOOM (who='loom') has the lower median NLL."""
+    t = csv("table_robustness_by_family")
+    t = t[t["sev"] == sev].pivot(index="cond", columns="method", values="nll")
+    sel = t.index[(t[comp] < t["LOOM"]) if who == "comp" else (t["LOOM"] < t[comp])]
+    names = [FAMNAMES[c] for c in FAMS if c in sel]
+    if not names:
+        return "none of the families"
+    return names[0] if len(names) == 1 else ", ".join(names[:-1]) + " and " + names[-1]
+
+
 def varword(key, metric, comp, lower=True):
     """Like sigword, but from the perspective of the competitor/variant (the sentence subject)."""
     w = sigword(key, metric, comp, lower)

@@ -412,6 +412,23 @@ def render(text):
     return out
 
 
+def _sort_citations(md):
+    """Order keys inside each [@a; @b] group alphabetically by first author, then by year (journal style)."""
+    refs = {r["id"]: r for r in json.load(open(HERE / "references.json"))}
+    def key(k):
+        r = refs.get(k, {})
+        a = (r.get("author") or [{}])[0]
+        name = a.get("family") or a.get("literal") or k
+        year = ((r.get("issued") or {}).get("date-parts") or [[0]])[0][0]
+        return (name.lower(), year)
+    def repl(mo):
+        keys = [k.strip().lstrip("@") for k in mo.group(1).split(";")]
+        if len(keys) < 2 or any(not re.fullmatch(r"[\w:-]+", k) for k in keys):
+            return mo.group(0)
+        return "[" + "; ".join("@" + k for k in sorted(keys, key=key)) + "]"
+    return re.sub(r"\[(@[^\]]+)\]", repl, md)
+
+
 def build(anonymous=True):
     load_narrative()
     parts = []
@@ -422,7 +439,7 @@ def build(anonymous=True):
         p = HERE / name
         if p.exists():
             parts.append(p.read_text())
-    md = render("\n\n".join(parts))
+    md = _sort_citations(render("\n\n".join(parts)))
     md = md.replace("](figures/", f"]({RES / 'figures'}/")
     (HERE / "manuscript_rendered.md").write_text(md)
     docx = OUT / ("Final_Manuscript.docx" if JOURNAL == "jksu" else "alternative_ESWA" / Path("Manuscript_ESWA.docx"))

@@ -113,6 +113,40 @@ def to_markdown(tab, path, title, note=""):
     Path(path).write_text("\n".join(lines))
 
 
+def _case_study_figure(npz_dir, out_fig):
+    """Triage curves: auto-accepted error and share of faulty recordings caught vs review budget."""
+    import matplotlib.pyplot as plt
+    from loom.visualization.plots import STYLE, _save
+    budgets = np.linspace(0, 0.5, 26)
+    curves = {}
+    for f in sorted(Path(npz_dir).glob("*.npz")):
+        o = np.load(f); y, flt = o["y"], o["is_fault"].astype(bool)
+        for m in ["LOOM", "PreVal", "Holdout-TS", "Ridge-Platt-CV5", "QUANT"]:
+            P = o[f"P_stream_{m}"]; conf = P.max(1); ok = P.argmax(1) == y
+            order = np.argsort(conf, kind="stable"); n = len(y)
+            err, caught = [], []
+            for b in budgets:
+                k = int(round(b * n)); d = np.zeros(n, bool); d[order[:k]] = True
+                err.append((~ok[~d]).mean()); caught.append(d[flt].mean() if flt.any() else np.nan)
+            ds = f.name.split("__")[0]
+            curves.setdefault(m, {}).setdefault(ds, []).append((err, caught))
+    if not curves:
+        return
+    fig, axs = plt.subplots(1, 2, figsize=(7.0, 2.8))
+    for m, byds in curves.items():
+        E = np.array([np.mean([e for e, _ in v], 0) for v in byds.values()])     # dataset means over resamples
+        C = np.array([np.nanmean([c for _, c in v], 0) for v in byds.values()])
+        col, mk, ls = STYLE[m]
+        axs[0].plot(100 * budgets, 100 * E.mean(0), color=col, ls=ls, marker=mk, markevery=5, label=m)
+        axs[1].plot(100 * budgets, 100 * np.nanmean(C, 0), color=col, ls=ls, marker=mk, markevery=5, label=m)
+    axs[0].set_xlabel("Recordings sent to human review (%)"); axs[0].set_ylabel("Errors among automatic decisions (%)")
+    axs[1].set_xlabel("Recordings sent to human review (%)"); axs[1].set_ylabel("Faulty recordings caught (%)")
+    axs[1].plot([0, 50], [0, 50], color="#888888", lw=0.8, ls=":", label="random selection")
+    axs[0].set_title("Automatic decisions", fontsize=8); axs[1].set_title("Review queue", fontsize=8)
+    axs[1].legend(fontsize=6.5, loc="upper left", frameon=False)
+    fig.tight_layout(); _save(fig, out_fig, "fig_case_study")
+
+
 def main(mode="full"):
     raw = ROOT / "results" / "raw"
     out_res, out_tab, out_fig = ROOT / "results", ROOT / "tables", ROOT / "figures"
@@ -196,6 +230,27 @@ def main(mode="full"):
             P = tk.pivot(index="task", columns="method", values=met)
             E10[f"pairwise_{met}"] = pairwise_vs(P, "LOOM", lower_is_better=(met != "shift_auroc")).to_dict(orient="records")
         stats["E10_natural_shift"] = E10
+    # ---------------- E11 application case study (triage of faulty sensor recordings; Online Resource 2, section 10)
+    cs = out_res / "case_study.json"
+    if cs.exists():
+        c = pd.DataFrame(json.load(open(cs)))
+        per = c.groupby(["domain", "dataset", "method", "stream"]).mean(numeric_only=True).reset_index()
+        per.to_csv(out_tab / "table_case_study_datasets.csv", index=False)
+        E11 = dict(n_datasets=int(per.dataset.nunique()), n_resamples=int(c["resample"].nunique()), metrics={}, domains={})
+        for stream in ("stream", "clean"):
+            sub = per[per.stream == stream]
+            for met in ["nll", "acc"] + [k for k in c.columns if "@" in k]:
+                if stream == "clean" and met.startswith("fault_caught"):
+                    continue
+                P = sub.pivot(index="dataset", columns="method", values=met)
+                lower = not (met.startswith("fault_caught") or met == "acc")
+                E11["metrics"][f"{stream}:{met}"] = dict(
+                    medians=P.median().to_dict(), means=P.mean().to_dict(),
+                    pairwise=pairwise_vs(P, "LOOM", lower_is_better=lower).to_dict(orient="records"))
+        for dom, g in per[per.stream == "stream"].groupby("domain"):
+            E11["domains"][dom] = g.groupby("method")[["auto_err@20", "fault_caught@20", "nll"]].median().to_dict(orient="index")
+        stats["E11_case_study"] = E11
+        _case_study_figure(out_res / "case_study", out_fig)
     # ---------------- E9 conformal
     cp = mr[mr.method.isin(CP + [m for m in mr.method.unique() if "@" in str(m)])]
     if not cp.empty:

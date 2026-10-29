@@ -11,6 +11,7 @@ Stages (each is resumable: finished jobs are cached in results/raw/*.json):
   extract   MultiRocket / Hydra features, core readouts (generalisation)
   trainsize 25 % / 50 % training data, core readouts (sensitivity)
   natural   natural cross-axis shift on UWaveGestureLibrary X/Y/Z (full mode only)
+  case      application case study: triage of faulty sensor recordings, 12 datasets (full mode only)
   logreg    convergence check of the logistic-regression baseline on 12 datasets (full mode only)
   analyze   statistics, tables, figures
 """
@@ -95,7 +96,7 @@ def schedule(jobs, workers, raw_dir, heavy_n=3000, log=None, max_retries=2):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["quick", "full"], default="quick")
-    ap.add_argument("--stages", default="audit,main,raw,extract,trainsize,natural,logreg,analyze")
+    ap.add_argument("--stages", default="audit,main,raw,extract,trainsize,natural,case,logreg,analyze")
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2)))
     ap.add_argument("--datasets", default=None, help="comma-separated subset (default: mode-dependent)")
     a = ap.parse_args()
@@ -142,7 +143,7 @@ def main():
         schedule(heavy, 1, raw_dir, log=log)
     if a.mode == "full":
         import subprocess
-        for st, script in (("natural", "natural_shift.py"), ("logreg", "check_logreg_convergence.py")):
+        for st, script in (("natural", "natural_shift.py"), ("case", "case_study.py"), ("logreg", "check_logreg_convergence.py")):
             cached = st == "logreg" and (ROOT / "results" / "check_logreg_convergence.json").exists()
             if st in stages and not cached:   # natural_shift.py resumes from its own cache
                 subprocess.run([sys.executable, str(ROOT / "experiments" / script)], check=True, cwd=ROOT)

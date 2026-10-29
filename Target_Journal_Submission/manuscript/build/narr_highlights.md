@@ -1,5 +1,5 @@
-- Closed-form, leverage-moderated probabilities for random-kernel series classifiers.
-- Temperature and ridge penalty fitted on exact leave-one-out scores and leverages.
-- Exact jackknife+ prediction sets obtained without refitting any model.
-- Pre-registered benchmark: 114 UCR datasets, 18 test-time corruptions, 5 resamples.
-- Lower NLL under corruption than other ridge readouts, at ridge-level cost.
+- Fast time series classifiers stay confident on faulty sensor recordings.
+- LOOM lowers confidence for recordings that lie far from the training data.
+- Closed form: no held-out data, no refitting, no ensembles, same cost as ridge.
+- Tested on 114 datasets with 18 simulated sensor faults and on real sensor data.
+- In triage, far more faulty recordings reach the human reviewer.

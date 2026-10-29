@@ -1,5 +1,5 @@
 ---
-title: "Shift-aware probabilities for random convolutional kernel time series classifiers via leverage-moderated leave-one-out calibration"
+title: "Knowing when to ask a human: reliable confidence for fast time series classifiers under sensor faults"
 ---
 
 **Title page (submitted separately from the anonymised manuscript)**

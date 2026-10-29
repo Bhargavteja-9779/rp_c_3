@@ -191,6 +191,42 @@ def quant_phrase():
     return f"is {w18} the tree-based QUANT classifier on average but {w3} it under the strongest corruptions"
 
 
+def brief(key, metric, comp, lower=True, unit="datasets"):
+    """Plain-language comparison of LOOM with `comp` (LOOM is the subject): wins out of n and Holm-adjusted p."""
+    r = pw(key, metric, comp)
+    n = r["ref_wins"] + r["draws"] + r["ref_losses"]
+    better = (r["median_diff"] > 0) if lower else (r["median_diff"] < 0)
+    if r["p_holm"] >= 0.05:
+        return f"not significantly different ({r['ref_wins']} wins, {r['ref_losses']} losses, p {pv(r['p_holm'])})"
+    if better:
+        return f"better on {r['ref_wins']} of {n} {unit} (p {pv(r['p_holm'])})"
+    return f"worse on {r['ref_losses']} of {n} {unit} (p {pv(r['p_holm'])})"
+
+
+def cs(metric, method, field="medians"):
+    return S["E11_case_study"]["metrics"][metric][field][method]
+
+
+def cspw(metric, comp):
+    for r in S["E11_case_study"]["metrics"][metric]["pairwise"]:
+        if r["competitor"] == comp:
+            return r
+    raise KeyError((metric, comp))
+
+
+def csbrief(metric, comp, lower=True):
+    r = cspw(metric, comp)
+    better = (r["median_diff"] > 0) if lower else (r["median_diff"] < 0)
+    n = r["ref_wins"] + r["draws"] + r["ref_losses"]
+    if r["p_holm"] >= 0.05:
+        return f"{r['ref_wins']} of {n} datasets, p {pv(r['p_holm'])}, not significant"
+    return f"{r['ref_wins'] if better else r['ref_losses']} of {n} datasets {'in favour of LOOM' if better else 'against LOOM'}, p {pv(r['p_holm'])}"
+
+
+def csdom(domain, method, field):
+    return S["E11_case_study"]["domains"][domain][method][field]
+
+
 def varword(key, metric, comp, lower=True):
     """Like sigword, but from the perspective of the competitor/variant (the sentence subject)."""
     w = sigword(key, metric, comp, lower)

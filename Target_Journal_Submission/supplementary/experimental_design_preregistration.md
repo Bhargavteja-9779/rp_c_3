@@ -140,3 +140,38 @@ completed jobs were discarded:
 8. (Review round 7.) Fit times of Ridge-onehot/softmax now include the shared SVD they use, and
    the MiniRocket transform time is reported separately (it was recorded but not loaded because
    of a key mismatch). No benchmark job was rerun.
+
+## 10. Application case study (designed after the main benchmark; protocol fixed before it was run, 2026-10-29)
+
+*Purpose.* Evaluate the methods as they would be used in a monitoring application: a classifier
+labels incoming recordings automatically and passes the recordings it is least sure about to a
+human reviewer, while a fraction of recordings is affected by sensor faults. This study is
+**exploratory**: it was added after the main results were known, in response to the question of
+practical value, and it is reported as such.
+
+*Datasets (12, three application domains, chosen by domain before running; all UCR, official
+split plus resamples 1–4):*
+cardiac monitoring (ECG200, ECG5000, TwoLeadECG, NonInvasiveFetalECGThorax1);
+wearable and motion sensing (UWaveGestureLibraryX, CricketX, GunPoint, SemgHandGenderCh2);
+industrial and energy sensing (Wafer, FreezerRegularTrain, PowerCons, RefrigerationDevices).
+
+*Fault model.* Each test recording is independently faulty with probability 0.3. A faulty recording
+receives one fault drawn uniformly from the domain's plausible faults, at a severity drawn uniformly
+from {1, 2, 3}, using the corruption functions of the main benchmark:
+cardiac — broadband noise, baseline wander, electrode spikes, lead-off segment (missing);
+wearable — noise, spikes, packet loss (missing), speed variation (warp);
+industrial — noise, drift (wander), spikes, dropout (missing).
+All draws are seeded by (dataset, resample).
+
+*Methods.* LOOM, PreVal, Holdout-TS, Ridge-Platt-CV5 (MiniRocket features, as in the benchmark) and QUANT.
+
+*Operating metrics (review budget b ∈ {10 %, 20 %, 30 %}; the b least confident recordings, by the
+maximum predicted probability, go to review):* (1) error rate of the automatically accepted
+decisions; (2) share of faulty recordings caught by the review queue; (3) for reference, the same
+quantities on a fault-free stream. Primary operating point: b = 20 %. Secondary: NLL on the faulty
+stream.
+
+*Analysis.* Dataset is the unit (mean over the five resamples); LOOM vs each method by two-sided
+Wilcoxon signed-rank tests with Holm correction over the four comparisons per metric; with 12
+datasets these tests have low power, so per-domain medians are reported descriptively. Per-sample
+outputs are saved for re-analysis.

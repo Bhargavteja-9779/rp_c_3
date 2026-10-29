@@ -9,7 +9,7 @@ title: "Knowing when to ask a human: reliable confidence for fast time series cl
 
 # 1 Introduction
 
-Consider a wearable heart monitor that classifies each short ECG recording as normal or abnormal, a factory system that labels the signal from a production sensor, or a smartwatch that recognises gestures from an accelerometer. All of these systems make many decisions per day, and nobody can check each one. The usual way to keep such a system safe is to let it decide on its own when it is sure and to pass the remaining cases to a person. For this to work, the classifier's confidence has to mean something. It must be high when the prediction is likely to be right and low when it is not.
+Consider a wearable heart monitor that classifies each short ECG recording as normal or abnormal, a factory system that labels the signal from a production sensor, or a smartwatch that recognises gestures from an accelerometer. All of these systems make many decisions per day, and nobody can check each one. The usual way to keep such a system safe is to let it decide on its own when it is sure and to pass the remaining cases to a person. For this to work, the classifier's confidence has to mean something. It must be high when the prediction is likely to be right and low when it is not, a requirement studied broadly under the name of uncertainty quantification [@abdar2021; @gawlikowski2023].
 
 Real sensor data make this hard. Electrodes come loose, cables pick up interference, a patient moves, a sensor drifts or drops samples. A recording damaged in this way can look nothing like the training data, yet most classifiers still return a confident answer for it. A confident wrong answer is the worst outcome for a triage system, because it is exactly the case that never reaches the human reviewer.
 
@@ -116,7 +116,7 @@ We use the 114 univariate datasets of the UCR 2018 archive [@dau2019ucr] whose o
 
 ## 5.2 Methods compared
 
-All readouts use the same MiniRocket features within a resample. **Ridge-onehot** is the default output of ROCKET-family implementations, and **Ridge-softmax** applies a softmax with temperature 1 to the ridge scores. **PreVal** fits a global LOO scale factor with λ chosen jointly [@dempster2025preval]; we reimplemented it without target smoothing, as published. **Holdout-TS** is temperature scaling with a stratified 80/20 split. **Ridge-Platt-CV5** and **Ridge-Isotonic-CV5** use scikit-learn's CalibratedClassifierCV [@pedregosa2011] with five-fold calibration. **LogReg-CV** is L2-regularised logistic regression with C ∈ {10⁻³, 10⁻², 10⁻¹, 1} chosen by three-fold cross-validated log-loss; for cost reasons it was skipped on the four datasets with more than 2,000 training series. **PreVal-Ens5** and **LOOM-Ens5** average five models built on independently seeded MiniRocket transforms, the analogue of deep ensembles. Two classifiers that work on the raw series and produce their own probabilities complete the comparison: **QUANT** [@dempster2024quant] on all resamples, and the **Arsenal** [@middlehurst2021hc2] in aeon's MiniRocket-kernel configuration on the official split only, because the default configuration was too slow for our hardware (Online Resource 2).
+All readouts use the same MiniRocket features within a resample. **Ridge-onehot** is the default output of ROCKET-family implementations, and **Ridge-softmax** applies a softmax with temperature 1 to the ridge scores. **PreVal** fits a global LOO scale factor with λ chosen jointly [@dempster2025preval]; we reimplemented it without target smoothing, as published. **Holdout-TS** is temperature scaling with a stratified 80/20 split. **Ridge-Platt-CV5** and **Ridge-Isotonic-CV5** use scikit-learn's CalibratedClassifierCV [@pedregosa2011] with five-fold calibration. **LogReg-CV** is L2-regularised logistic regression with C ∈ {10⁻³, 10⁻², 10⁻¹, 1} chosen by three-fold cross-validated log-loss; for cost reasons it was skipped on the four datasets with more than 2,000 training series. **PreVal-Ens5** and **LOOM-Ens5** average five models built on independently seeded MiniRocket transforms, the analogue of deep ensembles. Two classifiers that work on the raw series and produce their own probabilities complete the comparison: **QUANT** [@dempster2024quant] on all resamples, and the **Arsenal** [@middlehurst2021hc2] in aeon's MiniRocket-kernel configuration on the official split only, because the default configuration was too slow for our hardware (Online Resource 2). Some methods cannot be applied to every dataset. The cross-validated calibrators need at least as many training series per class as folds, and the Arsenal returned undefined (NaN) probabilities on Fungi, which has a single training series per class. These methods are therefore compared on fewer datasets, as the n column of each table shows.
 
 To see which parts of LOOM matter, we also ran eight variants: PreVal with target smoothing (that is, LOOM without leverage; **PreVal-smooth**), LOOM without smoothing (**LOOM-nosmooth**), a moderation strength b learned on the LOO pairs (**LOOM-free-b**), a finite strength c = 1 (**LOOM-finite-c1**), leverage replaced by the mean squared distance to the five nearest training series (**LOOM-kNN**), the calibration fitted on in-sample instead of LOO pairs (**LOOM-insample**) or on an 80/20 split (**LOOM-holdout**), and λ chosen by the LOO squared error as in RidgeClassifierCV (**LOOM-lambdaSSE**).
 
@@ -159,42 +159,42 @@ The advantage over PreVal in catching faults held in each domain. With a 20 % bu
 
 ## 6.2 Calibration on clean data
 
-Table 1 summarises performance on the clean test sets. On clean data LOOM is as good as the best existing readouts, but not better. Its median NLL is 0.295. Compared with PreVal, LOOM is not significantly different (50 wins, 64 losses, p = 1.000), and the same holds against five-fold Platt scaling and cross-validated logistic regression (Table 1). Compared with hold-out temperature scaling, which gives up 20 % of the training data, LOOM is better on 86 of 114 datasets (p < 0.001), and it is far better than the raw ridge outputs. Accuracy is essentially the same as PreVal's (median 0.914 vs 0.914), since both use the same ridge scores.
+Table 1 summarises performance on the clean test sets. On clean data LOOM is as good as the best existing readouts, but not better. Its median NLL is 0.295. Compared with PreVal, LOOM is not significantly different (49 wins, 65 losses, p = 1.000), and the same holds against five-fold Platt scaling and cross-validated logistic regression (Table 1). Compared with hold-out temperature scaling, which gives up 20 % of the training data, LOOM is better on 85 of 114 datasets (p < 0.001), and it is far better than the raw ridge outputs. Accuracy is essentially the same as PreVal's (median 0.914 vs 0.914), since both use the same ridge scores.
 
-There is one cost. LOOM's calibration error on clean data is higher than PreVal's (median ECE 0.075 vs 0.040; LOOM worse on 85 of 114 datasets; p < 0.001). The cause is the target smoothing of Section 4.4, which makes LOOM slightly underconfident when there are few training series per class (Section 6.9).
+There is one cost. LOOM's calibration error on clean data is higher than PreVal's (median ECE 0.075 vs 0.040; LOOM worse on 86 of 114 datasets; p < 0.001). The cause is the target smoothing of Section 4.4, which makes LOOM slightly underconfident when there are few training series per class (Section 6.9).
 
 | Method | n | NLL | ECE | BRIER | ACC | Mean rank | W/D/L | r_rb | p (Holm) |
 |---|---|---|---|---|---|---|---|---|---|
-| LOOM (ours) | 114 | 0.295 | 0.075 | 0.144 | 0.914 | 1.94 | – | – | – |
-| PreVal | 114 | 0.360 | 0.040 | 0.134 | 0.914 | 1.81 | 50/0/64 | -0.04 | 1.000 |
-| Hold-out temperature scaling | 114 | 0.524 | 0.053 | 0.177 | 0.896 | 3.02 | 86/0/28 | 0.62 | < 0.001 |
-| Ridge + Platt (5-fold) | 110 | 0.294 | 0.080 | 0.148 | 0.912 | – | 54/0/56 | 0.05 | 1.000 |
+| LOOM (ours) | 114 | 0.295 | 0.075 | 0.144 | 0.914 | 2.28 | – | – | – |
+| PreVal | 114 | 0.360 | 0.040 | 0.134 | 0.914 | 2.13 | 49/0/65 | -0.06 | 1.000 |
+| Hold-out temperature scaling | 114 | 0.524 | 0.052 | 0.177 | 0.896 | 3.56 | 85/0/29 | 0.61 | < 0.001 |
+| Ridge + Platt (5-fold) | 110 | 0.294 | 0.080 | 0.148 | 0.912 | – | 53/0/57 | 0.03 | 1.000 |
 | Ridge + isotonic (5-fold) | 110 | 0.670 | 0.044 | 0.157 | 0.904 | – | 96/0/14 | 0.92 | < 0.001 |
 | Logistic regression (CV) | 109 | 0.314 | 0.049 | 0.151 | 0.901 | – | 53/0/56 | -0.01 | 1.000 |
-| QUANT | 112 | 0.384 | 0.117 | 0.207 | 0.899 | – | 76/0/36 | 0.43 | < 0.001 |
-| Ridge softmax (T = 1) | 114 | 0.588 | 0.249 | 0.284 | 0.914 | 3.71 | 110/0/4 | 0.97 | < 0.001 |
-| Ridge one-hot | 114 | 2.959 | 0.086 | 0.171 | 0.914 | 4.52 | 103/0/11 | 0.96 | < 0.001 |
+| QUANT | 114 | 0.386 | 0.116 | 0.210 | 0.895 | 3.05 | 77/0/37 | 0.43 | < 0.001 |
+| Ridge softmax (T = 1) | 114 | 0.588 | 0.249 | 0.284 | 0.914 | 4.57 | 110/0/4 | 0.97 | < 0.001 |
+| Ridge one-hot | 114 | 2.959 | 0.086 | 0.171 | 0.914 | 5.40 | 103/0/11 | 0.96 | < 0.001 |
 
 : **Table 1** Clean test data: median over datasets of the mean over five resamples. Mean rank, W/D/L (datasets on which LOOM is better/equal/worse), rank-biserial correlation r_rb and Holm-adjusted Wilcoxon p-value refer to NLL
 
 
 ## 6.3 Behaviour under sensor faults
 
-**Leverage reacts to faults.** For clean test series the median ratio h(x)/$h_{\mathrm{ref}}$ is 1.01, so the held-out leverages computed during training are on the same scale as the leverages of new clean recordings. Under faults the ratio grows with severity: at the highest severity it reaches 30.5 for noise, 29.8 for spikes, 8.7 for a 30 % dropout, 6.3 for baseline wander and 3.5 for misalignment, but only 1.26 for speed variation (Fig. 4).
+**Leverage reacts to faults.** For clean test series the median ratio h(x)/$h_{\mathrm{ref}}$ is 1.01, so the held-out leverages computed during training are on the same scale as the leverages of new clean recordings. Under faults the ratio grows with severity: at the highest severity it reaches 30.3 for noise, 29.5 for spikes, 8.6 for a 30 % dropout, 6.2 for baseline wander and 3.5 for misalignment, but only 1.26 for speed variation (Fig. 4).
 
-**Probabilities under faults.** Averaged over the 18 fault conditions (Table 2), LOOM's median NLL is 0.738, against 1.728 for PreVal. Compared with PreVal, LOOM is better on 108 of 114 datasets (p < 0.001), and it is also better than hold-out temperature scaling, Platt and isotonic calibration and logistic regression (Table 2). Fig. 5 shows how the gap opens as the faults become stronger, and Fig. 6 shows the per-dataset picture. Accuracy is unchanged, because LOOM and PreVal share the same ridge scores (median 0.694 vs 0.692). The gain comes entirely from lower confidence on the damaged recordings that are misclassified, which is visible in the reliability diagrams of Fig. 7. The same mechanism makes faulty recordings easier to spot. The median AUROC for telling faulty from clean recordings by 1 − max p̂ is 0.765 for LOOM and 0.563 for PreVal, where 0.5 means no separation at all.
+**Probabilities under faults.** Averaged over the 18 fault conditions (Table 2), LOOM's median NLL is 0.738, against 1.728 for PreVal. Compared with PreVal, LOOM is better on 108 of 114 datasets (p < 0.001), and it is also better than hold-out temperature scaling, Platt and isotonic calibration and logistic regression (Table 2). Fig. 5 shows how the gap opens as the faults become stronger, and Fig. 6 shows the per-dataset picture. Accuracy is unchanged, because LOOM and PreVal share the same ridge scores (median 0.695 vs 0.692). The gain comes entirely from lower confidence on the damaged recordings that are misclassified, which is visible in the reliability diagrams of Fig. 7. The same mechanism makes faulty recordings easier to spot. The median AUROC for telling faulty from clean recordings by 1 − max p̂ is 0.765 for LOOM and 0.563 for PreVal, where 0.5 means no separation at all.
 
 | Method | n | NLL | ECE | ACC | Shift AUROC | Mean rank | W/D/L | r_rb | p (Holm) |
 |---|---|---|---|---|---|---|---|---|---|
-| LOOM (ours) | 114 | 0.738 | 0.151 | 0.694 | 0.765 | 1.17 | – | – | – |
-| PreVal | 114 | 1.728 | 0.186 | 0.692 | 0.563 | 3.15 | 108/0/6 | 0.97 | < 0.001 |
-| Hold-out temperature scaling | 114 | 2.221 | 0.197 | 0.663 | 0.558 | 3.41 | 110/0/4 | 0.99 | < 0.001 |
-| Ridge + Platt (5-fold) | 110 | 1.125 | 0.145 | 0.696 | 0.610 | – | 86/0/24 | 0.78 | < 0.001 |
-| Ridge + isotonic (5-fold) | 110 | 4.358 | 0.153 | 0.673 | 0.592 | – | 108/0/2 | 1.00 | < 0.001 |
+| LOOM (ours) | 114 | 0.738 | 0.151 | 0.695 | 0.765 | 1.78 | – | – | – |
+| PreVal | 114 | 1.728 | 0.185 | 0.692 | 0.563 | 3.96 | 108/0/6 | 0.97 | < 0.001 |
+| Hold-out temperature scaling | 114 | 2.221 | 0.197 | 0.676 | 0.558 | 4.28 | 110/0/4 | 0.98 | < 0.001 |
+| Ridge + Platt (5-fold) | 110 | 1.125 | 0.144 | 0.697 | 0.610 | – | 86/0/24 | 0.78 | < 0.001 |
+| Ridge + isotonic (5-fold) | 110 | 4.358 | 0.153 | 0.682 | 0.592 | – | 108/0/2 | 1.00 | < 0.001 |
 | Logistic regression (CV) | 109 | 1.878 | 0.219 | 0.660 | 0.516 | – | 104/0/5 | 0.97 | < 0.001 |
-| QUANT | 112 | 0.716 | 0.170 | 0.703 | 0.711 | – | 43/0/69 | -0.12 | 0.253 |
-| Ridge softmax (T = 1) | 114 | 1.086 | 0.254 | 0.690 | 0.531 | 2.29 | 105/0/9 | 0.95 | < 0.001 |
-| Ridge one-hot | 114 | 10.695 | 0.310 | 0.690 | 0.500 | 4.99 | 114/0/0 | 1.00 | < 0.001 |
+| QUANT | 114 | 0.732 | 0.170 | 0.694 | 0.709 | 1.83 | 44/0/70 | -0.11 | 0.291 |
+| Ridge softmax (T = 1) | 114 | 1.086 | 0.256 | 0.696 | 0.531 | 3.16 | 105/0/9 | 0.95 | < 0.001 |
+| Ridge one-hot | 114 | 10.495 | 0.304 | 0.696 | 0.500 | 5.99 | 114/0/0 | 1.00 | < 0.001 |
 
 : **Table 2** Damaged test data: per-dataset mean over 18 conditions (six fault types × three severities), then median over datasets. Statistics as in Table 1 (NLL)
 
@@ -211,18 +211,18 @@ There is one cost. LOOM's calibration error on clean data is higher than PreVal'
 
 Table 3 compares LOOM with five-member ensembles and with the two classifiers that work on the raw series, on the official split. The Arsenal was only run on clean data and the strongest faults, so this comparison uses the six severity-3 conditions for every method. (An earlier version of the analysis averaged the other methods over all 18 conditions; we corrected this after seeing the results, and the correction works against LOOM. Online Resource 2 documents the change.)
 
-On clean data a five-seed PreVal ensemble is slightly better than a single LOOM model (LOOM worse on 83 of 114 datasets; p < 0.001), while LOOM beats QUANT (LOOM better on 69 of 112 datasets; p = 0.005) and the Arsenal. Under the strongest faults LOOM beats the PreVal ensemble (LOOM better on 104 of 114 datasets; p < 0.001) and the Arsenal, but QUANT does better than LOOM (LOOM worse on 77 of 112 datasets; p = 0.032). Averaged over all 18 conditions and five resamples, LOOM and QUANT do not differ significantly (Table 2). Which one is better depends on the type of fault (Fig. 5): at the highest severity QUANT has the lower median NLL for baseline wander, dropouts and spikes, and LOOM for noise, speed variation and misalignment. We did not investigate the reason. It concerns the features (quantiles of the raw series versus random convolutions) rather than the readout, so applying a LOOM-style correction to a QUANT-like model is a natural next step.
+On clean data a five-seed PreVal ensemble is slightly better than a single LOOM model (LOOM worse on 83 of 114 datasets; p < 0.001), while LOOM beats QUANT (LOOM better on 70 of 114 datasets; p = 0.004) and the Arsenal. Under the strongest faults LOOM beats the PreVal ensemble (LOOM better on 104 of 114 datasets; p < 0.001) and the Arsenal, but QUANT does better than LOOM (LOOM worse on 78 of 114 datasets; p = 0.042). Averaged over all 18 conditions and five resamples, LOOM and QUANT do not differ significantly (Table 2). Which one is better depends on the type of fault (Fig. 5): at the highest severity QUANT has the lower median NLL for baseline wander, dropouts and spikes, and LOOM for noise, speed variation and misalignment. We did not investigate the reason. It concerns the features (quantiles of the raw series versus random convolutions) rather than the readout, so applying a LOOM-style correction to a QUANT-like model is a natural next step.
 
-The Arsenal's poor NLL deserves a comment. Its probabilities are weighted votes of its members, and they often give exactly zero probability to the true class, which the logarithm in the NLL punishes without limit. The bounded Brier score gives a fairer picture. On clean data the gap is small (median 0.171 vs 0.163 for LOOM), while under strong faults LOOM is still clearly ahead (LOOM better on 94 of 111 datasets; p < 0.001). Averaging five LOOM models helps only a little (median severity-3 NLL 1.003 vs 1.020 for a single model).
+The Arsenal's poor NLL deserves a comment. Its probabilities are weighted votes of its members, and they often give exactly zero probability to the true class, which the logarithm in the NLL punishes without limit. The bounded Brier score gives a fairer picture. On clean data the gap is small (median 0.173 vs 0.163 for LOOM), while under strong faults LOOM is still clearly ahead (LOOM better on 96 of 113 datasets; p < 0.001). Averaging five LOOM models helps only a little (median severity-3 NLL 1.003 vs 1.020 for a single model).
 
 | Method | n | NLL | BRIER | ECE | ACC | Shift AUROC | Mean rank | W/D/L | r_rb | p (Holm) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| LOOM (ours) | 114 | 1.020 | 0.526 | 0.167 | 0.604 | 0.845 | 1.83 | – | – | – |
-| LOOM, 5-seed ensemble | 114 | 1.003 | 0.519 | 0.165 | 0.614 | 0.847 | 1.49 | 38/0/76 | -0.48 | < 0.001 |
-| PreVal | 114 | 2.260 | 0.673 | 0.257 | 0.613 | 0.531 | 3.70 | 105/0/9 | 0.97 | < 0.001 |
-| PreVal, 5-seed ensemble | 114 | 2.040 | 0.636 | 0.240 | 0.616 | 0.584 | 2.97 | 104/0/10 | 0.94 | < 0.001 |
-| QUANT | 112 | 0.917 | 0.487 | 0.179 | 0.630 | 0.764 | – | 35/0/77 | -0.23 | 0.032 |
-| Arsenal | 111 | 6.933 | 0.669 | 0.283 | 0.611 | 0.675 | – | 108/0/3 | 1.00 | < 0.001 |
+| LOOM (ours) | 114 | 1.020 | 0.526 | 0.167 | 0.604 | 0.845 | 2.52 | – | – | – |
+| LOOM, 5-seed ensemble | 114 | 1.003 | 0.519 | 0.165 | 0.614 | 0.847 | 2.15 | 38/0/76 | -0.48 | < 0.001 |
+| PreVal | 114 | 2.260 | 0.673 | 0.257 | 0.613 | 0.531 | 4.57 | 105/0/9 | 0.97 | < 0.001 |
+| PreVal, 5-seed ensemble | 114 | 2.040 | 0.636 | 0.240 | 0.616 | 0.584 | 3.81 | 104/0/10 | 0.94 | < 0.001 |
+| QUANT | 114 | 0.931 | 0.489 | 0.179 | 0.621 | 0.760 | 1.96 | 36/0/78 | -0.22 | 0.042 |
+| Arsenal | 113 | 7.024 | 0.672 | 0.283 | 0.600 | 0.676 | – | 110/0/3 | 1.00 | < 0.001 |
 
 : **Table 3** Official split under the strongest faults (per-dataset mean over the six severity-3 conditions, then median over datasets). Statistics as in Table 1 (NLL)
 
@@ -231,9 +231,9 @@ The Arsenal's poor NLL deserves a comment. Its probabilities are weighted votes 
 
 Fig. 8 compares LOOM with eight variants. Three findings stand out.
 
-*The leverage scaling is what helps under faults.* PreVal with the same target smoothing, which is LOOM without leverage, is much worse on damaged data (median NLL 1.190 vs 0.738; LOOM better on 94 of 114 datasets; p < 0.001). On clean data, LOOM compared with it is not significantly different (40 wins, 74 losses, p = 0.084), so the scaling costs at most a small amount of clean-data NLL.
+*The leverage scaling is what helps under faults.* PreVal with the same target smoothing, which is LOOM without leverage, is much worse on damaged data (median NLL 1.172 vs 0.738; LOOM better on 94 of 114 datasets; p < 0.001). On clean data, LOOM compared with it is worse on 75 of 114 datasets (p = 0.038), so the scaling costs at most a small amount of clean-data NLL.
 
-*The exact LOO pairs matter.* Fitting the same calibration on in-sample pairs instead of LOO pairs gives a median clean NLL of 0.986, because in-sample scores are overconfident. Using an 80/20 split gives 0.441, because the ridge is then trained on less data. Both variants are also worse under faults.
+*The exact LOO pairs matter.* Fitting the same calibration on in-sample pairs instead of LOO pairs gives a median clean NLL of 0.978, because in-sample scores are overconfident. Using an 80/20 split gives 0.441, because the ridge is then trained on less data. Both variants are also worse under faults.
 
 *The moderation strength is a trade-off.* A finite strength (c = 1) or a strength learned from the LOO pairs gives a slightly lower clean NLL than LOOM (LOOM worse on 89 of 114 datasets (p < 0.001) against c = 1). But both detect faults less well: the median detection AUROC is 0.729 for c = 1 and 0.653 for the learned strength, against 0.765 for LOOM. The learned strength is also worse in NLL under faults (median 0.964). This is probably because the held-out leverages of the training data vary too little to pin the strength down, as we had already seen during development. The full scaling chosen before the benchmark thus gives up a little clean-data NLL in exchange for better fault detection.
 
@@ -253,17 +253,17 @@ Removing the target smoothing gives the lowest clean ECE but is worse under faul
 
 ## 6.7 Prediction sets
 
-Table 4 reports coverage and set size at α = 0.1, that is, for a target coverage of 90 %. On clean data LOOM's closed-form jackknife+ sets contain the true label for 89.7 % of the test series on average, with 1.55 labels per set, while split conformal prediction reaches 92.7 % with 2.49 labels. Under faults, coverage drops for every method, because damaged recordings are no longer exchangeable with the training data. Here the choice of score matters. With the LAC score, LOOM's flattened probabilities produce empty sets for 25.0 % of the damaged recordings. With the APS score, flat probabilities instead produce larger sets, which keeps coverage at 90.5 % with only 1.5 % empty sets. For a triage system, a large set is a useful signal in itself.
+Table 4 reports coverage and set size at α = 0.1, that is, for a target coverage of 90 %. On clean data LOOM's closed-form jackknife+ sets contain the true label for 89.8 % of the test series on average, with 1.55 labels per set, while split conformal prediction reaches 92.8 % with 2.49 labels. Under faults, coverage drops for every method, because damaged recordings are no longer exchangeable with the training data. Here the choice of score matters. With the LAC score, LOOM's flattened probabilities produce empty sets for 25.0 % of the damaged recordings. With the APS score, flat probabilities instead produce larger sets, which keeps coverage at 90.5 % with only 1.5 % empty sets. For a triage system, a large set is a useful signal in itself.
 
 | Method | Coverage, clean (mean / 10th pct.) | Set size, clean | Empty sets, clean | Coverage, corrupted | Set size, corrupted | Empty sets, corrupted |
 |---|---|---|---|---|---|---|
-| LOOM, jackknife+, LAC | 0.897 / 0.861 | 1.55 | 4.6 % | 0.638 | 1.66 | 25.0 % |
-| LOOM, jackknife, LAC | 0.899 / 0.861 | 1.51 | 4.4 % | 0.638 | 1.62 | 24.9 % |
-| LOOM, jackknife+, APS | 0.908 / 0.878 | 5.23 | 7.3 % | 0.905 | 6.62 | 1.5 % |
-| PreVal, jackknife+, LAC | 0.907 / 0.871 | 1.58 | 3.4 % | 0.695 | 1.55 | 9.3 % |
-| PreVal, jackknife+, APS | 0.923 / 0.877 | 5.24 | 5.8 % | 0.816 | 5.03 | 10.1 % |
-| Split conformal (TS), LAC | 0.927 / 0.871 | 2.49 | 2.2 % | 0.762 | 2.38 | 6.8 % |
-| Split conformal (TS), APS | 0.948 / 0.892 | 5.86 | 3.5 % | 0.876 | 5.42 | 5.8 % |
+| LOOM, jackknife+, LAC | 0.898 / 0.861 | 1.55 | 4.6 % | 0.638 | 1.66 | 25.0 % |
+| LOOM, jackknife, LAC | 0.899 / 0.861 | 1.51 | 4.4 % | 0.639 | 1.62 | 24.8 % |
+| LOOM, jackknife+, APS | 0.908 / 0.878 | 5.22 | 7.3 % | 0.905 | 6.62 | 1.5 % |
+| PreVal, jackknife+, LAC | 0.908 / 0.871 | 1.58 | 3.3 % | 0.696 | 1.55 | 9.3 % |
+| PreVal, jackknife+, APS | 0.923 / 0.877 | 5.24 | 5.8 % | 0.817 | 5.03 | 10.1 % |
+| Split conformal (TS), LAC | 0.928 / 0.871 | 2.49 | 2.2 % | 0.763 | 2.38 | 6.8 % |
+| Split conformal (TS), APS | 0.948 / 0.892 | 5.86 | 3.5 % | 0.876 | 5.41 | 5.8 % |
 
 : **Table 4** Prediction sets at α = 0.1 (target coverage 0.9). Coverage and set size are averaged over datasets (damaged data: over datasets and the 18 conditions); 10th pct. is the 10th percentile of per-dataset coverage
 
@@ -272,42 +272,42 @@ Table 4 reports coverage and set size at α = 0.1, that is, for a target coverag
 
 | Method | Median fit time (s) | Mean fit time (s) | Total fit time, all datasets (h) | Median prediction time, 19 test sets (s) |
 |---|---|---|---|---|
-| MiniRocket transform of the training set (shared) | 0.168 | 1.36 | 0.04 | – |
-| Ridge one-hot | 0.067 | 4.01 | 0.13 | 0.09 |
-| PreVal | 0.144 | 4.34 | 0.14 | 0.10 |
-| LOOM (ours) | 0.140 | 4.33 | 0.14 | 1.49 |
-| Hold-out temperature scaling | 0.053 | 2.41 | 0.08 | 0.30 |
-| Ridge + Platt (5-fold) | 0.256 | 15.14 | 0.46 | 0.36 |
-| Ridge + isotonic (5-fold) | 0.255 | 15.08 | 0.46 | 0.35 |
+| MiniRocket transform of the training set (shared) | 0.168 | 1.14 | 0.04 | – |
+| Ridge one-hot | 0.067 | 3.33 | 0.11 | 0.09 |
+| PreVal | 0.144 | 3.63 | 0.11 | 0.10 |
+| LOOM (ours) | 0.140 | 3.61 | 0.11 | 1.49 |
+| Hold-out temperature scaling | 0.053 | 2.03 | 0.06 | 0.30 |
+| Ridge + Platt (5-fold) | 0.256 | 12.78 | 0.39 | 0.36 |
+| Ridge + isotonic (5-fold) | 0.255 | 12.87 | 0.39 | 0.35 |
 | Logistic regression (CV) | 3.666 | 11.59 | 0.35 | 0.40 |
 | LOOM, 5-seed ensemble | 2.247 | 24.93 | 0.79 | 26.26 |
-| QUANT | 1.228 | 5.51 | 0.17 | 5.56 |
-| Arsenal | 4.463 | 14.09 | 0.43 | 21.23 |
+| QUANT | 1.298 | 5.72 | 0.18 | 5.56 |
+| Arsenal | 4.475 | 22.98 | 0.72 | 20.45 |
 
 : **Table 5** Fit and prediction time per dataset (mean over resamples, single CPU core). Readouts on MiniRocket features include the ridge SVD they use but not the shared MiniRocket transform, which is listed separately; prediction times exclude the transform of the test sets. The ensembles include all five MiniRocket transforms, and QUANT and the Arsenal include their own feature extraction
 
 
-LOOM costs the same to fit as PreVal (median 0.14 s vs 0.14 s on top of the shared MiniRocket transform, which takes a median of 0.17 s; Table 5 and Fig. 9). From raw data to a fitted model, a single LOOM model takes about 0.31 s, compared with 1.23 s for QUANT, 2.25 s for a five-seed ensemble and 4.46 s for the Arsenal. Prediction is slower than for plain ridge because each new series is projected onto the singular vectors (Section 4.6), but it remains a fraction of a second per dataset.
+LOOM costs the same to fit as PreVal (median 0.14 s vs 0.14 s on top of the shared MiniRocket transform, which takes a median of 0.17 s; Table 5 and Fig. 9). From raw data to a fitted model, a single LOOM model takes about 0.31 s, compared with 1.30 s for QUANT, 2.25 s for a five-seed ensemble and 4.47 s for the Arsenal. Prediction is slower than for plain ridge because each new series is projected onto the singular vectors (Section 4.6), but it remains a fraction of a second per dataset.
 
-The moderation strength was discussed in Section 6.5. For the prediction sets, the clean coverage of LOOM's jackknife+ is 95.0 % at α = 0.05 and 79.5 % at α = 0.2. We also checked whether the logistic-regression baseline was trained long enough. On 12 random datasets, ten times more iterations and a tighter tolerance changed its median NLL from 0.2707 to 0.2711, but improved it by 0.161 on ShapesAll, a dataset with many classes. The clean-data comparison with logistic regression should therefore be read as approximate for such datasets (Online Resource 3).
+The moderation strength was discussed in Section 6.5. For the prediction sets, the clean coverage of LOOM's jackknife+ is 95.1 % at α = 0.05 and 79.6 % at α = 0.2. We also checked whether the logistic-regression baseline was trained long enough. On 12 random datasets, ten times more iterations and a tighter tolerance changed its median NLL from 0.2707 to 0.2711, but improved it by 0.161 on ShapesAll, a dataset with many classes. The clean-data comparison with logistic regression should therefore be read as approximate for such datasets (Online Resource 3).
 
 ![**Fig. 9** Fit time against the number of training series (log–log, single core)](/home/user/rp_c_3/Target_Journal_Submission/code/figures/fig_efficiency.png){width=70%}
 
 ## 6.9 When LOOM fails
 
-LOOM helps most where faults increase leverage the most. Across datasets, its gain over PreVal under faults rises with the increase in leverage that the faults cause (Spearman ρ = 0.61, p < 0.001, n = 114), which is the mechanism we designed it for. The share of datasets on which LOOM beats PreVal grows with severity for every fault type except speed variation. At the highest severity it is 95 % for noise, 89 % for spikes, 89 % for dropouts, 87 % for baseline wander and 74 % for misalignment, but only 53 % for speed variation, whose median leverage ratio stays at 1.26. A smooth change of speed of up to ±20 % leaves the pooled MiniRocket features largely where they were. Leverage then carries no signal, and LOOM behaves like an ordinary temperature-scaled ridge. Mild faults are also hard to tell apart from normal variation: at severity 1 the win rates of the other fault types are only 48 %–64 %.
+LOOM helps most where faults increase leverage the most. Across datasets, its gain over PreVal under faults rises with the increase in leverage that the faults cause (Spearman ρ = 0.61, p < 0.001, n = 114), which is the mechanism we designed it for. The share of datasets on which LOOM beats PreVal grows with severity for every fault type except speed variation. At the highest severity it is 95 % for noise, 89 % for spikes, 89 % for dropouts, 87 % for baseline wander and 73 % for misalignment, but only 53 % for speed variation, whose median leverage ratio stays at 1.26. A smooth change of speed of up to ±20 % leaves the pooled MiniRocket features largely where they were. Leverage then carries no signal, and LOOM behaves like an ordinary temperature-scaled ridge. Mild faults are also hard to tell apart from normal variation: at severity 1 the win rates of the other fault types are only 47 %–64 %.
 
 We found two ways in which LOOM fails. The first is *over-caution for faulty recordings that are still classified correctly*. The datasets on which LOOM loses most to PreVal under faults (PigCVP, ECG5000 and InsectEPGRegularTrain) keep a high accuracy under faults (for example 0.99 for InsectEPGRegularTrain) while their leverage still grows (9.3× for InsectEPGRegularTrain). Lowering the confidence then costs likelihood. Leverage measures how unusual a recording is, not how likely the prediction is to be wrong, and across datasets the gain under faults is smaller where accuracy under faults stays high (ρ = -0.24, p = 0.010). In a triage system this failure is relatively harmless: it sends a few correct cases to the reviewer.
 
-The second is *many classes with very few training series each*. On clean data, the gain over PreVal shrinks as the number of classes grows (ρ = -0.37, p < 0.001). The four largest clean losses occur on PigArtPressure, Symbols, ShapesAll and PigAirwayPressure, which have only 2 to 10 training series per class on average. With so few examples, the smoothed targets give the true class only (n_k + 1)/(n_k + 2) of the probability mass, and the fitted model ends up underconfident. Smoothing is also what raises LOOM's clean ECE (Section 6.2). Without it, the median clean ECE is 0.041, the same level as PreVal's 0.040, but the NLL under faults is significantly worse (Section 6.5).
+The second is *many classes with very few training series each*. On clean data, the gain over PreVal shrinks as the number of classes grows (ρ = -0.39, p < 0.001). The four largest clean losses occur on PigArtPressure, Symbols, ShapesAll and PigAirwayPressure, which have only 2 to 10 training series per class on average. With so few examples, the smoothed targets give the true class only (n_k + 1)/(n_k + 2) of the probability mass, and the fitted model ends up underconfident. Smoothing is also what raises LOOM's clean ECE (Section 6.2). Without it, the median clean ECE is 0.041, the same level as PreVal's 0.040, but the NLL under faults is significantly worse (Section 6.5).
 
 # 7 Discussion
 
-**What leverage adds.** PreVal showed that exact LOO predictions turn ridge regression into a well-calibrated classifier at almost no cost [@dempster2025preval], and our clean-data results agree: the two cannot be told apart in NLL. They part ways when the recordings are damaged. A single scale factor keeps the confidence of a faulty recording at the level that suits clean data, and its NLL grows quickly (median 1.728 over the fault conditions). LOOM uses a second quantity that the LOO algebra provides for free, the held-out leverage, to put each prediction on the scale of its own uncertainty. Its median NLL under faults is 0.738, and its confidence separates faulty from clean recordings better than any of the competing methods, including QUANT (median AUROC 0.765 vs 0.711). The ablation confirms that this comes from the leverage scaling and that the exact LOO pairs are needed to calibrate it.
+**What leverage adds.** PreVal showed that exact LOO predictions turn ridge regression into a well-calibrated classifier at almost no cost [@dempster2025preval], and our clean-data results agree: the two cannot be told apart in NLL. They part ways when the recordings are damaged. A single scale factor keeps the confidence of a faulty recording at the level that suits clean data, and its NLL grows quickly (median 1.728 over the fault conditions). LOOM uses a second quantity that the LOO algebra provides for free, the held-out leverage, to put each prediction on the scale of its own uncertainty. Its median NLL under faults is 0.738, and its confidence separates faulty from clean recordings better than any of the competing methods, including QUANT (median AUROC 0.765 vs 0.709). The ablation confirms that this comes from the leverage scaling and that the exact LOO pairs are needed to calibrate it.
 
 **What this means in practice.** The application study translates these numbers into the terms that matter to an operator. With one recording in five sent to a human, LOOM's review queue contained a median of 45 % of the damaged recordings, against 25 % for PreVal. The error rate of its automatic decisions was also lower in the median, although not significantly so across twelve datasets, and QUANT, which is more robust to damage in the first place, made the fewest automatic errors. LOOM achieves this without extra models, extra data or a separate fault detector, with the same training cost as the ridge readout and on a standard CPU. This matters in settings where data are scarce and computing power is limited, which are common in wearable, clinical and industrial monitoring. LOOM is not a full replacement for a dedicated fault detector, however. It flags recordings that look unusual to the classifier, and it cannot tell a broken sensor from a genuinely new type of signal.
 
-**How LOOM compares with other ways of being uncertain.** The behaviour resembles that of the distance-aware deep networks proposed to make neural networks uncertain away from their training data [@kristiadi2020; @liu2020sngp; @vanamersfoort2020]. For a linear readout on fixed random features, such distance awareness is available in closed form through the leverage, and it can be calibrated without held-out data. A nearest-neighbour distance used in the same role gave a similar NLL but detected faults worse. Leverage measures distance in the same regularised geometry that the classifier uses, and it comes from the decomposition that is computed anyway. QUANT, a tree ensemble on raw-series quantiles, reached a similar NLL under faults on average and a lower one under the strongest faults, at a higher clean NLL and about 4.0 times LOOM's end-to-end training time. The two approaches have different strengths, and combining them is a promising direction.
+**How LOOM compares with other ways of being uncertain.** The behaviour resembles that of the distance-aware deep networks proposed to make neural networks uncertain away from their training data [@kristiadi2020; @liu2020sngp; @vanamersfoort2020]. For a linear readout on fixed random features, such distance awareness is available in closed form through the leverage, and it can be calibrated without held-out data. A nearest-neighbour distance used in the same role gave a similar NLL but detected faults worse. Leverage measures distance in the same regularised geometry that the classifier uses, and it comes from the decomposition that is computed anyway. QUANT, a tree ensemble on raw-series quantiles, reached a similar NLL under faults on average and a lower one under the strongest faults, at a higher clean NLL and about 4.2 times LOOM's end-to-end training time. The two approaches have different strengths, and combining them is a promising direction.
 
 **Which faults are covered.** Leverage grows when a fault pushes the features outside the range of the training data, as noise, spikes, dropouts, drift and misalignment do. A change in speed, or the switch to another sensor axis in Section 6.6, changes the signal while keeping the features in range. Leverage then stays close to its training value, and LOOM behaves like a globally calibrated model. Leverage scaling therefore complements, but does not replace, methods aimed at other kinds of change, such as new classes or changing class frequencies.
 

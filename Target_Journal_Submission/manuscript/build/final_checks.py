@@ -60,7 +60,8 @@ need = ["E1_clean", "E4_shifted", "E2b_raw_clean", "E2b_raw_shifted", "E3_ablati
 check("all experiments present in statistics.json", all(k in S for k in need), f"{[k for k in need if k not in S]}")
 n_q = S["E2b_raw_clean"]["nll"]
 qn = [r["n"] for r in n_q["pairwise"] if r["competitor"] in ("QUANT", "Arsenal")]
-check("QUANT/Arsenal on all datasets (heavy jobs done)", all(n == 114 for n in qn), f"n={qn}")
+check("QUANT on all 114 datasets; Arsenal on 113 (NaN probabilities on Fungi, disclosed in 5.2)",
+      qn == [114, 113] and "Fungi" in md, f"n={qn}")
 t = subprocess.run(["python3", "-m", "pytest", "-q", "tests"], cwd=CODE, capture_output=True, text=True)
 check("unit tests pass", t.returncode == 0, t.stdout.strip().splitlines()[-1] if t.stdout else t.stderr[-200:])
 for name, ok, d in res:

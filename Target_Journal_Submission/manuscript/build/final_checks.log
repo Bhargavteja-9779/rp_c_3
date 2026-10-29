@@ -1,0 +1,26 @@
+PASS  no unresolved expressions  
+PASS  abstract 150-250 words  247 words
+PASS  4-6 keywords  6
+PASS  highlights 3-5, <= 85 characters  [72, 74, 78, 79, 78]
+PASS  figures cited in order  [1, 2, 3, 4, 5, 6, 7, 8, 9]
+PASS  every figure has a caption and is cited  captions [1, 2, 3, 4, 5, 6, 7, 8, 9]
+PASS  tables cited in order  [1, 2, 3, 4, 5]
+PASS  cross-referenced sections exist  []
+PASS  all citations in bibliography  []
+PASS  all references cited  []
+PASS  exists: manuscript/Final_Manuscript.docx  
+PASS  exists: manuscript/Final_Manuscript.pdf  
+PASS  exists: manuscript/Title_Page.docx  
+PASS  exists: manuscript/Cover_Letter.docx  
+PASS  exists: manuscript/alternative_ESWA/Manuscript_ESWA.docx  
+PASS  anonymous DOCX metadata  author=''
+PASS  no author-identifying strings  
+PASS  exists: Online_Resource_1.pdf  
+PASS  exists: Online_Resource_2.pdf  
+PASS  exists: Online_Resource_3.xlsx  
+PASS  all 114 datasets analysed  114
+PASS  all experiments present in statistics.json  []
+PASS  QUANT on all 114 datasets; Arsenal on 113 (NaN probabilities on Fungi, disclosed in 5.2)  n=[114, 113]
+PASS  unit tests pass  12 passed in 1.98s
+
+24/24 checks passed

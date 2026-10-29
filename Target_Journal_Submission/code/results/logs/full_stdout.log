@@ -12933,3 +12933,11 @@
 [2/12] main      Crop                           r1     0.0s
 [3/12] main      Crop                           r2     0.0s
 [4/12] main      ElectricDevices                r0     0.0s
+[5/12] main      ElectricDevices                r1  3093.4s
+[6/12] main      ElectricDevices                r2  3189.8s
+[7/12] raw       Crop                           r0   479.5s
+[8/12] raw       Crop                           r1    16.3s
+[9/12] raw       Crop                           r2    16.3s
+[10/12] raw       ElectricDevices                r0   636.1s
+[11/12] raw       ElectricDevices                r1    29.8s
+[12/12] raw       ElectricDevices                r2    28.6s

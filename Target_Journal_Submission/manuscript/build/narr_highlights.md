@@ -2,4 +2,4 @@
 - LOOM lowers confidence for recordings that lie far from the training data.
 - Closed form: no held-out data, no refitting, no ensembles, same cost as ridge.
 - Tested on 114 datasets with 18 simulated sensor faults and on real sensor data.
-- In triage, far more faulty recordings reach the human reviewer.
+- In triage, almost twice as many faulty recordings reach review as with PreVal.

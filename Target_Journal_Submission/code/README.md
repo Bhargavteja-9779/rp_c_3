@@ -45,7 +45,7 @@ python run_all.py --mode quick      # ~10 min: 6 small datasets, 1 resample — 
 python run_all.py --mode full       # full study: 114 datasets x 5 resamples (+ extractors, train-size, Arsenal/QUANT)
 ```
 
-Stages (`--stages audit,main,raw,extract,trainsize,analyze`; each is resumable because
+Stages (`--stages audit,main,raw,extract,trainsize,natural,case,logreg,analyze`; each is resumable because
 finished jobs are cached as `results/raw/*.json`):
 
 | Stage | What it runs | Output |
@@ -55,6 +55,9 @@ finished jobs are cached as `results/raw/*.json`):
 | `raw` | QUANT (all resamples) and Arsenal (official split; clean + severity-3) on raw series | `results/raw/raw__*.json` |
 | `extract` | MultiRocket and Hydra features with the core readouts (official split; clean + severity-3 conditions; datasets with ≤ 3,000 training series) | `results/raw/{multirocket,hydra}__*.json` |
 | `trainsize` | 25 % and 50 % of the training data (official split; clean + severity-3; datasets with ≤ 3,000 training series) | `results/raw/minirocket__*__tf*.json` |
+| `natural` | natural cross-axis shift, UWaveGestureLibrary X/Y/Z | `results/natural_shift.json` |
+| `case` | triage case study: 12 sensor datasets, 30 % faulty recordings, human review budget | `results/case_study.json`, `results/case_study/*.npz` |
+| `logreg` | convergence check of the logistic-regression baseline (12 datasets) | `results/check_logreg_convergence.json` |
 | `analyze` | statistics, tables, figures | `results/*.csv|json`, `tables/`, `figures/` |
 
 Then rebuild the manuscript from the generated results:
@@ -71,15 +74,16 @@ leverage, test leverage, cross-leverage, jackknife+ sets) against explicit refit
 | Paper item | File |
 |---|---|
 | Clean results (Table 1) | `tables/table_main_clean.{md,csv}` |
-| Robustness (Table 2, Figs. 3–6) | `tables/table_robustness_shifted.*`, `tables/table_robustness_by_family.csv`, `figures/fig_robustness_*.png` |
+| Robustness (Table 2, Figs. 4–7) | `tables/table_robustness_shifted.*`, `tables/table_robustness_by_family.csv`, `figures/fig_robustness_*.png` |
 | Ensembles, Arsenal, QUANT on the official split (Table 3) | `tables/table_rawbaselines_*.md` |
-| Ablation (Fig. 7) | `tables/table_ablation_*.md`, `figures/fig_ablation.png` |
+| Ablation (Fig. 8) | `tables/table_ablation_*.md`, `figures/fig_ablation.png` |
 | Extractors and dataset types | `tables/table_generalisation_*.md`, `tables/table_by_type.csv` |
 | Conformal sets (Table 4) | `tables/table_conformal.csv`, `figures/fig_conformal.png` |
-| Efficiency (Table 5, Fig. 8) | `tables/table_efficiency.csv`, `figures/fig_efficiency.png` |
+| Efficiency (Table 5, Fig. 9) | `tables/table_efficiency.csv`, `figures/fig_efficiency.png` |
 | Training-set size (Table S4) | `tables/table_train_size.csv` |
-| Natural cross-axis shift (§6.5) | `experiments/natural_shift.py` → `results/natural_shift.json`, `tables/table_natural_shift*.csv` |
+| Natural cross-axis shift (§6.6) | `experiments/natural_shift.py` → `results/natural_shift.json`, `tables/table_natural_shift*.csv` |
 | Grouped-by-source sensitivity | `results/statistics.json` (`sens_grouped_*`) |
+| Triage case study (§6.1, Fig. 3) | `experiments/case_study.py` → `results/case_study.json`, `results/case_study/*.npz`, `tables/table_case_study_datasets.csv`, `figures/fig_case_study.png` |
 | LogReg convergence check (§6.8) | `experiments/check_logreg_convergence.py` → `results/check_logreg_convergence.json` |
 | Sensitivity subsets | `tables/table_sensitivity_{unseen,nodup}_*.md` |
 | Error analysis | `tables/table_error_analysis_datasets.csv`, `figures/fig_error_analysis.png` |

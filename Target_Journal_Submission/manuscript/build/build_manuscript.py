@@ -158,16 +158,16 @@ def tsp(frac, cond, comp="PreVal"):
 def tsclaim():
     ok = all(ts(fr, "shifted", "PreVal", "p_holm") < 0.05 and
              ts(fr, "shifted", "PreVal", "median_loom") < ts(fr, "shifted", "PreVal", "median_comp") for fr in (0.25, 0.5))
-    return ("The advantage under corruption is therefore retained with reduced training sets." if ok else
-            "The advantage under corruption is therefore not consistently retained with reduced training sets.")
+    return ("The advantage under faults is therefore kept with smaller training sets." if ok else
+            "The advantage under faults is therefore not consistently kept with smaller training sets.")
 
 
 def both(w1, w2):
     return f"both {w1}" if w1 == w2 else f"{w1} and {w2}, respectively,"
 
 
-FAMNAMES = {"noise": "Gaussian noise", "wander": "baseline wander", "missing": "missing segments",
-            "spikes": "spikes", "warp": "time warping", "shift": "circular shifts"}
+FAMNAMES = {"noise": "noise", "wander": "baseline wander", "missing": "dropouts",
+            "spikes": "spikes", "warp": "speed variation", "shift": "misalignment"}
 
 
 def fam_vs(comp, sev=3, who="comp"):
@@ -187,8 +187,8 @@ def quant_phrase():
     word = lambda r: ("on par with" if r["p_holm"] >= 0.05 else ("better than" if r["median_diff"] > 0 else "worse than"))
     w18, w3 = word(a), word(b)
     if w18 == w3:
-        return f"is {w18} the tree-based QUANT classifier"
-    return f"is {w18} the tree-based QUANT classifier on average but {w3} it under the strongest corruptions"
+        return f"is {w18} QUANT"
+    return f"is {w18} QUANT on average but {w3} it under the strongest faults"
 
 
 def brief(key, metric, comp, lower=True, unit="datasets"):
@@ -218,9 +218,8 @@ def csbrief(metric, comp, lower=True):
     r = cspw(metric, comp)
     better = (r["median_diff"] > 0) if lower else (r["median_diff"] < 0)
     n = r["ref_wins"] + r["draws"] + r["ref_losses"]
-    if r["p_holm"] >= 0.05:
-        return f"{r['ref_wins']} of {n} datasets, p {pv(r['p_holm'])}, not significant"
-    return f"{r['ref_wins'] if better else r['ref_losses']} of {n} datasets {'in favour of LOOM' if better else 'against LOOM'}, p {pv(r['p_holm'])}"
+    k = r["ref_wins"] if better else r["ref_losses"]
+    return f"{k} of {n} datasets, p {pv(r['p_holm'])}" + ("" if r["p_holm"] < 0.05 else ", not significant")
 
 
 def csdom(domain, method, field):
@@ -301,10 +300,8 @@ def monotone_except():
 def trendclaim():
     bad = monotone_except()
     if not bad:
-        return "grows with severity for every corruption family"
-    names = {"noise": "Gaussian noise", "wander": "baseline wander", "missing": "missing segments",
-             "spikes": "spikes", "warp": "time warping", "shift": "circular shifts"}
-    return "grows with severity for every family except " + " and ".join(names[c] for c in bad)
+        return "grows with severity for every fault type"
+    return "grows with severity for every fault type except " + " and ".join(FAMNAMES[c] for c in bad)
 
 
 def sev1range(exclude=("warp",)):
@@ -409,7 +406,10 @@ def render(text):
             if DRAFT:                      # draft builds mark missing values; final builds abort
                 return f"**[MISSING: {expr[:60]}]**"
             raise RuntimeError(f"manuscript expression failed: {{{{{expr}}}}}: {e!r}")
-    return re.sub(r"\{\{(.+?)\}\}", repl, text, flags=re.S)
+    out = re.sub(r"\{\{(.+?)\}\}", repl, text, flags=re.S)
+    for _ in range(2):   # "(LOOM better on 9 of 12 datasets (p = 0.01))" -> "(LOOM better on 9 of 12 datasets; p = 0.01)"
+        out = re.sub(r"\(([^()\n]*?) \(([^()\n]*)\)\)", r"(\1; \2)", out)
+    return out
 
 
 def build(anonymous=True):

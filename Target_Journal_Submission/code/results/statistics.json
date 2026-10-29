@@ -6366,6 +6366,1005 @@
    }
   ]
  },
+ "E11_case_study": {
+  "n_datasets": 12,
+  "n_resamples": 5,
+  "metrics": {
+   "stream:nll": {
+    "medians": {
+     "Holdout-TS": 0.9356161483330201,
+     "LOOM": 0.30223128801705457,
+     "PreVal": 0.8322034112739627,
+     "QUANT": 0.26781613988901143,
+     "Ridge-Platt-CV5": 0.614166645143049
+    },
+    "means": {
+     "Holdout-TS": 1.3855984956301208,
+     "LOOM": 0.4190870396034516,
+     "PreVal": 1.3045032436190234,
+     "QUANT": 0.4441586042563286,
+     "Ridge-Platt-CV5": 0.6299419508420651
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 11,
+      "draws": 0,
+      "ref_losses": 1,
+      "median_diff": 0.2972348566741866,
+      "ci_low": 0.0660929648275205,
+      "ci_high": 1.9294194801949436,
+      "rank_biserial": 0.9743589743589743,
+      "p": 0.0009765625,
+      "p_holm": 0.00390625
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 9,
+      "draws": 0,
+      "ref_losses": 3,
+      "median_diff": 0.22111922878544735,
+      "ci_low": -0.0024553527602065098,
+      "ci_high": 2.074999854848374,
+      "rank_biserial": 0.7692307692307693,
+      "p": 0.01611328125,
+      "p_holm": 0.04833984375
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 4,
+      "draws": 0,
+      "ref_losses": 8,
+      "median_diff": -0.01795599960512076,
+      "ci_low": -0.030348106886580573,
+      "ci_high": 0.03804630160542169,
+      "rank_biserial": -0.10256410256410256,
+      "p": 0.791015625,
+      "p_holm": 0.791015625
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 6,
+      "draws": 0,
+      "ref_losses": 6,
+      "median_diff": 0.0008468112041774833,
+      "ci_low": -0.012399707241957103,
+      "ci_high": 0.5066937026068614,
+      "rank_biserial": 0.3076923076923077,
+      "p": 0.38037109375,
+      "p_holm": 0.7607421875
+     }
+    ]
+   },
+   "stream:acc": {
+    "medians": {
+     "Holdout-TS": 0.8776842105263158,
+     "LOOM": 0.8899473684210526,
+     "PreVal": 0.8887543859649123,
+     "QUANT": 0.931874251928762,
+     "Ridge-Platt-CV5": 0.889263157894737
+    },
+    "means": {
+     "Holdout-TS": 0.8496183731175307,
+     "LOOM": 0.8567344527304028,
+     "PreVal": 0.8565944876272247,
+     "QUANT": 0.8721164147565105,
+     "Ridge-Platt-CV5": 0.858457516776041
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 9,
+      "draws": 1,
+      "ref_losses": 2,
+      "median_diff": -0.0071552043703053125,
+      "ci_low": -0.011456253669994143,
+      "ci_high": -0.00016666666666670382,
+      "rank_biserial": -0.6363636363636364,
+      "p": 0.0673828125,
+      "p_holm": 0.26953125
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 6,
+      "draws": 3,
+      "ref_losses": 3,
+      "median_diff": -0.0004222222222221017,
+      "ci_low": -0.0016222222222221916,
+      "ci_high": 0.0002544529262086259,
+      "rank_biserial": -0.24444444444444444,
+      "p": 0.5703125,
+      "p_holm": 1.0
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 4,
+      "draws": 0,
+      "ref_losses": 8,
+      "median_diff": 0.011961293277856277,
+      "ci_low": -0.0082515912897822,
+      "ci_high": 0.050035087719298266,
+      "rank_biserial": 0.38461538461538464,
+      "p": 0.26611328125,
+      "p_holm": 0.79833984375
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 5,
+      "draws": 1,
+      "ref_losses": 6,
+      "median_diff": 0.00031578947368421373,
+      "ci_low": -0.0015555555555554768,
+      "ci_high": 0.0010737913486004724,
+      "rank_biserial": -0.030303030303030304,
+      "p": 0.9462890625,
+      "p_holm": 1.0
+     }
+    ]
+   },
+   "stream:auto_err@10": {
+    "medians": {
+     "Holdout-TS": 0.10668615984405458,
+     "LOOM": 0.06912280701754386,
+     "PreVal": 0.09524366471734894,
+     "QUANT": 0.03442235217673814,
+     "Ridge-Platt-CV5": 0.09325536062378167
+    },
+    "means": {
+     "Holdout-TS": 0.12293729841493899,
+     "LOOM": 0.10449690733391744,
+     "PreVal": 0.11584830385730416,
+     "QUANT": 0.0909782131697041,
+     "Ridge-Platt-CV5": 0.10862270553243336
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 10,
+      "draws": 0,
+      "ref_losses": 2,
+      "median_diff": 0.011516364394413163,
+      "ci_low": 0.003529853261036056,
+      "ci_high": 0.03543466314979667,
+      "rank_biserial": 0.9230769230769231,
+      "p": 0.00244140625,
+      "p_holm": 0.009765625
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 9,
+      "draws": 1,
+      "ref_losses": 2,
+      "median_diff": 0.0030545541937034328,
+      "ci_low": 0.00028490028490027464,
+      "ci_high": 0.028747232141626115,
+      "rank_biserial": 0.6363636363636364,
+      "p": 0.0673828125,
+      "p_holm": 0.2021484375
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 3,
+      "draws": 0,
+      "ref_losses": 9,
+      "median_diff": -0.011569152584099742,
+      "ci_low": -0.038687767886580945,
+      "ci_high": 0.0026146493888429432,
+      "rank_biserial": -0.4358974358974359,
+      "p": 0.20361328125,
+      "p_holm": 0.4072265625
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 5,
+      "draws": 1,
+      "ref_losses": 6,
+      "median_diff": -0.0006172839506172838,
+      "ci_low": -0.007857704441112223,
+      "ci_high": 0.010918433813418251,
+      "rank_biserial": 0.12121212121212122,
+      "p": 0.7646484375,
+      "p_holm": 0.7646484375
+     }
+    ]
+   },
+   "stream:fault_caught@10": {
+    "medians": {
+     "Holdout-TS": 0.14443227415938342,
+     "LOOM": 0.24789909329619828,
+     "PreVal": 0.13579752729136924,
+     "QUANT": 0.20945356937205284,
+     "Ridge-Platt-CV5": 0.14472723360773992
+    },
+    "means": {
+     "Holdout-TS": 0.16069211049246498,
+     "LOOM": 0.22692930529367383,
+     "PreVal": 0.15015538141195414,
+     "QUANT": 0.21392812666567176,
+     "Ridge-Platt-CV5": 0.180290423265137
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 10,
+      "draws": 0,
+      "ref_losses": 2,
+      "median_diff": -0.05368080542255513,
+      "ci_low": -0.1262566516296948,
+      "ci_high": -0.028180303581242905,
+      "rank_biserial": -0.9230769230769231,
+      "p": 0.00244140625,
+      "p_holm": 0.00732421875
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 12,
+      "draws": 0,
+      "ref_losses": 0,
+      "median_diff": -0.060546447286343695,
+      "ci_low": -0.12689035700002668,
+      "ci_high": -0.03407269252999015,
+      "rank_biserial": -1.0,
+      "p": 0.00048828125,
+      "p_holm": 0.001953125
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 7,
+      "draws": 0,
+      "ref_losses": 5,
+      "median_diff": -0.009064629563079858,
+      "ci_low": -0.03713802079734865,
+      "ci_high": 0.007163497373112018,
+      "rank_biserial": -0.38461538461538464,
+      "p": 0.26611328125,
+      "p_holm": 0.26611328125
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 10,
+      "draws": 0,
+      "ref_losses": 2,
+      "median_diff": -0.03686471217067574,
+      "ci_low": -0.07955010686978586,
+      "ci_high": -0.00942988774044147,
+      "rank_biserial": -0.8717948717948718,
+      "p": 0.0048828125,
+      "p_holm": 0.009765625
+     }
+    ]
+   },
+   "stream:auto_err@20": {
+    "medians": {
+     "Holdout-TS": 0.09937499999999999,
+     "LOOM": 0.041555555555555554,
+     "PreVal": 0.09520833333333334,
+     "QUANT": 0.016239766081871346,
+     "Ridge-Platt-CV5": 0.08712691039457074
+    },
+    "means": {
+     "Holdout-TS": 0.10512294392341555,
+     "LOOM": 0.07289201456192872,
+     "PreVal": 0.09992632808077186,
+     "QUANT": 0.06819879043296913,
+     "Ridge-Platt-CV5": 0.08759809033853416
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 11,
+      "draws": 0,
+      "ref_losses": 1,
+      "median_diff": 0.015530825390387346,
+      "ci_low": 0.008814102564102554,
+      "ci_high": 0.06027192982456138,
+      "rank_biserial": 0.9230769230769231,
+      "p": 0.00244140625,
+      "p_holm": 0.009765625
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 9,
+      "draws": 1,
+      "ref_losses": 2,
+      "median_diff": 0.010416666666666637,
+      "ci_low": 0.0006944444444444446,
+      "ci_high": 0.059319722475930314,
+      "rank_biserial": 0.7878787878787878,
+      "p": 0.0185546875,
+      "p_holm": 0.0556640625
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 3,
+      "draws": 0,
+      "ref_losses": 9,
+      "median_diff": -0.0030277777777777777,
+      "ci_low": -0.01017041649926343,
+      "ci_high": 0.0025268241155722944,
+      "rank_biserial": -0.358974358974359,
+      "p": 0.30126953125,
+      "p_holm": 0.6025390625
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 7,
+      "draws": 1,
+      "ref_losses": 4,
+      "median_diff": 0.0027304299330764563,
+      "ci_low": -0.005682357930449527,
+      "ci_high": 0.015106842297841188,
+      "rank_biserial": 0.3333333333333333,
+      "p": 0.365234375,
+      "p_holm": 0.6025390625
+     }
+    ]
+   },
+   "stream:fault_caught@20": {
+    "medians": {
+     "Holdout-TS": 0.2632130583936141,
+     "LOOM": 0.4468182949130183,
+     "PreVal": 0.24869296558501655,
+     "QUANT": 0.38326729595332554,
+     "Ridge-Platt-CV5": 0.2718807922713855
+    },
+    "means": {
+     "Holdout-TS": 0.2826461147432271,
+     "LOOM": 0.4389138417193154,
+     "PreVal": 0.2782691517398785,
+     "QUANT": 0.39928263182119744,
+     "Ridge-Platt-CV5": 0.3256399857283168
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 12,
+      "draws": 0,
+      "ref_losses": 0,
+      "median_diff": -0.12384484819458702,
+      "ci_low": -0.2551726299788123,
+      "ci_high": -0.0768402778272191,
+      "rank_biserial": -1.0,
+      "p": 0.00048828125,
+      "p_holm": 0.001953125
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 12,
+      "draws": 0,
+      "ref_losses": 0,
+      "median_diff": -0.10935629835971208,
+      "ci_low": -0.28539826422609915,
+      "ci_high": -0.07056211711390814,
+      "rank_biserial": -1.0,
+      "p": 0.00048828125,
+      "p_holm": 0.001953125
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 8,
+      "draws": 0,
+      "ref_losses": 4,
+      "median_diff": -0.047579623214277264,
+      "ci_low": -0.07762854766510252,
+      "ci_high": 0.001996746995956644,
+      "rank_biserial": -0.6410256410256411,
+      "p": 0.05224609375,
+      "p_holm": 0.05224609375
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 11,
+      "draws": 0,
+      "ref_losses": 1,
+      "median_diff": -0.09351433920013617,
+      "ci_low": -0.1571056163405952,
+      "ci_high": -0.024048740129303053,
+      "rank_biserial": -0.8974358974358975,
+      "p": 0.00341796875,
+      "p_holm": 0.0068359375
+     }
+    ]
+   },
+   "stream:auto_err@30": {
+    "medians": {
+     "Holdout-TS": 0.08193904685927023,
+     "LOOM": 0.02521962481962482,
+     "PreVal": 0.07465430128972211,
+     "QUANT": 0.009746031746031746,
+     "Ridge-Platt-CV5": 0.05304518775998632
+    },
+    "means": {
+     "Holdout-TS": 0.09436575388534658,
+     "LOOM": 0.05385401587666916,
+     "PreVal": 0.08887893681259544,
+     "QUANT": 0.05152192136859019,
+     "Ridge-Platt-CV5": 0.07368216318565225
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 11,
+      "draws": 0,
+      "ref_losses": 1,
+      "median_diff": 0.020714285714285706,
+      "ci_low": 0.005943943040073861,
+      "ci_high": 0.07196089082020642,
+      "rank_biserial": 0.9487179487179487,
+      "p": 0.00146484375,
+      "p_holm": 0.005859375
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 8,
+      "draws": 2,
+      "ref_losses": 2,
+      "median_diff": 0.011528975322621152,
+      "ci_low": 0.0,
+      "ci_high": 0.07120750433172013,
+      "rank_biserial": 0.8909090909090909,
+      "p": 0.009765625,
+      "p_holm": 0.029296875
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 5,
+      "draws": 3,
+      "ref_losses": 4,
+      "median_diff": 0.0,
+      "ci_low": -0.0035873015873015873,
+      "ci_high": 0.0033854517263831926,
+      "rank_biserial": -0.022222222222222223,
+      "p": 1.0,
+      "p_holm": 1.0
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 7,
+      "draws": 1,
+      "ref_losses": 4,
+      "median_diff": 0.003506042046018867,
+      "ci_low": -0.0044802308802308795,
+      "ci_high": 0.020565214793571124,
+      "rank_biserial": 0.36363636363636365,
+      "p": 0.3203125,
+      "p_holm": 0.640625
+     }
+    ]
+   },
+   "stream:fault_caught@30": {
+    "medians": {
+     "Holdout-TS": 0.3753103036753466,
+     "LOOM": 0.5840842949711635,
+     "PreVal": 0.36708859629296686,
+     "QUANT": 0.5291336449423059,
+     "Ridge-Platt-CV5": 0.3895978495500535
+    },
+    "means": {
+     "Holdout-TS": 0.3902453342718279,
+     "LOOM": 0.6094129610616936,
+     "PreVal": 0.3922661489401947,
+     "QUANT": 0.5490004974383912,
+     "Ridge-Platt-CV5": 0.4359915346842383
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 12,
+      "draws": 0,
+      "ref_losses": 0,
+      "median_diff": -0.18000169374833963,
+      "ci_low": -0.3419182077825349,
+      "ci_high": -0.10160273923910193,
+      "rank_biserial": -1.0,
+      "p": 0.00048828125,
+      "p_holm": 0.001953125
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 12,
+      "draws": 0,
+      "ref_losses": 0,
+      "median_diff": -0.13451464479352526,
+      "ci_low": -0.3633294752563345,
+      "ci_high": -0.10352114412227761,
+      "rank_biserial": -1.0,
+      "p": 0.00048828125,
+      "p_holm": 0.001953125
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 10,
+      "draws": 0,
+      "ref_losses": 2,
+      "median_diff": -0.049934722026645645,
+      "ci_low": -0.13267628319906122,
+      "ci_high": -0.02403363162804631,
+      "rank_biserial": -0.717948717948718,
+      "p": 0.02685546875,
+      "p_holm": 0.02685546875
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 11,
+      "draws": 0,
+      "ref_losses": 1,
+      "median_diff": -0.10069460976645853,
+      "ci_low": -0.2369528745983188,
+      "ci_high": -0.07637592628796108,
+      "rank_biserial": -0.9487179487179487,
+      "p": 0.00146484375,
+      "p_holm": 0.0029296875
+     }
+    ]
+   },
+   "clean:nll": {
+    "medians": {
+     "Holdout-TS": 0.20829469474282086,
+     "LOOM": 0.2041526009029494,
+     "PreVal": 0.19401936369519499,
+     "QUANT": 0.2154520237572416,
+     "Ridge-Platt-CV5": 0.20635817029687709
+    },
+    "means": {
+     "Holdout-TS": 0.27312280091287594,
+     "LOOM": 0.24918400019312173,
+     "PreVal": 0.2570809396152657,
+     "QUANT": 0.3072031502439339,
+     "Ridge-Platt-CV5": 0.24740875706626853
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 8,
+      "draws": 0,
+      "ref_losses": 4,
+      "median_diff": 0.01458237246040205,
+      "ci_low": -0.00697325669560809,
+      "ci_high": 0.04973584917035312,
+      "rank_biserial": 0.48717948717948717,
+      "p": 0.1513671875,
+      "p_holm": 0.517578125
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 5,
+      "draws": 0,
+      "ref_losses": 7,
+      "median_diff": -0.000735945730031641,
+      "ci_low": -0.00403670148239278,
+      "ci_high": 0.010287641216129836,
+      "rank_biserial": -0.05128205128205128,
+      "p": 0.90966796875,
+      "p_holm": 0.939453125
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 8,
+      "draws": 0,
+      "ref_losses": 4,
+      "median_diff": 0.035554915078120544,
+      "ci_low": -0.005155876035243734,
+      "ci_high": 0.09491814940994016,
+      "rank_biserial": 0.5128205128205128,
+      "p": 0.12939453125,
+      "p_holm": 0.517578125
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 4,
+      "draws": 0,
+      "ref_losses": 8,
+      "median_diff": -0.0037050052713524925,
+      "ci_low": -0.009504302071400655,
+      "ci_high": 0.0046917468769005904,
+      "rank_biserial": -0.2564102564102564,
+      "p": 0.4697265625,
+      "p_holm": 0.939453125
+     }
+    ]
+   },
+   "clean:acc": {
+    "medians": {
+     "Holdout-TS": 0.9444926208651401,
+     "LOOM": 0.9494491942324004,
+     "PreVal": 0.9488807463952502,
+     "QUANT": 0.9481999999999999,
+     "Ridge-Platt-CV5": 0.9511034775233249
+    },
+    "means": {
+     "Holdout-TS": 0.9113750973671194,
+     "LOOM": 0.9196307510088859,
+     "PreVal": 0.9186586374002464,
+     "QUANT": 0.9184255190475231,
+     "Ridge-Platt-CV5": 0.9177266947176923
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 10,
+      "draws": 0,
+      "ref_losses": 2,
+      "median_diff": -0.0030989391401452515,
+      "ci_low": -0.010021530632217557,
+      "ci_high": -0.0004740692820726089,
+      "rank_biserial": -0.6666666666666666,
+      "p": 0.04248046875,
+      "p_holm": 0.169921875
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 7,
+      "draws": 3,
+      "ref_losses": 2,
+      "median_diff": -0.0005407627332577603,
+      "ci_low": -0.0015303643724696725,
+      "ci_high": 0.0,
+      "rank_biserial": -0.6888888888888889,
+      "p": 0.07421875,
+      "p_holm": 0.22265625
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 6,
+      "draws": 0,
+      "ref_losses": 6,
+      "median_diff": 0.00028937691405678256,
+      "ci_low": -0.011247221458937917,
+      "ci_high": 0.004555555555555535,
+      "rank_biserial": -0.05128205128205128,
+      "p": 0.90966796875,
+      "p_holm": 1.0
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 6,
+      "draws": 1,
+      "ref_losses": 5,
+      "median_diff": -0.0001777777777778322,
+      "ci_low": -0.0027692307692306906,
+      "ci_high": 0.0016437744276940336,
+      "rank_biserial": -0.21212121212121213,
+      "p": 0.5771484375,
+      "p_holm": 1.0
+     }
+    ]
+   },
+   "clean:auto_err@10": {
+    "medians": {
+     "Holdout-TS": 0.020989413004487437,
+     "LOOM": 0.019908855529733614,
+     "PreVal": 0.018051183272965822,
+     "QUANT": 0.0185679012345679,
+     "Ridge-Platt-CV5": 0.017389094766520806
+    },
+    "means": {
+     "Holdout-TS": 0.06582192907878105,
+     "LOOM": 0.05775920868434902,
+     "PreVal": 0.0593271483282444,
+     "QUANT": 0.057695650453021795,
+     "Ridge-Platt-CV5": 0.05918913548605321
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 9,
+      "draws": 2,
+      "ref_losses": 1,
+      "median_diff": 0.0008334838903944603,
+      "ci_low": 3.898635477582846e-05,
+      "ci_high": 0.005217810862972148,
+      "rank_biserial": 0.8545454545454545,
+      "p": 0.013671875,
+      "p_holm": 0.0546875
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 7,
+      "draws": 2,
+      "ref_losses": 3,
+      "median_diff": 0.001172839506172836,
+      "ci_low": -0.00043424317617866276,
+      "ci_high": 0.002184376931488613,
+      "rank_biserial": 0.6,
+      "p": 0.10546875,
+      "p_holm": 0.31640625
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 6,
+      "draws": 2,
+      "ref_losses": 4,
+      "median_diff": 7.797270955165692e-05,
+      "ci_low": -0.0025432098765432094,
+      "ci_high": 0.004627479460855347,
+      "rank_biserial": 0.16363636363636364,
+      "p": 0.6953125,
+      "p_holm": 1.0
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 5,
+      "draws": 3,
+      "ref_losses": 4,
+      "median_diff": 0.0,
+      "ci_low": -0.002611585944919276,
+      "ci_high": 0.002641975308641976,
+      "rank_biserial": 0.06666666666666667,
+      "p": 0.91015625,
+      "p_holm": 1.0
+     }
+    ]
+   },
+   "clean:auto_err@20": {
+    "medians": {
+     "Holdout-TS": 0.010703986429177269,
+     "LOOM": 0.011839270568278203,
+     "PreVal": 0.010123409669211197,
+     "QUANT": 0.006715966921119592,
+     "Ridge-Platt-CV5": 0.009851993214588633
+    },
+    "means": {
+     "Holdout-TS": 0.05106955773148416,
+     "LOOM": 0.04513539380828785,
+     "PreVal": 0.04499705097796078,
+     "QUANT": 0.04411802041865933,
+     "Ridge-Platt-CV5": 0.044432885001842885
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 7,
+      "draws": 3,
+      "ref_losses": 2,
+      "median_diff": 0.0004307077627349631,
+      "ci_low": 0.0,
+      "ci_high": 0.007581995812979771,
+      "rank_biserial": 0.7333333333333333,
+      "p": 0.0546875,
+      "p_holm": 0.21875
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 3,
+      "draws": 4,
+      "ref_losses": 5,
+      "median_diff": 0.0,
+      "ci_low": -0.0014519720101781176,
+      "ci_high": 0.0009649122807017544,
+      "rank_biserial": 0.0,
+      "p": 1.0,
+      "p_holm": 1.0
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 6,
+      "draws": 2,
+      "ref_losses": 4,
+      "median_diff": 4.385964912280702e-05,
+      "ci_low": -0.0027500000000000003,
+      "ci_high": 0.0061243605383108825,
+      "rank_biserial": 0.01818181818181818,
+      "p": 1.0,
+      "p_holm": 1.0
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 3,
+      "draws": 4,
+      "ref_losses": 5,
+      "median_diff": 0.0,
+      "ci_low": -0.004166156162714914,
+      "ci_high": 0.0003293084522502744,
+      "rank_biserial": -0.3333333333333333,
+      "p": 0.4609375,
+      "p_holm": 1.0
+     }
+    ]
+   },
+   "clean:auto_err@30": {
+    "medians": {
+     "Holdout-TS": 0.008031746031746032,
+     "LOOM": 0.009591919191919193,
+     "PreVal": 0.00784126984126984,
+     "QUANT": 0.0030813852813852817,
+     "Ridge-Platt-CV5": 0.009015873015873015
+    },
+    "means": {
+     "Holdout-TS": 0.04150060034919411,
+     "LOOM": 0.03487248536211152,
+     "PreVal": 0.03597950676451452,
+     "QUANT": 0.03401452486201726,
+     "Ridge-Platt-CV5": 0.0351132660280823
+    },
+    "pairwise": [
+     {
+      "competitor": "Holdout-TS",
+      "n": 12,
+      "ref_wins": 7,
+      "draws": 3,
+      "ref_losses": 2,
+      "median_diff": 0.0004691114274124723,
+      "ci_low": 0.0,
+      "ci_high": 0.006439683172830361,
+      "rank_biserial": 0.6444444444444445,
+      "p": 0.09765625,
+      "p_holm": 0.390625
+     },
+     {
+      "competitor": "PreVal",
+      "n": 12,
+      "ref_wins": 5,
+      "draws": 3,
+      "ref_losses": 4,
+      "median_diff": 0.0,
+      "ci_low": -0.0014415584415584416,
+      "ci_high": 0.0016849816849816824,
+      "rank_biserial": 0.2,
+      "p": 0.65234375,
+      "p_holm": 1.0
+     },
+     {
+      "competitor": "QUANT",
+      "n": 12,
+      "ref_wins": 4,
+      "draws": 3,
+      "ref_losses": 5,
+      "median_diff": 0.0,
+      "ci_low": -0.003555555555555556,
+      "ci_high": 0.004120107363122283,
+      "rank_biserial": -0.06666666666666667,
+      "p": 0.91015625,
+      "p_holm": 1.0
+     },
+     {
+      "competitor": "Ridge-Platt-CV5",
+      "n": 12,
+      "ref_wins": 3,
+      "draws": 5,
+      "ref_losses": 4,
+      "median_diff": 0.0,
+      "ci_low": -0.001363347763347764,
+      "ci_high": 0.0002380952380952369,
+      "rank_biserial": -0.14285714285714285,
+      "p": 0.8125,
+      "p_holm": 1.0
+     }
+    ]
+   }
+  },
+  "domains": {
+   "cardiac": {
+    "Holdout-TS": {
+     "auto_err@20": 0.05242864983534577,
+     "fault_caught@20": 0.3541680734984156,
+     "nll": 0.8287419585862221
+    },
+    "LOOM": {
+     "auto_err@20": 0.041555555555555554,
+     "fault_caught@20": 0.5473198606801064,
+     "nll": 0.30223128801705457
+    },
+    "PreVal": {
+     "auto_err@20": 0.052502744237102085,
+     "fault_caught@20": 0.3281115315482086,
+     "nll": 1.0323201859805653
+    },
+    "QUANT": {
+     "auto_err@20": 0.04764461407972858,
+     "fault_caught@20": 0.43824629557812644,
+     "nll": 0.3069582035974854
+    },
+    "Ridge-Platt-CV5": {
+     "auto_err@20": 0.04299533479692645,
+     "fault_caught@20": 0.3959928424306297,
+     "nll": 0.28728795998553436
+    }
+   },
+   "industrial": {
+    "Holdout-TS": {
+     "auto_err@20": 0.06226163156827376,
+     "fault_caught@20": 0.2687599961935476,
+     "nll": 0.7378708751885981
+    },
+    "LOOM": {
+     "auto_err@20": 0.012660818713450293,
+     "fault_caught@20": 0.4748102683364016,
+     "nll": 0.1690859122008201
+    },
+    "PreVal": {
+     "auto_err@20": 0.06548798862904574,
+     "fault_caught@20": 0.24869296558501655,
+     "nll": 0.6657848020695987
+    },
+    "QUANT": {
+     "auto_err@20": 0.007711988304093567,
+     "fault_caught@20": 0.4142816718660803,
+     "nll": 0.14462708510654435
+    },
+    "Ridge-Platt-CV5": {
+     "auto_err@20": 0.05299193786534884,
+     "fault_caught@20": 0.26414691271818413,
+     "nll": 0.49597548606430625
+    }
+   },
+   "wearable": {
+    "Holdout-TS": {
+     "auto_err@20": 0.1052327576180507,
+     "fault_caught@20": 0.18597859125822436,
+     "nll": 0.9834018785399061
+    },
+    "LOOM": {
+     "auto_err@20": 0.09612569783670621,
+     "fault_caught@20": 0.33178708952302727,
+     "nll": 0.4653562273248698
+    },
+    "PreVal": {
+     "auto_err@20": 0.0977391544545243,
+     "fault_caught@20": 0.18780576906910817,
+     "nll": 0.8759595867111092
+    },
+    "QUANT": {
+     "auto_err@20": 0.06117280181437544,
+     "fault_caught@20": 0.3311442661078403,
+     "nll": 0.4452639027932413
+    },
+    "Ridge-Platt-CV5": {
+     "auto_err@20": 0.09749999999999999,
+     "fault_caught@20": 0.23076994029350517,
+     "nll": 0.7596349645001099
+    }
+   }
+  }
+ },
  "E9_conformal": [
   {
    "method": "CP-LOOM-jackknife",
@@ -6692,945 +7691,945 @@
  },
  "E5_hydra_clean": {
   "nll": {
-   "n_datasets": 51,
-   "n_ranked": 51,
+   "n_datasets": 110,
+   "n_ranked": 110,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 68.8352941176471,
-   "friedman_p": 7.57929077566099e-15,
+   "friedman_chi2": 125.15650591446789,
+   "friedman_p": 5.980068791867065e-27,
    "mean_ranks": {
-    "PreVal": 1.7450980392156863,
-    "LOOM": 1.9019607843137254,
-    "Holdout-TS": 2.7254901960784315,
-    "Ridge-softmax": 3.627450980392157
+    "PreVal": 1.7181818181818183,
+    "LOOM": 2.0090909090909093,
+    "Holdout-TS": 2.7954545454545454,
+    "Ridge-softmax": 3.477272727272727
    },
-   "nemenyi_cd": 0.6567858082598843,
+   "nemenyi_cd": 0.44721102904060317,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 51,
-     "ref_wins": 23,
+     "n": 110,
+     "ref_wins": 43,
      "draws": 0,
-     "ref_losses": 28,
-     "median_diff": -0.0022285733775502803,
-     "ci_low": -0.006368345253664254,
-     "ci_high": 0.007143641497417752,
-     "rank_biserial": -0.0030165912518853697,
-     "p": 0.985042987115864,
-     "p_holm": 0.985042987115864
+     "ref_losses": 67,
+     "median_diff": -0.005988612655981884,
+     "ci_low": -0.018409236017262604,
+     "ci_high": -0.001425126967995377,
+     "rank_biserial": -0.15937755937755937,
+     "p": 0.14681048433187677,
+     "p_holm": 0.14681048433187677
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 51,
-     "ref_wins": 48,
+     "n": 110,
+     "ref_wins": 102,
      "draws": 0,
-     "ref_losses": 3,
-     "median_diff": 0.42990602516098775,
-     "ci_low": 0.20932326621859726,
-     "ci_high": 0.7134152037431204,
-     "rank_biserial": 0.9411764705882353,
-     "p": 4.944083093762296e-09,
-     "p_holm": 1.4832249281286887e-08
+     "ref_losses": 8,
+     "median_diff": 0.21192401870683367,
+     "ci_low": 0.1394233804863248,
+     "ci_high": 0.27823530152417936,
+     "rank_biserial": 0.9262899262899262,
+     "p": 3.384748600471153e-17,
+     "p_holm": 1.0154245801413459e-16
     },
     {
      "competitor": "Holdout-TS",
-     "n": 51,
-     "ref_wins": 36,
+     "n": 110,
+     "ref_wins": 74,
      "draws": 0,
-     "ref_losses": 15,
-     "median_diff": 0.02386999718748717,
-     "ci_low": 0.0061566355828904795,
-     "ci_high": 0.07551906820321475,
-     "rank_biserial": 0.5339366515837104,
-     "p": 0.0009059722880034091,
-     "p_holm": 0.0018119445760068182
+     "ref_losses": 36,
+     "median_diff": 0.030707461455359575,
+     "ci_low": 0.014679677868486007,
+     "ci_high": 0.04597475584037225,
+     "rank_biserial": 0.5072891072891073,
+     "p": 3.872789741161546e-06,
+     "p_holm": 7.745579482323091e-06
     }
    ],
    "medians": {
-    "LOOM": 0.4425226581494809,
-    "PreVal": 0.44815857443615476,
-    "Ridge-softmax": 1.053437748523923,
-    "Holdout-TS": 0.6391595779932153
+    "LOOM": 0.29088963491305353,
+    "PreVal": 0.3294818071663955,
+    "Ridge-softmax": 0.6239106814815724,
+    "Holdout-TS": 0.5413136769958765
    },
    "means": {
-    "LOOM": 0.5781592339423235,
-    "PreVal": 0.7070916993851718,
-    "Ridge-softmax": 1.256663488556083,
-    "Holdout-TS": 0.8654285788937037
+    "LOOM": 0.46448445925958176,
+    "PreVal": 0.5674080970319987,
+    "Ridge-softmax": 0.909374669959524,
+    "Holdout-TS": 0.8004472707255909
    },
    "n_available": {
-    "LOOM": 51,
-    "PreVal": 51,
-    "Ridge-softmax": 51,
-    "Holdout-TS": 51
+    "LOOM": 110,
+    "PreVal": 110,
+    "Ridge-softmax": 110,
+    "Holdout-TS": 110
    }
   },
   "ece": {
-   "n_datasets": 51,
-   "n_ranked": 51,
+   "n_datasets": 110,
+   "n_ranked": 110,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 70.90588235294115,
-   "friedman_p": 2.730642294710228e-15,
+   "friedman_chi2": 143.6205641492268,
+   "friedman_p": 6.262273948770088e-31,
    "mean_ranks": {
-    "PreVal": 1.9215686274509804,
-    "Holdout-TS": 2.0392156862745097,
-    "LOOM": 2.235294117647059,
-    "Ridge-softmax": 3.803921568627451
+    "PreVal": 1.7818181818181817,
+    "Holdout-TS": 2.1136363636363638,
+    "LOOM": 2.381818181818182,
+    "Ridge-softmax": 3.7227272727272727
    },
-   "nemenyi_cd": 0.6567858082598843,
+   "nemenyi_cd": 0.44721102904060317,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 51,
-     "ref_wins": 18,
+     "n": 110,
+     "ref_wins": 32,
      "draws": 0,
-     "ref_losses": 33,
-     "median_diff": -0.005915523268098607,
-     "ci_low": -0.01347897993255996,
-     "ci_high": -0.00020838674242061768,
-     "rank_biserial": -0.39215686274509803,
-     "p": 0.014805527604052654,
-     "p_holm": 0.029611055208105308
+     "ref_losses": 78,
+     "median_diff": -0.013980459573354712,
+     "ci_low": -0.027750981658711826,
+     "ci_high": -0.007411942895758604,
+     "rank_biserial": -0.6137592137592137,
+     "p": 2.3056976234378806e-08,
+     "p_holm": 4.611395246875761e-08
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 51,
-     "ref_wins": 48,
+     "n": 110,
+     "ref_wins": 101,
      "draws": 0,
-     "ref_losses": 3,
-     "median_diff": 0.24280188105981013,
-     "ci_low": 0.15383723905559465,
-     "ci_high": 0.37414351979059157,
-     "rank_biserial": 0.9668174962292609,
-     "p": 1.8737206286873327e-09,
-     "p_holm": 5.621161886061998e-09
+     "ref_losses": 9,
+     "median_diff": 0.15802757548452842,
+     "ci_low": 0.12544732835082426,
+     "ci_high": 0.18943753448943537,
+     "rank_biserial": 0.9502047502047503,
+     "p": 5.14238547484292e-18,
+     "p_holm": 1.542715642452876e-17
     },
     {
      "competitor": "Holdout-TS",
-     "n": 51,
-     "ref_wins": 24,
+     "n": 110,
+     "ref_wins": 45,
      "draws": 0,
-     "ref_losses": 27,
-     "median_diff": -0.005727003025354928,
-     "ci_low": -0.014658457598670536,
-     "ci_high": 0.003382811788337072,
-     "rank_biserial": -0.20512820512820512,
-     "p": 0.20238305217721309,
-     "p_holm": 0.20238305217721309
+     "ref_losses": 65,
+     "median_diff": -0.007127895064832447,
+     "ci_low": -0.016836601919464497,
+     "ci_high": 4.7319626697557224e-05,
+     "rank_biserial": -0.28452088452088453,
+     "p": 0.009593983895572939,
+     "p_holm": 0.009593983895572939
     }
    ],
    "medians": {
-    "LOOM": 0.05930019900929256,
-    "PreVal": 0.034388194175217685,
-    "Ridge-softmax": 0.37745625797928595,
-    "Holdout-TS": 0.046195712916772706
+    "LOOM": 0.07367213569383091,
+    "PreVal": 0.03885118503713793,
+    "Ridge-softmax": 0.23818969011907762,
+    "Holdout-TS": 0.05060713865441102
    },
    "means": {
-    "LOOM": 0.08399717981374835,
-    "PreVal": 0.06128559467324877,
-    "Ridge-softmax": 0.39568394321753814,
-    "Holdout-TS": 0.07615026774062311
+    "LOOM": 0.09402670907630357,
+    "PreVal": 0.06539695591164678,
+    "Ridge-softmax": 0.32492769272559086,
+    "Holdout-TS": 0.08694062188995648
    },
    "n_available": {
-    "LOOM": 51,
-    "PreVal": 51,
-    "Ridge-softmax": 51,
-    "Holdout-TS": 51
+    "LOOM": 110,
+    "PreVal": 110,
+    "Ridge-softmax": 110,
+    "Holdout-TS": 110
    }
   },
   "acc": {
-   "n_datasets": 51,
-   "n_ranked": 51,
+   "n_datasets": 110,
+   "n_ranked": 110,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 19.972727272727205,
-   "friedman_p": 0.0001719658725466377,
+   "friedman_chi2": 38.80944625407181,
+   "friedman_p": 1.9047214032828354e-08,
    "mean_ranks": {
-    "LOOM": 2.176470588235294,
-    "PreVal": 2.264705882352941,
-    "Ridge-softmax": 2.549019607843137,
-    "Holdout-TS": 3.0098039215686274
+    "LOOM": 2.2636363636363637,
+    "PreVal": 2.327272727272727,
+    "Ridge-softmax": 2.422727272727273,
+    "Holdout-TS": 2.9863636363636363
    },
-   "nemenyi_cd": 0.6567858082598843,
+   "nemenyi_cd": 0.44721102904060317,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 51,
-     "ref_wins": 6,
-     "draws": 41,
-     "ref_losses": 4,
+     "n": 110,
+     "ref_wins": 9,
+     "draws": 95,
+     "ref_losses": 6,
      "median_diff": 0.0,
      "ci_low": 0.0,
      "ci_high": 0.0,
-     "rank_biserial": -0.5272727272727272,
-     "p": 0.13941397332153205,
-     "p_holm": 0.13941397332153205
+     "rank_biserial": -0.55,
+     "p": 0.060892661900952515,
+     "p_holm": 0.060892661900952515
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 51,
-     "ref_wins": 16,
-     "draws": 30,
-     "ref_losses": 5,
+     "n": 110,
+     "ref_wins": 19,
+     "draws": 82,
+     "ref_losses": 9,
      "median_diff": 0.0,
      "ci_low": 0.0,
      "ci_high": 0.0,
-     "rank_biserial": -0.6277056277056277,
-     "p": 0.01173783003097544,
-     "p_holm": 0.02347566006195088
+     "rank_biserial": -0.5024630541871922,
+     "p": 0.02019607063179433,
+     "p_holm": 0.04039214126358866
     },
     {
      "competitor": "Holdout-TS",
-     "n": 51,
-     "ref_wins": 30,
-     "draws": 11,
-     "ref_losses": 10,
-     "median_diff": -0.0020356234096692294,
-     "ci_low": -0.008528784648187626,
+     "n": 110,
+     "ref_wins": 61,
+     "draws": 27,
+     "ref_losses": 22,
+     "median_diff": -0.0023448721384931592,
+     "ci_low": -0.00527777777777777,
      "ci_high": 0.0,
-     "rank_biserial": -0.6951219512195121,
-     "p": 0.00012774301113149903,
-     "p_holm": 0.0003832290333944971
+     "rank_biserial": -0.6001147446930579,
+     "p": 2.044199800136429e-06,
+     "p_holm": 6.132599400409287e-06
     }
    ],
    "medians": {
-    "LOOM": 0.855,
-    "PreVal": 0.855,
-    "Ridge-softmax": 0.8533333333333334,
-    "Holdout-TS": 0.85
+    "LOOM": 0.912037037037037,
+    "PreVal": 0.912037037037037,
+    "Ridge-softmax": 0.9136104841497388,
+    "Holdout-TS": 0.8905982905982905
    },
    "means": {
-    "LOOM": 0.8205931925635995,
-    "PreVal": 0.82002044390721,
-    "Ridge-softmax": 0.8134691180151519,
-    "Holdout-TS": 0.7945769278324516
+    "LOOM": 0.8592725531576687,
+    "PreVal": 0.8589471806666661,
+    "Ridge-softmax": 0.8559494498567451,
+    "Holdout-TS": 0.8420385101623772
    },
    "n_available": {
-    "LOOM": 51,
-    "PreVal": 51,
-    "Ridge-softmax": 51,
-    "Holdout-TS": 51
+    "LOOM": 110,
+    "PreVal": 110,
+    "Ridge-softmax": 110,
+    "Holdout-TS": 110
    }
   }
  },
  "E5_hydra_shifted": {
   "nll": {
-   "n_datasets": 51,
-   "n_ranked": 51,
+   "n_datasets": 110,
+   "n_ranked": 110,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 109.04705882352937,
-   "friedman_p": 1.75957720317865e-23,
+   "friedman_chi2": 225.91719745222932,
+   "friedman_p": 1.0556704249391616e-48,
    "mean_ranks": {
-    "LOOM": 1.1372549019607843,
-    "Ridge-softmax": 2.1176470588235294,
-    "Holdout-TS": 3.235294117647059,
-    "PreVal": 3.5098039215686274
+    "LOOM": 1.1636363636363636,
+    "Ridge-softmax": 2.1136363636363638,
+    "Holdout-TS": 3.340909090909091,
+    "PreVal": 3.381818181818182
    },
-   "nemenyi_cd": 0.6567858082598843,
+   "nemenyi_cd": 0.44721102904060317,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 51,
-     "ref_wins": 51,
+     "n": 110,
+     "ref_wins": 106,
      "draws": 0,
-     "ref_losses": 0,
-     "median_diff": 5.504965991685461,
-     "ci_low": 1.5648759186991132,
-     "ci_high": 9.009599254333539,
-     "rank_biserial": 1.0,
-     "p": 5.145276051717656e-10,
-     "p_holm": 1.5435828155152967e-09
+     "ref_losses": 4,
+     "median_diff": 5.257126934753721,
+     "ci_low": 3.3972208188131696,
+     "ci_high": 6.827496887060404,
+     "rank_biserial": 0.9960687960687961,
+     "p": 1.2156696373685146e-19,
+     "p_holm": 3.647008912105544e-19
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 51,
-     "ref_wins": 45,
+     "n": 110,
+     "ref_wins": 99,
      "draws": 0,
-     "ref_losses": 6,
-     "median_diff": 2.6966920314767835,
-     "ci_low": 0.37558317729191093,
-     "ci_high": 5.7590732874150525,
-     "rank_biserial": 0.9079939668174962,
-     "p": 1.6728036016757065e-08,
-     "p_holm": 1.6728036016757065e-08
+     "ref_losses": 11,
+     "median_diff": 1.4366934901961543,
+     "ci_low": 0.37682886002228244,
+     "ci_high": 2.9240294500054658,
+     "rank_biserial": 0.9393939393939394,
+     "p": 1.2123444375148475e-17,
+     "p_holm": 1.2123444375148475e-17
     },
     {
      "competitor": "Holdout-TS",
-     "n": 51,
-     "ref_wins": 50,
+     "n": 110,
+     "ref_wins": 107,
      "draws": 0,
-     "ref_losses": 1,
-     "median_diff": 7.4697770020420835,
-     "ci_low": 3.2379564190117853,
-     "ci_high": 8.921080287677235,
-     "rank_biserial": 0.9939668174962293,
-     "p": 6.528366037592496e-10,
-     "p_holm": 1.5435828155152967e-09
+     "ref_losses": 3,
+     "median_diff": 6.026547985160651,
+     "ci_low": 4.154460679840943,
+     "ci_high": 7.454999838374723,
+     "rank_biserial": 0.9960687960687961,
+     "p": 1.2156696373685146e-19,
+     "p_holm": 3.647008912105544e-19
     }
    ],
    "medians": {
-    "LOOM": 1.3027687648608206,
-    "PreVal": 6.468982430572416,
-    "Ridge-softmax": 4.848926927029944,
-    "Holdout-TS": 8.458157830768466
+    "LOOM": 0.975128008857074,
+    "PreVal": 6.1477928274968825,
+    "Ridge-softmax": 2.4546014846078057,
+    "Holdout-TS": 6.703169722598304
    },
    "means": {
-    "LOOM": 1.4938520460334155,
-    "PreVal": 7.013684013492606,
-    "Ridge-softmax": 5.354376567333813,
-    "Holdout-TS": 7.227861341071382
+    "LOOM": 1.183643902442783,
+    "PreVal": 6.463449412305567,
+    "Ridge-softmax": 4.35423545780328,
+    "Holdout-TS": 6.9868005625386775
    },
    "n_available": {
-    "LOOM": 51,
-    "PreVal": 51,
-    "Ridge-softmax": 51,
-    "Holdout-TS": 51
+    "LOOM": 110,
+    "PreVal": 110,
+    "Ridge-softmax": 110,
+    "Holdout-TS": 110
    }
   },
   "ece": {
-   "n_datasets": 51,
-   "n_ranked": 51,
+   "n_datasets": 110,
+   "n_ranked": 110,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 60.76470588235293,
-   "friedman_p": 4.0351164251394014e-13,
+   "friedman_chi2": 135.66606005459528,
+   "friedman_p": 3.249612476824899e-29,
    "mean_ranks": {
-    "LOOM": 1.3137254901960784,
-    "PreVal": 2.7058823529411766,
-    "Holdout-TS": 2.823529411764706,
-    "Ridge-softmax": 3.156862745098039
+    "LOOM": 1.2727272727272727,
+    "PreVal": 2.7363636363636363,
+    "Holdout-TS": 2.977272727272727,
+    "Ridge-softmax": 3.0136363636363637
    },
-   "nemenyi_cd": 0.6567858082598843,
+   "nemenyi_cd": 0.44721102904060317,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 51,
-     "ref_wins": 47,
+     "n": 110,
+     "ref_wins": 100,
      "draws": 0,
-     "ref_losses": 4,
-     "median_diff": 0.11681977910164074,
-     "ci_low": 0.08350948543184719,
-     "ci_high": 0.1461131821802918,
-     "rank_biserial": 0.8778280542986425,
-     "p": 4.887435364904566e-08,
-     "p_holm": 8.614692464334854e-08
+     "ref_losses": 10,
+     "median_diff": 0.11231338276642976,
+     "ci_low": 0.08609922023283192,
+     "ci_high": 0.1375648331940018,
+     "rank_biserial": 0.8948402948402948,
+     "p": 3.756676044308181e-16,
+     "p_holm": 3.756676044308181e-16
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 51,
-     "ref_wins": 45,
+     "n": 110,
+     "ref_wins": 102,
      "draws": 0,
-     "ref_losses": 6,
-     "median_diff": 0.19691859215939717,
-     "ci_low": 0.1545018302101325,
-     "ci_high": 0.2738461000449374,
-     "rank_biserial": 0.8929110105580694,
-     "p": 2.8715641547782846e-08,
-     "p_holm": 8.614692464334854e-08
+     "ref_losses": 8,
+     "median_diff": 0.15536726334568585,
+     "ci_low": 0.124307717448603,
+     "ci_high": 0.1837276164928094,
+     "rank_biserial": 0.923013923013923,
+     "p": 4.365644010241018e-17,
+     "p_holm": 1.3096932030723054e-16
     },
     {
      "competitor": "Holdout-TS",
-     "n": 51,
-     "ref_wins": 45,
+     "n": 110,
+     "ref_wins": 98,
      "draws": 0,
-     "ref_losses": 6,
-     "median_diff": 0.12052246953470155,
-     "ci_low": 0.08936940016984143,
-     "ci_high": 0.18718570998061304,
-     "rank_biserial": 0.8838612368024132,
-     "p": 3.95495147306799e-08,
-     "p_holm": 8.614692464334854e-08
+     "ref_losses": 12,
+     "median_diff": 0.11752070235887713,
+     "ci_low": 0.09965813684006439,
+     "ci_high": 0.16371829711142763,
+     "rank_biserial": 0.9131859131859131,
+     "p": 9.318089539025058e-17,
+     "p_holm": 1.8636179078050116e-16
     }
    ],
    "medians": {
-    "LOOM": 0.1849695106881187,
-    "PreVal": 0.32664193816650017,
-    "Ridge-softmax": 0.3714274806883117,
-    "Holdout-TS": 0.3221107039254477
+    "LOOM": 0.15944827671542267,
+    "PreVal": 0.3087587125232183,
+    "Ridge-softmax": 0.3196945080518584,
+    "Holdout-TS": 0.31261862615428593
    },
    "means": {
-    "LOOM": 0.18969953877222806,
-    "PreVal": 0.3294955317516014,
-    "Ridge-softmax": 0.396205021123091,
-    "Holdout-TS": 0.3382177218687751
+    "LOOM": 0.17768221119782268,
+    "PreVal": 0.31390314158801885,
+    "Ridge-softmax": 0.35062700898156907,
+    "Holdout-TS": 0.3285708002365417
    },
    "n_available": {
-    "LOOM": 51,
-    "PreVal": 51,
-    "Ridge-softmax": 51,
-    "Holdout-TS": 51
+    "LOOM": 110,
+    "PreVal": 110,
+    "Ridge-softmax": 110,
+    "Holdout-TS": 110
    }
   },
   "acc": {
-   "n_datasets": 51,
-   "n_ranked": 51,
+   "n_datasets": 110,
+   "n_ranked": 110,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 18.98753117206976,
-   "friedman_p": 0.0002750266763413478,
+   "friedman_chi2": 21.909420289855387,
+   "friedman_p": 6.812402435721399e-05,
    "mean_ranks": {
-    "Ridge-softmax": 2.215686274509804,
-    "PreVal": 2.3333333333333335,
-    "LOOM": 2.3529411764705883,
-    "Holdout-TS": 3.0980392156862746
+    "Ridge-softmax": 2.331818181818182,
+    "LOOM": 2.3545454545454545,
+    "PreVal": 2.381818181818182,
+    "Holdout-TS": 2.9318181818181817
    },
-   "nemenyi_cd": 0.6567858082598843,
+   "nemenyi_cd": 0.44721102904060317,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 51,
-     "ref_wins": 7,
-     "draws": 36,
-     "ref_losses": 8,
-     "median_diff": 0.0,
-     "ci_low": 0.0,
-     "ci_high": 0.0,
-     "rank_biserial": 0.23333333333333334,
-     "p": 0.42652824883677154,
-     "p_holm": 0.8008359693476519
-    },
-    {
-     "competitor": "Ridge-softmax",
-     "n": 51,
-     "ref_wins": 12,
-     "draws": 24,
+     "n": 110,
+     "ref_wins": 16,
+     "draws": 79,
      "ref_losses": 15,
      "median_diff": 0.0,
      "ci_low": 0.0,
      "ci_high": 0.0,
-     "rank_biserial": 0.18518518518518517,
-     "p": 0.40041798467382594,
-     "p_holm": 0.8008359693476519
+     "rank_biserial": -0.008064516129032258,
+     "p": 0.9687364427199858,
+     "p_holm": 0.9687364427199858
+    },
+    {
+     "competitor": "Ridge-softmax",
+     "n": 110,
+     "ref_wins": 22,
+     "draws": 67,
+     "ref_losses": 21,
+     "median_diff": 0.0,
+     "ci_low": 0.0,
+     "ci_high": 0.0,
+     "rank_biserial": 0.1543340380549683,
+     "p": 0.3780626582374441,
+     "p_holm": 0.7561253164748882
     },
     {
      "competitor": "Holdout-TS",
-     "n": 51,
-     "ref_wins": 35,
-     "draws": 0,
-     "ref_losses": 16,
-     "median_diff": -0.005723905723905631,
-     "ci_low": -0.010128913443830545,
+     "n": 110,
+     "ref_wins": 69,
+     "draws": 2,
+     "ref_losses": 39,
+     "median_diff": -0.004537037037037006,
+     "ci_low": -0.008079365079365075,
      "ci_high": -0.0018659881255300714,
-     "rank_biserial": -0.4343891402714932,
-     "p": 0.006943155655413701,
-     "p_holm": 0.020829466966241102
+     "rank_biserial": -0.31923207611281007,
+     "p": 0.003980480853184104,
+     "p_holm": 0.01194144255955231
     }
    ],
    "medians": {
-    "LOOM": 0.5517094017094017,
-    "PreVal": 0.5527363184079602,
-    "Ridge-softmax": 0.5527363184079602,
-    "Holdout-TS": 0.5260683760683761
+    "LOOM": 0.598812865497076,
+    "PreVal": 0.5974941373534338,
+    "Ridge-softmax": 0.598812865497076,
+    "Holdout-TS": 0.5904973362181276
    },
    "means": {
-    "LOOM": 0.5323263747528689,
-    "PreVal": 0.5327356072918593,
-    "Ridge-softmax": 0.5328941953070013,
-    "Holdout-TS": 0.5182767325392417
+    "LOOM": 0.5811991809959735,
+    "PreVal": 0.5803858294779013,
+    "Ridge-softmax": 0.5826141308845617,
+    "Holdout-TS": 0.573137223054272
    },
    "n_available": {
-    "LOOM": 51,
-    "PreVal": 51,
-    "Ridge-softmax": 51,
-    "Holdout-TS": 51
+    "LOOM": 110,
+    "PreVal": 110,
+    "Ridge-softmax": 110,
+    "Holdout-TS": 110
    }
   }
  },
  "E5_multirocket_clean": {
   "nll": {
-   "n_datasets": 51,
-   "n_ranked": 51,
+   "n_datasets": 110,
+   "n_ranked": 110,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 68.29411764705878,
-   "friedman_p": 9.896406920030989e-15,
+   "friedman_chi2": 115.60928961748643,
+   "friedman_p": 6.806238474835753e-25,
    "mean_ranks": {
-    "PreVal": 1.7450980392156863,
-    "LOOM": 2.0,
-    "Holdout-TS": 2.5686274509803924,
-    "Ridge-softmax": 3.6862745098039214
+    "PreVal": 1.7227272727272727,
+    "LOOM": 2.109090909090909,
+    "Holdout-TS": 2.690909090909091,
+    "Ridge-softmax": 3.477272727272727
    },
-   "nemenyi_cd": 0.6567858082598843,
+   "nemenyi_cd": 0.44721102904060317,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 51,
-     "ref_wins": 21,
+     "n": 110,
+     "ref_wins": 38,
      "draws": 0,
-     "ref_losses": 30,
-     "median_diff": -0.004811974026202095,
-     "ci_low": -0.013695829401127069,
-     "ci_high": 0.00427972946079716,
-     "rank_biserial": -0.15082956259426847,
-     "p": 0.34858025507982393,
-     "p_holm": 0.34858025507982393
+     "ref_losses": 72,
+     "median_diff": -0.009914620493458579,
+     "ci_low": -0.019821008897756398,
+     "ci_high": -0.004436435903047183,
+     "rank_biserial": -0.2910728910728911,
+     "p": 0.008054526703831126,
+     "p_holm": 0.008054526703831126
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 51,
-     "ref_wins": 48,
+     "n": 110,
+     "ref_wins": 100,
      "draws": 0,
-     "ref_losses": 3,
-     "median_diff": 0.3953598222631677,
-     "ci_low": 0.175501998708744,
-     "ci_high": 0.6586570179159739,
-     "rank_biserial": 0.9622926093514329,
-     "p": 2.2276551751144597e-09,
-     "p_holm": 6.6829655253433796e-09
+     "ref_losses": 10,
+     "median_diff": 0.1809216615437687,
+     "ci_low": 0.11976396719901589,
+     "ci_high": 0.2687779717930795,
+     "rank_biserial": 0.9158067158067158,
+     "p": 7.618240514210424e-17,
+     "p_holm": 2.285472154263127e-16
     },
     {
      "competitor": "Holdout-TS",
-     "n": 51,
-     "ref_wins": 33,
+     "n": 110,
+     "ref_wins": 70,
      "draws": 0,
-     "ref_losses": 18,
-     "median_diff": 0.013016449407224906,
-     "ci_low": 0.0010276299094064134,
-     "ci_high": 0.04472853300643141,
-     "rank_biserial": 0.4645550527903469,
-     "p": 0.003888998729613015,
-     "p_holm": 0.00777799745922603
+     "ref_losses": 40,
+     "median_diff": 0.013570855940305743,
+     "ci_low": 0.00474081638893023,
+     "ci_high": 0.0350743453868039,
+     "rank_biserial": 0.390990990990991,
+     "p": 0.00037173459121853564,
+     "p_holm": 0.0007434691824370713
     }
    ],
    "medians": {
-    "LOOM": 0.4441186531959511,
-    "PreVal": 0.40914769344924573,
-    "Ridge-softmax": 1.0142991513850979,
-    "Holdout-TS": 0.48486789697267585
+    "LOOM": 0.33826822573636667,
+    "PreVal": 0.30509925395866405,
+    "Ridge-softmax": 0.5879615335467453,
+    "Holdout-TS": 0.4581338265668288
    },
    "means": {
-    "LOOM": 0.5406942127058616,
-    "PreVal": 0.5488854720803023,
-    "Ridge-softmax": 1.201036817197424,
-    "Holdout-TS": 0.6864984448950431
+    "LOOM": 0.44991504702929097,
+    "PreVal": 0.5177429512396027,
+    "Ridge-softmax": 0.8684757377693417,
+    "Holdout-TS": 0.6830176498553004
    },
    "n_available": {
-    "LOOM": 51,
-    "PreVal": 51,
-    "Ridge-softmax": 51,
-    "Holdout-TS": 51
+    "LOOM": 110,
+    "PreVal": 110,
+    "Ridge-softmax": 110,
+    "Holdout-TS": 110
    }
   },
   "ece": {
-   "n_datasets": 51,
-   "n_ranked": 51,
+   "n_datasets": 110,
+   "n_ranked": 110,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 80.90588235294115,
-   "friedman_p": 1.9620619940124312e-17,
+   "friedman_chi2": 163.29899726526904,
+   "friedman_p": 3.557464790779983e-35,
    "mean_ranks": {
-    "PreVal": 1.6666666666666667,
-    "Holdout-TS": 2.156862745098039,
-    "LOOM": 2.3333333333333335,
-    "Ridge-softmax": 3.843137254901961
+    "PreVal": 1.6363636363636365,
+    "Holdout-TS": 2.131818181818182,
+    "LOOM": 2.4727272727272727,
+    "Ridge-softmax": 3.7590909090909093
    },
-   "nemenyi_cd": 0.6567858082598843,
+   "nemenyi_cd": 0.44721102904060317,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 51,
-     "ref_wins": 16,
+     "n": 110,
+     "ref_wins": 27,
      "draws": 0,
-     "ref_losses": 35,
-     "median_diff": -0.010673361227094412,
-     "ci_low": -0.020882050905236933,
-     "ci_high": -0.002970032976771009,
-     "rank_biserial": -0.5279034690799397,
-     "p": 0.0010354490002525902,
-     "p_holm": 0.0020708980005051804
+     "ref_losses": 83,
+     "median_diff": -0.023609688716582665,
+     "ci_low": -0.033709320212817424,
+     "ci_high": -0.014524496470952747,
+     "rank_biserial": -0.6986076986076986,
+     "p": 2.020698974587339e-10,
+     "p_holm": 4.041397949174678e-10
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 51,
-     "ref_wins": 48,
+     "n": 110,
+     "ref_wins": 103,
      "draws": 0,
-     "ref_losses": 3,
-     "median_diff": 0.3048593430763814,
-     "ci_low": 0.18319234597397596,
-     "ci_high": 0.40693170712089444,
-     "rank_biserial": 0.975867269984917,
-     "p": 1.3225524535196487e-09,
-     "p_holm": 3.967657360558946e-09
+     "ref_losses": 7,
+     "median_diff": 0.14977997024153883,
+     "ci_low": 0.11521215413295027,
+     "ci_high": 0.1953538080584768,
+     "rank_biserial": 0.9528255528255528,
+     "p": 4.1710497977987466e-18,
+     "p_holm": 1.251314939339624e-17
     },
     {
      "competitor": "Holdout-TS",
-     "n": 51,
-     "ref_wins": 21,
+     "n": 110,
+     "ref_wins": 38,
      "draws": 0,
-     "ref_losses": 30,
-     "median_diff": -0.0034380993454961317,
-     "ci_low": -0.016628708054075493,
-     "ci_high": 0.0014431204975279832,
-     "rank_biserial": -0.20512820512820512,
-     "p": 0.20238305217721309,
-     "p_holm": 0.20238305217721309
+     "ref_losses": 72,
+     "median_diff": -0.011674841087708028,
+     "ci_low": -0.026482768778168048,
+     "ci_high": -0.0034380993454961317,
+     "rank_biserial": -0.40016380016380015,
+     "p": 0.0002696022775650383,
+     "p_holm": 0.0002696022775650383
     }
    ],
    "medians": {
-    "LOOM": 0.061389098341396324,
-    "PreVal": 0.03274306877934779,
-    "Ridge-softmax": 0.3733790688288775,
-    "Holdout-TS": 0.0364574818001105
+    "LOOM": 0.07279188804418248,
+    "PreVal": 0.03848241667718565,
+    "Ridge-softmax": 0.2725543519822853,
+    "Holdout-TS": 0.04919962407308555
    },
    "means": {
-    "LOOM": 0.08102695641672061,
-    "PreVal": 0.05338493868340714,
-    "Ridge-softmax": 0.39956454426438576,
-    "Holdout-TS": 0.0712213129770381
+    "LOOM": 0.09873746503323538,
+    "PreVal": 0.06289183181916264,
+    "Ridge-softmax": 0.32573692781991437,
+    "Holdout-TS": 0.07755519080661581
    },
    "n_available": {
-    "LOOM": 51,
-    "PreVal": 51,
-    "Ridge-softmax": 51,
-    "Holdout-TS": 51
+    "LOOM": 110,
+    "PreVal": 110,
+    "Ridge-softmax": 110,
+    "Holdout-TS": 110
    }
   },
   "acc": {
-   "n_datasets": 51,
-   "n_ranked": 51,
+   "n_datasets": 110,
+   "n_ranked": 110,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 58.0480769230769,
-   "friedman_p": 1.5351523343506214e-12,
+   "friedman_chi2": 92.81833910034642,
+   "friedman_p": 5.43395847885845e-20,
    "mean_ranks": {
-    "Ridge-softmax": 2.1470588235294117,
-    "PreVal": 2.1862745098039214,
-    "LOOM": 2.235294117647059,
-    "Holdout-TS": 3.4313725490196076
+    "Ridge-softmax": 2.190909090909091,
+    "LOOM": 2.2590909090909093,
+    "PreVal": 2.309090909090909,
+    "Holdout-TS": 3.2409090909090907
    },
-   "nemenyi_cd": 0.6567858082598843,
+   "nemenyi_cd": 0.44721102904060317,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 51,
-     "ref_wins": 3,
-     "draws": 43,
-     "ref_losses": 5,
-     "median_diff": 0.0,
-     "ci_low": 0.0,
-     "ci_high": 0.0,
-     "rank_biserial": 0.5555555555555556,
-     "p": 0.16142946236708333,
-     "p_holm": 0.32285892473416666
-    },
-    {
-     "competitor": "Ridge-softmax",
-     "n": 51,
-     "ref_wins": 5,
-     "draws": 38,
+     "n": 110,
+     "ref_wins": 11,
+     "draws": 91,
      "ref_losses": 8,
      "median_diff": 0.0,
      "ci_low": 0.0,
      "ci_high": 0.0,
-     "rank_biserial": 0.12087912087912088,
-     "p": 0.700703412251682,
-     "p_holm": 0.700703412251682
+     "rank_biserial": -0.17894736842105263,
+     "p": 0.4939012303138084,
+     "p_holm": 0.9878024606276168
+    },
+    {
+     "competitor": "Ridge-softmax",
+     "n": 110,
+     "ref_wins": 8,
+     "draws": 90,
+     "ref_losses": 12,
+     "median_diff": 0.0,
+     "ci_low": 0.0,
+     "ci_high": 0.0,
+     "rank_biserial": 0.02857142857142857,
+     "p": 0.910824985273362,
+     "p_holm": 0.9878024606276168
     },
     {
      "competitor": "Holdout-TS",
-     "n": 51,
-     "ref_wins": 37,
-     "draws": 9,
-     "ref_losses": 5,
-     "median_diff": -0.004733727810650845,
-     "ci_low": -0.011546391752577323,
-     "ci_high": -0.002702702702702675,
-     "rank_biserial": -0.831672203765227,
-     "p": 2.663829998529068e-06,
-     "p_holm": 7.991489995587205e-06
+     "n": 110,
+     "ref_wins": 66,
+     "draws": 32,
+     "ref_losses": 12,
+     "median_diff": -0.003475487713713865,
+     "ci_low": -0.006930455635491606,
+     "ci_high": -0.00038162416350157047,
+     "rank_biserial": -0.7218435572865952,
+     "p": 3.048452610752657e-08,
+     "p_holm": 9.145357832257971e-08
     }
    ],
    "medians": {
-    "LOOM": 0.8826666666666667,
-    "PreVal": 0.88,
-    "Ridge-softmax": 0.88,
-    "Holdout-TS": 0.8285714285714286
+    "LOOM": 0.9216204690831556,
+    "PreVal": 0.9188888888888889,
+    "Ridge-softmax": 0.9216204690831556,
+    "Holdout-TS": 0.8969223981684632
    },
    "means": {
-    "LOOM": 0.8406877234556743,
-    "PreVal": 0.8413204996346025,
-    "Ridge-softmax": 0.8395229823183419,
-    "Holdout-TS": 0.8115482444155591
+    "LOOM": 0.8720545786839878,
+    "PreVal": 0.8718079956918886,
+    "Ridge-softmax": 0.871378444314489,
+    "Holdout-TS": 0.8526139877451063
    },
    "n_available": {
-    "LOOM": 51,
-    "PreVal": 51,
-    "Ridge-softmax": 51,
-    "Holdout-TS": 51
+    "LOOM": 110,
+    "PreVal": 110,
+    "Ridge-softmax": 110,
+    "Holdout-TS": 110
    }
   }
  },
  "E5_multirocket_shifted": {
   "nll": {
-   "n_datasets": 51,
-   "n_ranked": 51,
+   "n_datasets": 110,
+   "n_ranked": 110,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 115.91764705882349,
-   "friedman_p": 5.841398880114499e-25,
+   "friedman_chi2": 242.5686988171066,
+   "friedman_p": 2.6485806828009653e-52,
    "mean_ranks": {
-    "LOOM": 1.1372549019607843,
-    "Ridge-softmax": 2.019607843137255,
-    "PreVal": 3.392156862745098,
-    "Holdout-TS": 3.450980392156863
+    "LOOM": 1.1454545454545455,
+    "Ridge-softmax": 2.05,
+    "PreVal": 3.3454545454545452,
+    "Holdout-TS": 3.459090909090909
    },
-   "nemenyi_cd": 0.6567858082598843,
+   "nemenyi_cd": 0.44721102904060317,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 51,
-     "ref_wins": 49,
+     "n": 110,
+     "ref_wins": 105,
      "draws": 0,
-     "ref_losses": 2,
-     "median_diff": 5.2030880126030885,
-     "ci_low": 3.80895650137496,
-     "ci_high": 7.981646625937026,
-     "rank_biserial": 0.9939668174962293,
-     "p": 6.528366037592496e-10,
-     "p_holm": 1.9585098112777487e-09
+     "ref_losses": 5,
+     "median_diff": 3.946593437571442,
+     "ci_low": 2.8489868420137796,
+     "ci_high": 5.376142652707212,
+     "rank_biserial": 0.9944307944307944,
+     "p": 1.3937595590378415e-19,
+     "p_holm": 3.8520968393123724e-19
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 51,
-     "ref_wins": 47,
+     "n": 110,
+     "ref_wins": 102,
      "draws": 0,
-     "ref_losses": 4,
-     "median_diff": 1.2348797079151983,
-     "ci_low": 0.7331301891349976,
-     "ci_high": 3.347412643977379,
-     "rank_biserial": 0.9653092006033183,
-     "p": 1.9851338229518463e-09,
-     "p_holm": 1.9851338229518463e-09
+     "ref_losses": 8,
+     "median_diff": 0.7981560714821125,
+     "ci_low": 0.46915561168525743,
+     "ci_high": 1.1873113510818984,
+     "rank_biserial": 0.9711711711711711,
+     "p": 9.483599660984073e-19,
+     "p_holm": 9.483599660984073e-19
     },
     {
      "competitor": "Holdout-TS",
-     "n": 51,
-     "ref_wins": 50,
+     "n": 110,
+     "ref_wins": 107,
      "draws": 0,
-     "ref_losses": 1,
-     "median_diff": 5.844919479058133,
-     "ci_low": 4.227017021231936,
-     "ci_high": 8.185659524046088,
-     "rank_biserial": 0.9939668174962293,
-     "p": 6.528366037592496e-10,
-     "p_holm": 1.9585098112777487e-09
+     "ref_losses": 3,
+     "median_diff": 5.0608976487642385,
+     "ci_low": 4.045194673180698,
+     "ci_high": 6.476563132468623,
+     "rank_biserial": 0.9954135954135954,
+     "p": 1.2840322797707908e-19,
+     "p_holm": 3.8520968393123724e-19
     }
    ],
    "medians": {
-    "LOOM": 1.350300431655942,
-    "PreVal": 6.70806121447172,
-    "Ridge-softmax": 3.456118037862798,
-    "Holdout-TS": 6.896910108330094
+    "LOOM": 0.9997350377398837,
+    "PreVal": 4.7397218448505605,
+    "Ridge-softmax": 2.079274312340151,
+    "Holdout-TS": 6.177832866778646
    },
    "means": {
-    "LOOM": 1.518739654514136,
-    "PreVal": 7.665136601101083,
-    "Ridge-softmax": 4.5532178739538365,
-    "Holdout-TS": 7.91462284874409
+    "LOOM": 1.215230417548271,
+    "PreVal": 6.548150237002247,
+    "Ridge-softmax": 3.484016910435808,
+    "Holdout-TS": 7.020300240234538
    },
    "n_available": {
-    "LOOM": 51,
-    "PreVal": 51,
-    "Ridge-softmax": 51,
-    "Holdout-TS": 51
+    "LOOM": 110,
+    "PreVal": 110,
+    "Ridge-softmax": 110,
+    "Holdout-TS": 110
    }
   },
   "ece": {
-   "n_datasets": 51,
-   "n_ranked": 51,
+   "n_datasets": 110,
+   "n_ranked": 110,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 49.470588235294144,
-   "friedman_p": 1.0357114716961313e-10,
+   "friedman_chi2": 122.12101910828046,
+   "friedman_p": 2.6952961346249104e-26,
    "mean_ranks": {
-    "LOOM": 1.411764705882353,
-    "PreVal": 2.7058823529411766,
-    "Holdout-TS": 2.9215686274509802,
-    "Ridge-softmax": 2.9607843137254903
+    "LOOM": 1.3272727272727274,
+    "Ridge-softmax": 2.8045454545454547,
+    "PreVal": 2.890909090909091,
+    "Holdout-TS": 2.977272727272727
    },
-   "nemenyi_cd": 0.6567858082598843,
+   "nemenyi_cd": 0.44721102904060317,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 51,
-     "ref_wins": 44,
+     "n": 110,
+     "ref_wins": 98,
      "draws": 0,
-     "ref_losses": 7,
-     "median_diff": 0.14727501998877507,
-     "ci_low": 0.08265184936200509,
-     "ci_high": 0.19896736281373562,
-     "rank_biserial": 0.8552036199095022,
-     "p": 1.0680050585595924e-07,
-     "p_holm": 1.7373494333237982e-07
+     "ref_losses": 12,
+     "median_diff": 0.1263177650883752,
+     "ci_low": 0.08748520753141517,
+     "ci_high": 0.15810035904531,
+     "rank_biserial": 0.8925470925470925,
+     "p": 4.463220133487502e-16,
+     "p_holm": 6.321243653674455e-16
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 51,
-     "ref_wins": 44,
+     "n": 110,
+     "ref_wins": 98,
      "draws": 0,
-     "ref_losses": 7,
-     "median_diff": 0.19167805783482667,
-     "ci_low": 0.12225567975049814,
-     "ci_high": 0.25666385928963753,
-     "rank_biserial": 0.9306184012066365,
-     "p": 7.319306280667348e-09,
-     "p_holm": 2.1957918842002046e-08
+     "ref_losses": 12,
+     "median_diff": 0.1346221430868639,
+     "ci_low": 0.10410161822472522,
+     "ci_high": 0.16334757258233296,
+     "rank_biserial": 0.9436527436527437,
+     "p": 8.657543014865895e-18,
+     "p_holm": 2.5972629044597684e-17
     },
     {
      "competitor": "Holdout-TS",
-     "n": 51,
-     "ref_wins": 44,
+     "n": 110,
+     "ref_wins": 98,
      "draws": 0,
-     "ref_losses": 7,
-     "median_diff": 0.17138931316329006,
-     "ci_low": 0.07882644155943513,
-     "ci_high": 0.22793124140909155,
-     "rank_biserial": 0.861236802413273,
-     "p": 8.686747166618991e-08,
-     "p_holm": 1.7373494333237982e-07
+     "ref_losses": 12,
+     "median_diff": 0.12047658889052068,
+     "ci_low": 0.08802540907673358,
+     "ci_high": 0.17152437420006522,
+     "rank_biserial": 0.8971334971334971,
+     "p": 3.1606218268372275e-16,
+     "p_holm": 6.321243653674455e-16
     }
    ],
    "medians": {
-    "LOOM": 0.20373111309645878,
-    "PreVal": 0.3570480619640713,
-    "Ridge-softmax": 0.39682620505130933,
-    "Holdout-TS": 0.367855999045488
+    "LOOM": 0.18223864679907553,
+    "PreVal": 0.3257755838395525,
+    "Ridge-softmax": 0.3216180855842958,
+    "Holdout-TS": 0.330629768961181
    },
    "means": {
-    "LOOM": 0.197655202347785,
-    "PreVal": 0.36507252637548687,
-    "Ridge-softmax": 0.39567740409689917,
-    "Holdout-TS": 0.3722030424437716
+    "LOOM": 0.1868928477942082,
+    "PreVal": 0.3444973444107144,
+    "Ridge-softmax": 0.34792730081036377,
+    "Holdout-TS": 0.3458902851242419
    },
    "n_available": {
-    "LOOM": 51,
-    "PreVal": 51,
-    "Ridge-softmax": 51,
-    "Holdout-TS": 51
+    "LOOM": 110,
+    "PreVal": 110,
+    "Ridge-softmax": 110,
+    "Holdout-TS": 110
    }
   },
   "acc": {
-   "n_datasets": 51,
-   "n_ranked": 51,
+   "n_datasets": 110,
+   "n_ranked": 110,
    "ranked_methods": [
     "LOOM",
     "PreVal",
     "Ridge-softmax",
     "Holdout-TS"
    ],
-   "friedman_chi2": 30.20744680851061,
-   "friedman_p": 1.2481196167123009e-06,
+   "friedman_chi2": 17.15108834827154,
+   "friedman_p": 0.0006579320530089316,
    "mean_ranks": {
-    "PreVal": 2.196078431372549,
-    "Ridge-softmax": 2.2549019607843137,
-    "LOOM": 2.3137254901960786,
-    "Holdout-TS": 3.235294117647059
+    "Ridge-softmax": 2.3363636363636364,
+    "LOOM": 2.3727272727272726,
+    "PreVal": 2.422727272727273,
+    "Holdout-TS": 2.868181818181818
    },
-   "nemenyi_cd": 0.6567858082598843,
+   "nemenyi_cd": 0.44721102904060317,
    "pairwise": [
     {
      "competitor": "PreVal",
-     "n": 51,
-     "ref_wins": 5,
-     "draws": 37,
-     "ref_losses": 9,
+     "n": 110,
+     "ref_wins": 17,
+     "draws": 78,
+     "ref_losses": 15,
      "median_diff": 0.0,
      "ci_low": 0.0,
      "ci_high": 0.0,
-     "rank_biserial": 0.29523809523809524,
-     "p": 0.33053567270784123,
-     "p_holm": 0.6610713454156825
+     "rank_biserial": -0.11742424242424243,
+     "p": 0.5621305666866856,
+     "p_holm": 1.0
     },
     {
      "competitor": "Ridge-softmax",
-     "n": 51,
-     "ref_wins": 8,
-     "draws": 33,
-     "ref_losses": 10,
+     "n": 110,
+     "ref_wins": 16,
+     "draws": 76,
+     "ref_losses": 18,
      "median_diff": 0.0,
      "ci_low": 0.0,
      "ci_high": 0.0,
-     "rank_biserial": 0.13450292397660818,
-     "p": 0.6164496186414878,
-     "p_holm": 0.6610713454156825
+     "rank_biserial": 0.11932773109243698,
+     "p": 0.543892473612479,
+     "p_holm": 1.0
     },
     {
      "competitor": "Holdout-TS",
-     "n": 51,
-     "ref_wins": 38,
-     "draws": 0,
-     "ref_losses": 13,
-     "median_diff": -0.00917508417508417,
-     "ci_low": -0.012592592592592655,
-     "ci_high": -0.003333333333333327,
-     "rank_biserial": -0.5324283559577677,
-     "p": 0.0009368543132336339,
-     "p_holm": 0.0028105629397009017
+     "n": 110,
+     "ref_wins": 68,
+     "draws": 2,
+     "ref_losses": 40,
+     "median_diff": -0.0023737373737373335,
+     "ci_low": -0.005854930137215469,
+     "ci_high": -0.0006666666666665932,
+     "rank_biserial": -0.17482161060142712,
+     "p": 0.11479170844209143,
+     "p_holm": 0.3443751253262743
     }
    ],
    "medians": {
-    "LOOM": 0.4964975845410628,
-    "PreVal": 0.49722222222222223,
-    "Ridge-softmax": 0.49722222222222223,
-    "Holdout-TS": 0.47064023822817797
+    "LOOM": 0.5653209742405723,
+    "PreVal": 0.5742227469500197,
+    "Ridge-softmax": 0.5664098730567438,
+    "Holdout-TS": 0.5727660123966942
    },
    "means": {
-    "LOOM": 0.5100324899224178,
-    "PreVal": 0.5102097380653816,
-    "Ridge-softmax": 0.5108336761481738,
-    "Holdout-TS": 0.49441021423498743
+    "LOOM": 0.5577390356675206,
+    "PreVal": 0.5574673588191725,
+    "Ridge-softmax": 0.5583440568273056,
+    "Holdout-TS": 0.5530782282885404
    },
    "n_available": {
-    "LOOM": 51,
-    "PreVal": 51,
-    "Ridge-softmax": 51,
-    "Holdout-TS": 51
+    "LOOM": 110,
+    "PreVal": 110,
+    "Ridge-softmax": 110,
+    "Holdout-TS": 110
    }
   }
  },
@@ -7761,181 +8760,181 @@
    "train_frac": 0.25,
    "cond": "clean",
    "competitor": "PreVal",
-   "n": 1,
-   "median_loom": 0.5221675699685275,
-   "median_comp": 0.5396581038133988,
-   "wdl": "1/0/0",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 0.5420563916251108,
+   "median_comp": 0.6011047537045544,
+   "wdl": "45/0/66",
+   "p_holm": 0.09352399690104816
   },
   {
    "train_frac": 0.25,
    "cond": "clean",
    "competitor": "Ridge-softmax",
-   "n": 1,
-   "median_loom": 0.5221675699685275,
-   "median_comp": 0.44917803901908576,
-   "wdl": "0/0/1",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 0.5420563916251108,
+   "median_comp": 0.6771077042552408,
+   "wdl": "92/0/19",
+   "p_holm": 2.608675021573405e-12
   },
   {
    "train_frac": 0.25,
    "cond": "clean",
    "competitor": "Holdout-TS",
-   "n": 1,
-   "median_loom": 0.5221675699685275,
-   "median_comp": 0.5205527997803774,
-   "wdl": "0/0/1",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 0.5420563916251108,
+   "median_comp": 0.8799394070510169,
+   "wdl": "82/0/29",
+   "p_holm": 4.3225343509417625e-10
   },
   {
    "train_frac": 0.25,
    "cond": "shifted",
    "competitor": "PreVal",
-   "n": 1,
-   "median_loom": 0.6417368776461837,
-   "median_comp": 1.047116353748889,
-   "wdl": "1/0/0",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 1.0582195531304022,
+   "median_comp": 2.155477289375947,
+   "wdl": "97/0/14",
+   "p_holm": 1.7624041061769295e-17
   },
   {
    "train_frac": 0.25,
    "cond": "shifted",
    "competitor": "Ridge-softmax",
-   "n": 1,
-   "median_loom": 0.6417368776461837,
-   "median_comp": 0.6145646251724743,
-   "wdl": "0/0/1",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 1.0582195531304022,
+   "median_comp": 1.4739953004193955,
+   "wdl": "91/0/20",
+   "p_holm": 3.4480679714117786e-15
   },
   {
    "train_frac": 0.25,
    "cond": "shifted",
    "competitor": "Holdout-TS",
-   "n": 1,
-   "median_loom": 0.6417368776461837,
-   "median_comp": 0.9422678588587492,
-   "wdl": "1/0/0",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 1.0582195531304022,
+   "median_comp": 3.078533044350165,
+   "wdl": "105/0/6",
+   "p_holm": 1.9062932168574252e-18
   },
   {
    "train_frac": 0.5,
    "cond": "clean",
    "competitor": "PreVal",
-   "n": 1,
-   "median_loom": 0.49876454425644096,
-   "median_comp": 0.5022846972472739,
-   "wdl": "1/0/0",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 0.44241096961296666,
+   "median_comp": 0.4774558612164806,
+   "wdl": "41/0/70",
+   "p_holm": 0.02026246658982667
   },
   {
    "train_frac": 0.5,
    "cond": "clean",
    "competitor": "Ridge-softmax",
-   "n": 1,
-   "median_loom": 0.49876454425644096,
-   "median_comp": 0.45431874743760237,
-   "wdl": "0/0/1",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 0.44241096961296666,
+   "median_comp": 0.6327393093400001,
+   "wdl": "97/0/14",
+   "p_holm": 4.865039489954848e-16
   },
   {
    "train_frac": 0.5,
    "cond": "clean",
    "competitor": "Holdout-TS",
-   "n": 1,
-   "median_loom": 0.49876454425644096,
-   "median_comp": 0.4832789269013744,
-   "wdl": "0/0/1",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 0.44241096961296666,
+   "median_comp": 0.6312705166375945,
+   "wdl": "79/0/32",
+   "p_holm": 1.0817769828512317e-07
   },
   {
    "train_frac": 0.5,
    "cond": "shifted",
    "competitor": "PreVal",
-   "n": 1,
-   "median_loom": 0.6248244850307504,
-   "median_comp": 1.1061136233459867,
-   "wdl": "1/0/0",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 1.0493041076314347,
+   "median_comp": 2.5433649960207476,
+   "wdl": "103/0/8",
+   "p_holm": 1.1738105079178313e-18
   },
   {
    "train_frac": 0.5,
    "cond": "shifted",
    "competitor": "Ridge-softmax",
-   "n": 1,
-   "median_loom": 0.6248244850307504,
-   "median_comp": 0.6393715973025315,
-   "wdl": "1/0/0",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 1.0493041076314347,
+   "median_comp": 1.4469502720006944,
+   "wdl": "93/0/18",
+   "p_holm": 1.6169370152892111e-15
   },
   {
    "train_frac": 0.5,
    "cond": "shifted",
    "competitor": "Holdout-TS",
-   "n": 1,
-   "median_loom": 0.6248244850307504,
-   "median_comp": 0.9256155390230959,
-   "wdl": "1/0/0",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 1.0493041076314347,
+   "median_comp": 2.6093890773560724,
+   "wdl": "107/0/4",
+   "p_holm": 5.443027451643775e-19
   },
   {
    "train_frac": 1.0,
    "cond": "clean",
    "competitor": "PreVal",
-   "n": 1,
-   "median_loom": 0.4876509166195649,
-   "median_comp": 0.4883918883035739,
-   "wdl": "1/0/0",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 0.30770855280505716,
+   "median_comp": 0.3319398905438614,
+   "wdl": "35/0/76",
+   "p_holm": 0.002627491142223808
   },
   {
    "train_frac": 1.0,
    "cond": "clean",
    "competitor": "Ridge-softmax",
-   "n": 1,
-   "median_loom": 0.4876509166195649,
-   "median_comp": 0.44075228118790255,
-   "wdl": "0/0/1",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 0.30770855280505716,
+   "median_comp": 0.5738451409278695,
+   "wdl": "103/0/8",
+   "p_holm": 1.6651171857412662e-17
   },
   {
    "train_frac": 1.0,
    "cond": "clean",
    "competitor": "Holdout-TS",
-   "n": 1,
-   "median_loom": 0.4876509166195649,
-   "median_comp": 0.4844758199571089,
-   "wdl": "0/0/1",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 0.30770855280505716,
+   "median_comp": 0.47454977097257833,
+   "wdl": "69/0/42",
+   "p_holm": 0.002627491142223808
   },
   {
    "train_frac": 1.0,
    "cond": "shifted",
    "competitor": "PreVal",
-   "n": 1,
-   "median_loom": 0.7271298079934206,
-   "median_comp": 1.3235156211315975,
-   "wdl": "1/0/0",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 1.0143863264868145,
+   "median_comp": 2.353738621960053,
+   "wdl": "102/0/9",
+   "p_holm": 3.0654217443359838e-18
   },
   {
    "train_frac": 1.0,
    "cond": "shifted",
    "competitor": "Ridge-softmax",
-   "n": 1,
-   "median_loom": 0.7271298079934206,
-   "median_comp": 0.6778950692106679,
-   "wdl": "0/0/1",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 1.0143863264868145,
+   "median_comp": 1.30183535061768,
+   "wdl": "94/0/17",
+   "p_holm": 1.7936666665879438e-14
   },
   {
    "train_frac": 1.0,
    "cond": "shifted",
    "competitor": "Holdout-TS",
-   "n": 1,
-   "median_loom": 0.7271298079934206,
-   "median_comp": 1.3543293244457597,
-   "wdl": "1/0/0",
-   "p_holm": 1.0
+   "n": 111,
+   "median_loom": 1.0143863264868145,
+   "median_comp": 3.0674695339140854,
+   "wdl": "100/0/11",
+   "p_holm": 3.0654217443359838e-18
   }
  ],
  "E6_efficiency": [
@@ -8225,23 +9224,23 @@
    "n": 114
   },
   "gain_clean~lev_ratio_clean": {
-   "rho": 0.16011421396893546,
-   "p": 0.08880995548449502,
+   "rho": 0.2383953342378648,
+   "p": 0.010641589653553546,
    "n": 114
   },
   "gain_shift~lev_ratio_clean": {
-   "rho": 0.1264980458070918,
-   "p": 0.17987531193467615,
+   "rho": 0.2212308377716126,
+   "p": 0.01800786500027793,
    "n": 114
   },
   "gain_clean~lev_ratio_shift": {
-   "rho": -0.16756647293493449,
-   "p": 0.07474506792980354,
+   "rho": -0.16443166400032405,
+   "p": 0.08042565014306086,
    "n": 114
   },
   "gain_shift~lev_ratio_shift": {
-   "rho": 0.6086754014702012,
-   "p": 6.761384976936416e-13,
+   "rho": 0.6124420323606246,
+   "p": 4.4578563688381514e-13,
    "n": 114
   }
  },
@@ -8254,10 +9253,10 @@
    "n_classes": 52,
    "length": 2000,
    "acc_shift": 0.719551282051282,
-   "lev_ratio_clean": 0.7868184524707861,
-   "lev_ratio_shift": 7.955993377380337,
+   "lev_ratio_clean": 0.7320137904587989,
+   "lev_ratio_shift": 9.450076166128895,
    "lam": 2.154434690031882,
-   "a": 4.26248669933092
+   "a": 4.458819577195371
   },
   {
    "dataset": "Symbols",
@@ -8267,10 +9266,10 @@
    "n_classes": 6,
    "length": 398,
    "acc_shift": 0.7652931323283083,
-   "lev_ratio_clean": 1.192706609665167,
+   "lev_ratio_clean": 1.162157420947222,
    "lev_ratio_shift": 52.024762964953446,
-   "lam": 46.41588833612773,
-   "a": 1.9718738312615252
+   "lam": 10.0,
+   "a": 1.8921235628544553
   },
   {
    "dataset": "ShapesAll",
@@ -8280,8 +9279,8 @@
    "n_classes": 60,
    "length": 512,
    "acc_shift": 0.6519259259259259,
-   "lev_ratio_clean": 0.9796077218854309,
-   "lev_ratio_shift": 46.88664902942677,
+   "lev_ratio_clean": 0.9752009268644106,
+   "lev_ratio_shift": 122.46052991289243,
    "lam": 2.154434690031882,
    "a": 5.916822528590778
   },
@@ -8293,8 +9292,8 @@
    "n_classes": 52,
    "length": 2000,
    "acc_shift": 0.41575854700854703,
-   "lev_ratio_clean": 0.8760277920611104,
-   "lev_ratio_shift": 2434.656455936927,
+   "lev_ratio_clean": 0.8683713688234234,
+   "lev_ratio_shift": 2862.5655088097924,
    "lam": 0.001,
    "a": 5.250742648949481
   },
@@ -8306,10 +9305,10 @@
    "n_classes": 52,
    "length": 2000,
    "acc_shift": 0.7638354700854701,
-   "lev_ratio_clean": 0.8939280151482498,
-   "lev_ratio_shift": 3.235781940815913,
+   "lev_ratio_clean": 0.8591265554685791,
+   "lev_ratio_shift": 3.457033160581023,
    "lam": 0.001,
-   "a": 4.561805828064437
+   "a": 4.62193318726122
   },
   {
    "dataset": "Mallat",
@@ -8319,8 +9318,8 @@
    "n_classes": 8,
    "length": 1024,
    "acc_shift": 0.534835347074153,
-   "lev_ratio_clean": 0.9447083082064401,
-   "lev_ratio_shift": 39.96790067074114,
+   "lev_ratio_clean": 0.9517144078021534,
+   "lev_ratio_shift": 40.2121670668876,
    "lam": 0.001,
    "a": 2.6320816257632527
   },
@@ -8332,10 +9331,10 @@
    "n_classes": 37,
    "length": 176,
    "acc_shift": 0.2865302642796249,
-   "lev_ratio_clean": 1.0288627446675507,
+   "lev_ratio_clean": 1.0106147785759303,
    "lev_ratio_shift": 712.4827777213435,
    "lam": 0.46415888336127775,
-   "a": 5.12336715421843
+   "a": 5.109070531103904
   },
   {
    "dataset": "ECGFiveDays",
@@ -8346,9 +9345,9 @@
    "length": 136,
    "acc_shift": 0.9018841140792361,
    "lev_ratio_clean": 1.0883462947026283,
-   "lev_ratio_shift": 13.747332637285792,
+   "lev_ratio_shift": 15.267935656479963,
    "lam": 0.001,
-   "a": 1.4883619604561062
+   "a": 1.4251117612120894
   },
   {
    "dataset": "Plane",
@@ -8358,10 +9357,10 @@
    "n_classes": 7,
    "length": 144,
    "acc_shift": 0.8366137566137566,
-   "lev_ratio_clean": 1.0683467711395587,
-   "lev_ratio_shift": 12.610314061287365,
+   "lev_ratio_clean": 1.0610263215719724,
+   "lev_ratio_shift": 13.682401196884207,
    "lam": 215.44346900318823,
-   "a": 3.186751965674619
+   "a": 3.1557315201806597
   },
   {
    "dataset": "ShapeletSim",
@@ -8371,8 +9370,8 @@
    "n_classes": 2,
    "length": 500,
    "acc_shift": 0.7584567901234568,
-   "lev_ratio_clean": 1.0846273620812257,
-   "lev_ratio_shift": 5.162146064737748,
+   "lev_ratio_clean": 1.101186366961952,
+   "lev_ratio_shift": 5.1832929526665135,
    "lam": 0.001,
    "a": 2.4406209382147024
   }
@@ -8386,10 +9385,10 @@
    "n_classes": 52,
    "length": 2000,
    "acc_shift": 0.7638354700854701,
-   "lev_ratio_clean": 0.8939280151482498,
-   "lev_ratio_shift": 3.235781940815913,
+   "lev_ratio_clean": 0.8591265554685791,
+   "lev_ratio_shift": 3.457033160581023,
    "lam": 0.001,
-   "a": 4.561805828064437
+   "a": 4.62193318726122
   },
   {
    "dataset": "ECG5000",
@@ -8399,9 +9398,9 @@
    "n_classes": 5,
    "length": 140,
    "acc_shift": 0.8665160493827161,
-   "lev_ratio_clean": 0.98276298299347,
-   "lev_ratio_shift": 5.832582599855099,
-   "lam": 2.154434690031882,
+   "lev_ratio_clean": 0.9793107533272072,
+   "lev_ratio_shift": 5.990985942071969,
+   "lam": 10.0,
    "a": 2.864852783283078
   },
   {
@@ -8413,9 +9412,9 @@
    "length": 601,
    "acc_shift": 0.9918786256135654,
    "lev_ratio_clean": 1.047794528542764,
-   "lev_ratio_shift": 7.831497560306748,
+   "lev_ratio_shift": 9.308768993089563,
    "lam": 10.0,
-   "a": 2.126462140504202
+   "a": 2.1004533529414338
   },
   {
    "dataset": "FacesUCR",
@@ -8426,9 +9425,9 @@
    "length": 131,
    "acc_shift": 0.8683252032520326,
    "lev_ratio_clean": 0.9919825691838476,
-   "lev_ratio_shift": 1.8327697938206384,
+   "lev_ratio_shift": 1.8368774447837286,
    "lam": 0.001,
-   "a": 3.9740074471635487
+   "a": 3.950747094335839
   },
   {
    "dataset": "UWaveGestureLibraryAll",
@@ -8439,9 +9438,9 @@
    "length": 945,
    "acc_shift": 0.8376698306346547,
    "lev_ratio_clean": 1.0017557184143209,
-   "lev_ratio_shift": 5.873546309018092,
+   "lev_ratio_shift": 5.899167076523639,
    "lam": 0.001,
-   "a": 4.249805215833993
+   "a": 4.179599447715749
   },
   {
    "dataset": "Earthquakes",
@@ -8451,10 +9450,10 @@
    "n_classes": 2,
    "length": 512,
    "acc_shift": 0.7413269384492406,
-   "lev_ratio_clean": 0.9888320164762481,
-   "lev_ratio_shift": 2.390938828623513,
+   "lev_ratio_clean": 0.9973943289852224,
+   "lev_ratio_shift": 2.5819225586674674,
    "lam": 46.41588833612773,
-   "a": 1.299753944811155
+   "a": 1.2724238014240563
   },
   {
    "dataset": "Fungi",
@@ -8464,8 +9463,8 @@
    "n_classes": 18,
    "length": 201,
    "acc_shift": 0.6129032258064516,
-   "lev_ratio_clean": 0.44178155635200117,
-   "lev_ratio_shift": 6.717332519515981,
+   "lev_ratio_clean": 0.45867597023758255,
+   "lev_ratio_shift": 7.259083437299405,
    "lam": 0.001,
    "a": 4.5399929762484854e-05
   },
@@ -8478,9 +9477,9 @@
    "length": 315,
    "acc_shift": 0.7249488181648986,
    "lev_ratio_clean": 0.9858469089566513,
-   "lev_ratio_shift": 4.331391554491987,
+   "lev_ratio_shift": 4.754618214777949,
    "lam": 2.154434690031882,
-   "a": 3.9334897643241122
+   "a": 3.893428471451236
   },
   {
    "dataset": "WormsTwoClass",
@@ -8490,10 +9489,10 @@
    "n_classes": 2,
    "length": 900,
    "acc_shift": 0.725974025974026,
-   "lev_ratio_clean": 1.0138261014804066,
-   "lev_ratio_shift": 3.5291676029913344,
+   "lev_ratio_clean": 1.006733430695066,
+   "lev_ratio_shift": 3.906645902637567,
    "lam": 2.154434690031882,
-   "a": 0.9904569333641347
+   "a": 0.9845018970825272
   },
   {
    "dataset": "Phoneme",
@@ -8503,10 +9502,10 @@
    "n_classes": 39,
    "length": 1024,
    "acc_shift": 0.24921472105016412,
-   "lev_ratio_clean": 1.0050586755520763,
-   "lev_ratio_shift": 1.4274405867439341,
+   "lev_ratio_clean": 0.9723011229784242,
+   "lev_ratio_shift": 1.4445283483288136,
    "lam": 46.41588833612773,
-   "a": 5.993426049269114
+   "a": 5.943260644897788
   }
  ],
  "E8_win_rate_by_condition": [
@@ -8602,13 +9601,13 @@
   }
  ],
  "leverage_ratio_median_by_condition": {
-  "h_clean0": 1.0057692804642102,
-  "h_noise3": 30.30642544765658,
-  "h_wander3": 6.490706904147851,
-  "h_missing3": 8.91702223245229,
-  "h_spikes3": 32.59813411621682,
-  "h_warp3": 1.238875413451247,
-  "h_shift3": 3.520638469145828,
+  "h_clean0": 1.0063405202188749,
+  "h_noise3": 30.520668438299353,
+  "h_wander3": 6.340397514505395,
+  "h_missing3": 8.682584700846505,
+  "h_spikes3": 29.822175044050347,
+  "h_warp3": 1.2566387223759312,
+  "h_shift3": 3.486232728239725,
   "h_noise1": 2.9452172416327755,
   "h_noise2": 12.945673373366121,
   "h_wander1": 1.6300796516211422,

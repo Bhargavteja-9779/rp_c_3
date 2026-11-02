@@ -148,7 +148,7 @@ class ClosedFormRidge:
         return self.classes_[np.argmax(self.decision_function(X), 1)]
 
     def leverage(self, X):
-        """h(x) = z^T A^{-1} z for new points (includes out-of-span component)."""
+        """Leverage h(x) = x̃ᵀA⁻¹x̃ of new points (includes the out-of-span component)."""
         P, Q, sq = self._project(X)                       # Q: m x r
         inspan = (Q ** 2) @ self._dinv
         resid = np.maximum(sq - (Q ** 2).sum(1), 0.0) / self._lam

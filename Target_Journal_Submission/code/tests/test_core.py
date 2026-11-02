@@ -134,3 +134,14 @@ def test_aps_score_and_sets():
     for sc in ("lac", "aps"):
         Sj = m.conformal_sets(X[100:], alpha=0.1, method="jackknife+", score=sc)
         assert Sj.shape == (200, 3)
+
+
+def test_bayes_signed_rank():
+    from loom.statistics.tests import bayes_signed_rank
+    rng = np.random.default_rng(0)
+    big = bayes_signed_rank(rng.normal(0.5, 0.1, 50), rope=0.01)
+    assert big["p_right"] > 0.99
+    eq = bayes_signed_rank(rng.normal(0.0, 0.001, 50), rope=0.01)
+    assert eq["p_rope"] > 0.99
+    neg = bayes_signed_rank(-rng.normal(0.5, 0.1, 50), rope=0.01)
+    assert neg["p_left"] > 0.99

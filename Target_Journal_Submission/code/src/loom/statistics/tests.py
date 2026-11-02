@@ -77,3 +77,26 @@ def nemenyi_cd(k, n, alpha=0.05):
     """Critical difference of the Nemenyi test (Demsar 2006)."""
     q = stats.studentized_range.ppf(1 - alpha, k, np.inf) / np.sqrt(2)
     return float(q * np.sqrt(k * (k + 1) / (6.0 * n)))
+
+
+def bayes_signed_rank(d, rope, s=0.5, z0=0.0, nsamples=20000, seed=0):
+    """Bayesian signed-rank test (Benavoli et al., 2017, JMLR 18:77) on paired differences d.
+
+    A Dirichlet process posterior with prior strength s at pseudo-observation z0 is sampled; for
+    each sample the probability mass of pairwise means (d_i + d_j)/2 below -rope, inside
+    [-rope, rope] and above +rope is computed. Returns the posterior probabilities that each of
+    the three regions is the most probable one: (p_left, p_rope, p_right).
+    """
+    d = np.asarray(d, float)
+    d = d[~np.isnan(d)]
+    rng = np.random.default_rng(seed)
+    z = np.r_[z0, d]
+    W = rng.dirichlet(np.r_[s, np.ones(len(d))], nsamples)
+    pair = z[:, None] + z[None, :]
+    right = (pair > 2 * rope).astype(float)
+    left = (pair < -2 * rope).astype(float)
+    pr = np.einsum("ki,ij,kj->k", W, right, W)
+    pl = np.einsum("ki,ij,kj->k", W, left, W)
+    pm = 1.0 - pr - pl
+    win = np.argmax(np.stack([pl, pm, pr], 1), 1)
+    return dict(p_left=float((win == 0).mean()), p_rope=float((win == 1).mean()), p_right=float((win == 2).mean()))

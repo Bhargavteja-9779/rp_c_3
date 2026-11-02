@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "loom-tsc"
+version = "1.0.0"
+description = "Fault-aware, closed-form probabilities and human-review triage for fast random-kernel time series classifiers"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26", "scipy>=1.11", "scikit-learn>=1.4", "pandas>=2.0", "aeon>=1.0"]
+
+[project.optional-dependencies]
+benchmark = ["matplotlib>=3.8", "openpyxl>=3.1", "python-docx>=1.1", "pytest>=8"]
+
+[project.scripts]
+loom-triage = "loom.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

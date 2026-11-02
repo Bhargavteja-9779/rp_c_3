@@ -5,3 +5,5 @@ results/cache/
 *.npz
 results/raw/
 results/quick/
+examples/out/*.csv
+examples/out/*.pkl

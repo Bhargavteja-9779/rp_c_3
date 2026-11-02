@@ -175,3 +175,54 @@ stream.
 Wilcoxon signed-rank tests with Holm correction over the four comparisons per metric; with 12
 datasets these tests have low power, so per-domain medians are reported descriptively. Per-sample
 outputs are saved for re-analysis.
+
+## 11. Revision experiments (protocols fixed and committed before any of them was run, 2026-11-02)
+
+These experiments were added during revision to address the main weaknesses identified in the
+internal reviews (simulated faults only; low power of the application study; QUANT stronger under
+the strongest faults; frequentist "no significant difference" used as evidence of equivalence).
+
+### 11.1 Real recorded sensor noise (E12, confirmatory)
+*Data.* The seven ECG datasets of the archive (ECG200, ECG5000, ECGFiveDays, TwoLeadECG,
+CinCECGTorso, NonInvasiveFetalECGThorax1, NonInvasiveFetalECGThorax2); official split and
+resamples 1–4. *Noise.* The three noise records of the MIT-BIH Noise Stress Test Database
+(PhysioNet nstdb 1.0.0): baseline wander (bw), electrode motion artefact (em) and muscle artefact
+(ma), recorded from volunteers with electrodes placed so that no ECG was visible. Both channels are
+used. For each test series a window of the series length is drawn at a random channel and offset
+(the noise is used at its native 360 Hz sampling, i.e. without resampling) and scaled to a
+signal-to-noise ratio of 12, 6 or 0 dB relative to the series' own variance (the standard NSTDB
+levels), giving 9 conditions. Seeds derive from (dataset, resample, noise type, SNR).
+*Methods.* LOOM, PreVal, Holdout-TS, Ridge-Platt-CV5, QUANT. *Endpoints.* Primary: NLL averaged
+over the 9 conditions; secondary: AUROC for detecting noisy recordings, accuracy, and triage on a
+stream in which 30 % of recordings receive a random noise type at a random SNR (budget 20 %).
+*Hypothesis.* LOOM has lower NLL than PreVal under real noise (two-sided Wilcoxon over
+dataset × condition cells, n = 63, and descriptively per dataset).
+
+### 11.2 Confirmatory replication of the triage study (E13)
+*Data.* All sensor-type UCR datasets (UCR types ECG, EOG, EPG, Hemodynamics, Spectrum (sEMG),
+Motion, Sensor, Device, Power, Traffic) that were **not** in the exploratory study and do not share
+recordings with it (excluded: UWaveGestureLibraryAll/Y/Z, CricketY/Z, GunPoint variants,
+NonInvasiveFetalECGThorax2, FreezerSmallTrain, SemgHandMovementCh2/SubjectCh2, InsectEPGSmallTrain,
+ElectricDevices (compute)): 39 datasets, assigned to the physiological, motion or
+industrial/environmental fault set by UCR type. *Protocol* identical to §10 (30 % faulty, domain
+fault sets, budget 20 % primary). *Hypotheses (confirmatory, two-sided Wilcoxon, Holm over the
+four comparisons × two endpoints):* H-C1 LOOM's review queue catches a larger share of faulty
+recordings than PreVal; H-C2 LOOM's automatic decisions have a lower error rate than PreVal's.
+Comparisons with Holdout-TS, Ridge-Platt-CV5 and QUANT are reported with the same correction.
+Sensitivity: source-grouped analysis with the grouping rules of the main study.
+
+### 11.3 LOOM on QUANT features (E14)
+*Question.* LOOM is a readout for any fixed feature map. Does it work on non-convolutional
+features, and does it close the gap to QUANT under strong faults? *Design.* aeon's QUANT
+transform (same settings as QUANTClassifier) on the official split of all datasets with ≤ 3,000
+training series; readouts LOOM and PreVal on the standardised QUANT features, compared with the
+QUANT classifier itself (extremely randomised trees), on clean data and the six severity-3
+conditions. *Hypotheses.* H-Q1 (confirmatory): on QUANT features LOOM has lower NLL than PreVal
+under faults. H-Q2 (exploratory): comparison of LOOM on QUANT features with the QUANT classifier.
+
+### 11.4 Bayesian signed-rank analysis (E15)
+For the headline comparisons (LOOM vs PreVal, clean and faults; LOOM vs QUANT, faults; triage
+endpoints) we add the Bayesian signed-rank test of Benavoli et al. (2017) with prior strength
+s = 0.5 at zero, reporting the posterior probabilities that LOOM is better, practically
+equivalent, or worse. Regions of practical equivalence (fixed now): ±0.01 nats for NLL and
+±1 percentage point for triage rates and AUROC.

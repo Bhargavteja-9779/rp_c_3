@@ -251,6 +251,93 @@ def main(mode="full"):
             E11["domains"][dom] = g.groupby("method")[["auto_err@20", "fault_caught@20", "nll"]].median().to_dict(orient="index")
         stats["E11_case_study"] = E11
         _case_study_figure(out_res / "case_study", out_fig)
+    # ---------------- E13 confirmatory triage replication (Online Resource 2, 11.2)
+    from loom.statistics.tests import bayes_signed_rank, holm
+    csc = out_res / "case_study_confirm.json"
+    if csc.exists():
+        c = pd.DataFrame(json.load(open(csc)))
+        per = c.groupby(["domain", "dataset", "method", "stream"]).mean(numeric_only=True).reset_index()
+        per.to_csv(out_tab / "table_case_study_confirm_datasets.csv", index=False)
+        E13 = dict(n_datasets=int(per.dataset.nunique()), metrics={}, grouped={})
+        prim = []
+        for met in ["fault_caught@20", "auto_err@20", "fault_caught@10", "auto_err@10", "fault_caught@30", "auto_err@30", "nll"]:
+            P = per[per.stream == "stream"].pivot(index="dataset", columns="method", values=met)
+            lower = not met.startswith("fault_caught")
+            pw_ = pairwise_vs(P, "LOOM", lower_is_better=lower)
+            E13["metrics"][f"stream:{met}"] = dict(medians=P.median().to_dict(), means=P.mean().to_dict(),
+                                                    pairwise=pw_.to_dict(orient="records"))
+            if met in ("fault_caught@20", "auto_err@20"):
+                prim += [(met, r["competitor"], r["p"]) for r in pw_.to_dict(orient="records")]
+                G = P.groupby([group_of(d) for d in P.index]).mean()
+                E13["grouped"][met] = dict(n_units=len(G), pairwise=pairwise_vs(G, "LOOM", lower_is_better=lower).to_dict(orient="records"))
+        Pc = per[per.stream == "clean"].pivot(index="dataset", columns="method", values="auto_err@20")
+        E13["metrics"]["clean:auto_err@20"] = dict(medians=Pc.median().to_dict(), pairwise=pairwise_vs(Pc, "LOOM").to_dict(orient="records"))
+        ph = holm([p for _, _, p in prim])                     # Holm over 4 comparisons x 2 primary endpoints
+        E13["primary_holm8"] = [dict(metric=m, competitor=cpt, p=p, p_holm8=float(q)) for (m, cpt, p), q in zip(prim, ph)]
+        stats["E13_case_confirm"] = E13
+    # ---------------- E12 real recorded noise (MIT-BIH NSTDB; Online Resource 2, 11.1)
+    rn = out_res / "real_noise.json"
+    if rn.exists():
+        d = pd.DataFrame(json.load(open(rn)))
+        noisy = d[~d.cond.isin(["clean", "stream"])].copy()
+        cell = noisy.groupby(["dataset", "cond", "snr", "method"]).mean(numeric_only=True).reset_index()
+        cell.to_csv(out_tab / "table_real_noise_cells.csv", index=False)
+        E12 = dict(n_datasets=int(d.dataset.nunique()), metrics={}, by_noise={}, by_snr={})
+        for met in ["nll", "ece", "acc", "shift_auroc"]:
+            lower = met in ("nll", "ece")
+            Pd = cell.groupby(["dataset", "method"])[met].mean().unstack()          # dataset level (mean of 9 cells)
+            Pcell = cell.assign(k=cell.dataset + "|" + cell.cond + "|" + cell.snr.astype(str)).pivot(index="k", columns="method", values=met)
+            E12["metrics"][met] = dict(medians=Pd.median().to_dict(), means=Pd.mean().to_dict(),
+                                       pairwise=pairwise_vs(Pd, "LOOM", lower_is_better=lower).to_dict(orient="records"),
+                                       pairwise_cells=pairwise_vs(Pcell, "LOOM", lower_is_better=lower).to_dict(orient="records"),
+                                       n_cells=int(len(Pcell)))
+        for nz, g in cell.groupby("cond"):
+            E12["by_noise"][nz] = g.groupby("method")[["nll", "shift_auroc", "acc"]].median().to_dict(orient="index")
+        for sn, g in cell.groupby("snr"):
+            E12["by_snr"][str(int(sn))] = g.groupby("method")[["nll", "shift_auroc", "acc"]].median().to_dict(orient="index")
+        cl = d[d.cond == "clean"].groupby(["dataset", "method"])["nll"].mean().unstack()
+        E12["clean_nll_medians"] = cl.median().to_dict()
+        st = d[d.cond == "stream"].groupby(["dataset", "method"])[["fault_caught@20", "auto_err@20"]].mean()
+        E12["stream"] = {k: st[k].unstack().median().to_dict() for k in st.columns}
+        E12["stream_pairwise"] = {k: pairwise_vs(st[k].unstack(), "LOOM", lower_is_better=(k != "fault_caught@20")).to_dict(orient="records") for k in st.columns}
+        stats["E12_real_noise"] = E12
+    # ---------------- E14 LOOM on QUANT features (Online Resource 2, 11.3)
+    qf = out_res / "quant_features.json"
+    if qf.exists():
+        q = pd.DataFrame(json.load(open(qf)))
+        q["state"] = np.where(q.cond == "clean", "clean", "shifted")
+        E14 = dict(n_datasets=int(q.dataset.nunique()), n_features_median=float(q.n_features.median()), metrics={})
+        for state in ("clean", "shifted"):
+            for met in (["nll", "ece", "acc"] + (["shift_auroc"] if state == "shifted" else [])):
+                P = q[q.state == state].groupby(["dataset", "method"])[met].mean().unstack()
+                P = P.rename(columns={"LOOM-QF": "LOOM"})
+                E14["metrics"][f"{state}:{met}"] = dict(medians=P.median().to_dict(),
+                                                         pairwise=pairwise_vs(P, "LOOM", lower_is_better=met in ("nll", "ece")).to_dict(orient="records"))
+        stats["E14_quant_features"] = E14
+    # ---------------- E15 Bayesian signed-rank tests (Benavoli et al. 2017; ROPE fixed in Online Resource 2, 11.4)
+    def _bayes(T, comp, rope, lower=True):
+        T = T[["LOOM", comp]].dropna()
+        dd = (T[comp] - T["LOOM"]) if lower else (T["LOOM"] - T[comp])    # > 0 means LOOM better
+        return dict(n=int(len(T)), rope=rope, **bayes_signed_rank(dd.to_numpy(), rope))
+    E15 = {}
+    E15["clean_nll_vs_PreVal"] = _bayes(dataset_table(mr, "nll", "clean", methods=["LOOM", "PreVal"]), "PreVal", 0.01)
+    Tsh = dataset_table(mr, "nll", "shifted", methods=["LOOM", "PreVal", "QUANT"])
+    E15["fault_nll_vs_PreVal"] = _bayes(Tsh, "PreVal", 0.01)
+    E15["fault_nll_vs_QUANT"] = _bayes(Tsh, "QUANT", 0.01)
+    E15["fault_auroc_vs_PreVal"] = _bayes(dataset_table(mr, "shift_auroc", "shifted", methods=["LOOM", "PreVal"]), "PreVal", 0.01, lower=False)
+    if csc.exists():
+        P = per[per.stream == "stream"]
+        for met, lower in (("fault_caught@20", False), ("auto_err@20", True)):
+            T = P.pivot(index="dataset", columns="method", values=met)
+            for comp in ("PreVal", "QUANT"):
+                E15[f"confirm_{met}_vs_{comp}"] = _bayes(T, comp, 0.01, lower)
+    if rn.exists():
+        E15["real_noise_nll_vs_PreVal"] = _bayes(cell.groupby(["dataset", "method"])["nll"].mean().unstack(), "PreVal", 0.01)
+    if qf.exists():
+        T = q[q.state == "shifted"].groupby(["dataset", "method"])["nll"].mean().unstack().rename(columns={"LOOM-QF": "LOOM"})
+        E15["qf_fault_nll_vs_QUANT"] = _bayes(T, "QUANT", 0.01)
+        E15["qf_fault_nll_vs_PreValQF"] = _bayes(T, "PreVal-QF", 0.01)
+    stats["E15_bayes"] = E15
     # ---------------- E9 conformal
     cp = mr[mr.method.isin(CP + [m for m in mr.method.unique() if "@" in str(m)])]
     if not cp.empty:

@@ -7417,6 +7417,36 @@
    }
   }
  },
+ "E15_bayes": {
+  "clean_nll_vs_PreVal": {
+   "n": 114,
+   "rope": 0.01,
+   "p_left": 0.6171,
+   "p_rope": 0.0006,
+   "p_right": 0.3823
+  },
+  "fault_nll_vs_PreVal": {
+   "n": 114,
+   "rope": 0.01,
+   "p_left": 0.0,
+   "p_rope": 0.0,
+   "p_right": 1.0
+  },
+  "fault_nll_vs_QUANT": {
+   "n": 114,
+   "rope": 0.01,
+   "p_left": 0.85505,
+   "p_rope": 0.0,
+   "p_right": 0.14495
+  },
+  "fault_auroc_vs_PreVal": {
+   "n": 114,
+   "rope": 0.01,
+   "p_left": 0.0,
+   "p_rope": 0.0,
+   "p_right": 1.0
+  }
+ },
  "E9_conformal": [
   {
    "method": "CP-LOOM-jackknife",

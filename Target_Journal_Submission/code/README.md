@@ -15,6 +15,28 @@ temperature a and ridge penalty λ are fitted on the exact leave-one-out pairs
 (z₋ᵢ, h₋ᵢ = dᵢ/(1 − dᵢ)). Everything comes from one thin SVD; no data are held out and nothing
 is refitted. The same algebra gives exact closed-form jackknife+ prediction sets.
 
+## 0. Quick start: triage of sensor recordings
+
+```bash
+pip install .                    # installs the `loom` package and the `loom-triage` command
+loom-triage fit --train train.csv --model model.pkl                      # first column = label
+loom-triage run --model model.pkl --input new.csv --budget 0.2 --alpha 0.1 \
+                --out queue.csv --report report.html                     # review queue + HTML report
+```
+
+```python
+from loom import LOOMClassifier
+clf = LOOMClassifier().fit(X_train, y_train)      # X: (n_series, length)
+P = clf.predict_proba(X_new)                      # probabilities that drop for unusual recordings
+queue = clf.triage(X_new, budget=0.2)            # prediction, confidence, unusualness, auto/review
+sets = clf.predict_sets(X_new, alpha=0.1)         # exact jackknife+ prediction sets
+```
+
+`examples/ecg_triage_demo.sh` runs the whole workflow on ECG5000 with real electrode-motion noise
+from the MIT-BIH Noise Stress Test Database (`scripts/download_nstdb.sh`). On that stream (30 %
+noisy recordings, 20 % review budget) the review queue caught 53 % of the noisy recordings and the
+error rate of the automatic decisions fell from 6.1 % (all decisions) to 2.3 %.
+
 ## 1. Installation
 
 ```bash
@@ -101,6 +123,8 @@ src/loom/
   models/calibration.py       temperature / moderation fitting, Platt target smoothing
   models/loom.py              LOOM (+ ablation variants), closed-form jackknife(+) sets (LAC, APS)
   models/baselines.py         ridge-onehot/softmax, CalibratedClassifierCV, logistic regression
+  api.py                      LOOMClassifier: user-facing scikit-learn style estimator (raw series in)
+  cli.py                      loom-triage command-line tool and HTML report
   training/runner.py          one benchmark job (cached JSON), Arsenal/QUANT job
   evaluation/metrics.py       NLL, ECE, Brier, classwise ECE, AURC, set metrics, reliability bins
   evaluation/aggregate.py     tidy tables from cached jobs

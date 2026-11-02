@@ -69,7 +69,10 @@ def run(name, r, faults):
     Fc, Fs = _feats(tf, Xte), _feats(tf, Xs)
     out = {"y": yi, "is_fault": is_f}
     for m in READOUTS:
-        mod = MAIN_METHODS[m]().fit(Ftr, ytr, ridge=base)
+        try:
+            mod = MAIN_METHODS[m]().fit(Ftr, ytr, ridge=base)
+        except Exception:      # 5-fold CV calibration is undefined with fewer than 5 series in a class
+            continue
         out[f"P_clean_{m}"] = align(mod.predict_proba(Fc), mod.classes_, classes)
         out[f"P_stream_{m}"] = align(mod.predict_proba(Fs), mod.classes_, classes)
     q = QUANTClassifier(random_state=r).fit(Xtr[:, None, :], ytr)

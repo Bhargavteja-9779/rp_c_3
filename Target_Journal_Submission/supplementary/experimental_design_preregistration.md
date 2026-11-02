@@ -203,7 +203,7 @@ dataset × condition cells, n = 63, and descriptively per dataset).
 Motion, Sensor, Device, Power, Traffic) that were **not** in the exploratory study and do not share
 recordings with it (excluded: UWaveGestureLibraryAll/Y/Z, CricketY/Z, GunPoint variants,
 NonInvasiveFetalECGThorax2, FreezerSmallTrain, SemgHandMovementCh2/SubjectCh2, InsectEPGSmallTrain,
-ElectricDevices (compute)): 39 datasets, assigned to the physiological, motion or
+ElectricDevices (compute); within UCR type Spectrum only the sEMG datasets qualify, so Rock is not included): 38 datasets (corrected from "39", a counting error noticed before any run; the inclusion rule is unchanged), assigned to the physiological, motion or
 industrial/environmental fault set by UCR type. *Protocol* identical to §10 (30 % faulty, domain
 fault sets, budget 20 % primary). *Hypotheses (confirmatory, two-sided Wilcoxon, Holm over the
 four comparisons × two endpoints):* H-C1 LOOM's review queue catches a larger share of faulty

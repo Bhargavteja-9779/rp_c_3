@@ -521,6 +521,45 @@ def main(mode="full"):
             metrics[f"{cond}_{met}_median"] = T.median().to_dict()
             metrics[f"{cond}_{met}_mean"] = T.mean().to_dict()
     json.dump(metrics, open(out_res / "metrics.json", "w"), indent=1, default=float)
+    # ---------------- means with 95 % bootstrap CIs (1,000 resamples; deviation D20) and per-experiment exports
+    from loom.statistics.tests import bootstrap_mean_ci
+    CI = {}
+    for key, metric, cond, meths in (("clean_nll", "nll", "clean", MAIN), ("clean_ece", "ece", "clean", MAIN),
+                                     ("faults_nll", "nll", "shifted", MAIN), ("faults_auroc", "shift_auroc", "shifted", MAIN),
+                                     ("faults_ece", "ece", "shifted", MAIN)):
+        T = dataset_table(mr, metric, cond, methods=meths)
+        CI[key] = {m: bootstrap_mean_ci(T[m].to_numpy()) for m in T.columns}
+        for m in T.columns:
+            if m != "LOOM":
+                pair = T[["LOOM", m]].dropna()
+                CI[key][f"diff_{m}"] = bootstrap_mean_ci((pair[m] - pair["LOOM"]).to_numpy())   # competitor - LOOM
+    if csc.exists():
+        P = per[per.stream == "stream"]
+        for met in ("fault_caught@20", "auto_err@20"):
+            T = P.pivot(index="dataset", columns="method", values=met)
+            CI[f"confirm_{met}"] = {m: bootstrap_mean_ci(T[m].to_numpy()) for m in T.columns}
+    if rn.exists():
+        Pc = cell.assign(k=cell.dataset + "|" + cell.cond + "|" + cell.snr.astype(str)).pivot(index="k", columns="method", values="nll")
+        CI["realnoise_nll_cells"] = {m: bootstrap_mean_ci(Pc[m].to_numpy()) for m in Pc.columns}
+    stats["CI"] = CI
+    EXPORT = {"e01_clean": ["E1_clean", "CI"], "e02_raw_series": ["E2b_raw_clean", "E2b_raw_shifted"],
+              "e03_ablation": ["E3_ablation_clean", "E3_ablation_shifted"], "e04_faults": ["E4_shifted"],
+              "e05_extractors": ["E5_multirocket_clean", "E5_multirocket_shifted", "E5_hydra_clean", "E5_hydra_shifted", "E5_by_type"],
+              "e06_cost": ["E6_efficiency"], "e07_train_size": ["E7_train_size"],
+              "e08_error_analysis": ["E8_correlations", "E8_worst_clean", "E8_worst_shift", "E8_win_rate_by_condition", "leverage_ratio_median_by_condition"],
+              "e09_conformal": ["E9_conformal", "E9_coverage_by_dataset_quantiles"], "e10_natural_shift": ["E10_natural_shift"],
+              "e11_triage_exploratory": ["E11_case_study"], "e12_real_noise": ["E12_real_noise"], "e13_triage_confirmatory": ["E13_case_confirm"],
+              "e14_quant_features": ["E14_quant_features"], "e15_bayes": ["E15_bayes"],
+              "sensitivity": ["sens_unseen_clean", "sens_unseen_shifted", "sens_nodup_clean", "sens_nodup_shifted",
+                              "sens_noneardup_clean", "sens_noneardup_shifted", "sens_grouped_clean", "sens_grouped_shifted"]}
+    for name, keys in EXPORT.items():
+        d = out_res / name.split("_")[0]
+        d.mkdir(parents=True, exist_ok=True)
+        json.dump({k: stats[k] for k in keys if k in stats} | {"experiment": name}, open(d / "summary.json", "w"), indent=1, default=float)
+    if (out_res / "check_logreg_convergence.json").exists():
+        (out_res / "e16").mkdir(exist_ok=True)
+        json.dump({"experiment": "e16_logreg_convergence", "records": json.load(open(out_res / "check_logreg_convergence.json"))},
+                  open(out_res / "e16" / "summary.json", "w"), indent=1)
     json.dump(stats, open(out_res / "statistics.json", "w"), indent=1, default=float)
     print(f"analysed {len(all_ds)} datasets; rows={len(df)}")
     from loom.visualization.plots import make_all

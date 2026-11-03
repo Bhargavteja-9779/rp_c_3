@@ -1,0 +1,82 @@
+{
+ "E15_bayes": {
+  "clean_nll_vs_PreVal": {
+   "n": 114,
+   "rope": 0.01,
+   "p_left": 0.6171,
+   "p_rope": 0.0006,
+   "p_right": 0.3823
+  },
+  "fault_nll_vs_PreVal": {
+   "n": 114,
+   "rope": 0.01,
+   "p_left": 0.0,
+   "p_rope": 0.0,
+   "p_right": 1.0
+  },
+  "fault_nll_vs_QUANT": {
+   "n": 114,
+   "rope": 0.01,
+   "p_left": 0.85505,
+   "p_rope": 0.0,
+   "p_right": 0.14495
+  },
+  "fault_auroc_vs_PreVal": {
+   "n": 114,
+   "rope": 0.01,
+   "p_left": 0.0,
+   "p_rope": 0.0,
+   "p_right": 1.0
+  },
+  "confirm_fault_caught@20_vs_PreVal": {
+   "n": 38,
+   "rope": 0.01,
+   "p_left": 0.0,
+   "p_rope": 0.0,
+   "p_right": 1.0
+  },
+  "confirm_fault_caught@20_vs_QUANT": {
+   "n": 38,
+   "rope": 0.01,
+   "p_left": 0.0,
+   "p_rope": 0.0,
+   "p_right": 1.0
+  },
+  "confirm_auto_err@20_vs_PreVal": {
+   "n": 38,
+   "rope": 0.01,
+   "p_left": 0.0,
+   "p_rope": 0.0231,
+   "p_right": 0.9769
+  },
+  "confirm_auto_err@20_vs_QUANT": {
+   "n": 38,
+   "rope": 0.01,
+   "p_left": 0.55595,
+   "p_rope": 0.13915,
+   "p_right": 0.3049
+  },
+  "real_noise_nll_vs_PreVal": {
+   "n": 7,
+   "rope": 0.01,
+   "p_left": 0.00155,
+   "p_rope": 0.0001,
+   "p_right": 0.99835
+  },
+  "qf_fault_nll_vs_QUANT": {
+   "n": 110,
+   "rope": 0.01,
+   "p_left": 1.0,
+   "p_rope": 0.0,
+   "p_right": 0.0
+  },
+  "qf_fault_nll_vs_PreValQF": {
+   "n": 110,
+   "rope": 0.01,
+   "p_left": 0.0,
+   "p_rope": 0.0,
+   "p_right": 1.0
+  }
+ },
+ "experiment": "e15_bayes"
+}

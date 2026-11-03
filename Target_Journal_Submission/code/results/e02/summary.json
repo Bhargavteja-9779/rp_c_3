@@ -1,0 +1,1015 @@
+{
+ "E2b_raw_clean": {
+  "nll": {
+   "n_datasets": 114,
+   "n_ranked": 114,
+   "ranked_methods": [
+    "LOOM",
+    "LOOM-Ens5",
+    "PreVal",
+    "PreVal-Ens5",
+    "QUANT"
+   ],
+   "friedman_chi2": 66.09574000878335,
+   "friedman_p": 1.5121064522899458e-13,
+   "mean_ranks": {
+    "PreVal-Ens5": 2.1798245614035086,
+    "PreVal": 2.6798245614035086,
+    "LOOM-Ens5": 3.0,
+    "LOOM": 3.4649122807017543,
+    "QUANT": 3.675438596491228
+   },
+   "nemenyi_cd": 0.571269478088489,
+   "pairwise": [
+    {
+     "competitor": "LOOM-Ens5",
+     "n": 114,
+     "ref_wins": 38,
+     "draws": 0,
+     "ref_losses": 76,
+     "median_diff": -0.0007135157010041276,
+     "ci_low": -0.0016894763413883573,
+     "ci_high": -0.0002650925295881734,
+     "rank_biserial": -0.47032799389778795,
+     "p": 1.3099888194482954e-05,
+     "p_holm": 5.239955277793182e-05
+    },
+    {
+     "competitor": "PreVal",
+     "n": 114,
+     "ref_wins": 36,
+     "draws": 0,
+     "ref_losses": 78,
+     "median_diff": -0.010927823484816385,
+     "ci_low": -0.022662495266263512,
+     "ci_high": -0.005342947347926508,
+     "rank_biserial": -0.34462242562929063,
+     "p": 0.0014053840205030242,
+     "p_holm": 0.0028107680410060483
+    },
+    {
+     "competitor": "PreVal-Ens5",
+     "n": 114,
+     "ref_wins": 31,
+     "draws": 0,
+     "ref_losses": 83,
+     "median_diff": -0.020465727755778255,
+     "ci_low": -0.030002815317266708,
+     "ci_high": -0.011881523030469965,
+     "rank_biserial": -0.45568268497330283,
+     "p": 2.413770673840741e-05,
+     "p_holm": 7.241312021522223e-05
+    },
+    {
+     "competitor": "QUANT",
+     "n": 114,
+     "ref_wins": 70,
+     "draws": 0,
+     "ref_losses": 44,
+     "median_diff": 0.027877052465445695,
+     "ci_low": 0.0035544055683020964,
+     "ci_high": 0.06280508504313065,
+     "rank_biserial": 0.309534706331045,
+     "p": 0.0041256331190000555,
+     "p_holm": 0.0041256331190000555
+    },
+    {
+     "competitor": "Arsenal",
+     "n": 113,
+     "ref_wins": 94,
+     "draws": 0,
+     "ref_losses": 19,
+     "median_diff": 1.4390248109830004,
+     "ci_low": 0.9701789224157478,
+     "ci_high": 1.990126560645022,
+     "rank_biserial": 0.9319981369352585,
+     "p": 8.05324639346808e-18,
+     "p_holm": 4.0266231967340396e-17
+    }
+   ],
+   "medians": {
+    "LOOM": 0.3306504248523353,
+    "LOOM-Ens5": 0.32899034258341614,
+    "PreVal": 0.34009462004777413,
+    "PreVal-Ens5": 0.32887048934532925,
+    "QUANT": 0.4023308743396967,
+    "Arsenal": 1.7485061159742874
+   },
+   "means": {
+    "LOOM": 0.46077785360753903,
+    "LOOM-Ens5": 0.45679867579507344,
+    "PreVal": 0.4723027339560381,
+    "PreVal-Ens5": 0.45311922340691374,
+    "QUANT": 0.5338112704560058,
+    "Arsenal": 2.841920986260638
+   },
+   "n_available": {
+    "LOOM": 114,
+    "LOOM-Ens5": 114,
+    "PreVal": 114,
+    "PreVal-Ens5": 114,
+    "QUANT": 114,
+    "Arsenal": 113
+   }
+  },
+  "brier": {
+   "n_datasets": 114,
+   "n_ranked": 114,
+   "ranked_methods": [
+    "LOOM",
+    "LOOM-Ens5",
+    "PreVal",
+    "PreVal-Ens5",
+    "QUANT"
+   ],
+   "friedman_chi2": 73.51712028094843,
+   "friedman_p": 4.101810506184323e-15,
+   "mean_ranks": {
+    "PreVal-Ens5": 2.1052631578947367,
+    "PreVal": 2.6491228070175437,
+    "LOOM-Ens5": 3.0789473684210527,
+    "LOOM": 3.5701754385964914,
+    "QUANT": 3.5964912280701755
+   },
+   "nemenyi_cd": 0.571269478088489,
+   "pairwise": [
+    {
+     "competitor": "LOOM-Ens5",
+     "n": 114,
+     "ref_wins": 38,
+     "draws": 0,
+     "ref_losses": 76,
+     "median_diff": -0.00039894381885225566,
+     "ci_low": -0.00108853083168068,
+     "ci_high": -0.00013830033072769501,
+     "rank_biserial": -0.45202135774218155,
+     "p": 2.804505130246264e-05,
+     "p_holm": 8.413515390738793e-05
+    },
+    {
+     "competitor": "PreVal",
+     "n": 114,
+     "ref_wins": 33,
+     "draws": 0,
+     "ref_losses": 81,
+     "median_diff": -0.003914887760405491,
+     "ci_low": -0.0074358607601700336,
+     "ci_high": -0.0019477243860288873,
+     "rank_biserial": -0.5124332570556827,
+     "p": 2.048190422801859e-06,
+     "p_holm": 8.192761691207436e-06
+    },
+    {
+     "competitor": "PreVal-Ens5",
+     "n": 114,
+     "ref_wins": 24,
+     "draws": 0,
+     "ref_losses": 90,
+     "median_diff": -0.006695004614235511,
+     "ci_low": -0.009699430201781954,
+     "ci_high": -0.003859654173916577,
+     "rank_biserial": -0.6326468344774981,
+     "p": 4.5566352862316915e-09,
+     "p_holm": 2.2783176431158457e-08
+    },
+    {
+     "competitor": "QUANT",
+     "n": 114,
+     "ref_wins": 68,
+     "draws": 0,
+     "ref_losses": 46,
+     "median_diff": 0.008365942174714078,
+     "ci_low": 0.00019174651610709414,
+     "ci_high": 0.019661978503719972,
+     "rank_biserial": 0.2982456140350877,
+     "p": 0.005713623698260936,
+     "p_holm": 0.005713623698260936
+    },
+    {
+     "competitor": "Arsenal",
+     "n": 113,
+     "ref_wins": 69,
+     "draws": 0,
+     "ref_losses": 44,
+     "median_diff": 0.007140182284107677,
+     "ci_low": 0.0027642541765321854,
+     "ci_high": 0.018025028427084255,
+     "rank_biserial": 0.4417015991305698,
+     "p": 4.596667478693747e-05,
+     "p_holm": 9.193334957387494e-05
+    }
+   ],
+   "medians": {
+    "LOOM": 0.16331445826830845,
+    "LOOM-Ens5": 0.16463350794930853,
+    "PreVal": 0.14025448421863126,
+    "PreVal-Ens5": 0.13700125444258998,
+    "QUANT": 0.21859900833333334,
+    "Arsenal": 0.17309965261551752
+   },
+   "means": {
+    "LOOM": 0.21432612837681703,
+    "LOOM-Ens5": 0.21269278783708528,
+    "PreVal": 0.20591853554716466,
+    "PreVal-Ens5": 0.2038192463845689,
+    "QUANT": 0.2381768080838255,
+    "Arsenal": 0.23831158928814428
+   },
+   "n_available": {
+    "LOOM": 114,
+    "LOOM-Ens5": 114,
+    "PreVal": 114,
+    "PreVal-Ens5": 114,
+    "QUANT": 114,
+    "Arsenal": 113
+   }
+  },
+  "ece": {
+   "n_datasets": 114,
+   "n_ranked": 114,
+   "ranked_methods": [
+    "LOOM",
+    "LOOM-Ens5",
+    "PreVal",
+    "PreVal-Ens5",
+    "QUANT"
+   ],
+   "friedman_chi2": 111.33010989011,
+   "friedman_p": 3.786946038361004e-23,
+   "mean_ranks": {
+    "PreVal-Ens5": 2.039473684210526,
+    "PreVal": 2.3552631578947367,
+    "LOOM": 3.254385964912281,
+    "LOOM-Ens5": 3.4298245614035086,
+    "QUANT": 3.9210526315789473
+   },
+   "nemenyi_cd": 0.571269478088489,
+   "pairwise": [
+    {
+     "competitor": "LOOM-Ens5",
+     "n": 114,
+     "ref_wins": 66,
+     "draws": 0,
+     "ref_losses": 48,
+     "median_diff": 0.00041801168600327787,
+     "ci_low": -8.558455207981208e-06,
+     "ci_high": 0.0011251914529023244,
+     "rank_biserial": 0.11517925247902365,
+     "p": 0.2858175503305592,
+     "p_holm": 0.2858175503305592
+    },
+    {
+     "competitor": "PreVal",
+     "n": 114,
+     "ref_wins": 34,
+     "draws": 0,
+     "ref_losses": 80,
+     "median_diff": -0.01492773367191032,
+     "ci_low": -0.02404467241492656,
+     "ci_high": -0.005462366585349911,
+     "rank_biserial": -0.6051868802440885,
+     "p": 2.0451421674979374e-08,
+     "p_holm": 8.18056866999175e-08
+    },
+    {
+     "competitor": "PreVal-Ens5",
+     "n": 114,
+     "ref_wins": 26,
+     "draws": 0,
+     "ref_losses": 88,
+     "median_diff": -0.017226094321719707,
+     "ci_low": -0.026087627394260054,
+     "ci_high": -0.010872135130359242,
+     "rank_biserial": -0.6613272311212814,
+     "p": 8.877871555521811e-10,
+     "p_holm": 4.4389357777609054e-09
+    },
+    {
+     "competitor": "QUANT",
+     "n": 114,
+     "ref_wins": 73,
+     "draws": 0,
+     "ref_losses": 41,
+     "median_diff": 0.03545323519519226,
+     "ci_low": 0.0070763048354910325,
+     "ci_high": 0.053351448984284025,
+     "rank_biserial": 0.52372234935164,
+     "p": 1.214703202686286e-06,
+     "p_holm": 3.644109608058858e-06
+    },
+    {
+     "competitor": "Arsenal",
+     "n": 113,
+     "ref_wins": 57,
+     "draws": 0,
+     "ref_losses": 56,
+     "median_diff": 0.0007862532326471522,
+     "ci_low": -0.01995336335764774,
+     "ci_high": 0.025184415775678762,
+     "rank_biserial": 0.17963049215960256,
+     "p": 0.09745630972078093,
+     "p_holm": 0.19491261944156185
+    }
+   ],
+   "medians": {
+    "LOOM": 0.07466122070976593,
+    "LOOM-Ens5": 0.07474847368474707,
+    "PreVal": 0.03509636477813598,
+    "PreVal-Ens5": 0.033992224158929836,
+    "QUANT": 0.10919166666666669,
+    "Arsenal": 0.0737662665830926
+   },
+   "means": {
+    "LOOM": 0.08874549679744419,
+    "LOOM-Ens5": 0.08838192618767665,
+    "PreVal": 0.05974758348876116,
+    "PreVal-Ens5": 0.05835946468679958,
+    "QUANT": 0.13168594161810396,
+    "Arsenal": 0.10695163989252061
+   },
+   "n_available": {
+    "LOOM": 114,
+    "LOOM-Ens5": 114,
+    "PreVal": 114,
+    "PreVal-Ens5": 114,
+    "QUANT": 114,
+    "Arsenal": 113
+   }
+  },
+  "acc": {
+   "n_datasets": 114,
+   "n_ranked": 114,
+   "ranked_methods": [
+    "LOOM",
+    "LOOM-Ens5",
+    "PreVal",
+    "PreVal-Ens5",
+    "QUANT"
+   ],
+   "friedman_chi2": 17.25790754257895,
+   "friedman_p": 0.0017221544340697379,
+   "mean_ranks": {
+    "PreVal-Ens5": 2.675438596491228,
+    "LOOM-Ens5": 2.767543859649123,
+    "LOOM": 3.1403508771929824,
+    "PreVal": 3.1491228070175437,
+    "QUANT": 3.267543859649123
+   },
+   "nemenyi_cd": 0.571269478088489,
+   "pairwise": [
+    {
+     "competitor": "LOOM-Ens5",
+     "n": 114,
+     "ref_wins": 26,
+     "draws": 44,
+     "ref_losses": 44,
+     "median_diff": 0.0,
+     "ci_low": 0.0,
+     "ci_high": 0.0,
+     "rank_biserial": 0.43259557344064387,
+     "p": 0.0016576826753977114,
+     "p_holm": 0.008241155563903101
+    },
+    {
+     "competitor": "PreVal",
+     "n": 114,
+     "ref_wins": 10,
+     "draws": 94,
+     "ref_losses": 10,
+     "median_diff": 0.0,
+     "ci_low": 0.0,
+     "ci_high": 0.0,
+     "rank_biserial": 0.2523809523809524,
+     "p": 0.32246652856047875,
+     "p_holm": 0.9673995856814362
+    },
+    {
+     "competitor": "PreVal-Ens5",
+     "n": 114,
+     "ref_wins": 26,
+     "draws": 39,
+     "ref_losses": 49,
+     "median_diff": 0.0,
+     "ci_low": 0.0,
+     "ci_high": 0.0011834319526626835,
+     "rank_biserial": 0.4182456140350877,
+     "p": 0.0016482311127806203,
+     "p_holm": 0.008241155563903101
+    },
+    {
+     "competitor": "QUANT",
+     "n": 114,
+     "ref_wins": 52,
+     "draws": 19,
+     "ref_losses": 43,
+     "median_diff": 0.0,
+     "ci_low": -0.0027933257532528066,
+     "ci_high": 0.0,
+     "rank_biserial": -0.09473684210526316,
+     "p": 0.42268766133769753,
+     "p_holm": 0.9673995856814362
+    },
+    {
+     "competitor": "Arsenal",
+     "n": 113,
+     "ref_wins": 45,
+     "draws": 34,
+     "ref_losses": 34,
+     "median_diff": 0.0,
+     "ci_low": 0.0,
+     "ci_high": 0.0,
+     "rank_biserial": -0.11613924050632911,
+     "p": 0.36983706892277945,
+     "p_holm": 0.9673995856814362
+    }
+   ],
+   "medians": {
+    "LOOM": 0.9052564102564102,
+    "LOOM-Ens5": 0.9069415807560137,
+    "PreVal": 0.91,
+    "PreVal-Ens5": 0.9098300104931795,
+    "QUANT": 0.8832262687789523,
+    "Arsenal": 0.9
+   },
+   "means": {
+    "LOOM": 0.8608713393693948,
+    "LOOM-Ens5": 0.8632676000958189,
+    "PreVal": 0.8615475265580614,
+    "PreVal-Ens5": 0.8639713593194301,
+    "QUANT": 0.8556413386608626,
+    "Arsenal": 0.8588951925499057
+   },
+   "n_available": {
+    "LOOM": 114,
+    "LOOM-Ens5": 114,
+    "PreVal": 114,
+    "PreVal-Ens5": 114,
+    "QUANT": 114,
+    "Arsenal": 113
+   }
+  }
+ },
+ "E2b_raw_shifted": {
+  "nll": {
+   "n_datasets": 114,
+   "n_ranked": 114,
+   "ranked_methods": [
+    "LOOM",
+    "LOOM-Ens5",
+    "PreVal",
+    "PreVal-Ens5",
+    "QUANT"
+   ],
+   "friedman_chi2": 235.43859649122805,
+   "friedman_p": 8.905938242326852e-50,
+   "mean_ranks": {
+    "QUANT": 1.956140350877193,
+    "LOOM-Ens5": 2.1491228070175437,
+    "LOOM": 2.517543859649123,
+    "PreVal-Ens5": 3.807017543859649,
+    "PreVal": 4.5701754385964914
+   },
+   "nemenyi_cd": 0.571269478088489,
+   "pairwise": [
+    {
+     "competitor": "LOOM-Ens5",
+     "n": 114,
+     "ref_wins": 38,
+     "draws": 0,
+     "ref_losses": 76,
+     "median_diff": -0.00264195298905176,
+     "ci_low": -0.006135024419919433,
+     "ci_high": -0.0010755781237876683,
+     "rank_biserial": -0.4837528604118993,
+     "p": 7.365778881071675e-06,
+     "p_holm": 1.473155776214335e-05
+    },
+    {
+     "competitor": "PreVal",
+     "n": 114,
+     "ref_wins": 105,
+     "draws": 0,
+     "ref_losses": 9,
+     "median_diff": 0.9391437085786564,
+     "ci_low": 0.686607344203398,
+     "ci_high": 1.2220739358845654,
+     "rank_biserial": 0.9652173913043478,
+     "p": 3.737555331207688e-19,
+     "p_holm": 1.4950221324830752e-18
+    },
+    {
+     "competitor": "PreVal-Ens5",
+     "n": 114,
+     "ref_wins": 104,
+     "draws": 0,
+     "ref_losses": 10,
+     "median_diff": 0.6544383812301623,
+     "ci_low": 0.5116756555864983,
+     "ci_high": 0.7843069277985345,
+     "rank_biserial": 0.9392829900839054,
+     "p": 3.2000179825110812e-18,
+     "p_holm": 9.600053947533243e-18
+    },
+    {
+     "competitor": "QUANT",
+     "n": 114,
+     "ref_wins": 36,
+     "draws": 0,
+     "ref_losses": 78,
+     "median_diff": -0.05043618541323794,
+     "ci_low": -0.09394574503236869,
+     "ci_high": -0.03007531962380494,
+     "rank_biserial": -0.21891685736079328,
+     "p": 0.04249332640027934,
+     "p_holm": 0.04249332640027934
+    },
+    {
+     "competitor": "Arsenal",
+     "n": 113,
+     "ref_wins": 110,
+     "draws": 0,
+     "ref_losses": 3,
+     "median_diff": 6.257907909302834,
+     "ci_low": 5.308702416263604,
+     "ci_high": 6.94067998963134,
+     "rank_biserial": 0.9972054028877504,
+     "p": 3.564607398115062e-20,
+     "p_holm": 1.7823036990575308e-19
+    }
+   ],
+   "medians": {
+    "LOOM": 1.0198307413366798,
+    "LOOM-Ens5": 1.0027027024868715,
+    "PreVal": 2.2597427168409894,
+    "PreVal-Ens5": 2.0403170452100468,
+    "QUANT": 0.9307747690352244,
+    "Arsenal": 7.024155552171741
+   },
+   "means": {
+    "LOOM": 1.164595664072438,
+    "LOOM-Ens5": 1.1526171681574404,
+    "PreVal": 4.180668092617339,
+    "PreVal-Ens5": 3.526977054601252,
+    "QUANT": 1.2618824922854914,
+    "Arsenal": 8.043439421424061
+   },
+   "n_available": {
+    "LOOM": 114,
+    "LOOM-Ens5": 114,
+    "PreVal": 114,
+    "PreVal-Ens5": 114,
+    "QUANT": 114,
+    "Arsenal": 113
+   }
+  },
+  "brier": {
+   "n_datasets": 114,
+   "n_ranked": 114,
+   "ranked_methods": [
+    "LOOM",
+    "LOOM-Ens5",
+    "PreVal",
+    "PreVal-Ens5",
+    "QUANT"
+   ],
+   "friedman_chi2": 189.00350877192977,
+   "friedman_p": 8.678024856191443e-40,
+   "mean_ranks": {
+    "QUANT": 1.8771929824561404,
+    "LOOM-Ens5": 2.3771929824561404,
+    "LOOM": 2.7017543859649122,
+    "PreVal-Ens5": 3.6228070175438596,
+    "PreVal": 4.421052631578948
+   },
+   "nemenyi_cd": 0.571269478088489,
+   "pairwise": [
+    {
+     "competitor": "LOOM-Ens5",
+     "n": 114,
+     "ref_wins": 39,
+     "draws": 0,
+     "ref_losses": 75,
+     "median_diff": -0.0020634559635020477,
+     "ci_low": -0.003156944070919432,
+     "ci_high": -0.0004987435241863975,
+     "rank_biserial": -0.45202135774218155,
+     "p": 2.804505130246264e-05,
+     "p_holm": 2.804505130246264e-05
+    },
+    {
+     "competitor": "PreVal",
+     "n": 114,
+     "ref_wins": 99,
+     "draws": 0,
+     "ref_losses": 15,
+     "median_diff": 0.10292706243889782,
+     "ci_low": 0.07064477683261694,
+     "ci_high": 0.1435550282505738,
+     "rank_biserial": 0.8343249427917621,
+     "p": 1.0627625122078397e-14,
+     "p_holm": 5.3138125610391985e-14
+    },
+    {
+     "competitor": "PreVal-Ens5",
+     "n": 114,
+     "ref_wins": 93,
+     "draws": 0,
+     "ref_losses": 21,
+     "median_diff": 0.06736861534636684,
+     "ci_low": 0.050355249226189946,
+     "ci_high": 0.09884975749360983,
+     "rank_biserial": 0.7577421815408085,
+     "p": 2.1897106651714116e-12,
+     "p_holm": 6.5691319955142345e-12
+    },
+    {
+     "competitor": "QUANT",
+     "n": 114,
+     "ref_wins": 31,
+     "draws": 0,
+     "ref_losses": 83,
+     "median_diff": -0.04221028298618387,
+     "ci_low": -0.06993818354099382,
+     "ci_high": -0.029294718288909838,
+     "rank_biserial": -0.5301296720061022,
+     "p": 8.987681153244154e-07,
+     "p_holm": 1.7975362306488307e-06
+    },
+    {
+     "competitor": "Arsenal",
+     "n": 113,
+     "ref_wins": 96,
+     "draws": 0,
+     "ref_losses": 17,
+     "median_diff": 0.1284122706409186,
+     "ci_low": 0.10274504242943361,
+     "ci_high": 0.14932796431145484,
+     "rank_biserial": 0.8313926408942711,
+     "p": 1.7116562850606807e-14,
+     "p_holm": 6.846625140242723e-14
+    }
+   ],
+   "medians": {
+    "LOOM": 0.5257903031019726,
+    "LOOM-Ens5": 0.518556380144398,
+    "PreVal": 0.6733597266319573,
+    "PreVal-Ens5": 0.6358845325798278,
+    "QUANT": 0.4892976543209876,
+    "Arsenal": 0.6721487557209773
+   },
+   "means": {
+    "LOOM": 0.5431769497088123,
+    "LOOM-Ens5": 0.5393263686123234,
+    "PreVal": 0.6855744127698143,
+    "PreVal-Ens5": 0.6434595210569916,
+    "QUANT": 0.49684098506443913,
+    "Arsenal": 0.663498400469314
+   },
+   "n_available": {
+    "LOOM": 114,
+    "LOOM-Ens5": 114,
+    "PreVal": 114,
+    "PreVal-Ens5": 114,
+    "QUANT": 114,
+    "Arsenal": 113
+   }
+  },
+  "ece": {
+   "n_datasets": 114,
+   "n_ranked": 114,
+   "ranked_methods": [
+    "LOOM",
+    "LOOM-Ens5",
+    "PreVal",
+    "PreVal-Ens5",
+    "QUANT"
+   ],
+   "friedman_chi2": 115.47368421052624,
+   "friedman_p": 4.944457688318864e-24,
+   "mean_ranks": {
+    "LOOM": 2.280701754385965,
+    "LOOM-Ens5": 2.307017543859649,
+    "QUANT": 2.8684210526315788,
+    "PreVal-Ens5": 3.3684210526315788,
+    "PreVal": 4.175438596491228
+   },
+   "nemenyi_cd": 0.571269478088489,
+   "pairwise": [
+    {
+     "competitor": "LOOM-Ens5",
+     "n": 114,
+     "ref_wins": 58,
+     "draws": 0,
+     "ref_losses": 56,
+     "median_diff": 0.00020144789272702468,
+     "ci_low": -0.0030953372463311465,
+     "ci_high": 0.002021096826673799,
+     "rank_biserial": -0.10511060259344013,
+     "p": 0.33003782788313596,
+     "p_holm": 0.33003782788313596
+    },
+    {
+     "competitor": "PreVal",
+     "n": 114,
+     "ref_wins": 93,
+     "draws": 0,
+     "ref_losses": 21,
+     "median_diff": 0.07991981354357901,
+     "ci_low": 0.0621852534750757,
+     "ci_high": 0.10229024509071856,
+     "rank_biserial": 0.70465293668955,
+     "p": 6.58270314306482e-11,
+     "p_holm": 2.633081257225928e-10
+    },
+    {
+     "competitor": "PreVal-Ens5",
+     "n": 114,
+     "ref_wins": 86,
+     "draws": 0,
+     "ref_losses": 28,
+     "median_diff": 0.06087116043916482,
+     "ci_low": 0.04245712903308377,
+     "ci_high": 0.08106335735104855,
+     "rank_biserial": 0.6213577421815408,
+     "p": 8.51211160106998e-09,
+     "p_holm": 2.5536334803209936e-08
+    },
+    {
+     "competitor": "QUANT",
+     "n": 114,
+     "ref_wins": 73,
+     "draws": 0,
+     "ref_losses": 41,
+     "median_diff": 0.013260832577046702,
+     "ci_low": 0.006203568128960835,
+     "ci_high": 0.025413794505207865,
+     "rank_biserial": 0.21037376048817696,
+     "p": 0.051237046974859764,
+     "p_holm": 0.10247409394971953
+    },
+    {
+     "competitor": "Arsenal",
+     "n": 113,
+     "ref_wins": 91,
+     "draws": 0,
+     "ref_losses": 22,
+     "median_diff": 0.11630604201985087,
+     "ci_low": 0.09586330282866931,
+     "ci_high": 0.12673838124138664,
+     "rank_biserial": 0.7481757491072815,
+     "p": 5.097207106916628e-12,
+     "p_holm": 2.5486035534583138e-11
+    }
+   ],
+   "medians": {
+    "LOOM": 0.16676367005205525,
+    "LOOM-Ens5": 0.16502122924744267,
+    "PreVal": 0.2570091827540837,
+    "PreVal-Ens5": 0.239639880399097,
+    "QUANT": 0.17856410256410257,
+    "Arsenal": 0.2828510529624391
+   },
+   "means": {
+    "LOOM": 0.178209035019274,
+    "LOOM-Ens5": 0.17586842013207124,
+    "PreVal": 0.28715715698370253,
+    "PreVal-Ens5": 0.25464613267956693,
+    "QUANT": 0.1849742296416285,
+    "Arsenal": 0.2868671139014523
+   },
+   "n_available": {
+    "LOOM": 114,
+    "LOOM-Ens5": 114,
+    "PreVal": 114,
+    "PreVal-Ens5": 114,
+    "QUANT": 114,
+    "Arsenal": 113
+   }
+  },
+  "acc": {
+   "n_datasets": 114,
+   "n_ranked": 114,
+   "ranked_methods": [
+    "LOOM",
+    "LOOM-Ens5",
+    "PreVal",
+    "PreVal-Ens5",
+    "QUANT"
+   ],
+   "friedman_chi2": 37.233348858872866,
+   "friedman_p": 1.6125248207510728e-07,
+   "mean_ranks": {
+    "QUANT": 2.241228070175439,
+    "PreVal-Ens5": 3.0701754385964914,
+    "LOOM-Ens5": 3.087719298245614,
+    "LOOM": 3.2982456140350878,
+    "PreVal": 3.3026315789473686
+   },
+   "nemenyi_cd": 0.571269478088489,
+   "pairwise": [
+    {
+     "competitor": "LOOM-Ens5",
+     "n": 114,
+     "ref_wins": 49,
+     "draws": 7,
+     "ref_losses": 58,
+     "median_diff": 0.0006116144260473744,
+     "ci_low": -0.0008888888888888558,
+     "ci_high": 0.0026140403516908273,
+     "rank_biserial": 0.10418830044998269,
+     "p": 0.34952389858164257,
+     "p_holm": 1.0
+    },
+    {
+     "competitor": "PreVal",
+     "n": 114,
+     "ref_wins": 19,
+     "draws": 76,
+     "ref_losses": 19,
+     "median_diff": 0.0,
+     "ci_low": 0.0,
+     "ci_high": 0.0,
+     "rank_biserial": -0.017543859649122806,
+     "p": 0.924898817339152,
+     "p_holm": 1.0
+    },
+    {
+     "competitor": "PreVal-Ens5",
+     "n": 114,
+     "ref_wins": 46,
+     "draws": 4,
+     "ref_losses": 64,
+     "median_diff": 0.0012885891831981855,
+     "ci_low": 0.0,
+     "ci_high": 0.0033333333333332993,
+     "rank_biserial": 0.15135135135135136,
+     "p": 0.16825703997899333,
+     "p_holm": 0.6730281599159733
+    },
+    {
+     "competitor": "QUANT",
+     "n": 114,
+     "ref_wins": 35,
+     "draws": 3,
+     "ref_losses": 76,
+     "median_diff": 0.04679999999999995,
+     "ci_low": 0.02943983783738539,
+     "ci_high": 0.06179200286179898,
+     "rank_biserial": 0.5247747747747747,
+     "p": 1.59583874553904e-06,
+     "p_holm": 7.9791937276952e-06
+    },
+    {
+     "competitor": "Arsenal",
+     "n": 113,
+     "ref_wins": 57,
+     "draws": 2,
+     "ref_losses": 54,
+     "median_diff": -0.0007407407407407085,
+     "ci_low": -0.004166666666666763,
+     "ci_high": 0.0032104969290899232,
+     "rank_biserial": -0.047619047619047616,
+     "p": 0.6632306950663089,
+     "p_holm": 1.0
+    }
+   ],
+   "medians": {
+    "LOOM": 0.6035171862509991,
+    "LOOM-Ens5": 0.6140428157789555,
+    "PreVal": 0.6129326047358834,
+    "PreVal-Ens5": 0.6157191144160892,
+    "QUANT": 0.6207474226804124,
+    "Arsenal": 0.5999906942117997
+   },
+   "means": {
+    "LOOM": 0.5810401600120948,
+    "LOOM-Ens5": 0.581406736902115,
+    "PreVal": 0.5809323777426477,
+    "PreVal-Ens5": 0.5818286626218225,
+    "QUANT": 0.6294960420915763,
+    "Arsenal": 0.5821277766028349
+   },
+   "n_available": {
+    "LOOM": 114,
+    "LOOM-Ens5": 114,
+    "PreVal": 114,
+    "PreVal-Ens5": 114,
+    "QUANT": 114,
+    "Arsenal": 113
+   }
+  },
+  "shift_auroc": {
+   "n_datasets": 114,
+   "n_ranked": 114,
+   "ranked_methods": [
+    "LOOM",
+    "LOOM-Ens5",
+    "PreVal",
+    "PreVal-Ens5",
+    "QUANT"
+   ],
+   "friedman_chi2": 368.78596491228063,
+   "friedman_p": 1.5389996062068973e-78,
+   "mean_ranks": {
+    "LOOM-Ens5": 1.4035087719298245,
+    "LOOM": 1.8508771929824561,
+    "QUANT": 2.956140350877193,
+    "PreVal-Ens5": 3.991228070175439,
+    "PreVal": 4.798245614035087
+   },
+   "nemenyi_cd": 0.571269478088489,
+   "pairwise": [
+    {
+     "competitor": "LOOM-Ens5",
+     "n": 114,
+     "ref_wins": 32,
+     "draws": 0,
+     "ref_losses": 82,
+     "median_diff": 0.0013669000626360672,
+     "ci_low": 0.0007659318065698084,
+     "ci_high": 0.001858517788005054,
+     "rank_biserial": 0.581998474446987,
+     "p": 6.919204670758703e-08,
+     "p_holm": 6.919204670758703e-08
+    },
+    {
+     "competitor": "PreVal",
+     "n": 114,
+     "ref_wins": 114,
+     "draws": 0,
+     "ref_losses": 0,
+     "median_diff": -0.24567715165964632,
+     "ci_low": -0.28909166666666675,
+     "ci_high": -0.2094773175542406,
+     "rank_biserial": -1.0,
+     "p": 1.918355673816542e-20,
+     "p_holm": 9.59177836908271e-20
+    },
+    {
+     "competitor": "PreVal-Ens5",
+     "n": 114,
+     "ref_wins": 114,
+     "draws": 0,
+     "ref_losses": 0,
+     "median_diff": -0.19545661276892506,
+     "ci_low": -0.23064193274644096,
+     "ci_high": -0.16028842592592596,
+     "rank_biserial": -1.0,
+     "p": 1.918355673816542e-20,
+     "p_holm": 9.59177836908271e-20
+    },
+    {
+     "competitor": "QUANT",
+     "n": 114,
+     "ref_wins": 99,
+     "draws": 0,
+     "ref_losses": 15,
+     "median_diff": -0.06617027872576287,
+     "ci_low": -0.07787976548064701,
+     "ci_high": -0.059355147017484566,
+     "rank_biserial": -0.7940503432494279,
+     "p": 1.8627222108763214e-13,
+     "p_holm": 3.725444421752643e-13
+    },
+    {
+     "competitor": "Arsenal",
+     "n": 113,
+     "ref_wins": 109,
+     "draws": 0,
+     "ref_losses": 4,
+     "median_diff": -0.12442947910102908,
+     "ci_low": -0.15357128693238153,
+     "ci_high": -0.10101440740740741,
+     "rank_biserial": -0.9897531439217513,
+     "p": 6.743715822598076e-20,
+     "p_holm": 2.0231147467794227e-19
+    }
+   ],
+   "medians": {
+    "LOOM": 0.8454783489742757,
+    "LOOM-Ens5": 0.8473351265357619,
+    "PreVal": 0.5311237037037038,
+    "PreVal-Ens5": 0.5841269610211113,
+    "QUANT": 0.7603275507850198,
+    "Arsenal": 0.6763927240850318
+   },
+   "means": {
+    "LOOM": 0.828904816655798,
+    "LOOM-Ens5": 0.8322120948970756,
+    "PreVal": 0.5461486327360515,
+    "PreVal-Ens5": 0.6003639707200289,
+    "QUANT": 0.7546799475545325,
+    "Arsenal": 0.6785660138765138
+   },
+   "n_available": {
+    "LOOM": 114,
+    "LOOM-Ens5": 114,
+    "PreVal": 114,
+    "PreVal-Ens5": 114,
+    "QUANT": 114,
+    "Arsenal": 113
+   }
+  }
+ },
+ "experiment": "e02_raw_series"
+}

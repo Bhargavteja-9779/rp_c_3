@@ -100,3 +100,11 @@ def bayes_signed_rank(d, rope, s=0.5, z0=0.0, nsamples=20000, seed=0):
     pm = 1.0 - pr - pl
     win = np.argmax(np.stack([pl, pm, pr], 1), 1)
     return dict(p_left=float((win == 0).mean()), p_rope=float((win == 1).mean()), p_right=float((win == 2).mean()))
+
+
+def bootstrap_mean_ci(x, n_boot=1000, alpha=0.05, seed=0):
+    """Mean of x with a percentile-bootstrap (1 - alpha) confidence interval."""
+    x = np.asarray(x, float); x = x[~np.isnan(x)]
+    rng = np.random.default_rng(seed)
+    means = x[rng.integers(0, len(x), (n_boot, len(x)))].mean(1)
+    return dict(mean=float(x.mean()), lo=float(np.quantile(means, alpha / 2)), hi=float(np.quantile(means, 1 - alpha / 2)), n=int(len(x)))

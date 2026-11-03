@@ -1,0 +1,16 @@
+\begin{tabular}{lrrr}
+\toprule
+Method & Median fit (s) & Mean fit (s) & Median predict (s) \\
+\midrule
+MiniRocket transform (shared) & 0.168 & 1.14 & -- \\
+Ridge one-hot & 0.067 & 3.33 & 0.09 \\
+PreVal & 0.144 & 3.63 & 0.10 \\
+LOOM (ours) & 0.140 & 3.61 & 1.49 \\
+Hold-out TS & 0.053 & 2.03 & 0.30 \\
+Ridge + Platt (5-fold) & 0.256 & 12.78 & 0.36 \\
+Logistic regression (CV) & 3.666 & 11.59 & 0.40 \\
+LOOM, 5-seed ens. & 2.247 & 24.93 & 26.26 \\
+QUANT & 1.298 & 5.72 & 5.56 \\
+Arsenal & 4.475 & 22.98 & 20.45 \\
+\bottomrule
+\end{tabular}

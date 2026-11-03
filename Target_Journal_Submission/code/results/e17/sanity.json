@@ -1,0 +1,52 @@
+{
+ "exchangeability": {
+  "n": 110,
+  "n_reject_holm": 19,
+  "median_ks": 0.12280285594727483,
+  "median_test_ratio": 1.0064088731668708,
+  "median_q90_test": 1.7449054701192694,
+  "median_q90_loo": 1.682785561906664,
+  "rejected": [
+   "DistalPhalanxOutlineAgeGroup",
+   "DistalPhalanxOutlineCorrect",
+   "DistalPhalanxTW",
+   "EOGHorizontalSignal",
+   "EOGVerticalSignal",
+   "EthanolLevel",
+   "FaceAll",
+   "Fungi",
+   "HandOutlines",
+   "MiddlePhalanxOutlineAgeGroup",
+   "MiddlePhalanxOutlineCorrect",
+   "PhalangesOutlinesCorrect",
+   "PigAirwayPressure",
+   "PigArtPressure",
+   "PigCVP",
+   "RefrigerationDevices",
+   "ShapeletSim",
+   "ToeSegmentation1",
+   "Wine"
+  ]
+ },
+ "coverage_spread": {
+  "n": 114,
+  "observed_sd": 0.03494555357387263,
+  "sim_sd_median": 0.01021418291202441,
+  "sim_sd_q975": 0.01304248946237326,
+  "share_outside_binomial_95": 0.42105263157894735
+ },
+ "resample_noise": {
+  "clean": {
+   "n": 114,
+   "share_beyond_2se": 0.5087719298245614,
+   "share_loom_better_beyond_2se": 0.13157894736842105,
+   "share_preval_better_beyond_2se": 0.37719298245614036
+  },
+  "faults": {
+   "n": 114,
+   "share_beyond_2se": 0.7807017543859649,
+   "share_loom_better_beyond_2se": 0.7631578947368421,
+   "share_preval_better_beyond_2se": 0.017543859649122806
+  }
+ }
+}

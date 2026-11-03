@@ -11,9 +11,15 @@ Stages (each is resumable: finished jobs are cached in results/raw/*.json):
   extract   MultiRocket / Hydra features, core readouts (generalisation)
   trainsize 25 % / 50 % training data, core readouts (sensitivity)
   natural   natural cross-axis shift on UWaveGestureLibrary X/Y/Z (full mode only)
-  case      application case study: triage of faulty sensor recordings, 12 datasets (full mode only)
+  case      exploratory triage study, 12 sensor datasets (full mode only)
+  realnoise real recorded ECG noise from the MIT-BIH NSTDB (full mode only; scripts/download_nstdb.sh)
+  confirm   pre-registered confirmatory triage study, 38 sensor datasets (full mode only)
+  quantfeat LOOM/PreVal readouts on QUANT features (full mode only)
+  sanity    assumption and sampling-noise checks (full mode only)
   logreg    convergence check of the logistic-regression baseline on 12 datasets (full mode only)
-  analyze   statistics, tables, figures
+  analyze   statistics (results/statistics.json, results/eNN/summary.json)
+  aggregate tables/macros.tex and tables/tab_*.tex for the LaTeX manuscript
+  figures   every figure, one script each in visualization/
 """
 import argparse
 import os
@@ -96,7 +102,7 @@ def schedule(jobs, workers, raw_dir, heavy_n=3000, log=None, max_retries=2):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["quick", "full"], default="quick")
-    ap.add_argument("--stages", default="audit,main,raw,extract,trainsize,natural,case,logreg,analyze")
+    ap.add_argument("--stages", default="audit,main,raw,extract,trainsize,natural,case,realnoise,confirm,quantfeat,logreg,sanity,analyze,aggregate,figures")
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2)))
     ap.add_argument("--datasets", default=None, help="comma-separated subset (default: mode-dependent)")
     a = ap.parse_args()
@@ -117,7 +123,7 @@ def main():
 
     if "audit" in stages:
         import subprocess
-        subprocess.run([sys.executable, str(ROOT / "experiments" / "leakage_audit.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "experiments" / "e00_leakage_audit.py")], check=True)
     # all compute stages are queued together so that light jobs of later stages fill workers
     # that would otherwise idle while the few heavy jobs finish
     jobs = []
@@ -143,7 +149,9 @@ def main():
         schedule(heavy, 1, raw_dir, log=log)
     if a.mode == "full":
         import subprocess
-        for st, script in (("natural", "natural_shift.py"), ("case", "case_study.py"), ("logreg", "check_logreg_convergence.py")):
+        for st, script in (("natural", "natural_shift.py"), ("case", "case_study.py"), ("realnoise", "real_noise.py"),
+                           ("confirm", "case_study_confirm.py"), ("quantfeat", "quant_features.py"),
+                           ("logreg", "check_logreg_convergence.py"), ("sanity", "e17_sanity_checks.py")):
             cached = st == "logreg" and (ROOT / "results" / "check_logreg_convergence.json").exists()
             if st in stages and not cached:   # natural_shift.py resumes from its own cache
                 subprocess.run([sys.executable, str(ROOT / "experiments" / script)], check=True, cwd=ROOT)
@@ -156,6 +164,13 @@ def main():
             _analyze_quick(mod, raw_dir)
         else:
             mod.main("full")
+    if "aggregate" in stages and a.mode == "full":
+        import subprocess
+        subprocess.run([sys.executable, str(ROOT / "experiments" / "aggregate.py")], check=True, cwd=ROOT)
+    if "figures" in stages and a.mode == "full":
+        import subprocess
+        for fig in sorted((ROOT / "visualization").glob("fig_*.py")):
+            subprocess.run([sys.executable, str(fig)], check=True, cwd=ROOT)
 
 
 def _analyze_quick(mod, raw_dir):

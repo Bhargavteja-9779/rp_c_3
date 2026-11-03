@@ -1,0 +1,185 @@
+{
+ "E7_train_size": [
+  {
+   "train_frac": 0.25,
+   "cond": "clean",
+   "competitor": "PreVal",
+   "n": 111,
+   "median_loom": 0.5420563916251108,
+   "median_comp": 0.6011047537045544,
+   "wdl": "45/0/66",
+   "p_holm": 0.09352399690104816
+  },
+  {
+   "train_frac": 0.25,
+   "cond": "clean",
+   "competitor": "Ridge-softmax",
+   "n": 111,
+   "median_loom": 0.5420563916251108,
+   "median_comp": 0.6771077042552408,
+   "wdl": "92/0/19",
+   "p_holm": 2.608675021573405e-12
+  },
+  {
+   "train_frac": 0.25,
+   "cond": "clean",
+   "competitor": "Holdout-TS",
+   "n": 111,
+   "median_loom": 0.5420563916251108,
+   "median_comp": 0.8799394070510169,
+   "wdl": "82/0/29",
+   "p_holm": 4.3225343509417625e-10
+  },
+  {
+   "train_frac": 0.25,
+   "cond": "shifted",
+   "competitor": "PreVal",
+   "n": 111,
+   "median_loom": 1.0582195531304022,
+   "median_comp": 2.155477289375947,
+   "wdl": "97/0/14",
+   "p_holm": 1.7624041061769295e-17
+  },
+  {
+   "train_frac": 0.25,
+   "cond": "shifted",
+   "competitor": "Ridge-softmax",
+   "n": 111,
+   "median_loom": 1.0582195531304022,
+   "median_comp": 1.4739953004193955,
+   "wdl": "91/0/20",
+   "p_holm": 3.4480679714117786e-15
+  },
+  {
+   "train_frac": 0.25,
+   "cond": "shifted",
+   "competitor": "Holdout-TS",
+   "n": 111,
+   "median_loom": 1.0582195531304022,
+   "median_comp": 3.078533044350165,
+   "wdl": "105/0/6",
+   "p_holm": 1.9062932168574252e-18
+  },
+  {
+   "train_frac": 0.5,
+   "cond": "clean",
+   "competitor": "PreVal",
+   "n": 111,
+   "median_loom": 0.44241096961296666,
+   "median_comp": 0.4774558612164806,
+   "wdl": "41/0/70",
+   "p_holm": 0.02026246658982667
+  },
+  {
+   "train_frac": 0.5,
+   "cond": "clean",
+   "competitor": "Ridge-softmax",
+   "n": 111,
+   "median_loom": 0.44241096961296666,
+   "median_comp": 0.6327393093400001,
+   "wdl": "97/0/14",
+   "p_holm": 4.865039489954848e-16
+  },
+  {
+   "train_frac": 0.5,
+   "cond": "clean",
+   "competitor": "Holdout-TS",
+   "n": 111,
+   "median_loom": 0.44241096961296666,
+   "median_comp": 0.6312705166375945,
+   "wdl": "79/0/32",
+   "p_holm": 1.0817769828512317e-07
+  },
+  {
+   "train_frac": 0.5,
+   "cond": "shifted",
+   "competitor": "PreVal",
+   "n": 111,
+   "median_loom": 1.0493041076314347,
+   "median_comp": 2.5433649960207476,
+   "wdl": "103/0/8",
+   "p_holm": 1.1738105079178313e-18
+  },
+  {
+   "train_frac": 0.5,
+   "cond": "shifted",
+   "competitor": "Ridge-softmax",
+   "n": 111,
+   "median_loom": 1.0493041076314347,
+   "median_comp": 1.4469502720006944,
+   "wdl": "93/0/18",
+   "p_holm": 1.6169370152892111e-15
+  },
+  {
+   "train_frac": 0.5,
+   "cond": "shifted",
+   "competitor": "Holdout-TS",
+   "n": 111,
+   "median_loom": 1.0493041076314347,
+   "median_comp": 2.6093890773560724,
+   "wdl": "107/0/4",
+   "p_holm": 5.443027451643775e-19
+  },
+  {
+   "train_frac": 1.0,
+   "cond": "clean",
+   "competitor": "PreVal",
+   "n": 111,
+   "median_loom": 0.30770855280505716,
+   "median_comp": 0.3319398905438614,
+   "wdl": "35/0/76",
+   "p_holm": 0.002627491142223808
+  },
+  {
+   "train_frac": 1.0,
+   "cond": "clean",
+   "competitor": "Ridge-softmax",
+   "n": 111,
+   "median_loom": 0.30770855280505716,
+   "median_comp": 0.5738451409278695,
+   "wdl": "103/0/8",
+   "p_holm": 1.6651171857412662e-17
+  },
+  {
+   "train_frac": 1.0,
+   "cond": "clean",
+   "competitor": "Holdout-TS",
+   "n": 111,
+   "median_loom": 0.30770855280505716,
+   "median_comp": 0.47454977097257833,
+   "wdl": "69/0/42",
+   "p_holm": 0.002627491142223808
+  },
+  {
+   "train_frac": 1.0,
+   "cond": "shifted",
+   "competitor": "PreVal",
+   "n": 111,
+   "median_loom": 1.0143863264868145,
+   "median_comp": 2.353738621960053,
+   "wdl": "102/0/9",
+   "p_holm": 3.0654217443359838e-18
+  },
+  {
+   "train_frac": 1.0,
+   "cond": "shifted",
+   "competitor": "Ridge-softmax",
+   "n": 111,
+   "median_loom": 1.0143863264868145,
+   "median_comp": 1.30183535061768,
+   "wdl": "94/0/17",
+   "p_holm": 1.7936666665879438e-14
+  },
+  {
+   "train_frac": 1.0,
+   "cond": "shifted",
+   "competitor": "Holdout-TS",
+   "n": 111,
+   "median_loom": 1.0143863264868145,
+   "median_comp": 3.0674695339140854,
+   "wdl": "100/0/11",
+   "p_holm": 3.0654217443359838e-18
+  }
+ ],
+ "experiment": "e07_train_size"
+}

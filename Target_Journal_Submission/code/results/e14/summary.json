@@ -1,0 +1,254 @@
+{
+ "E14_quant_features": {
+  "n_datasets": 110,
+  "n_features_median": 2957.0,
+  "metrics": {
+   "clean:nll": {
+    "medians": {
+     "LOOM": 0.3792350591128788,
+     "PreVal-QF": 0.5210399782925456,
+     "QUANT": 0.3960954132075535
+    },
+    "pairwise": [
+     {
+      "competitor": "PreVal-QF",
+      "n": 110,
+      "ref_wins": 49,
+      "draws": 0,
+      "ref_losses": 61,
+      "median_diff": -0.003703545923175608,
+      "ci_low": -0.015985885619094503,
+      "ci_high": 0.005508977700002075,
+      "rank_biserial": 0.020802620802620804,
+      "p": 0.8497979835926385,
+      "p_holm": 0.8497979835926385
+     },
+     {
+      "competitor": "QUANT",
+      "n": 110,
+      "ref_wins": 40,
+      "draws": 0,
+      "ref_losses": 70,
+      "median_diff": -0.032544800186223355,
+      "ci_low": -0.06155870438988015,
+      "ci_high": -0.011569727908109506,
+      "rank_biserial": -0.3854217854217854,
+      "p": 0.0004503388163338764,
+      "p_holm": 0.0009006776326677528
+     }
+    ]
+   },
+   "clean:ece": {
+    "medians": {
+     "LOOM": 0.0852683180534677,
+     "PreVal-QF": 0.05140271986995627,
+     "QUANT": 0.11338904235727437
+    },
+    "pairwise": [
+     {
+      "competitor": "PreVal-QF",
+      "n": 110,
+      "ref_wins": 28,
+      "draws": 0,
+      "ref_losses": 82,
+      "median_diff": -0.02526512013424933,
+      "ci_low": -0.03186466325786973,
+      "ci_high": -0.012729084647908295,
+      "rank_biserial": -0.6615888615888615,
+      "p": 1.714683120779082e-09,
+      "p_holm": 3.429366241558164e-09
+     },
+     {
+      "competitor": "QUANT",
+      "n": 110,
+      "ref_wins": 69,
+      "draws": 0,
+      "ref_losses": 41,
+      "median_diff": 0.03268504696058896,
+      "ci_low": 0.011515650862048046,
+      "ci_high": 0.04221228265635167,
+      "rank_biserial": 0.44176904176904175,
+      "p": 5.779567964292027e-05,
+      "p_holm": 5.779567964292027e-05
+     }
+    ]
+   },
+   "clean:acc": {
+    "medians": {
+     "LOOM": 0.8660322170232011,
+     "PreVal-QF": 0.8647079037800687,
+     "QUANT": 0.8840961874781392
+    },
+    "pairwise": [
+     {
+      "competitor": "PreVal-QF",
+      "n": 110,
+      "ref_wins": 24,
+      "draws": 77,
+      "ref_losses": 9,
+      "median_diff": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0,
+      "rank_biserial": -0.5490196078431373,
+      "p": 0.005928669748968744,
+      "p_holm": 0.005928669748968744
+     },
+     {
+      "competitor": "QUANT",
+      "n": 110,
+      "ref_wins": 20,
+      "draws": 9,
+      "ref_losses": 81,
+      "median_diff": 0.025709659297445564,
+      "ci_low": 0.013401116427432247,
+      "ci_high": 0.03794796269023071,
+      "rank_biserial": 0.6765676567656765,
+      "p": 3.5701596990960317e-09,
+      "p_holm": 7.140319398192063e-09
+     }
+    ]
+   },
+   "shifted:nll": {
+    "medians": {
+     "LOOM": 1.2417356974797675,
+     "PreVal-QF": 17.735898564082383,
+     "QUANT": 0.9307747690352244
+    },
+    "pairwise": [
+     {
+      "competitor": "PreVal-QF",
+      "n": 110,
+      "ref_wins": 110,
+      "draws": 0,
+      "ref_losses": 0,
+      "median_diff": 16.723161715173184,
+      "ci_low": 14.972655147735335,
+      "ci_high": 19.53723202185858,
+      "rank_biserial": 1.0,
+      "p": 8.74847894344336e-20,
+      "p_holm": 1.749695788688672e-19
+     },
+     {
+      "competitor": "QUANT",
+      "n": 110,
+      "ref_wins": 13,
+      "draws": 0,
+      "ref_losses": 97,
+      "median_diff": -0.2699505038058697,
+      "ci_low": -0.40615223014317436,
+      "ci_high": -0.22285377646192894,
+      "rank_biserial": -0.752989352989353,
+      "p": 7.140154008691211e-12,
+      "p_holm": 7.140154008691211e-12
+     }
+    ]
+   },
+   "shifted:ece": {
+    "medians": {
+     "LOOM": 0.10405270730030118,
+     "PreVal-QF": 0.5689948624823074,
+     "QUANT": 0.17856410256410257
+    },
+    "pairwise": [
+     {
+      "competitor": "PreVal-QF",
+      "n": 110,
+      "ref_wins": 109,
+      "draws": 0,
+      "ref_losses": 1,
+      "median_diff": 0.4518606585087658,
+      "ci_low": 0.3794665175890748,
+      "ci_high": 0.5227999490371291,
+      "rank_biserial": 0.9960687960687961,
+      "p": 1.2156696373685146e-19,
+      "p_holm": 2.431339274737029e-19
+     },
+     {
+      "competitor": "QUANT",
+      "n": 110,
+      "ref_wins": 82,
+      "draws": 0,
+      "ref_losses": 28,
+      "median_diff": 0.06513934396993792,
+      "ci_low": 0.051359688668379255,
+      "ci_high": 0.0909964722471712,
+      "rank_biserial": 0.620966420966421,
+      "p": 1.5771365320955954e-08,
+      "p_holm": 1.5771365320955954e-08
+     }
+    ]
+   },
+   "shifted:acc": {
+    "medians": {
+     "LOOM": 0.35415972222222225,
+     "PreVal-QF": 0.3494513888888889,
+     "QUANT": 0.6207474226804124
+    },
+    "pairwise": [
+     {
+      "competitor": "PreVal-QF",
+      "n": 110,
+      "ref_wins": 21,
+      "draws": 71,
+      "ref_losses": 18,
+      "median_diff": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0,
+      "rank_biserial": -0.3038461538461538,
+      "p": 0.09819104791187387,
+      "p_holm": 0.09819104791187387
+     },
+     {
+      "competitor": "QUANT",
+      "n": 110,
+      "ref_wins": 7,
+      "draws": 0,
+      "ref_losses": 103,
+      "median_diff": 0.25815792277369376,
+      "ci_low": 0.22658478874138616,
+      "ci_high": 0.29904707914912,
+      "rank_biserial": 0.9737919737919738,
+      "p": 7.657733305683691e-19,
+      "p_holm": 1.5315466611367382e-18
+     }
+    ]
+   },
+   "shifted:shift_auroc": {
+    "medians": {
+     "LOOM": 0.9497899005003472,
+     "PreVal-QF": 0.11702128037677575,
+     "QUANT": 0.7666042174165141
+    },
+    "pairwise": [
+     {
+      "competitor": "PreVal-QF",
+      "n": 110,
+      "ref_wins": 109,
+      "draws": 0,
+      "ref_losses": 1,
+      "median_diff": -0.8227870370370372,
+      "ci_low": -0.8364707693887863,
+      "ci_high": -0.7845387956559164,
+      "rank_biserial": -0.9941031941031941,
+      "p": 1.4323556341167807e-19,
+      "p_holm": 2.8647112682335613e-19
+     },
+     {
+      "competitor": "QUANT",
+      "n": 110,
+      "ref_wins": 93,
+      "draws": 0,
+      "ref_losses": 17,
+      "median_diff": -0.13575810822428985,
+      "ci_low": -0.15555294357723093,
+      "ci_high": -0.10369342593379122,
+      "rank_biserial": -0.7493857493857494,
+      "p": 8.977145742065e-12,
+      "p_holm": 8.977145742065e-12
+     }
+    ]
+   }
+  }
+ },
+ "experiment": "e14_quant_features"
+}

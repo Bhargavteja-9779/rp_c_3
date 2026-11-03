@@ -22,7 +22,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from loom.data.ucr import dataset_names, duplicate_audit, load_official   # noqa: E402
 
 TAU = 0.01            # RMS distance below 1 % of a standard deviation = near-duplicate
-OUT = ROOT / "results" / "e0"
+OUT = ROOT / "results" / "e00"
 
 
 def _z(X):

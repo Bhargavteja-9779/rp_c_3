@@ -1,0 +1,266 @@
+{
+ "E10_natural_shift": {
+  "n_tasks": 6,
+  "n_resamples": 5,
+  "means": {
+   "Holdout-TS": {
+    "nll_in": 0.5945730685594273,
+    "nll_shift": 2.5476603062610437,
+    "ece_shift": 0.3417715952815677,
+    "acc_in": 0.8037409268565048,
+    "acc_shift": 0.3218313791178113,
+    "shift_auroc": 0.7083261630442678
+   },
+   "LOOM": {
+    "nll_in": 0.5789319127860956,
+    "nll_shift": 2.4693908329434966,
+    "ece_shift": 0.30914900246177757,
+    "acc_in": 0.8104038712078913,
+    "acc_shift": 0.3227247347850363,
+    "shift_auroc": 0.7265880527604418
+   },
+   "LogReg-CV": {
+    "nll_in": 0.5210234069243608,
+    "nll_shift": 2.9654656123492757,
+    "ece_shift": 0.37310170514193836,
+    "acc_in": 0.8145542527452075,
+    "acc_shift": 0.34472361809045227,
+    "shift_auroc": 0.6742156405203635
+   },
+   "PreVal": {
+    "nll_in": 0.5729342262505844,
+    "nll_shift": 2.550427538818821,
+    "ece_shift": 0.349056484713867,
+    "acc_in": 0.8104038712078913,
+    "acc_shift": 0.3227247347850363,
+    "shift_auroc": 0.7119275342529385
+   },
+   "Ridge-Platt-CV5": {
+    "nll_in": 0.5438961172539742,
+    "nll_shift": 2.4702006103313185,
+    "ece_shift": 0.350185308821102,
+    "acc_in": 0.8119114088963335,
+    "acc_shift": 0.3090080029778522,
+    "shift_auroc": 0.6972281117313931
+   },
+   "Ridge-softmax": {
+    "nll_in": 1.1870426769260378,
+    "nll_shift": 1.8938416784855734,
+    "ece_shift": 0.1201208594706726,
+    "acc_in": 0.8099013586450772,
+    "acc_shift": 0.32247347850362923,
+    "shift_auroc": 0.7184730833063928
+   }
+  },
+  "lev_ratio": {
+   "X->Y": 1.1290995054817448,
+   "X->Z": 1.1735325314960687,
+   "Y->X": 1.2580265985708703,
+   "Y->Z": 1.192597444550495,
+   "Z->X": 1.2873204303119847,
+   "Z->Y": 1.171036605695546
+  },
+  "pairwise_nll_shift": [
+   {
+    "competitor": "Holdout-TS",
+    "n": 6,
+    "ref_wins": 6,
+    "draws": 0,
+    "ref_losses": 0,
+    "median_diff": 0.0756788076080519,
+    "ci_low": 0.03343774378265063,
+    "ci_high": 0.12569186856193837,
+    "rank_biserial": 1.0,
+    "p": 0.03125,
+    "p_holm": 0.15625
+   },
+   {
+    "competitor": "LogReg-CV",
+    "n": 6,
+    "ref_wins": 6,
+    "draws": 0,
+    "ref_losses": 0,
+    "median_diff": 0.5332789608520287,
+    "ci_low": 0.1565077696718804,
+    "ci_high": 0.7984376076934279,
+    "rank_biserial": 1.0,
+    "p": 0.03125,
+    "p_holm": 0.15625
+   },
+   {
+    "competitor": "PreVal",
+    "n": 6,
+    "ref_wins": 6,
+    "draws": 0,
+    "ref_losses": 0,
+    "median_diff": 0.07864269670991253,
+    "ci_low": 0.039969038011018254,
+    "ci_high": 0.12449838290504212,
+    "rank_biserial": 1.0,
+    "p": 0.03125,
+    "p_holm": 0.15625
+   },
+   {
+    "competitor": "Ridge-Platt-CV5",
+    "n": 6,
+    "ref_wins": 4,
+    "draws": 0,
+    "ref_losses": 2,
+    "median_diff": 0.015972629331266086,
+    "ci_low": -0.04744873467929289,
+    "ci_high": 0.033905437511492775,
+    "rank_biserial": 0.3333333333333333,
+    "p": 0.5625,
+    "p_holm": 0.5625
+   },
+   {
+    "competitor": "Ridge-softmax",
+    "n": 6,
+    "ref_wins": 1,
+    "draws": 0,
+    "ref_losses": 5,
+    "median_diff": -0.6012386153857145,
+    "ci_low": -1.1091850012474018,
+    "ci_high": -0.016223846740653913,
+    "rank_biserial": -0.9047619047619048,
+    "p": 0.0625,
+    "p_holm": 0.15625
+   }
+  ],
+  "pairwise_nll_in": [
+   {
+    "competitor": "Holdout-TS",
+    "n": 6,
+    "ref_wins": 6,
+    "draws": 0,
+    "ref_losses": 0,
+    "median_diff": 0.018009363757846897,
+    "ci_low": 0.008235036316928457,
+    "ci_high": 0.020679067245219562,
+    "rank_biserial": 1.0,
+    "p": 0.03125,
+    "p_holm": 0.15625
+   },
+   {
+    "competitor": "LogReg-CV",
+    "n": 6,
+    "ref_wins": 0,
+    "draws": 0,
+    "ref_losses": 6,
+    "median_diff": -0.06336853993427172,
+    "ci_low": -0.0706428472681454,
+    "ci_high": -0.03971413038278743,
+    "rank_biserial": -1.0,
+    "p": 0.03125,
+    "p_holm": 0.15625
+   },
+   {
+    "competitor": "PreVal",
+    "n": 6,
+    "ref_wins": 0,
+    "draws": 0,
+    "ref_losses": 6,
+    "median_diff": -0.005850230007981794,
+    "ci_low": -0.009564076530876098,
+    "ci_high": -0.0025787530676757986,
+    "rank_biserial": -1.0,
+    "p": 0.03125,
+    "p_holm": 0.15625
+   },
+   {
+    "competitor": "Ridge-Platt-CV5",
+    "n": 6,
+    "ref_wins": 0,
+    "draws": 0,
+    "ref_losses": 6,
+    "median_diff": -0.03527244589455042,
+    "ci_low": -0.040926984167772185,
+    "ci_high": -0.028907956534041657,
+    "rank_biserial": -1.0,
+    "p": 0.03125,
+    "p_holm": 0.15625
+   },
+   {
+    "competitor": "Ridge-softmax",
+    "n": 6,
+    "ref_wins": 6,
+    "draws": 0,
+    "ref_losses": 0,
+    "median_diff": 0.6025643239792365,
+    "ci_low": 0.5627659206062975,
+    "ci_high": 0.6590020478342928,
+    "rank_biserial": 1.0,
+    "p": 0.03125,
+    "p_holm": 0.15625
+   }
+  ],
+  "pairwise_shift_auroc": [
+   {
+    "competitor": "Holdout-TS",
+    "n": 6,
+    "ref_wins": 5,
+    "draws": 0,
+    "ref_losses": 1,
+    "median_diff": -0.01608336365118601,
+    "ci_low": -0.03527306798899271,
+    "ci_high": -0.0034292375083432858,
+    "rank_biserial": -0.9047619047619048,
+    "p": 0.0625,
+    "p_holm": 0.1875
+   },
+   {
+    "competitor": "LogReg-CV",
+    "n": 6,
+    "ref_wins": 6,
+    "draws": 0,
+    "ref_losses": 0,
+    "median_diff": -0.058113563973474947,
+    "ci_low": -0.06925397195045269,
+    "ci_high": -0.0297497007963074,
+    "rank_biserial": -1.0,
+    "p": 0.03125,
+    "p_holm": 0.15625
+   },
+   {
+    "competitor": "PreVal",
+    "n": 6,
+    "ref_wins": 5,
+    "draws": 0,
+    "ref_losses": 1,
+    "median_diff": -0.013644857453094572,
+    "ci_low": -0.02891669246411971,
+    "ci_high": -0.0014200056052955379,
+    "rank_biserial": -0.9047619047619048,
+    "p": 0.0625,
+    "p_holm": 0.1875
+   },
+   {
+    "competitor": "Ridge-Platt-CV5",
+    "n": 6,
+    "ref_wins": 6,
+    "draws": 0,
+    "ref_losses": 0,
+    "median_diff": -0.03165782382973864,
+    "ci_low": -0.043695250556398835,
+    "ci_high": -0.01272674870100865,
+    "rank_biserial": -1.0,
+    "p": 0.03125,
+    "p_holm": 0.15625
+   },
+   {
+    "competitor": "Ridge-softmax",
+    "n": 6,
+    "ref_wins": 3,
+    "draws": 0,
+    "ref_losses": 3,
+    "median_diff": -0.005896572944753431,
+    "ci_low": -0.02654465952194124,
+    "ci_high": 0.008096324104547803,
+    "rank_biserial": -0.42857142857142855,
+    "p": 0.4375,
+    "p_holm": 0.4375
+   }
+  ]
+ },
+ "experiment": "e10_natural_shift"
+}

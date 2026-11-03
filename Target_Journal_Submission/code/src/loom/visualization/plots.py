@@ -15,22 +15,25 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 
-INK, INK2, GRID = "#0b0b0b", "#52514e", "#e4e3df"
+INK, INK2, GRID = "#1a1a1a", "#666666", "#e6e6e6"
+# Okabe-Ito colour-blind-safe palette; markers and line styles as a second encoding for greyscale print
 STYLE = {   # method -> (colour, marker, linestyle)
-    "LOOM": ("#2a78d6", "o", "-"), "PreVal": ("#eb6834", "s", "--"), "Holdout-TS": ("#1baf7a", "^", "-."),
-    "Ridge-Platt-CV5": ("#eda100", "D", ":"), "PreVal-Ens5": ("#e87ba4", "v", "--"), "LOOM-Ens5": ("#6250d6", "P", "-"),
-    "Arsenal": ("#008300", "X", "-."), "QUANT": ("#e34948", "*", ":"), "LogReg-CV": ("#52514e", "h", "--"),
-    "Ridge-softmax": ("#9b9a95", ">", ":"), "Ridge-Isotonic-CV5": ("#b8860b", "<", "-."),
+    "LOOM": ("#0072B2", "o", "-"), "PreVal": ("#D55E00", "s", "--"), "Holdout-TS": ("#009E73", "^", "-."),
+    "Ridge-Platt-CV5": ("#E69F00", "D", ":"), "PreVal-Ens5": ("#882255", "v", "--"), "LOOM-Ens5": ("#56B4E9", "P", "-"),
+    "Arsenal": ("#999999", "X", "-."), "QUANT": ("#CC79A7", "*", ":"), "LogReg-CV": ("#000000", "h", "--"),
+    "Ridge-softmax": ("#999999", ">", ":"), "Ridge-Isotonic-CV5": ("#56B4E9", "<", "-."),
 }
-FAMILY_LABEL = {"noise": "Gaussian noise", "wander": "Baseline wander", "missing": "Missing segment",
-                "spikes": "Impulse spikes", "warp": "Time warp", "shift": "Circular shift"}
+COL_W, PAGE_W = 3.5, 7.2      # inches: one column, full width
+FAMILY_LABEL = {"noise": "Noise", "wander": "Baseline wander", "missing": "Dropout",
+                "spikes": "Spikes", "warp": "Speed variation", "shift": "Misalignment"}
 
 
 def _style():
-    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 8, "axes.edgecolor": INK2, "axes.labelcolor": INK,
+    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 7, "axes.titlesize": 7.5, "axes.labelsize": 7,
+                         "xtick.labelsize": 6.5, "ytick.labelsize": 6.5, "legend.fontsize": 6.5, "pdf.fonttype": 42, "axes.edgecolor": INK2, "axes.labelcolor": INK,
                          "xtick.color": INK2, "ytick.color": INK2, "axes.grid": True, "grid.color": GRID, "grid.linewidth": 0.6,
                          "axes.spines.top": False, "axes.spines.right": False, "legend.frameon": False,
-                         "savefig.dpi": 300, "figure.dpi": 150, "lines.linewidth": 1.6, "lines.markersize": 4.5})
+                         "savefig.dpi": 300, "figure.dpi": 150, "lines.linewidth": 1.2, "lines.markersize": 3.5})
 
 
 def _save(fig, out, name):
@@ -49,7 +52,7 @@ def fig_method(out):
     for k, t in enumerate(texts):
         x = x0 + k * (w + gap)
         ax.add_patch(plt.Rectangle((x, y0), w, hgt, fc="#eef4fc", ec="#2a78d6", lw=1.0))
-        ax.text(x + w / 2, y0 + hgt / 2, t, ha="center", va="center", fontsize=6.8, color=INK, linespacing=1.3)
+        ax.text(x + w / 2, y0 + hgt / 2, t, ha="center", va="center", fontsize=6.5, color=INK, linespacing=1.3)
         if k:
             ax.annotate("", (x, y0 + hgt / 2), (x - gap, y0 + hgt / 2), arrowprops=dict(arrowstyle="->", color=INK2, lw=1))
     bx, bw = 1.5, 7.0
@@ -57,7 +60,7 @@ def fig_method(out):
     ax.text(bx + bw / 2, 0.675, "Test series: logits $z(x)$ and leverage $h(x) = \\tilde x^\\top A^{-1} \\tilde x$ from the same SVD\n"
             "$\\hat p(y\\mid x) = \\mathrm{softmax}\\left(a\\, z(x) / \\sqrt{h(x)/h_{\\mathrm{ref}}}\\right)$;"
             "  jackknife+ sets from the exact LOO models $f_{-i}(x)$",
-            ha="center", va="center", fontsize=6.8, color=INK, linespacing=1.6)
+            ha="center", va="center", fontsize=6.5, color=INK, linespacing=1.6)
     xl = x0 + 4 * (w + gap) + w / 2
     ax.annotate("", (bx + bw, 0.675), (xl, y0), arrowprops=dict(arrowstyle="->", color=INK2, lw=1, connectionstyle="angle,angleA=-90,angleB=0"))
     _save(fig, out, "fig1_method")
@@ -69,7 +72,7 @@ def fig_dataset_distribution(root, out):
     for ax, col, lab in zip(axs, ["n_train", "length", "n_classes"], ["Training series", "Series length", "Classes"]):
         ax.hist(np.log10(d[col]), bins=20, color="#2a78d6", edgecolor="white", linewidth=0.8)
         ax.set_xlabel(f"{lab} (log$_{{10}}$)"); ax.set_ylabel("Datasets" if col == "n_train" else "")
-    fig.suptitle(f"{len(d)} UCR datasets", fontsize=8, color=INK2, y=1.02)
+    fig.suptitle(f"{len(d)} UCR datasets", fontsize=7.5, color=INK2, y=1.02)
     _save(fig, out, "fig_datasets")
 
 
@@ -126,7 +129,7 @@ def fig_robustness(root, out, methods=("LOOM", "PreVal", "Holdout-TS", "Ridge-Pl
                 continue
             c, mk, ls = STYLE[m]
             ax.plot([0] + g.sev.tolist(), [clean[m]] + g[metric].tolist(), color=c, marker=mk, ls=ls, label=m)
-        ax.set_title(FAMILY_LABEL[f], fontsize=8, color=INK)
+        ax.set_title(FAMILY_LABEL[f], fontsize=7.5, color=INK)
         ax.set_xticks([0, 1, 2, 3])
     for ax in axs[1]:
         ax.set_xlabel("Severity (0 = clean)")
@@ -151,7 +154,7 @@ def fig_scatter(root, out):
         lo, hi = np.nanmin(T.values) * 0.8, np.nanmax(T.values) * 1.2
         ax.plot([lo, hi], [lo, hi], color=INK2, lw=0.8, ls="--")
         ax.set_xscale("log"); ax.set_yscale("log"); ax.set_xlim(lo, hi); ax.set_ylim(lo, hi)
-        ax.set_xlabel("PreVal NLL"); ax.set_ylabel("LOOM NLL"); ax.set_title(nm, fontsize=8); ax.legend(loc="upper left", fontsize=7)
+        ax.set_xlabel("PreVal NLL"); ax.set_ylabel("LOOM NLL"); ax.set_title(nm, fontsize=7.5); ax.legend(loc="upper left", fontsize=7)
     fig.tight_layout(); _save(fig, out, "fig_scatter_loom_vs_preval")
 
 
@@ -168,7 +171,7 @@ def fig_ranks(root, out):
         cd = st[key]["nll"]["nemenyi_cd"]
         ax.plot([r.values[0], r.values[0] + cd], [len(r) - 0.3] * 2, color=INK, lw=2)
         ax.text(r.values[0] + cd / 2, len(r) - 0.15, f"CD = {cd:.2f}", ha="center", fontsize=6.5, color=INK2)
-        ax.set_xlabel("Mean rank (lower is better)"); ax.set_title(f"{title}, n = {st[key]['nll']['n_datasets']}", fontsize=8)
+        ax.set_xlabel("Mean rank (lower is better)"); ax.set_title(f"{title}, n = {st[key]['nll']['n_datasets']}", fontsize=7.5)
     fig.tight_layout(); _save(fig, out, "fig_mean_ranks")
 
 
@@ -186,7 +189,7 @@ def fig_ablation(root, out):
                     color="#2a78d6", ecolor=INK2, elinewidth=1, capsize=2, ms=4)
         ax.axvline(0, color=INK2, lw=0.8, ls="--")
         ax.set_yticks(y); ax.set_yticklabels(pw.index, fontsize=7)
-        ax.set_xlabel("Median ΔNLL (variant − LOOM), 95% CI"); ax.set_title(title, fontsize=8)
+        ax.set_xlabel("Median ΔNLL (variant − LOOM), 95% CI"); ax.set_title(title, fontsize=7.5)
         ax.set_xscale("symlog", linthresh=0.01)
         lo, hi = float(np.nanmin(pw.ci_low)), float(np.nanmax(pw.ci_high))
         ax.set_xlim(min(lo * 1.6, -0.02), max(hi * 1.6, 0.02))      # keep every interval inside the panel
@@ -239,7 +242,7 @@ def fig_efficiency(root, out):
         c, mk, _ = STYLE[m]
         ax.scatter(v.n, v.fit.clip(lower=1e-3), s=8, color=c, marker=mk, label=m, alpha=0.8, linewidths=0)
     ax.set_xscale("log"); ax.set_yscale("log"); ax.set_xlabel("Training series"); ax.set_ylabel("Fit time (s, single core)")
-    ax.legend(fontsize=6, ncol=1, loc="upper left", bbox_to_anchor=(1.01, 1.0), frameon=False, markerscale=1.5)
+    ax.legend(fontsize=6.5, ncol=1, loc="upper left", bbox_to_anchor=(1.01, 1.0), frameon=False, markerscale=1.5)
     fig.tight_layout(); _save(fig, out, "fig_efficiency")
 
 
@@ -263,7 +266,7 @@ def fig_reliability(root, out):
             e = (np.abs(sa[cnt > 0] - sc[cnt > 0])).sum() / cnt.sum()     # ECE over all bins
             ok = cnt >= MIN_BIN                                           # plot only bins with enough support
             ax.plot(sc[ok] / cnt[ok], sa[ok] / cnt[ok], color=c, marker=mk, ls=ls, label=f"{m} (pooled ECE {e:.3f})")
-        ax.set_xlabel("Mean confidence"); ax.set_ylabel("Accuracy"); ax.set_title(title, fontsize=8); ax.legend(fontsize=6.5, loc="lower right")
+        ax.set_xlabel("Mean confidence"); ax.set_ylabel("Accuracy"); ax.set_title(title, fontsize=7.5); ax.legend(fontsize=6.5, loc="lower right")
         ax.set_xlim(0, 1); ax.set_ylim(0, 1)
     fig.tight_layout(); _save(fig, out, "fig_reliability")
 

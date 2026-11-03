@@ -172,12 +172,17 @@ def _case_study_figure(npz_dir, out_fig, datasets=None, name="fig_case_study"):
     if not curves:
         return
     fig, axs = plt.subplots(1, 2, figsize=(7.0, 2.8))
+    LAB = {"Holdout-TS": "Hold-out TS", "Ridge-Platt-CV5": "Platt (5-fold)"}
+    rng = np.random.default_rng(0)
     for m, byds in curves.items():
         E = np.array([np.mean([e for e, _ in v], 0) for v in byds.values()])     # dataset means over resamples
         C = np.array([np.nanmean([c for _, c in v], 0) for v in byds.values()])
         col, mk, ls = STYLE[m]
-        axs[0].plot(100 * budgets, 100 * E.mean(0), color=col, ls=ls, marker=mk, markevery=5, label=m)
-        axs[1].plot(100 * budgets, 100 * np.nanmean(C, 0), color=col, ls=ls, marker=mk, markevery=5, label=m)
+        for ax, A in ((axs[0], E), (axs[1], C)):
+            idx = rng.integers(0, len(A), (1000, len(A)))
+            boot = np.nanmean(A[idx], 1)                                          # bootstrap over datasets
+            ax.fill_between(100 * budgets, 100 * np.nanquantile(boot, 0.025, 0), 100 * np.nanquantile(boot, 0.975, 0), color=col, alpha=0.15, lw=0)
+            ax.plot(100 * budgets, 100 * np.nanmean(A, 0), color=col, ls=ls, marker=mk, markevery=5, label=LAB.get(m, m))
     axs[0].set_xlabel("Recordings sent to human review (%)"); axs[0].set_ylabel("Errors among automatic decisions (%)")
     axs[1].set_xlabel("Recordings sent to human review (%)"); axs[1].set_ylabel("Faulty recordings caught (%)")
     axs[1].plot([0, 50], [0, 50], color="#888888", lw=0.8, ls=":", label="random selection")
@@ -291,7 +296,6 @@ def main(mode="full"):
         for dom, g in per[per.stream == "stream"].groupby("domain"):
             E11["domains"][dom] = g.groupby("method")[["auto_err@20", "fault_caught@20", "nll"]].median().to_dict(orient="index")
         stats["E11_case_study"] = E11
-        _case_study_figure(out_res / "case_study", out_fig, datasets=set(c.dataset))
     # ---------------- E13 confirmatory triage replication (Online Resource 2, 11.2)
     from loom.statistics.tests import bayes_signed_rank, holm
     csc = out_res / "case_study_confirm.json"
@@ -316,7 +320,6 @@ def main(mode="full"):
         ph = holm([p for _, _, p in prim])                     # Holm over 4 comparisons x 2 primary endpoints
         E13["primary_holm8"] = [dict(metric=m, competitor=cpt, p=p, p_holm8=float(q)) for (m, cpt, p), q in zip(prim, ph)]
         stats["E13_case_confirm"] = E13
-        _case_study_figure(out_res / "case_study", out_fig, datasets=set(c.dataset), name="fig_case_study_confirm")
     # ---------------- E12 real recorded noise (MIT-BIH NSTDB; Online Resource 2, 11.1)
     rn = out_res / "real_noise.json"
     if rn.exists():
@@ -343,7 +346,6 @@ def main(mode="full"):
         E12["stream"] = {k: st[k].unstack().median().to_dict() for k in st.columns}
         E12["stream_pairwise"] = {k: pairwise_vs(st[k].unstack(), "LOOM", lower_is_better=(k != "fault_caught@20")).to_dict(orient="records") for k in st.columns}
         stats["E12_real_noise"] = E12
-        _real_noise_figure(json.load(open(rn)), out_fig)
     # ---------------- E14 LOOM on QUANT features (Online Resource 2, 11.3)
     qf = out_res / "quant_features.json"
     if qf.exists():
@@ -562,8 +564,6 @@ def main(mode="full"):
                   open(out_res / "e16" / "summary.json", "w"), indent=1)
     json.dump(stats, open(out_res / "statistics.json", "w"), indent=1, default=float)
     print(f"analysed {len(all_ds)} datasets; rows={len(df)}")
-    from loom.visualization.plots import make_all
-    make_all(ROOT)
 
 
 if __name__ == "__main__":

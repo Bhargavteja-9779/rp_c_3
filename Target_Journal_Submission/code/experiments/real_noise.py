@@ -51,6 +51,18 @@ def add_noise(X, noise, snr_db, seed):
     return X + W * np.sqrt(ps / (pn * 10 ** (snr_db / 10)))
 
 
+def build_stream(name, r, Xte, noise):
+    """Noisy copies of the test set for every condition, and the mixed stream (30 % noisy recordings)."""
+    conds = [(nz, s) for nz in NOISES for s in SNRS]
+    Xc = {c: add_noise(Xte, noise[c[0]], c[1], cond_seed(name, r, f"nstdb-{c[0]}", c[1])) for c in conds}
+    rng = np.random.default_rng(cond_seed(name, r, "nstdb-stream", 0))
+    is_f = rng.random(len(Xte)) < P_FAULT; pick = rng.integers(0, len(conds), len(Xte))
+    Xs = Xte.copy()
+    for k, c in enumerate(conds):
+        idx = is_f & (pick == k); Xs[idx] = Xc[c][idx]
+    return conds, Xc, Xs, is_f, pick
+
+
 def run(name, r, noise):
     path = OUT / f"{name}__r{r}.npz"
     if path.exists():
@@ -58,14 +70,7 @@ def run(name, r, noise):
     from aeon.classification.interval_based import QUANTClassifier
     Xtr, ytr, Xte, yte = load_split(name, r)
     classes = np.unique(np.r_[ytr, yte]); yi = np.searchsorted(classes, yte)
-    conds = [(nz, s) for nz in NOISES for s in SNRS]
-    Xc = {c: add_noise(Xte, noise[c[0]], c[1], cond_seed(name, r, f"nstdb-{c[0]}", c[1])) for c in conds}
-    # mixed stream: 30 % of recordings noisy, random noise type and SNR
-    rng = np.random.default_rng(cond_seed(name, r, "nstdb-stream", 0))
-    is_f = rng.random(len(Xte)) < P_FAULT; pick = rng.integers(0, len(conds), len(Xte))
-    Xs = Xte.copy()
-    for k, c in enumerate(conds):
-        idx = is_f & (pick == k); Xs[idx] = Xc[c][idx]
+    conds, Xc, Xs, is_f, _ = build_stream(name, r, Xte, noise)
     tf = make_transform("minirocket", 1000 * r).fit(Xtr[:, None, :])
     Ftr = _feats(tf, Xtr); base = ClosedFormRidge().fit(Ftr, ytr)
     out = {"y": yi, "is_fault": is_f}

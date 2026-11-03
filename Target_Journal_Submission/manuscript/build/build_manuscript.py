@@ -226,6 +226,97 @@ def csdom(domain, method, field):
     return S["E11_case_study"]["domains"][domain][method][field]
 
 
+def _pwfind(recs, comp):
+    for r in recs:
+        if r["competitor"] == comp:
+            return r
+    raise KeyError(comp)
+
+
+def _cnt(r, lower=True, unit="datasets"):
+    better = (r["median_diff"] > 0) if lower else (r["median_diff"] < 0)
+    n = r["ref_wins"] + r["draws"] + r["ref_losses"]
+    k = r["ref_wins"] if better else r["ref_losses"]
+    sig = r.get("p_holm", r.get("p")) < 0.05
+    word = ("better" if better else "worse") if sig else "not significantly different"
+    if not sig:
+        return f"{word} ({r['ref_wins']} wins, {r['ref_losses']} losses of {n} {unit}, p {pv(r.get('p_holm', r.get('p')))})"
+    return f"{word} on {k} of {n} {unit} (p {pv(r.get('p_holm', r.get('p')))})"
+
+
+def e12(metric, method, field="medians"):
+    return S["E12_real_noise"]["metrics"][metric][field][method]
+
+
+def e12brief(metric, comp, cells=False, lower=True):
+    recs = S["E12_real_noise"]["metrics"][metric]["pairwise_cells" if cells else "pairwise"]
+    return _cnt(_pwfind(recs, comp), lower, "dataset–noise combinations" if cells else "datasets")
+
+
+def e12noise(noise, method, field="nll"):
+    return S["E12_real_noise"]["by_noise"][noise][method][field]
+
+
+def e12snr(snr, method, field="nll"):
+    return S["E12_real_noise"]["by_snr"][str(snr)][method][field]
+
+
+def e12stream(field, method):
+    return S["E12_real_noise"]["stream"][field][method]
+
+
+def e13(metric, method, field="medians"):
+    return S["E13_case_confirm"]["metrics"][metric][field][method]
+
+
+def e13holm(metric, comp):
+    for r in S["E13_case_confirm"]["primary_holm8"]:
+        if r["metric"] == metric and r["competitor"] == comp:
+            return r
+    raise KeyError((metric, comp))
+
+
+def e13brief(metric, comp, lower=True):
+    r = dict(_pwfind(S["E13_case_confirm"]["metrics"][f"stream:{metric}"]["pairwise"], comp))
+    if metric in ("fault_caught@20", "auto_err@20"):
+        r["p_holm"] = e13holm(metric, comp)["p_holm8"]        # Holm over the 8 pre-registered primary tests
+    return _cnt(r, lower)
+
+
+def e13grouped(metric, comp, lower=True):
+    g = S["E13_case_confirm"]["grouped"][metric]
+    return _cnt(_pwfind(g["pairwise"], comp), lower, "source-level units")
+
+
+def e14(key, method, field="medians"):
+    return S["E14_quant_features"]["metrics"][key][field][method]
+
+
+def e14brief(key, comp, lower=True):
+    return _cnt(_pwfind(S["E14_quant_features"]["metrics"][key]["pairwise"], comp), lower)
+
+
+def bayes(key, which="p_right"):
+    return S["E15_bayes"][key][which]
+
+
+def bayes_phrase(key, comp):
+    b = S["E15_bayes"][key]
+    return (f"posterior probability {b['p_right']:.2f} that LOOM is better, {b['p_rope']:.2f} that the two are "
+            f"practically equivalent and {b['p_left']:.2f} that {comp} is better")
+
+
+def tab_realnoise(caption):
+    E = S["E12_real_noise"]
+    rows = []
+    for m in ["LOOM", "PreVal", "Holdout-TS", "Ridge-Platt-CV5", "QUANT"]:
+        rows.append({"Method": NAMES.get(m, m), "Clean NLL": f(E["clean_nll_medians"][m]), "Noisy NLL": f(E["metrics"]["nll"]["medians"][m]),
+                     "Detection AUROC": f(E["metrics"]["shift_auroc"]["medians"][m]), "Accuracy (noisy)": f(E["metrics"]["acc"]["medians"][m]),
+                     "Noisy recordings caught (20 % review)": pct(E["stream"]["fault_caught@20"][m], 0),
+                     "Errors of automatic decisions": pct(E["stream"]["auto_err@20"][m])})
+    return md_table(pd.DataFrame(rows), caption)
+
+
 def varword(key, metric, comp, lower=True):
     """Like sigword, but from the perspective of the competitor/variant (the sentence subject)."""
     w = sigword(key, metric, comp, lower)
@@ -387,7 +478,7 @@ FIT = {"jksu": "The work addresses machine learning, pattern recognition and dat
 CTX = {k: v for k, v in globals().items() if not k.startswith("__")}
 
 
-NARRATIVE = ["ERROR_ANALYSIS", "DISCUSSION", "LIMITATIONS", "CONCLUSION", "ABSTRACT", "COVER_RESULT"]
+NARRATIVE = ["ERROR_ANALYSIS", "DISCUSSION", "LIMITATIONS", "CONCLUSION", "ABSTRACT", "COVER_RESULT", "SOFTWARE"]
 
 
 def load_narrative():

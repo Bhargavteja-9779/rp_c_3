@@ -3227,6 +3227,129 @@
   }
  },
  {
+  "id": "benavoli2017bayesian",
+  "type": "article-journal",
+  "title": "Time for a change: a tutorial for comparing multiple classifiers through Bayesian analysis",
+  "author": [
+   {
+    "family": "Benavoli",
+    "given": "Alessio"
+   },
+   {
+    "family": "Corani",
+    "given": "Giorgio"
+   },
+   {
+    "family": "Demšar",
+    "given": "Janez"
+   },
+   {
+    "family": "Zaffalon",
+    "given": "Marco"
+   }
+  ],
+  "container-title": "Journal of Machine Learning Research",
+  "volume": "18",
+  "issue": "77",
+  "page": "1-36",
+  "issued": {
+   "date-parts": [
+    [
+     2017
+    ]
+   ]
+  },
+  "URL": "https://www.jmlr.org/papers/v18/16-305.html"
+ },
+ {
+  "id": "moody1984nstdb",
+  "type": "paper-conference",
+  "title": "A noise stress test for arrhythmia detectors",
+  "author": [
+   {
+    "family": "Moody",
+    "given": "George B."
+   },
+   {
+    "family": "Muldrow",
+    "given": "W. K."
+   },
+   {
+    "family": "Mark",
+    "given": "Roger G."
+   }
+  ],
+  "container-title": "Computers in Cardiology",
+  "volume": "11",
+  "page": "381-384",
+  "issued": {
+   "date-parts": [
+    [
+     1984
+    ]
+   ]
+  }
+ },
+ {
+  "id": "goldberger2000physionet",
+  "type": "article-journal",
+  "title": "PhysioBank, PhysioToolkit, and PhysioNet: components of a new research resource for complex physiologic signals",
+  "author": [
+   {
+    "family": "Goldberger",
+    "given": "Ary L."
+   },
+   {
+    "family": "Amaral",
+    "given": "Luis A. N."
+   },
+   {
+    "family": "Glass",
+    "given": "Leon"
+   },
+   {
+    "family": "Hausdorff",
+    "given": "Jeffrey M."
+   },
+   {
+    "family": "Ivanov",
+    "given": "Plamen Ch."
+   },
+   {
+    "family": "Mark",
+    "given": "Roger G."
+   },
+   {
+    "family": "Mietus",
+    "given": "Joseph E."
+   },
+   {
+    "family": "Moody",
+    "given": "George B."
+   },
+   {
+    "family": "Peng",
+    "given": "Chung-Kang"
+   },
+   {
+    "family": "Stanley",
+    "given": "H. Eugene"
+   }
+  ],
+  "container-title": "Circulation",
+  "volume": "101",
+  "issue": "23",
+  "page": "e215-e220",
+  "issued": {
+   "date-parts": [
+    [
+     2000
+    ]
+   ]
+  },
+  "DOI": "10.1161/01.CIR.101.23.e215"
+ },
+ {
   "id": "holm1979",
   "type": "article-journal",
   "title": "A simple sequentially rejective multiple test procedure",

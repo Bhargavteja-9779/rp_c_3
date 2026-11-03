@@ -113,15 +113,54 @@ def to_markdown(tab, path, title, note=""):
     Path(path).write_text("\n".join(lines))
 
 
-def _case_study_figure(npz_dir, out_fig):
+def _real_noise_figure(rows, out_fig):
+    """(a) one ECG beat with each real noise type at 6 dB; (b) median NLL vs SNR (clean, 12, 6, 0 dB)."""
+    import matplotlib.pyplot as plt
+    import sys as _s
+    _s.path.insert(0, str(ROOT / "experiments"))
+    from loom.visualization.plots import STYLE, _save
+    from loom.data.ucr import load_split
+    from real_noise import add_noise, read_212
+    fig, axs = plt.subplots(1, 4, figsize=(7.2, 2.3), gridspec_kw=dict(width_ratios=[1.4, 1, 1, 1]))
+    _, _, Xte, _ = load_split("ECG5000", 0)
+    x = Xte[3:4]
+    names = {"bw": "baseline wander", "em": "electrode motion", "ma": "muscle artefact"}
+    labels = ["clean", "baseline wander", "electrode motion", "muscle artefact"]
+    traces = [x[0]] + [add_noise(x, read_212(nz), 6, seed=7)[0] for nz in ("bw", "em", "ma")]
+    for k, (tr, lab) in enumerate(zip(traces, labels)):
+        off = -4.5 * k
+        if k:
+            axs[0].plot(x[0] + off, color="#b0b0b8", lw=0.8)
+        axs[0].plot(tr + off, color="#1d1d1f" if k == 0 else "#d9682b", lw=0.9)
+        axs[0].text(len(tr) * 1.02, off, lab, fontsize=6, va="center")
+    axs[0].set_xlim(0, len(x[0]) * 1.75)
+    axs[0].set_title("ECG beat with real noise (6 dB)", fontsize=8); axs[0].axis("off")
+    d = pd.DataFrame(rows)
+    for ax, nz in zip(axs[1:], ["bw", "em", "ma"]):
+        for m in ["LOOM", "PreVal", "Ridge-Platt-CV5", "QUANT"]:
+            cl = d[(d.cond == "clean") & (d.method == m)].groupby("dataset").nll.mean().median()
+            ys = [cl] + [d[(d.cond == nz) & (d.snr == sn) & (d.method == m)].groupby("dataset").nll.mean().median() for sn in (12, 6, 0)]
+            c, mk, ls = STYLE[m]
+            ax.plot(range(4), ys, color=c, marker=mk, ls=ls, label=m, ms=3.5)
+        ax.set_xticks(range(4)); ax.set_xticklabels(["clean", "12", "6", "0"], fontsize=7)
+        ax.set_title(names[nz], fontsize=8); ax.set_xlabel("SNR (dB)", fontsize=7)
+    axs[1].set_ylabel("Median NLL", fontsize=7); axs[3].legend(fontsize=5.5, frameon=False)
+    fig.tight_layout(); _save(fig, out_fig, "fig_real_noise")
+
+
+def _case_study_figure(npz_dir, out_fig, datasets=None, name="fig_case_study"):
     """Triage curves: auto-accepted error and share of faulty recordings caught vs review budget."""
     import matplotlib.pyplot as plt
     from loom.visualization.plots import STYLE, _save
     budgets = np.linspace(0, 0.5, 26)
     curves = {}
     for f in sorted(Path(npz_dir).glob("*.npz")):
+        if datasets is not None and f.name.split("__")[0] not in datasets:
+            continue
         o = np.load(f); y, flt = o["y"], o["is_fault"].astype(bool)
         for m in ["LOOM", "PreVal", "Holdout-TS", "Ridge-Platt-CV5", "QUANT"]:
+            if f"P_stream_{m}" not in o.files:
+                continue
             P = o[f"P_stream_{m}"]; conf = P.max(1); ok = P.argmax(1) == y
             order = np.argsort(conf, kind="stable"); n = len(y)
             err, caught = [], []
@@ -144,7 +183,7 @@ def _case_study_figure(npz_dir, out_fig):
     axs[1].plot([0, 50], [0, 50], color="#888888", lw=0.8, ls=":", label="random selection")
     axs[0].set_title("Automatic decisions", fontsize=8); axs[1].set_title("Review queue", fontsize=8)
     axs[1].legend(fontsize=6.5, loc="upper left", frameon=False)
-    fig.tight_layout(); _save(fig, out_fig, "fig_case_study")
+    fig.tight_layout(); _save(fig, out_fig, name)
 
 
 def main(mode="full"):
@@ -250,7 +289,7 @@ def main(mode="full"):
         for dom, g in per[per.stream == "stream"].groupby("domain"):
             E11["domains"][dom] = g.groupby("method")[["auto_err@20", "fault_caught@20", "nll"]].median().to_dict(orient="index")
         stats["E11_case_study"] = E11
-        _case_study_figure(out_res / "case_study", out_fig)
+        _case_study_figure(out_res / "case_study", out_fig, datasets=set(c.dataset))
     # ---------------- E13 confirmatory triage replication (Online Resource 2, 11.2)
     from loom.statistics.tests import bayes_signed_rank, holm
     csc = out_res / "case_study_confirm.json"
@@ -275,6 +314,7 @@ def main(mode="full"):
         ph = holm([p for _, _, p in prim])                     # Holm over 4 comparisons x 2 primary endpoints
         E13["primary_holm8"] = [dict(metric=m, competitor=cpt, p=p, p_holm8=float(q)) for (m, cpt, p), q in zip(prim, ph)]
         stats["E13_case_confirm"] = E13
+        _case_study_figure(out_res / "case_study", out_fig, datasets=set(c.dataset), name="fig_case_study_confirm")
     # ---------------- E12 real recorded noise (MIT-BIH NSTDB; Online Resource 2, 11.1)
     rn = out_res / "real_noise.json"
     if rn.exists():
@@ -301,6 +341,7 @@ def main(mode="full"):
         E12["stream"] = {k: st[k].unstack().median().to_dict() for k in st.columns}
         E12["stream_pairwise"] = {k: pairwise_vs(st[k].unstack(), "LOOM", lower_is_better=(k != "fault_caught@20")).to_dict(orient="records") for k in st.columns}
         stats["E12_real_noise"] = E12
+        _real_noise_figure(json.load(open(rn)), out_fig)
     # ---------------- E14 LOOM on QUANT features (Online Resource 2, 11.3)
     qf = out_res / "quant_features.json"
     if qf.exists():

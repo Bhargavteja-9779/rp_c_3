@@ -1,0 +1,29 @@
+# Deviations log
+
+Every change to the plan in `experimental_protocol.md` / the registration
+(`supplementary/experimental_design_preregistration.md`, frozen in commit 3d20c3f on 2026-10-13).
+"Before results" means before any benchmark result of the affected experiment was inspected.
+The paper refers to these entries (Supplement Sec. S1).
+
+| ID | Date | Change | Reason | Timing | Effect on results |
+|---|---|---|---|---|---|
+| D1 | 2026-10-13 | Platt target smoothing added to the LOOM fit | GunPoint smoke test: separable LOO predictions drove the temperature to its bound | before the benchmark | Prevents infinite temperatures; raises clean ECE on few-shot datasets (reported) |
+| D2 | 2026-10-13 | APS score added to the conformal analysis | Quick-mode run on 6 development datasets: LAC sets empty under shift | before the benchmark | Adds a set score; LAC still reported |
+| D3 | 2026-10-13 | Ensembles only on the official split | One job took 68 CPU-min; container restarts | before results (4 finished jobs discarded) | Ensembles compared on 114 datasets, official split only |
+| D4 | 2026-10-13 | Conformal sets on ≤ 1,000 seeded test series | compute | before results | Coverage estimated on a subset for large test sets |
+| D5 | 2026-10-13 | Rocket dropped from E5; E5 and E7 use clean + severity 3 only | compute (Rocket transform ~10× MiniRocket) | before results | Generalisation shown for MultiRocket and Hydra only |
+| D6 | 2026-10-20 | Crop and ElectricDevices test sets subsampled to 2,000 series | leverage projection ~10^13 operations | before results of these datasets | Same subsample for all methods |
+| D7 | 2026-10-20 | FordA, FordB, ElectricDevices: resamples 0–2 only; E5/E7 exclude the four largest datasets | out-of-memory kills, ~16 h remaining | before results of these datasets | 3 instead of 5 resamples for three datasets |
+| D8 | 2026-10-13 | LogReg-CV skipped for > 2,000 training series; Arsenal in MiniRocket-kernel configuration, official split, clean + severity 3 | compute | before the benchmark | LogReg n = 110 (109 with failures), Arsenal n = 113 |
+| D9 | 2026-11-02 | Arsenal returned NaN probabilities on Fungi (one series per class); CV calibrators undefined for classes with < 5 series | method limitations | after results | Those methods compared on fewer datasets (n reported) |
+| D10 | 2026-10-21 | Official-split table (E2) restricted to severity-3 conditions for every method | an earlier version mixed condition sets, favouring LOOM against the Arsenal | **post hoc** | QUANT becomes significantly better than LOOM there; reported |
+| D11 | 2026-10-21 | Natural cross-axis shift experiment (E10) added | reviewer-style objection that faults were only synthetic | **post hoc** | LOOM's gain is small there; reported as a limitation |
+| D12 | 2026-10-21 | LogReg convergence check (E16) | suspicion of an under-trained baseline | **post hoc** | Median NLL unchanged; one many-class dataset improves by 0.16; reported |
+| D13 | 2026-10-29 | Exploratory triage study (E11) designed after the benchmark; protocol committed before running | practical framing of the paper | **post hoc design** | Reported as exploratory; confirmed later by E13 |
+| D14 | 2026-10-21 | Ridge-onehot/softmax fit times include the shared SVD; MiniRocket transform time reported separately | accounting error found in review | **post hoc (bug fix)** | Table of costs corrected; no benchmark rerun |
+| D15 | 2026-11-02 | E13 dataset count corrected from 39 to 38 | counting error in the registration text | before running E13 | inclusion rule unchanged |
+| D16 | 2026-11-02 | NSTDB records read with an own format-212 reader instead of the `wfdb` package | `wfdb` incompatible with pandas 3 | before running E12 | none; reader checked against header initial values |
+| D17 | 2026-11-02 | E12 noise windows taken at the native 360 Hz sampling of NSTDB (no resampling to the unknown UCR sampling rates) | UCR files do not record sampling rates | written into the E12 registration | Noise bandwidth relative to the ECG beats is approximate |
+| D18 | 2026-11-03 | Numeric pass/fail criteria for H1–H3 written down | protocol template requires explicit criteria | **post hoc** (wording) | Criteria restate the registered tests; H1b fails under them |
+| D19 | 2026-11-03 | Sanity checks E17 (sampling-noise simulation, exchangeability check) and planted-leak test added | protocol template | **post hoc** | Diagnostics only; no change to the main analysis |
+| D20 | 2026-11-03 | Means with 95 % bootstrap confidence intervals reported alongside the registered medians and Wilcoxon tests | protocol template | **post hoc** (reporting) | No change to the registered tests |

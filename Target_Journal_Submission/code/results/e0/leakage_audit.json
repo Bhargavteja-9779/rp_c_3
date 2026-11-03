@@ -1,0 +1,51 @@
+{
+ "tau": 0.01,
+ "n_datasets": 114,
+ "n_exact_cross": 16,
+ "n_near_cross": 24,
+ "n_label_conflicts": 2,
+ "datasets_exact": [
+  "Crop",
+  "ElectricDevices",
+  "FaceAll",
+  "FreezerRegularTrain",
+  "FreezerSmallTrain",
+  "InlineSkate",
+  "InsectEPGSmallTrain",
+  "MedicalImages",
+  "MixedShapesRegularTrain",
+  "PowerCons",
+  "ShapesAll",
+  "Strawberry",
+  "SwedishLeaf",
+  "ToeSegmentation1",
+  "Worms",
+  "WormsTwoClass"
+ ],
+ "datasets_near_only": [
+  "ACSF1",
+  "Adiac",
+  "ChlorineConcentration",
+  "Meat",
+  "OliveOil",
+  "SmallKitchenAppliances",
+  "Wafer",
+  "Wine"
+ ],
+ "planted_leak_test": {
+  "dataset": "GunPoint",
+  "planted_exact": 5,
+  "planted_near": 5,
+  "near_dups_before": 0,
+  "exact_flagged": 5,
+  "exact_flagged_correct": true,
+  "near_flagged": 10,
+  "near_flagged_correct": true,
+  "passed": true
+ },
+ "test_label_independence": {
+  "dataset": "ECG200",
+  "identical_after_permuting_test_labels": true,
+  "fit_signature": "LOOM.fit(F_train, y_train) takes no test data"
+ }
+}

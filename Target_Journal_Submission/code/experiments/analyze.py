@@ -205,7 +205,9 @@ def main(mode="full"):
     unseen = [d for d in all_ds if d not in DEV_DATASETS + SMOKE]
     leak = pd.read_csv(out_res / "leakage_audit.csv") if (out_res / "leakage_audit.csv").exists() else None
     nodup = [d for d in all_ds if leak is None or d not in set(leak[leak.test_in_train > 0].dataset)]
-    stats = {"n_datasets": len(all_ds), "n_unseen": len(unseen), "n_nodup": len(nodup),
+    near = leak[(leak.test_in_train > 0) | (leak.get("near_dup_test_in_train", 0) > 0)] if leak is not None else None
+    noneardup = [d for d in all_ds if near is None or d not in set(near.dataset)]
+    stats = {"n_datasets": len(all_ds), "n_unseen": len(unseen), "n_nodup": len(nodup), "n_noneardup": len(noneardup),
              "resamples": sorted(int(x) for x in mr["resample"].unique())}
 
     # ---------------- E1/E2 main: clean
@@ -237,7 +239,7 @@ def main(mode="full"):
     to_markdown(t3c, out_tab / "table_ablation_clean.md", "Table: Ablation — clean test")
     to_markdown(t3s, out_tab / "table_ablation_shifted.md", "Table: Ablation — mean over corruption conditions")
     # ---------------- sensitivity subsets
-    for nm, sub in (("unseen", unseen), ("nodup", nodup)):
+    for nm, sub in (("unseen", unseen), ("nodup", nodup), ("noneardup", noneardup)):
         a, sa = summary_table(mr, MAIN, ["nll", "ece"], "clean", subset=sub)
         b, sb = summary_table(mr, MAIN, ["nll", "ece"], "shifted", subset=sub)
         stats[f"sens_{nm}_clean"] = sa; stats[f"sens_{nm}_shifted"] = sb

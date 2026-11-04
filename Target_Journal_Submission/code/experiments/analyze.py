@@ -141,7 +141,7 @@ def _real_noise_figure(rows, out_fig):
             cl = d[(d.cond == "clean") & (d.method == m)].groupby("dataset").nll.mean().median()
             ys = [cl] + [d[(d.cond == nz) & (d.snr == sn) & (d.method == m)].groupby("dataset").nll.mean().median() for sn in (12, 6, 0)]
             c, mk, ls = STYLE[m]
-            ax.plot(range(4), ys, color=c, marker=mk, ls=ls, label=m, ms=3.5)
+            ax.plot(range(4), ys, color=c, marker=mk, ls=ls, label={"Ridge-Platt-CV5": "Platt (5-fold)"}.get(m, m), ms=3.5)
         ax.set_xticks(range(4)); ax.set_xticklabels(["clean", "12", "6", "0"], fontsize=7)
         ax.set_title(names[nz], fontsize=8); ax.set_xlabel("SNR (dB)", fontsize=7)
     axs[1].set_ylabel("Median NLL", fontsize=7); axs[3].legend(fontsize=5.5, frameon=False)

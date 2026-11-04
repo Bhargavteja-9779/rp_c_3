@@ -178,7 +178,7 @@ def fig_ranks(root, out):
 def fig_ablation(root, out):
     st = json.load(open(root / "results/statistics.json"))
     fig, axs = plt.subplots(1, 2, figsize=(7.0, 2.8), sharey=True)
-    for ax, key, title in zip(axs, ["E3_ablation_clean", "E3_ablation_shifted"], ["Clean", "Corrupted (mean of 18)"]):
+    for ax, key, title in zip(axs, ["E3_ablation_clean", "E3_ablation_shifted"], ["Clean", "Simulated faults (mean of 18)"]):
         if key not in st or "nll" not in st[key]:
             continue
         pw = pd.DataFrame(st[key]["nll"]["pairwise"]).set_index("competitor")

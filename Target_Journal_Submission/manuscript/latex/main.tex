@@ -1,0 +1,399 @@
+\documentclass[pdflatex,sn-basic]{sn-jnl}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{pifont}
+\usepackage{xr-hyper}
+\usepackage{hyperref}
+\externaldocument[S-]{supplement}
+
+\graphicspath{{../../code/figures/}}
+\input{../../code/tables/macros.tex}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{--}
+\newcommand{\pmark}{($\checkmark$)}
+
+\theoremstyle{thmstyleone}
+\newtheorem{proposition}{Proposition}
+\newtheorem{assumption}{Assumption}
+\renewcommand{\theassumption}{A\arabic{assumption}}
+
+\raggedbottom
+
+\begin{document}
+
+\title[Knowing when to ask a human]{Knowing when to ask a human: reliable confidence for fast time series classifiers under sensor faults}
+
+\author{\fnm{Author information removed} \sur{for double-anonymous review}}
+\affil{\orgname{See separate title page}}
+
+\abstract{Monitoring systems, from heart monitors to industrial sensors, often let a time series classifier decide on its own and pass uncertain cases to a person. This only works if the classifier's confidence drops when a recording is damaged by noise, drift, spikes or dropouts. Fast random convolutional kernel classifiers such as MiniRocket are accurate and cheap, but their ridge readout gives scores rather than probabilities, and existing calibration methods rescale all scores in the same way. We propose LOOM, a closed-form readout that divides each ridge score by the square root of its leverage, a measure of how far a recording lies from the training data, and fits one temperature and the ridge penalty on exact leave-one-out pairs of scores and leverages, without held-out data, refitting or ensembles. We tested it on \NDatasets{} UCR datasets with 18 simulated sensor faults, on seven ECG datasets with real recorded noise from the MIT-BIH Noise Stress Test Database, and in a pre-registered triage study on \CNDatasets{} sensor datasets. Under simulated faults LOOM lowered the median negative log-likelihood from \NLLFaultsPreVal{} to \NLLFaultsLoom{} compared with prevalidated ridge (PreVal), the strongest previous readout; under real ECG noise from \RNNLLPreVal{} to \RNNLLLoom{}; and with a 20\,\% review budget its review queue caught \CCaughtLoom{} of the faulty recordings, against \CCaughtPreVal{} for PreVal and \CCaughtQuant{} for the tree-based QUANT classifier. On clean data LOOM is not better than PreVal, and QUANT has a lower likelihood loss under the strongest faults.}
+
+\keywords{Time series classification, Sensor faults, Uncertainty estimation, Probability calibration, Human-in-the-loop triage, Conformal prediction}
+
+\maketitle
+
+%=====================================================================
+\section{Introduction}\label{sec:intro}
+
+Consider a wearable heart monitor that labels each short ECG recording as normal or abnormal, a factory system that classifies the signal of a production sensor, or a watch that recognises gestures from an accelerometer. Such systems make many decisions per day and nobody can check each one. A common safeguard is to let the classifier decide alone when it is sure and to pass the other cases to a person. This works only if the confidence of the classifier means something: high when the prediction is likely to be right and low when it is not \cite{abdar2021,gawlikowski2023}.
+
+Real sensor data make this hard. Electrodes come loose, cables pick up interference, a patient moves, a sensor drifts or drops samples. A recording damaged in this way can look unlike any training example, yet most classifiers still return a confident answer. For a triage system, a confident wrong answer is the worst case, because it never reaches the reviewer.
+
+We study this problem for random convolutional kernel classifiers. ROCKET \cite{dempster2020rocket} and its successors MiniRocket \cite{dempster2021minirocket}, MultiRocket \cite{tan2022multirocket} and Hydra \cite{dempster2023hydra} map each series to thousands of features from random convolutions and fit a ridge regression on top. They are about as accurate as much larger ensembles and deep networks on the UCR archive \cite{dau2019ucr,middlehurst2024bakeoff,ismailfawaz2019review} and train in about a second on one CPU core, which makes them attractive for monitoring on modest hardware. Their ridge readout, however, gives scores rather than probabilities. Platt scaling, isotonic regression and temperature scaling \cite{platt1999,zadrozny2002,guo2017} need held-out data; the Arsenal \cite{middlehurst2021hc2} needs an ensemble; and prevalidated ridge regression (PreVal) \cite{dempster2025preval} rescales all scores by one factor fitted on exact leave-one-out (LOO) predictions. All of them treat a damaged recording like a clean one.
+
+Ridge regression already measures how far a new input lies from its training data: the \emph{leverage}, a classical diagnostic of extrapolation \cite{hoaglin1978} and the predictive variance factor of the equivalent Bayesian linear model \cite{mackay1992}. We show that the algebra behind the LOO shortcut also gives the \emph{held-out} leverage of every training example, so that a leverage-aware calibration can be fitted on exact out-of-sample pairs without any held-out data. The resulting readout, LOOM (leave-one-out fitted, leverage-moderated), divides each ridge score by the square root of its relative leverage.
+
+\subsection{Motivation and contributions}\label{sec:contrib}
+
+The gap we address is that no readout for fast random-kernel classifiers lowers its confidence specifically for recordings that lie far from the training data, and none has been tested for fault-aware triage. Our contributions are:
+\begin{enumerate}
+\item LOOM, a closed-form probabilistic readout whose confidence drops for recordings far from the training data, fitted on exact LOO scores and held-out leverages from one singular value decomposition (SVD) (Sect.~\ref{sec:method}).
+\item Exact jackknife+ prediction sets for ridge readouts, computed without refitting (Sect.~\ref{sec:jackknife}).
+\item A pre-registered evaluation with explicit hypotheses: \NDatasets{} datasets and 18 simulated sensor faults, real recorded ECG noise, readouts on non-convolutional features, ablations, sanity checks, and frequentist and Bayesian statistics (Sects.~\ref{sec:framework} and~\ref{sec:results}).
+\item A triage case study with an exploratory phase on 12 datasets and a pre-registered confirmatory replication on \CNDatasets{} further datasets (Sect.~\ref{sec:triage}).
+\item An open-source command-line tool that turns labelled recordings into a triage system with a review queue (Sect.~\ref{sec:tool}).
+\end{enumerate}
+The ingredients---LOO identities, leverage and moderated outputs---are classical; our contribution is to combine them into a readout that needs no held-out data and to test it for triage under sensor faults. We also report where LOOM does not help (Sect.~\ref{sec:discussion}).
+
+\subsection{Organization}
+Section~\ref{sec:lit} reviews related work, Sect.~\ref{sec:prelim} introduces notation and assumptions, Sect.~\ref{sec:method} describes LOOM, Sect.~\ref{sec:framework} the experimental framework and Sect.~\ref{sec:results} the results. Section~\ref{sec:conclusion} concludes. Proofs, the deviations log and further results are in the Supplementary Material (Sects.~\ref{S-sec:proofs}--\ref{S-sec:extra}).
+
+%=====================================================================
+\section{Literature review}\label{sec:lit}
+
+\subsection{Random convolutional kernel classifiers}
+ROCKET \cite{dempster2020rocket} applies 10{,}000 random dilated kernels and keeps the maximum and the proportion of positive values of each output. MiniRocket \cite{dempster2021minirocket} makes the transform almost deterministic and much faster, MultiRocket \cite{tan2022multirocket} adds pooling operators and the first-difference series, and Hydra \cite{dempster2023hydra} lets groups of kernels compete. All use a linear readout. The bake-off of \citet{middlehurst2024bakeoff} confirms their accuracy--cost trade-off and reports log-loss, but not calibration under shift. Probabilistic alternatives include the Arsenal \cite{middlehurst2021hc2}, QUANT \cite{dempster2024quant} and deep networks such as InceptionTime \cite{ismailfawaz2020inception}.
+
+\subsection{Calibration and prevalidation}
+Platt scaling \cite{platt1999}, isotonic regression \cite{zadrozny2002,niculescu2005}, temperature scaling \cite{guo2017} and Dirichlet calibration \cite{kull2019} map scores to probabilities with held-out or cross-validated scores \cite{silvafilho2023}. Fitting a second model to cross-validated predictions is known as pre-validation \cite{tibshirani2002}. For least squares, LOO predictions have a closed form \cite{allen1974,golub1979,cawley2004}. PreVal \cite{dempster2025preval} uses them to fit a global scale factor for ridge regression; it is the work closest to ours.
+
+\subsection{Uncertainty when the data change}
+Globally calibrated models become overconfident under dataset shift, while ensembles hold up better \cite{ovadia2019,lakshminarayanan2017}. Distance-aware networks such as SNGP \cite{liu2020sngp,liu2023sngp} and DUQ \cite{vanamersfoort2020} and last-layer Laplace approximations \cite{kristiadi2020} become uncertain away from the data, following the moderated outputs of \citet{mackay1992}, but require changes to a network's training. Corruption benchmarks \cite{hendrycks2019} and confidence-based detection of unusual inputs \cite{hendrycks2017} are standard for images; for time series, perturbations are mostly used for augmentation \cite{um2017,iwana2021} and domain adaptation assumes unlabelled target data \cite{ragab2023}. Selective classification studies the trade-off between coverage and risk \cite{geifman2017}.
+
+\subsection{Conformal prediction}
+Conformal prediction gives prediction sets with a coverage guarantee under exchangeability \cite{vovk2022,angelopoulos2023}. Split conformal prediction sets data aside \cite{lei2018}; jackknife+ uses all LOO models \cite{barber2021}. APS \cite{romano2020,angelopoulos2021raps} and LAC \cite{sadinle2019} are common scores. For ridge regression, conformal prediction has a closed form \cite{nouretdinov2001,burnaev2014}; time series work has focused on forecasting \cite{xu2023}.
+
+\subsection{Motivations}\label{sec:motivations}
+Table~\ref{tab:prior} summarises the properties of the closest methods. Five motivations follow: (i) the fast random-kernel classifiers lack a probabilistic readout that responds to unusual inputs; (ii) held-out calibration data are scarce in small monitoring datasets; (iii) ensembles and distance-aware networks are costly for embedded use; (iv) the closed-form statistics needed for an input-dependent readout already exist but have not been combined for this purpose; and (v) no study has evaluated readouts for fault-aware triage with real sensor noise.
+
+\begin{table}[t]
+\caption{Properties of the closest methods. \cmark: yes; (\checkmark): partly; --: no. ``Fault-aware'' means that confidence decreases for inputs far from the training data; ``tested on faults'' means an evaluation under sensor faults or corruptions of time series.}\label{tab:prior}
+\centering\footnotesize
+\begin{tabular}{lcccccc}
+\toprule
+Method & Probabilities & No held-out data & No refit / ensemble & Fault-aware & Prediction sets & Tested on faults \\
+\midrule
+Ridge readout \cite{dempster2021minirocket} & -- & \cmark & \cmark & -- & -- & -- \\
+Platt / isotonic / temperature \cite{platt1999,zadrozny2002,guo2017} & \cmark & -- & \pmark & -- & -- & -- \\
+PreVal \cite{dempster2025preval} & \cmark & \cmark & \cmark & -- & -- & -- \\
+Arsenal \cite{middlehurst2021hc2} & \cmark & \cmark & -- & \pmark & -- & -- \\
+QUANT \cite{dempster2024quant} & \cmark & \cmark & -- & -- & -- & -- \\
+Deep ensembles \cite{lakshminarayanan2017} & \cmark & \cmark & -- & \pmark & -- & \pmark \\
+SNGP / DUQ / Laplace \cite{liu2020sngp,vanamersfoort2020,kristiadi2020} & \cmark & \cmark & -- & \cmark & -- & -- \\
+Jackknife+ \cite{barber2021} & -- & \cmark & -- & -- & \cmark & -- \\
+\textbf{LOOM (ours)} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%=====================================================================
+\section{Preliminary concepts}\label{sec:prelim}
+
+We observe $n$ training series $x_i\in\mathbb{R}^L$ with labels $y_i\in\{1,\dots,K\}$. A random-kernel transform $\varphi:\mathbb{R}^L\to\mathbb{R}^p$ ($p\approx 10^4$) is fitted on the training series. Features are standardised with the training mean and standard deviation; $\psi(x)$ denotes the centred standardised features, $\tilde x(x)=(1,\psi(x))$ the augmented vector, $\tilde X$ the matrix of training vectors, $\Phi_c$ the centred training matrix and $Y\in\{-1,+1\}^{n\times K}$ the one-vs-rest targets. Ridge regression \cite{hoerl1970} with an unpenalised intercept and penalty $\lambda$ gives
+\begin{equation}\label{eq:ridge}
+A=\tilde X^\top\tilde X+\mathrm{diag}(0,\lambda I_p),\qquad B=A^{-1}\tilde X^\top Y,\qquad \hat Y=\tilde XB=HY .
+\end{equation}
+With the thin SVD $\Phi_c=USV^\top$ (rank $r\le\min(n-1,p)$) and $D_\lambda=\mathrm{diag}\big(1/(s_j^2+\lambda)\big)$, the hat diagonal $d_i$, the scores $z(x)=B^\top\tilde x(x)$ and the leverage $h(x)=\tilde x(x)^\top A^{-1}\tilde x(x)$ are
+\begin{equation}\label{eq:leverage}
+d_i=\frac1n+\sum_{j=1}^r u_{ij}^2\frac{s_j^2}{s_j^2+\lambda},\qquad
+h(x)=\frac1n+\big\lVert D_\lambda^{1/2}V^\top\psi\big\rVert^2+\frac{\lVert\psi\rVert^2-\lVert V^\top\psi\rVert^2}{\lambda}.
+\end{equation}
+The last term measures the part of $\psi(x)$ outside the span of the training data; it dominates when $p\gg n$.
+
+We make the following assumptions.
+\begin{assumption}\label{as:iid} Clean training and clean test recordings are exchangeable.\end{assumption}
+\begin{assumption}\label{as:lev} Under Assumption~\ref{as:iid}, the held-out leverages $h_{-i}$ of the training examples are distributed like the leverages $h(x)$ of clean test recordings. (Checked empirically in Sect.~\ref{sec:sanity}.)\end{assumption}
+\begin{assumption}\label{as:fault} Sensor faults move the features of a recording away from the span of the training features, so that its leverage grows. (Holds for some fault types but not all; Sects.~\ref{sec:faults} and~\ref{sec:general}.)\end{assumption}
+\begin{assumption}\label{as:fixed} The standardisation and the kernel biases are treated as fixed when LOO quantities are computed. (They are estimated on all $n$ series, so the LOO identities are exact only conditionally on them.)\end{assumption}
+
+%=====================================================================
+\section{Proposed methodology}\label{sec:method}
+
+\subsection{Overview}
+Figure~\ref{fig:schematic} shows the pipeline and Algorithm~\ref{alg:loom} the procedure. One thin SVD gives, for every candidate penalty, the exact LOO scores and held-out leverages of all training series; the penalty and a temperature are fitted on these pairs; and at test time each score is divided by the square root of the relative leverage. The resulting confidence decides whether a recording is handled automatically or sent to review.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{fig_schematic.pdf}
+\caption{LOOM turns the ridge readout of a random-kernel classifier into probabilities whose confidence drops for unusual recordings. Examples are real: the first training series of each class of ECG200 and the first test series in file order, shown clean and with real electrode-motion noise from the MIT-BIH Noise Stress Test Database at 6\,dB; the printed leverage ratios and confidences are computed by the fitted model.}\label{fig:schematic}
+\end{figure*}
+
+\begin{algorithm}[t]
+\caption{LOOM: fitting and triage}\label{alg:loom}
+\begin{algorithmic}[1]
+\Require training series $\{(x_i,y_i)\}_{i=1}^n$, penalty grid $\Lambda$, review budget $b$
+\State Fit the random-kernel transform; compute standardised features $\psi(x_i)$
+\State Thin SVD $\Phi_c=USV^\top$ \Comment{one decomposition for all $\lambda$}
+\For{$\lambda\in\Lambda$}
+  \State $d_i$ by Eq.~\eqref{eq:leverage}; $z_{-i}$ and $h_{-i}$ by Eq.~\eqref{eq:loo}; $h_{\mathrm{ref}}\gets\mathrm{median}(h_{-i})$
+  \State $a_\lambda\gets\arg\min_a\mathcal L(a,\lambda)$ by Eq.~\eqref{eq:fit} with smoothed targets
+\EndFor
+\State $(\lambda^\star,a^\star)\gets\arg\min_\lambda \mathcal L(a_\lambda,\lambda)$
+\For{each new recording $x$}
+  \State $\hat p(\cdot\mid x)$ by Eq.~\eqref{eq:loom} with $\lambda^\star,a^\star$; optional jackknife+ set by Eq.~\eqref{eq:jk}
+\EndFor
+\State Send the $b$ share of recordings with the lowest $\max_k\hat p(k\mid x)$ to review; decide the rest automatically
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Exact leave-one-out scores and held-out leverages}
+Let $B_{-i}$ denote the fit without example $i$ (same $\lambda$ and standardisation).
+\begin{proposition}[LOO scores and held-out leverages]\label{prop:loo}
+\begin{equation}\label{eq:loo}
+z_{-i}:=B_{-i}^\top\tilde x_i=Y_i-\frac{Y_i-\hat Y_i}{1-d_i},\qquad h_{-i}:=\tilde x_i^\top A_{-i}^{-1}\tilde x_i=\frac{d_i}{1-d_i}.
+\end{equation}
+\end{proposition}
+The first identity is the classical PRESS shortcut \cite{allen1974} used by RidgeClassifierCV and PreVal; the second follows from the same Sherman--Morrison update and is the quantity LOOM adds. Proofs are in Supplementary Sect.~\ref{S-sec:proofs}. The pair $(z_{-i},h_{-i})$ is an exact out-of-sample observation of a score and its uncertainty, available for all $n$ examples at $O(nr)$ cost.
+
+\subsection{Leverage-scaled probabilities}
+Under the Bayesian linear model with prior $\beta\sim\mathcal N(0,\sigma^2\lambda^{-1}I)$, the predictive standard deviation of each score is $\sigma\sqrt{h(x)}$. LOOM divides the scores by this quantity relative to $h_{\mathrm{ref}}=\mathrm{median}(h_{-i})$:
+\begin{equation}\label{eq:loom}
+\hat p(y=k\mid x)=\mathrm{softmax}_k\!\left(\frac{a\,z_k(x)}{\sqrt{h(x)/h_{\mathrm{ref}}}}\right).
+\end{equation}
+For recordings like the training data $h(x)\approx h_{\mathrm{ref}}$ and Eq.~\eqref{eq:loom} is a temperature-scaled ridge; when a fault moves a recording away from the training span, $h(x)$ grows and the probabilities move towards uniform. Eq.~\eqref{eq:loom} is the limit $c\to\infty$ of the moderation $\mathrm{softmax}\big(az/\sqrt{1+ch/h_{\mathrm{ref}}}\big)$ \cite{mackay1992,kristiadi2020}; the limit was fixed on eight development datasets before the benchmark, and finite $c$ is an ablation.
+
+\subsection{Fitting on exact LOO pairs}
+For each $\lambda$ the temperature minimises the LOO negative log-likelihood
+\begin{equation}\label{eq:fit}
+\mathcal L(a,\lambda)=-\frac1n\sum_{i=1}^n\sum_{k=1}^K t_{ik}\log\mathrm{softmax}_k\!\left(\frac{a\,z_{-i,k}}{\sqrt{h_{-i}/h_{\mathrm{ref}}}}\right),
+\end{equation}
+and the pair $(\lambda,a)$ with the smallest value is kept. When the LOO predictions separate the classes, the optimal temperature is infinite; we therefore smooth the targets following \citet{platt1999}: the true class receives $(n_k+1)/(n_k+2)$, where $n_k$ is its training count, and the rest is spread evenly. The one-dimensional problem in $\log a$ is solved with L-BFGS from three starting values.
+
+\subsection{Closed-form jackknife+ prediction sets}\label{sec:jackknife}
+With a non-conformity score $s(x,y;f)$ (LAC, $1-\hat p(y\mid x)$ \cite{sadinle2019}, or deterministic APS \cite{romano2020}), jackknife+ returns $C(x)=\{y:\#\{i:s_i<s(x,y;f_{-i})\}<(1-\alpha)(n+1)\}$ with $s_i=s(x_i,y_i;f_{-i})$ \cite{barber2021}. It needs every LOO model at every test point.
+\begin{proposition}[LOO predictions at a new point]\label{prop:jk}
+With $k(x,i)=\tilde x(x)^\top A^{-1}\tilde x_i=1/n+(V^\top\psi)^\top D_\lambda S u_i$ and residuals $E=Y-\hat Y$,
+\begin{equation}\label{eq:jk}
+z_{-i}(x)=z(x)-\frac{k(x,i)E_i}{1-d_i},\qquad h_{-i}(x)=h(x)+\frac{k(x,i)^2}{1-d_i}.
+\end{equation}
+\end{proposition}
+This parallels closed-form conformal ridge regression \cite{nouretdinov2001}. Because $\lambda$, $a$ and the standardisation use all $n$ examples (Assumption~\ref{as:fixed}), the coverage guarantee holds only approximately; we check it empirically (Sect.~\ref{sec:validity}).
+
+\subsection{Complexity}
+The SVD costs $O(np\min(n,p))$, as for RidgeClassifierCV; ten penalties and the temperature fits add $O(10\,nrK)$; prediction costs $O(p(r+K))$ per series instead of $O(pK)$; memory is $O((n+p)r)$. Cross-validated calibration needs $k$ further fits and an $M$-member ensemble $M$ transforms and fits.
+
+%=====================================================================
+\section{Experimental framework}\label{sec:framework}
+
+\subsection{Setup}
+Code is in Python (NumPy, SciPy, scikit-learn \cite{pedregosa2011}, aeon 1.6.0 \cite{aeon2024}). Every job ran on one core of a 4-core cloud CPU without a GPU (14.3\,GB memory limit); times are single-core wall-clock times. One script regenerates all results, tables, figures and the number macros of this paper; unit tests compare Eqs.~\eqref{eq:leverage}, \eqref{eq:loo} and \eqref{eq:jk} with explicit refits. The method was developed on eight datasets and the pipeline tested on six more; results without them are reported. The protocol was registered before the benchmark, and every later change is logged (Supplementary Sect.~\ref{S-sec:deviations}). An AI assistant (Claude, Anthropic) was used for the literature search, for writing and running code and for drafting text; all numbers come from the released result files, and the authors take responsibility for the content.
+
+\subsection{Datasets}
+Table~\ref{tab:datasets} lists the data. The benchmark uses the \NDatasets{} univariate equal-length UCR datasets \cite{dau2019ucr} with the official split and four stratified resamples (three for the four largest datasets), following the bake-off protocol \cite{bagnall2017bakeoff}. A leakage audit found exact train/test duplicates in \NDupExact{} datasets and exact or near duplicates in \NDupNear{}; a planted-leak test confirmed that the audit detects such cases (Supplementary Sect.~\ref{S-sec:leakage}).
+
+\begin{table}[t]
+\caption{Data used in each experiment. All datasets are from the UCR archive; real noise is from the MIT-BIH Noise Stress Test Database.}\label{tab:datasets}
+\centering\footnotesize
+\begin{tabular}{llll}
+\toprule
+Experiment & Datasets & Splits & Purpose \\
+\midrule
+Benchmark (E1--E9) & \NDatasets{} univariate, equal length & official + 4 resamples & calibration, simulated faults, ablation, sets \\
+Real ECG noise (E12) & 7 ECG datasets & official + 4 resamples & real recorded noise, 9 conditions \\
+Triage, exploratory (E11) & 12 sensor datasets, 3 domains & official + 4 resamples & review-queue study \\
+Triage, confirmatory (E13) & \CNDatasets{} further sensor datasets & official + 4 resamples & pre-registered replication \\
+QUANT features (E14) & \QFN{} datasets ($\le$ 3{,}000 training series) & official split & non-convolutional features \\
+Natural change (E10) & UWaveGestureLibrary X/Y/Z & official + 4 resamples & cross-axis sensor change \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Faults and the triage protocol}\label{sec:faultsetup}
+\emph{Simulated faults} are applied to test series only, with amplitudes relative to each series' standard deviation: noise, baseline wander or drift, dropout (a segment replaced by interpolation), spikes, speed variation (smooth time warp) and misalignment (circular shift), each at three severities (Supplementary Sect.~\ref{S-sec:faults}). \emph{Real noise}: baseline wander, electrode motion and muscle artefact recordings of the MIT-BIH Noise Stress Test Database \cite{moody1984nstdb,goldberger2000physionet} are added at 12, 6 and 0\,dB SNR to the seven ECG datasets. \emph{Triage}: each test recording is faulty with probability 0.3, with a domain-specific fault at a random severity; the share $b$ of recordings with the lowest confidence goes to review.
+
+\subsection{Metrics}
+With predicted probabilities $\hat p_{ik}$ and true labels $y_i$ on $m$ test recordings, we report the negative log-likelihood, the expected calibration error over 15 equal-width bins $B_1,\dots,B_{15}$ of the top-label confidence, and the Brier score:
+\begin{equation}
+\mathrm{NLL}=-\frac1m\sum_{i}\log\hat p_{iy_i},\quad
+\mathrm{ECE}=\sum_{j}\frac{|B_j|}{m}\big|\mathrm{acc}(B_j)-\mathrm{conf}(B_j)\big|,\quad
+\mathrm{Brier}=\frac1m\sum_{i,k}\big(\hat p_{ik}-\mathbb 1[y_i=k]\big)^2 .
+\end{equation}
+Fault detection is measured by the AUROC of $1-\max_k\hat p_{ik}$ for separating faulty from clean recordings. For prediction sets we report coverage $\frac1m\sum_i\mathbb 1[y_i\in C(x_i)]$ and mean set size. For triage with review set $R$ ($|R|=bm$) and faulty set $F$:
+\begin{equation}
+\text{faults caught}=\frac{|R\cap F|}{|F|},\qquad
+\text{automatic error}=\frac{|\{i\notin R:\hat y_i\neq y_i\}|}{m-|R|}.
+\end{equation}
+
+\subsection{Baselines}
+All readouts use identical MiniRocket features: ridge one-hot output, softmax of the ridge scores, PreVal \cite{dempster2025preval} (reimplemented without smoothing, as published), hold-out temperature scaling (80/20), five-fold Platt and isotonic calibration \cite{pedregosa2011}, cross-validated logistic regression, and five-seed ensembles of PreVal and LOOM. QUANT \cite{dempster2024quant} and the Arsenal \cite{middlehurst2021hc2} work on the raw series. Eight ablations remove or replace one component of LOOM at a time (Sect.~\ref{sec:ablation}). All methods receive the same data, seeds and fixed hyperparameter grids.
+
+\subsection{Hypotheses and tests}
+Table~\ref{tab:hyp} lists the hypotheses with their metrics and outcomes. Datasets are the unit of analysis, with each metric averaged over resamples. We use two-sided Wilcoxon signed-rank tests \cite{wilcoxon1945} with Holm's correction \cite{holm1979}, as recommended for comparisons across datasets \cite{demsar2006,benavoli2016}, report how many datasets a result holds in, means with 95\,\% bootstrap confidence intervals (1{,}000 resamples), and Bayesian signed-rank tests \cite{benavoli2017bayesian} with a region of practical equivalence of $\pm0.01$ nats for NLL and $\pm1$ percentage point for rates. Numeric pass criteria for H1--H3 were written down after the results (deviation D18).
+
+%=====================================================================
+\section{Results and analysis}\label{sec:results}
+
+\subsection{Hypothesis tests}\label{sec:hyp}
+Table~\ref{tab:hyp} summarises the outcomes and Fig.~\ref{fig:main} the main comparison. Eight of the nine pre-specified hypotheses passed; H1b failed.
+
+\begin{table*}[t]
+\caption{Hypotheses, tests and outcomes. ``Registered'' gives the date the hypothesis was fixed in the repository, before the corresponding results existed. Counts give the datasets (or dataset--noise combinations) in favour of LOOM; $p$ is Holm-adjusted.}\label{tab:hyp}
+\centering\footnotesize
+\input{../../code/tables/tab_hypotheses.tex}
+\end{table*}
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{fig_main_results.pdf}
+\caption{LOOM is on a par with the best readouts on clean data and clearly better under simulated faults. Means over the \NDatasets{} UCR datasets of the per-dataset mean over resamples, with 95\,\% bootstrap confidence intervals: NLL on clean data, NLL averaged over 18 simulated fault conditions (log scale), and AUROC for detecting faulty recordings. Ridge one-hot is omitted because its NLL is off scale.}\label{fig:main}
+\end{figure*}
+
+\subsection{Calibration on clean data (H1)}\label{sec:clean}
+On clean data LOOM is roughly on a par with the best readouts but not better (Table~\ref{tab:clean}). Its median NLL is \NLLCleanLoom; compared with PreVal it is \CmpNLLCleanPreVal, and it is also not significantly different from five-fold Platt scaling and logistic regression. A non-significant test does not mean equivalence: the Bayesian analysis gives probability \BayesCleanPreValBetter{} that LOOM is better, \BayesCleanPreValEquiv{} that the two are practically equivalent and \BayesCleanPreValWorse{} that PreVal is better, and the per-dataset differences exceed resampling noise in favour of PreVal on \NoiseCleanPreVal{} of the datasets and in favour of LOOM on \NoiseCleanLoom{} (Sect.~\ref{sec:sanity}). LOOM's calibration error is higher than PreVal's (median ECE \ECECleanLoom{} vs \ECECleanPreVal; LOOM \CmpECECleanPreVal), and so is its Brier score; H1b therefore fails. The cause is the target smoothing (Sect.~\ref{sec:ablation}). Accuracy is the same as PreVal's (median \AccCleanLoom{} vs \AccCleanPreVal).
+
+\begin{table}[t]
+\caption{Clean test data, \NDatasets{} datasets: median over datasets of the mean over resamples. W/D/L counts datasets on which LOOM is better/equal/worse in NLL; $p$ is the Holm-adjusted Wilcoxon $p$-value for NLL.}\label{tab:clean}
+\centering\scriptsize
+\input{../../code/tables/tab_clean.tex}
+\end{table}
+
+\subsection{Simulated sensor faults (H2)}\label{sec:faults}
+The leverage reacts to faults (Fig.~\ref{fig:leverage}). For clean test series the median ratio $h(x)/h_{\mathrm{ref}}$ is \LevClean; at the highest severity it reaches \LevNoise{} for noise, \LevSpikes{} for spikes, \LevMissing{} for dropout, \LevWander{} for baseline wander and \LevShift{} for misalignment, but only \LevWarp{} for speed variation. Averaged over the 18 conditions (Table~\ref{tab:faults}), LOOM's median NLL is \NLLFaultsLoom{} against \NLLFaultsPreVal{} for PreVal; LOOM is \CmpNLLFaultsPreVal{} (Bayesian probability \BayesFaultsPreValBetter{} that LOOM is better; mean NLL with 95\,\% CI \CINLLFaultsLoom{} vs \CINLLFaultsPreVal), and it is also better than hold-out, Platt and isotonic calibration and logistic regression. Accuracy is unchanged (median \AccFaultsLoom{} vs \AccFaultsPreVal): the gain comes from lower confidence on the damaged recordings that are misclassified. The median AUROC for detecting faulty recordings is \AUROCFaultsLoom{} for LOOM and \AUROCFaultsPreVal{} for PreVal. Figure~\ref{fig:robust} shows that the gap grows with severity for every fault type except speed variation.
+
+\begin{figure}[t]
+\centering\includegraphics[width=\columnwidth]{fig_leverage_ratio.pdf}
+\caption{Faults push recordings away from the training data, except speed variation. Distribution over datasets of the median leverage ratio $h(x)/h_{\mathrm{ref}}$ ($\log_{10}$) for clean data and each simulated fault at severities 1--3.}\label{fig:leverage}
+\end{figure}
+
+\begin{table}[t]
+\caption{Simulated faults, \NDatasets{} datasets: per-dataset mean over 18 conditions, then median over datasets. Statistics as in Table~\ref{tab:clean}.}\label{tab:faults}
+\centering\scriptsize
+\input{../../code/tables/tab_faults.tex}
+\end{table}
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{fig_robustness.pdf}
+\caption{LOOM's advantage over PreVal grows with fault severity, but QUANT is better for baseline wander, dropout and spikes at the highest severity. Median NLL over the \NDatasets{} datasets against severity for each simulated fault, with 95\,\% bootstrap bands of the median.}\label{fig:robust}
+\end{figure*}
+
+\subsection{Real-world validation: recorded ECG noise (H4)}\label{sec:realnoise}
+Figure~\ref{fig:realnoise} and Table~\ref{tab:realnoise} show the results with real noise. All methods have a similar NLL on the clean ECG recordings (median \RNCleanNLLLoom{} for LOOM, \RNCleanNLLPreVal{} for PreVal). With real noise added, PreVal's median NLL rises to \RNNLLPreVal{} and LOOM's to \RNNLLLoom. Over the \RNNCells{} combinations of dataset, noise type and level, LOOM is \CmpRNCellsPreVal{} compared with PreVal, confirming H4 (Bayesian probability \BayesRealNoisePreValBetter{} that LOOM is better), and \CmpRNCellsQuant{} compared with QUANT. LOOM recognises noisy recordings best: its median detection AUROC is \RNAUROCLoom, against \RNAUROCQuant{} for QUANT (LOOM \CmpRNAUROCCellsQuant) and \RNAUROCPreVal{} for PreVal. In a stream with 30\,\% noisy recordings and a 20\,\% review budget, LOOM's queue contains \RNCaughtLoom{} of the noisy recordings, against \RNCaughtPreVal{} for PreVal and \RNCaughtQuant{} for QUANT, while QUANT has the lowest automatic error rate (\RNErrQuant{} vs \RNErrLoom{} for LOOM). With seven datasets, dataset-level tests have little power; the conclusions rest on the 63 combinations.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{fig_real_noise.pdf}
+\caption{Under real recorded ECG noise, PreVal's NLL explodes while LOOM's stays close to QUANT's. Left: an ECG5000 beat (grey) with each MIT-BIH NSTDB noise type at 6\,dB (orange). Right: median NLL over the seven ECG datasets against signal-to-noise ratio for each noise type.}\label{fig:realnoise}
+\end{figure*}
+
+\begin{table}[t]
+\caption{Real recorded ECG noise on seven ECG datasets: median over datasets. Noisy NLL, detection AUROC and accuracy average nine combinations of noise type and SNR; ``Caught'' and ``Auto err.'' refer to a stream with 30\,\% noisy recordings and a 20\,\% review budget.}\label{tab:realnoise}
+\centering\scriptsize
+\input{../../code/tables/tab_realnoise.tex}
+\end{table}
+
+\subsection{Case study: triage of faulty recordings (H5, H6)}\label{sec:triage}
+In the exploratory study (12 datasets, 20\,\% review budget), LOOM's review queue contained a median of \XCaughtLoom{} of the faulty recordings, against \XCaughtPreVal{} for PreVal and \XCaughtQuant{} for QUANT, and caught more than PreVal on all twelve datasets (\XCaughtPPreVal). Its automatic error rate was lower in the median (\XErrLoom{} vs \XErrPreVal) but not significantly (\XErrPPreVal), and QUANT made the fewest automatic errors (\XErrQuant).
+
+The pre-registered confirmatory replication on \CNDatasets{} further datasets (Fig.~\ref{fig:triage}, Table~\ref{tab:triage}) confirmed both hypotheses under Holm's correction over all eight primary tests. LOOM's queue caught a median of \CCaughtLoom{} of the faulty recordings, against \CCaughtPreVal{} for PreVal (LOOM \CmpCCaughtPreVal; H5) and \CCaughtQuant{} for QUANT (LOOM \CmpCCaughtQuant). Its automatic error rate was \CErrLoom, against \CErrPreVal{} for PreVal (LOOM \CmpCErrPreVal; H6) and \CErrQuant{} for QUANT (LOOM \CmpCErrQuant). Means with 95\,\% CIs are \CICCaughtLoom{} (LOOM) and \CICCaughtPreVal{} (PreVal) for faults caught. The advantage over PreVal remains after merging datasets from the same source (LOOM \CmpCCaughtGrouped). On fault-free streams the methods behave alike (automatic error \CErrCleanLoom{} vs \CErrCleanPreVal), so LOOM does not change how a system behaves on good data. For an operator, this means that with one recording in five sent to review, about \CCaughtLoom{} instead of \CCaughtPreVal{} of the damaged recordings reach a person.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{fig_triage.pdf}
+\caption{In the pre-registered triage study, LOOM's review queue catches the most faulty recordings at every budget. \CNDatasets{} sensor datasets with 30\,\% faulty recordings: error rate of automatic decisions (left) and share of faulty recordings caught (right) against the review budget; means over datasets of the mean over resamples with 95\,\% bootstrap bands over datasets (bands include the differences in difficulty between datasets; paired comparisons are in the text).}\label{fig:triage}
+\end{figure*}
+
+\begin{table}[t]
+\caption{Triage with a 20\,\% review budget: median over datasets of the share of faulty recordings caught and of the error rate of automatic decisions, in the exploratory (12 datasets) and confirmatory (\CNDatasets{} datasets) studies, and the automatic error on fault-free streams (confirmatory).}\label{tab:triage}
+\centering\scriptsize
+\input{../../code/tables/tab_triage.tex}
+\end{table}
+
+\subsection{Comparative analysis: ensembles, raw-series classifiers and QUANT features (H7)}\label{sec:comparative}
+On the official split (Table~\ref{tab:official}) the comparison under faults uses the six severity-3 conditions for every method, because the Arsenal was only run there; this restriction was introduced after the results were first inspected and works against LOOM (deviation D10). On clean data a five-seed PreVal ensemble is slightly better than a single LOOM model (LOOM \CmpNLLOffCleanPreValEns), while LOOM beats QUANT (LOOM \CmpNLLOffCleanQuant). Under the strongest faults LOOM beats the PreVal ensemble and the Arsenal, but QUANT is better (LOOM \CmpNLLOffSevThreeQuant); averaged over all 18 conditions the two do not differ significantly (Table~\ref{tab:faults}), but the Bayesian probability that QUANT is better is \BayesFaultsQuantWorse. At the highest severity QUANT has the lower median NLL for \FamQuantBetter, and LOOM for \FamLoomBetter. The Arsenal's high NLL comes mainly from vote-based probabilities that give exactly zero to the true class; in the bounded Brier score the clean gap is small (\BrierOffCleanArsenal{} vs \BrierOffCleanLoom).
+
+To see whether QUANT's robustness comes from its features or its trees, we fitted the readouts on QUANT's features (median \QFFeatures{} features, \QFN{} datasets). LOOM again rescued the ridge readout under faults: PreVal's median NLL was \QFNLLFaultsPreValQF{} and LOOM's \QFNLLFaultsLoom{} (LOOM \CmpQFPreVal), confirming H7. LOOM on QUANT features also detected faults far better than the QUANT classifier (AUROC \QFAUROCLoom{} vs \QFAUROCQuant; LOOM \CmpQFAUROCQuant). But the linear readout lost much more accuracy than QUANT's trees (\QFAccLoom{} vs \QFAccQuant), so QUANT kept the lower NLL (LOOM \CmpQFQuant). QUANT's robustness therefore comes mainly from its trees, whose outputs stay within the range seen in training, while LOOM's strength is recognising unusual inputs; the two are complementary.
+
+\begin{table}[t]
+\caption{Official split, strongest (severity-3) simulated faults: median over datasets. Statistics as in Table~\ref{tab:clean}. The Arsenal has no result on Fungi (undefined probabilities with one training series per class).}\label{tab:official}
+\centering\scriptsize
+\input{../../code/tables/tab_official.tex}
+\end{table}
+
+\subsection{Ablation study}\label{sec:ablation}
+Figure~\ref{fig:ablation} compares LOOM with eight variants. Removing the leverage scaling while keeping smoothing (PreVal-smooth) is much worse under faults (median NLL \NLLAblFaultsPreValSmooth{} vs \NLLAblFaultsLoom; LOOM \CmpNLLAblFaultsPreValSmooth), while on clean data LOOM is \CmpNLLAblCleanPreValSmooth. Calibrating on in-sample instead of LOO pairs gives a median clean NLL of \NLLAblCleanInSample, and an 80/20 split \NLLAblCleanHoldoutPairs, so the exact LOO pairs matter. A finite moderation strength ($c=1$) gives a slightly lower clean NLL (LOOM \CmpNLLAblCleanFiniteC) but detects faults worse (AUROC \AUROCAblFaultsFiniteC{} vs \AUROCAblFaultsLoom; LOOM higher on \NWinsAUROCFiniteC{} of \NDatasets{} datasets). Removing the smoothing brings the clean ECE to PreVal's level (\ECEAblCleanNoSmooth{} vs \ECEAblCleanPreVal) but is worse under faults (LOOM \CmpNLLAblFaultsNoSmooth). A nearest-neighbour distance in place of leverage gives similar NLL but worse detection (AUROC \AUROCAblFaultsKNN).
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{fig_ablation.pdf}
+\caption{The leverage scaling and the exact LOO pairs are what make LOOM work under faults. Median paired NLL difference (variant $-$ LOOM) over the \NDatasets{} datasets with bootstrap 95\,\% confidence intervals, clean data (left) and simulated faults (right); positive values mean that the variant is worse.}\label{fig:ablation}
+\end{figure*}
+
+\subsection{Prediction sets and validity (H3)}\label{sec:validity}
+On clean data LOOM's closed-form jackknife+ sets with the LAC score cover \CPLoomCovClean{} of test series at target 0.9 with \CPLoomSizeClean{} labels per set, against \CPSplitCovClean{} and \CPSplitSizeClean{} for split conformal prediction (set size \CmpSetSizeSplit), so H3 passes (Fig.~\ref{fig:validity}a, Table~\ref{S-tab:conformal}). Coverage at targets 0.95 and 0.8 is \CPLoomCovAlphaFive{} and \CPLoomCovAlphaTwenty. Under faults coverage drops because damaged recordings are not exchangeable with training data (Fig.~\ref{fig:validity}b); with LAC, LOOM's flat probabilities produce empty sets for \CPLoomEmptyFaults{} of damaged recordings, whereas APS keeps coverage at \CPLoomAPSCovFaults. The reliability diagrams (Fig.~\ref{fig:validity}c) show that LOOM stays close to the diagonal under strong faults while PreVal becomes overconfident.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{fig_validity.pdf}
+\caption{Jackknife+ coverage matches its target on average on clean data; under faults only APS sets keep coverage. (a) Target vs achieved coverage of LOOM's jackknife+ sets (LAC), mean over datasets with 95\,\% bootstrap CI and 10th--90th percentile of datasets (band). (b) Achieved coverage at target 0.9 by condition (C clean; N noise, W baseline wander, D dropout, S spikes, V speed variation, M misalignment; 1--3 severity). (c) Reliability pooled over all datasets and resamples; bins with fewer than 200 predictions are not drawn.}\label{fig:validity}
+\end{figure*}
+
+\subsection{Qualitative analysis and failure cases}\label{sec:qualitative}
+Figure~\ref{fig:qualitative} shows four recordings of the ECG5000 real-noise stream, chosen by a fixed rule. Two show the intended behaviour; two are failures. A recording with muscle artefact at 12\,dB is misclassified with high confidence (panel c), because the noise barely changes its leverage; and a clean but unusual beat is sent to review (panel d). Across datasets, LOOM's gain under faults grows with the leverage increase the faults cause (Spearman $\rho=\RhoGainLev$, \RhoGainLevP), and the share of datasets on which LOOM beats PreVal grows with severity for every fault type except \TrendExcept. At the highest severity it is \WinNoise{} for noise but only \WinWarp{} for speed variation. LOOM loses most where faulty recordings remain correctly classified (\WorstShift; $\rho=\RhoGainAcc$ with accuracy under faults, \RhoGainAccP), and on clean data where there are few training series per class (largest losses on \WorstClean, with \WorstCleanPerClassLo{} to \WorstCleanPerClassHi{} series per class), because smoothing then makes the model underconfident.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{fig_qualitative.pdf}
+\caption{LOOM flags most noisy recordings but misses some and sends some clean ones to review. Real-noise stream of ECG5000 (official split, LOOM, 20\,\% review budget). Rule: for each outcome, the first test recording in file order with that outcome. Grey: clean recording; orange: with NSTDB noise.}\label{fig:qualitative}
+\end{figure*}
+
+\subsection{Generality, sensitivity and sanity checks}\label{sec:general}
+With MultiRocket features LOOM is \CmpMRFaults{} under faults and \CmpMRClean{} on clean data; with Hydra features \CmpHydraFaults{} and \CmpHydraClean. On the \NUnseen{} datasets never used during development LOOM is \CmpUnseenFaults{} under faults; without datasets with exact duplicates \CmpNoDupFaults; without exact or near duplicates (\NNoNearDup{} datasets) \CmpNoNearDupFaults; and after merging datasets from the same source (\NGrouped{} units) \CmpGroupedFaults. With 25\,\% and 50\,\% of the training data, LOOM's median NLL under severity-3 faults is \TSTwentyFiveLoom{} and \TSFiftyLoom, against \TSTwentyFivePreVal{} and \TSFiftyPreVal{} for PreVal (\TSN{} datasets); \TSClaim. Under a real change of sensor (training on one accelerometer axis of UWaveGestureLibrary and testing on another), accuracy drops from \NSAccIn{} to \NSAccShift{} but leverage barely moves (median ratio \NSLevLo--\NSLevHi), and LOOM's advantage is small (mean NLL \NSNLLLoom{} vs \NSNLLPreVal, lower on \NSWins{} of \NSTasks{} axis pairs).
+
+\label{sec:sanity}\emph{Sanity checks.} (1) Assumption~\ref{as:lev}: held-out and clean test leverages have the same median scale, but a Kolmogorov--Smirnov test rejects equal distributions on \ExchReject{} of \ExchN{} datasets (Holm-adjusted), so the assumption holds only approximately. (2) The spread of per-dataset jackknife+ coverage (standard deviation \CovSDObs) is larger than binomial sampling alone would give (\CovSDSim, 97.5\,\% quantile \CovSDSimHi); \CovOutside{} of datasets lie outside the binomial 95\,\% range, so coverage holds on average but not for every dataset. (3) Differences between LOOM and PreVal exceed two resampling standard errors on \NoiseCleanBeyond{} of the datasets on clean data and on \NoiseFaultsBeyond{} under faults, in favour of LOOM on \NoiseFaultsLoom{} of the datasets.
+
+\subsection{Computational complexity and cost}\label{sec:cost}
+LOOM costs the same to fit as PreVal (median \FitLoom\,s vs \FitPreVal\,s on top of the shared MiniRocket transform of \FitTransform\,s; Supplementary Table~\ref{S-tab:cost}). From raw data to a fitted model, LOOM takes about \FitEndToEndLoom\,s, against \FitQuant\,s for QUANT, \FitLoomEns\,s for a five-seed ensemble and \FitArsenal\,s for the Arsenal.
+
+\subsection{Software tool}\label{sec:tool}
+We release LOOM as a Python package with a command-line tool, \texttt{loom-triage}: \texttt{fit} trains a model on a CSV of labelled recordings, \texttt{run} writes a review queue with prediction, confidence, unusualness ($h/h_{\mathrm{ref}}$), decision and optional prediction set, plus an HTML report, and \texttt{evaluate} scores labelled data. The tool has its own unit tests and was validated end to end on plain CSV files outside the experimental pipeline (Supplementary Sect.~\ref{S-sec:tool}).
+
+\subsection{Discussions}\label{sec:discussion}
+LOOM uses a second quantity that the LOO algebra provides for free, the held-out leverage, to put each prediction on the scale of its own uncertainty. For an operator, this means that a LOOM model that is unsure about a recording is much more likely to be looking at a damaged one, and that a fixed review budget catches about \CCaughtLoom{} rather than \CCaughtPreVal{} of the damaged recordings in our confirmatory study. QUANT classifies damaged recordings more accurately; it made the fewest automatic errors in the exploratory study and with real ECG noise, while in the confirmatory study LOOM's median automatic error was lower but not significantly. A tree ensemble for the label combined with LOOM's leverage for the review decision is a promising design. We would use LOOM when training sets are small, recordings may be damaged, and a single fast model is preferred; where test data are known to be clean, PreVal gives a lower clean calibration error.
+
+The main limitations are:
+\begin{enumerate}
+\item Apart from the real ECG noise, all faults are simulated, and real noise was tested on ECG only. The only real change of sensor we studied barely moves leverage, and LOOM gains little there.
+\item Leverage does not respond to changes that keep the features within the training range (speed variation, another sensor axis, label noise, changing class frequencies).
+\item On clean data LOOM is not better than PreVal, and target smoothing raises its calibration error on datasets with few training series per class.
+\item QUANT has a lower likelihood loss than LOOM under the strongest faults.
+\item The jackknife+ guarantee holds only approximately (Assumption~\ref{as:fixed}), and per-dataset coverage varies more than sampling noise allows.
+\item For compute reasons, ensembles, other extractors and the Arsenal were evaluated on the official split only, logistic regression was skipped for four large datasets, and deep networks were not run.
+\item The exploratory triage study and several analyses were designed after the main results were known; they are labelled as post hoc (Supplementary Sect.~\ref{S-sec:deviations}).
+\end{enumerate}
+
+%=====================================================================
+\section{Conclusion and future scope}\label{sec:conclusion}
+We showed that a closed-form change to the readout of fast random-kernel classifiers makes their confidence drop for recordings far from the training data, without held-out data, refitting or ensembles. LOOM lowered the likelihood loss under simulated faults and real ECG noise compared with the strongest previous readout, and in a pre-registered triage study its review queue caught \CCaughtLoom{} instead of \CCaughtPreVal{} of the faulty recordings. We did not show an advantage on clean data or over the tree-based QUANT classifier under the strongest faults, and leverage does not detect changes that keep the features in range. Next steps are a study with expert-labelled real faulty recordings, multivariate signals, combining QUANT's trees with LOOM's leverage, and adaptive target smoothing for problems with many classes and few examples.
+
+\backmatter
+
+\bmhead{Supplementary information}
+Supplementary Material: proofs, deviations log, leakage audit, fault definitions, software validation and additional tables and figures.
+
+\bmhead{Acknowledgements}
+An AI assistant (Claude, Anthropic) was used for the literature search, code, experiments and drafting, as described in Sect.~\ref{sec:framework}. [Further acknowledgements to be completed by the authors.]
+
+\section*{Declarations}
+\begin{itemize}
+\item Funding: [to be completed by the authors]
+\item Competing interests: [to be completed by the authors]
+\item Ethics approval and consent to participate: not applicable (public, de-identified benchmark data).
+\item Data availability: UCR archive (https://www.timeseriesclassification.com) and MIT-BIH Noise Stress Test Database (https://physionet.org/content/nstdb/1.0.0/).
+\item Code availability: [public repository link to be inserted by the authors]; all results, tables, figures and the number macros of this paper are regenerated by one script.
+\item Author contribution: [to be completed by the authors]
+\end{itemize}
+
+\bibliography{references}
+
+\end{document}

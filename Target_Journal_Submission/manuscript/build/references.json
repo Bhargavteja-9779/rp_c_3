@@ -65,7 +65,7 @@
  },
  {
   "type": "proceedings-article",
-  "title": "MiniRocket",
+  "title": "MiniRocket: a very fast (almost) deterministic transform for time series classification",
   "author": [
    {
     "given": "Angus",
@@ -116,7 +116,7 @@
     ]
    }
   ],
-  "container-title": "Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery &amp; Data Mining",
+  "container-title": "Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery & Data Mining",
   "page": "248-257",
   "issued": {
    "date-parts": [

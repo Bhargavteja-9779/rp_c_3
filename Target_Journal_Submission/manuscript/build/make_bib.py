@@ -1,5 +1,6 @@
 """Build references.json (CSL-JSON) from Crossref (DOI references) plus manually entered,
 page-verified non-DOI references. Keys are used in the manuscript as [@key]."""
+import html
 import json, time, urllib.request, urllib.parse
 DOI = {
  "dempster2020rocket": "10.1007/s10618-020-00701-z", "dempster2021minirocket": "10.1145/3447548.3467231",
@@ -31,6 +32,11 @@ for k, d in DOI.items():
     keep = {x: it[x] for x in ("type", "title", "author", "editor", "container-title", "container-title-short", "volume", "issue", "page",
                                 "issued", "DOI", "publisher", "publisher-place", "number", "event") if x in it}
     if isinstance(keep.get("title"), list): keep["title"] = keep["title"][0]
+    sub = it.get("subtitle")
+    if sub and isinstance(sub, list) and sub[0] and ":" not in keep["title"]:
+        keep["title"] = f"{keep['title']}: {sub[0]}"              # Crossref keeps subtitles separately
+    for k in ("title", "container-title"):
+        if isinstance(keep.get(k), str): keep[k] = html.unescape(keep[k])
     if isinstance(keep.get("container-title"), list): keep["container-title"] = keep["container-title"][0] if keep["container-title"] else ""
     keep.pop("container-title-short", None)
     keep["id"] = k

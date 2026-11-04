@@ -71,9 +71,9 @@ def cmp_phrase(r, lower=True, unit="datasets", p_key="p_holm"):
     better = (r["median_diff"] > 0) if lower else (r["median_diff"] < 0)
     p = r[p_key]
     if p >= 0.05:
-        return f"not significantly different ({r['ref_wins']} wins, {r['ref_losses']} losses of {n} {unit}, {pv(p)})"
+        return f"not significantly different, with {r['ref_wins']} wins and {r['ref_losses']} losses of {n} {unit}, {pv(p)}"
     k = r["ref_wins"] if better else r["ref_losses"]
-    return f"{'better' if better else 'worse'} on {k} of {n} {unit} ({pv(p)})"
+    return f"{'better' if better else 'worse'} on {k} of {n} {unit}, {pv(p)}"
 
 
 def ci(d, nd=3, scale=1.0, unit=""):
@@ -228,7 +228,7 @@ def conformal_cost():
     put("CPLoomCovAlphaFive", pct(cp[("CP-LOOM-jackknife+@0.05", False)]["cov_mean"]))
     put("CPLoomCovAlphaTwenty", pct(cp[("CP-LOOM-jackknife+@0.2", False)]["cov_mean"]))
     r = find(S["E9_setsize_test_CP-LOOM-jackknife+"], "CP-Split-TS")
-    put("CmpSetSizeSplit", f"smaller on {r['ref_wins']} of {r['ref_wins'] + r['draws'] + r['ref_losses']} datasets ({pv(r['p_holm'])})")
+    put("CmpSetSizeSplit", f"smaller on {r['ref_wins']} of {r['ref_wins'] + r['draws'] + r['ref_losses']} datasets, {pv(r['p_holm'])}")
     e = {r["method"]: r for r in S["E6_efficiency"]}
     for m in ("LOOM", "PreVal", "Ridge-Platt-CV5", "LogReg-CV", "LOOM-Ens5", "QUANT", "Arsenal", "MiniRocket-transform"):
         put(f"Fit{METHODS[m]}", num(e[m]["fit_median"], 2))
@@ -302,10 +302,10 @@ def sanity():
 
 
 # ------------------------------------------------------------------ tables
-def latex_table(df, name, colspec=None):
+def latex_table(df, name, colspec=None, header_top=None):
     cols = list(df.columns)
     colspec = colspec or ("l" + "r" * (len(cols) - 1))
-    lines = [f"\\begin{{tabular}}{{{colspec}}}", "\\toprule", " & ".join(cols) + " \\\\", "\\midrule"]
+    lines = [f"\\begin{{tabular}}{{{colspec}}}", "\\toprule"] + ([header_top] if header_top else []) + [" & ".join(c.strip() for c in cols) + " \\\\", "\\midrule"]
     lines += [" & ".join(str(v) for v in r) + " \\\\" for r in df.itertuples(index=False)]
     lines += ["\\bottomrule", "\\end{tabular}"]
     (TAB / f"tab_{name}.tex").write_text("\n".join(lines) + "\n")
@@ -340,12 +340,12 @@ def tables():
     latex_table(pd.DataFrame(rows), "realnoise")
     E13 = S["E13_case_confirm"]["metrics"]; E11 = S["E11_case_study"]["metrics"]; rows = []
     for m in ("LOOM", "PreVal", "Holdout-TS", "Ridge-Platt-CV5", "QUANT"):
-        rows.append({"Method": NAMES[m], "Caught (expl.)": pct(E11["stream:fault_caught@20"]["medians"][m], 0),
-                     "Auto err. (expl.)": pct(E11["stream:auto_err@20"]["medians"][m]),
-                     "Caught (conf.)": pct(E13["stream:fault_caught@20"]["medians"][m], 0),
-                     "Auto err. (conf.)": pct(E13["stream:auto_err@20"]["medians"][m]),
-                     "Auto err., no faults": pct(E13["clean:auto_err@20"]["medians"][m])})
-    latex_table(pd.DataFrame(rows), "triage")
+        rows.append({"Method": NAMES[m], "Caught": pct(E11["stream:fault_caught@20"]["medians"][m], 0),
+                     "Auto err.": pct(E11["stream:auto_err@20"]["medians"][m]),
+                     "Caught ": pct(E13["stream:fault_caught@20"]["medians"][m], 0),
+                     "Auto err. ": pct(E13["stream:auto_err@20"]["medians"][m]),
+                     "No faults": pct(E13["clean:auto_err@20"]["medians"][m])})
+    latex_table(pd.DataFrame(rows), "triage", header_top="& \\multicolumn{2}{c}{Exploratory (12)} & \\multicolumn{3}{c}{Confirmatory (\\CNDatasets)} \\\\ \\cmidrule(lr){2-3}\\cmidrule(lr){4-6}")
     cp = {(r["method"], bool(r["shifted"])): r for r in S["E9_conformal"]}
     lab = {"CP-LOOM-jackknife+": "LOOM, jackknife+, LAC", "CP-LOOM-jackknife": "LOOM, jackknife, LAC", "CP-LOOM-jackknife+-APS": "LOOM, jackknife+, APS",
            "CP-PreVal-jackknife+": "PreVal, jackknife+, LAC", "CP-PreVal-jackknife+-APS": "PreVal, jackknife+, APS",
@@ -353,9 +353,9 @@ def tables():
     rows = []
     for m, l in lab.items():
         a, b = cp[(m, False)], cp[(m, True)]
-        rows.append({"Method": l, "Cov. clean": num(a["cov_mean"]), "Size clean": num(a["size_mean"], 2), "Empty clean": pct(a["empty_mean"]),
-                     "Cov. faults": num(b["cov_mean"]), "Size faults": num(b["size_mean"], 2), "Empty faults": pct(b["empty_mean"])})
-    latex_table(pd.DataFrame(rows), "conformal")
+        rows.append({"Method": l, "Coverage": num(a["cov_mean"]), "Size": num(a["size_mean"], 2), "Empty": pct(a["empty_mean"]),
+                     "Coverage ": num(b["cov_mean"]), "Size ": num(b["size_mean"], 2), "Empty ": pct(b["empty_mean"])})
+    latex_table(pd.DataFrame(rows), "conformal", header_top="& \\multicolumn{3}{c}{Clean} & \\multicolumn{3}{c}{Faults} \\\\ \\cmidrule(lr){2-4}\\cmidrule(lr){5-7}")
     e = {r["method"]: r for r in S["E6_efficiency"]}; rows = []
     for m in ("MiniRocket-transform", "Ridge-onehot", "PreVal", "LOOM", "Holdout-TS", "Ridge-Platt-CV5", "LogReg-CV", "LOOM-Ens5", "QUANT", "Arsenal"):
         rows.append({"Method": NAMES[m], "Median fit (s)": num(e[m]["fit_median"]), "Mean fit (s)": num(e[m]["fit_mean"], 2),
@@ -367,8 +367,91 @@ def tables():
         latex_table(info.round(3), "by_type")
 
 
+def tool():
+    t = json.load(open(RES / "e18" / "summary.json"))
+    put("ToolN", count(len(t["datasets"]))); put("ToolIdentical", count(sum(r["identical_predictions"] for r in t["datasets"])))
+    put("ToolMaxDiff", f"{t['max_confidence_difference']:.1e}".replace("e-", "\\times10^{-").rstrip() + "}")
+    put("ToolDatasets", ", ".join(r["dataset"] for r in t["datasets"]))
+
+
+def hypotheses_table():
+    """Main-text table of the pre-specified hypotheses with their outcome (computed from the tests)."""
+    def res(r, lower=True, unit="datasets"):
+        n = r["ref_wins"] + r["draws"] + r["ref_losses"]
+        better = (r["median_diff"] > 0) if lower else (r["median_diff"] < 0)
+        k = r["ref_wins"] if better else r["ref_losses"]
+        return f"{'LOOM' if better else 'competitor'} better on {k}/{n}, {pv(r['p_holm'])}", (r["p_holm"] < 0.05), better
+    rows = []
+    def add(hid, hyp, metric, outcome, passed):
+        rows.append({"ID": hid, "Hypothesis": hyp, "Metric": metric, "Result": outcome, "Outcome": "pass" if passed else "\\textbf{fail}"})
+    t, sig, b = res(pw("E1_clean", "nll", "PreVal"))
+    others = [pw("E1_clean", "nll", c) for c in ("PreVal", "Holdout-TS", "Ridge-Platt-CV5", "LogReg-CV")]
+    ok = not any(r["p_holm"] < 0.05 and r["median_diff"] < 0 for r in others)
+    add("H1a", "Clean NLL not worse than PreVal, hold-out TS, Platt, LogReg", "NLL", f"vs PreVal: {cmp_phrase(pw('E1_clean','nll','PreVal'))}", ok)
+    r1, r2 = pw("E1_clean", "ece", "PreVal"), pw("E1_clean", "brier", "PreVal")
+    add("H1b", "Clean ECE and Brier not worse than PreVal", "ECE, Brier", f"ECE: LOOM {cmp_phrase(r1)}", not ((r1["p_holm"] < 0.05 and r1["median_diff"] < 0) or (r2["p_holm"] < 0.05 and r2["median_diff"] < 0)))
+    r = pw("E1_clean", "acc", "PreVal")
+    add("H1c", "Accuracy unchanged vs PreVal", "accuracy", cmp_phrase(r, lower=False), r["p_holm"] >= 0.05)
+    comps = ["PreVal", "Holdout-TS", "Ridge-Platt-CV5", "Ridge-Isotonic-CV5", "LogReg-CV", "Ridge-softmax", "Ridge-onehot"]
+    ok = all(pw("E4_shifted", "nll", c)["p_holm"] < 0.05 and pw("E4_shifted", "nll", c)["median_diff"] > 0 for c in comps)
+    add("H2a", "Faults: NLL lower than every closed-form / CV readout", "NLL, 18 conditions", f"vs PreVal: {res(pw('E4_shifted','nll','PreVal'))[0]}; all {len(comps)} readouts", ok)
+    r = pw("E4_shifted", "shift_auroc", "PreVal")
+    add("H2b", "Faults: better detection of faulty inputs than PreVal", "AUROC", res(r, lower=False)[0], r["p_holm"] < 0.05 and r["median_diff"] < 0)
+    cpd = {(x["method"], bool(x["shifted"])): x for x in S["E9_conformal"]}
+    cov = cpd[("CP-LOOM-jackknife+", False)]["cov_mean"]; r = find(S["E9_setsize_test_CP-LOOM-jackknife+"], "CP-Split-TS")
+    add("H3", "Jackknife+: coverage 0.88--0.92, smaller sets than split", "coverage, size", f"coverage {cov:.3f}; smaller on {r['ref_wins']}/{r['ref_wins']+r['draws']+r['ref_losses']}, {pv(r['p_holm'])}", 0.88 <= cov <= 0.92 and r["p_holm"] < 0.05)
+    r = find(S["E12_real_noise"]["metrics"]["nll"]["pairwise_cells"], "PreVal")
+    add("H4", "Real ECG noise: NLL lower than PreVal", "NLL, 63 cells", res(r)[0], r["p_holm"] < 0.05 and r["median_diff"] > 0)
+    h8 = {(x["metric"], x["competitor"]): x["p_holm8"] for x in S["E13_case_confirm"]["primary_holm8"]}
+    for hid, met, hyp, lower in (("H5", "fault_caught@20", "Triage: more faulty recordings caught than PreVal", False),
+                                 ("H6", "auto_err@20", "Triage: fewer automatic errors than PreVal", True)):
+        r = dict(find(S["E13_case_confirm"]["metrics"][f"stream:{met}"]["pairwise"], "PreVal")); r["p_holm"] = h8[(met, "PreVal")]
+        better = (r["median_diff"] > 0) if lower else (r["median_diff"] < 0)
+        add(hid, hyp, "20\\,\\% budget", res(r, lower)[0], r["p_holm"] < 0.05 and better)
+    r = find(S["E14_quant_features"]["metrics"]["shifted:nll"]["pairwise"], "PreVal-QF")
+    add("H7", "QUANT features: NLL under faults lower than PreVal", "NLL, severity 3", res(r)[0], r["p_holm"] < 0.05 and r["median_diff"] > 0)
+    latex_table(pd.DataFrame(rows), "hypotheses", colspec="P{0.6cm}P{4.0cm}P{1.6cm}P{4.6cm}l")
+    put("NHypPass", count(sum(1 for x in rows if x["Outcome"] == "pass"))); put("NHyp", count(len(rows)))
+    put("HypFailed", ", ".join(x["ID"] for x in rows if x["Outcome"] != "pass") or "none")
+
+
+def supplement_tables():
+    for key, name, mets in (("E3_ablation_clean", "ablation_clean", [("nll", "NLL"), ("ece", "ECE")]),
+                            ("E3_ablation_shifted", "ablation_faults", [("nll", "NLL"), ("shift_auroc", "AUROC")])):
+        rows = []
+        for m, v in sorted(S[key]["nll"]["medians"].items(), key=lambda kv: kv[1]):
+            row = {"Variant": m}
+            for met, lab in mets:
+                row[lab] = num(S[key][met]["medians"][m])
+            if m == "LOOM":
+                row["W/D/L"], row["$p$"] = "--", "--"
+            else:
+                r = find(S[key]["nll"]["pairwise"], m); row["W/D/L"] = f"{r['ref_wins']}/{r['draws']}/{r['ref_losses']}"; row["$p$"] = pv(r["p_holm"])
+            rows.append(row)
+        latex_table(pd.DataFrame(rows), name)
+    rows = [{"Fraction": f"{int(r['train_frac']*100)}\\,\\%", "Data": r["cond"], "Competitor": r["competitor"], "$n$": r["n"],
+             "LOOM": num(r["median_loom"]), "Competitor NLL": num(r["median_comp"]), "W/D/L": r["wdl"], "$p$": pv(r["p_holm"])} for r in S["E7_train_size"]]
+    latex_table(pd.DataFrame(rows), "trainsize")
+    rows = []
+    for ext in ("multirocket", "hydra"):
+        for st in ("clean", "shifted"):
+            for r in S[f"E5_{ext}_{st}"]["nll"]["pairwise"]:
+                rows.append({"Features": ext, "Data": "clean" if st == "clean" else "severity 3", "Competitor": r["competitor"],
+                             "W/D/L": f"{r['ref_wins']}/{r['draws']}/{r['ref_losses']}", "$p$": pv(r["p_holm"])})
+    latex_table(pd.DataFrame(rows), "extractors")
+    m = NS["means"]; rows = [{"Method": k, "NLL in-domain": num(v["nll_in"]), "NLL other axis": num(v["nll_shift"]), "Acc. other axis": num(v["acc_shift"]),
+                              "AUROC": num(v["shift_auroc"])} for k, v in m.items()]
+    latex_table(pd.DataFrame(rows), "naturalshift")
+    rows = [{"Dataset": r["dataset"], "NLL default": num(r["nll_default"]), "NLL long": num(r["nll_long"]), "C default": r["C_default"], "C long": r["C_long"]} for r in LR]
+    latex_table(pd.DataFrame(rows), "logreg")
+    lk = pd.read_csv(RES / "e00" / "leakage_audit.csv")
+    lk = lk[(lk.test_in_train > 0) | (lk.near_dup_test_in_train > 0)][["dataset", "n_train", "n_test", "test_in_train", "near_dup_test_in_train", "test_in_train_label_conflict"]]
+    lk.columns = ["Dataset", "Train", "Test", "Exact dup.", "Near dup.", "Label conflicts"]
+    latex_table(lk, "leakage")
+
+
 def main():
-    general(); main_tables(); official(); ablation(); generality(); errors(); conformal_cost(); application(); sanity(); tables()
+    general(); main_tables(); official(); ablation(); generality(); errors(); conformal_cost(); application(); sanity(); tables(); hypotheses_table(); supplement_tables(); tool()
     lines = ["% Generated by code/experiments/aggregate.py -- do not edit by hand."]
     lines += [f"\\newcommand{{\\{k}}}{{{v}}}" for k, v in sorted(MAC.items())]
     (TAB / "macros.tex").write_text("\n".join(lines) + "\n")

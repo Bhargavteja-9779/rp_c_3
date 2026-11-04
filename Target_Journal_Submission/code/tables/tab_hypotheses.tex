@@ -1,0 +1,16 @@
+\begin{tabular}{P{0.6cm}P{4.0cm}P{1.6cm}P{4.6cm}l}
+\toprule
+ID & Hypothesis & Metric & Result & Outcome \\
+\midrule
+H1a & Clean NLL not worse than PreVal, hold-out TS, Platt, LogReg & NLL & vs PreVal: not significantly different, with 49 wins and 65 losses of 114 datasets, $p=1.000$ & pass \\
+H1b & Clean ECE and Brier not worse than PreVal & ECE, Brier & ECE: LOOM worse on 86 of 114 datasets, $p<0.001$ & \textbf{fail} \\
+H1c & Accuracy unchanged vs PreVal & accuracy & not significantly different, with 28 wins and 29 losses of 114 datasets, $p=0.572$ & pass \\
+H2a & Faults: NLL lower than every closed-form / CV readout & NLL, 18 conditions & vs PreVal: LOOM better on 108/114, $p<0.001$; all 7 readouts & pass \\
+H2b & Faults: better detection of faulty inputs than PreVal & AUROC & LOOM better on 114/114, $p<0.001$ & pass \\
+H3 & Jackknife+: coverage 0.88--0.92, smaller sets than split & coverage, size & coverage 0.898; smaller on 103/114, $p<0.001$ & pass \\
+H4 & Real ECG noise: NLL lower than PreVal & NLL, 63 cells & LOOM better on 50/63, $p<0.001$ & pass \\
+H5 & Triage: more faulty recordings caught than PreVal & 20\,\% budget & LOOM better on 38/38, $p<0.001$ & pass \\
+H6 & Triage: fewer automatic errors than PreVal & 20\,\% budget & LOOM better on 35/38, $p<0.001$ & pass \\
+H7 & QUANT features: NLL under faults lower than PreVal & NLL, severity 3 & LOOM better on 110/110, $p<0.001$ & pass \\
+\bottomrule
+\end{tabular}

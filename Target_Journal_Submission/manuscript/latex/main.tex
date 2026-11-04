@@ -1,9 +1,13 @@
 \documentclass[pdflatex,sn-basic]{sn-jnl}
 
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{amsthm}
 \usepackage{booktabs}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \usepackage{multirow}
 \usepackage{xcolor}
 \usepackage{algorithm}
@@ -26,6 +30,7 @@
 \renewcommand{\theassumption}{A\arabic{assumption}}
 
 \raggedbottom
+\setlength{\tabcolsep}{3pt}
 
 \begin{document}
 
@@ -43,13 +48,13 @@
 %=====================================================================
 \section{Introduction}\label{sec:intro}
 
-Consider a wearable heart monitor that labels each short ECG recording as normal or abnormal, a factory system that classifies the signal of a production sensor, or a watch that recognises gestures from an accelerometer. Such systems make many decisions per day and nobody can check each one. A common safeguard is to let the classifier decide alone when it is sure and to pass the other cases to a person. This works only if the confidence of the classifier means something: high when the prediction is likely to be right and low when it is not \cite{abdar2021,gawlikowski2023}.
+Consider a wearable heart monitor that labels each short ECG recording as normal or abnormal, a factory system that classifies the signal of a production sensor, or a watch that recognises gestures from an accelerometer. Such systems make many decisions per day and nobody can check each one. A common safeguard is to let the classifier decide alone when it is sure and to pass the other cases to a person. This works only if the confidence of the classifier means something: high when the prediction is likely to be right and low when it is not \citep{abdar2021,gawlikowski2023}.
 
 Real sensor data make this hard. Electrodes come loose, cables pick up interference, a patient moves, a sensor drifts or drops samples. A recording damaged in this way can look unlike any training example, yet most classifiers still return a confident answer. For a triage system, a confident wrong answer is the worst case, because it never reaches the reviewer.
 
-We study this problem for random convolutional kernel classifiers. ROCKET \cite{dempster2020rocket} and its successors MiniRocket \cite{dempster2021minirocket}, MultiRocket \cite{tan2022multirocket} and Hydra \cite{dempster2023hydra} map each series to thousands of features from random convolutions and fit a ridge regression on top. They are about as accurate as much larger ensembles and deep networks on the UCR archive \cite{dau2019ucr,middlehurst2024bakeoff,ismailfawaz2019review} and train in about a second on one CPU core, which makes them attractive for monitoring on modest hardware. Their ridge readout, however, gives scores rather than probabilities. Platt scaling, isotonic regression and temperature scaling \cite{platt1999,zadrozny2002,guo2017} need held-out data; the Arsenal \cite{middlehurst2021hc2} needs an ensemble; and prevalidated ridge regression (PreVal) \cite{dempster2025preval} rescales all scores by one factor fitted on exact leave-one-out (LOO) predictions. All of them treat a damaged recording like a clean one.
+We study this problem for random convolutional kernel classifiers. ROCKET \citep{dempster2020rocket} and its successors MiniRocket \citep{dempster2021minirocket}, MultiRocket \citep{tan2022multirocket} and Hydra \citep{dempster2023hydra} map each series to thousands of features from random convolutions and fit a ridge regression on top. They are about as accurate as much larger ensembles and deep networks on the UCR archive \citep{dau2019ucr,ismailfawaz2019review,middlehurst2024bakeoff} and a model trains in a median of \FitEndToEndLoom\,s on one CPU core in our experiments (Sect.~\ref{sec:cost}), which makes them attractive for monitoring on modest hardware. Their ridge readout, however, gives scores rather than probabilities. Platt scaling, isotonic regression and temperature scaling \citep{guo2017,platt1999,zadrozny2002} need held-out data; the Arsenal \citep{middlehurst2021hc2} needs an ensemble; and prevalidated ridge regression (PreVal) \citep{dempster2025preval} rescales all scores by one factor fitted on exact leave-one-out (LOO) predictions. All of them treat a damaged recording like a clean one.
 
-Ridge regression already measures how far a new input lies from its training data: the \emph{leverage}, a classical diagnostic of extrapolation \cite{hoaglin1978} and the predictive variance factor of the equivalent Bayesian linear model \cite{mackay1992}. We show that the algebra behind the LOO shortcut also gives the \emph{held-out} leverage of every training example, so that a leverage-aware calibration can be fitted on exact out-of-sample pairs without any held-out data. The resulting readout, LOOM (leave-one-out fitted, leverage-moderated), divides each ridge score by the square root of its relative leverage.
+Ridge regression already measures how far a new input lies from its training data: the \emph{leverage}, a classical diagnostic of extrapolation \citep{hoaglin1978} and the predictive variance factor of the equivalent Bayesian linear model \citep{mackay1992}. We show that the algebra behind the LOO shortcut also gives the \emph{held-out} leverage of every training example, so that a leverage-aware calibration can be fitted on exact out-of-sample pairs without any held-out data. The resulting readout, LOOM (leave-one-out fitted, leverage-moderated), divides each ridge score by the square root of its relative leverage.
 
 \subsection{Motivation and contributions}\label{sec:contrib}
 
@@ -70,16 +75,16 @@ Section~\ref{sec:lit} reviews related work, Sect.~\ref{sec:prelim} introduces no
 \section{Literature review}\label{sec:lit}
 
 \subsection{Random convolutional kernel classifiers}
-ROCKET \cite{dempster2020rocket} applies 10{,}000 random dilated kernels and keeps the maximum and the proportion of positive values of each output. MiniRocket \cite{dempster2021minirocket} makes the transform almost deterministic and much faster, MultiRocket \cite{tan2022multirocket} adds pooling operators and the first-difference series, and Hydra \cite{dempster2023hydra} lets groups of kernels compete. All use a linear readout. The bake-off of \citet{middlehurst2024bakeoff} confirms their accuracy--cost trade-off and reports log-loss, but not calibration under shift. Probabilistic alternatives include the Arsenal \cite{middlehurst2021hc2}, QUANT \cite{dempster2024quant} and deep networks such as InceptionTime \cite{ismailfawaz2020inception}.
+ROCKET \citep{dempster2020rocket} applies 10{,}000 random dilated kernels and keeps the maximum and the proportion of positive values of each output. MiniRocket \citep{dempster2021minirocket} makes the transform almost deterministic and much faster, MultiRocket \citep{tan2022multirocket} adds pooling operators and the first-difference series, and Hydra \citep{dempster2023hydra} lets groups of kernels compete. All use a linear readout. The bake-off of \citet{middlehurst2024bakeoff} confirms their accuracy--cost trade-off and reports log-loss, but not calibration under shift. Probabilistic alternatives include the Arsenal \citep{middlehurst2021hc2}, QUANT \citep{dempster2024quant} and deep networks such as InceptionTime \citep{ismailfawaz2020inception}.
 
 \subsection{Calibration and prevalidation}
-Platt scaling \cite{platt1999}, isotonic regression \cite{zadrozny2002,niculescu2005}, temperature scaling \cite{guo2017} and Dirichlet calibration \cite{kull2019} map scores to probabilities with held-out or cross-validated scores \cite{silvafilho2023}. Fitting a second model to cross-validated predictions is known as pre-validation \cite{tibshirani2002}. For least squares, LOO predictions have a closed form \cite{allen1974,golub1979,cawley2004}. PreVal \cite{dempster2025preval} uses them to fit a global scale factor for ridge regression; it is the work closest to ours.
+Platt scaling \citep{platt1999}, isotonic regression \citep{niculescu2005,zadrozny2002}, temperature scaling \citep{guo2017} and Dirichlet calibration \citep{kull2019} map scores to probabilities with held-out or cross-validated scores \citep{silvafilho2023}. Fitting a second model to cross-validated predictions is known as pre-validation \citep{tibshirani2002}. For least squares, LOO predictions have a closed form \citep{allen1974,cawley2004,golub1979}. PreVal \citep{dempster2025preval} uses them to fit a global scale factor for ridge regression; it is the work closest to ours.
 
 \subsection{Uncertainty when the data change}
-Globally calibrated models become overconfident under dataset shift, while ensembles hold up better \cite{ovadia2019,lakshminarayanan2017}. Distance-aware networks such as SNGP \cite{liu2020sngp,liu2023sngp} and DUQ \cite{vanamersfoort2020} and last-layer Laplace approximations \cite{kristiadi2020} become uncertain away from the data, following the moderated outputs of \citet{mackay1992}, but require changes to a network's training. Corruption benchmarks \cite{hendrycks2019} and confidence-based detection of unusual inputs \cite{hendrycks2017} are standard for images; for time series, perturbations are mostly used for augmentation \cite{um2017,iwana2021} and domain adaptation assumes unlabelled target data \cite{ragab2023}. Selective classification studies the trade-off between coverage and risk \cite{geifman2017}.
+Globally calibrated models become overconfident under dataset shift, while ensembles hold up better \citep{lakshminarayanan2017,ovadia2019}. Distance-aware networks such as SNGP \citep{liu2020sngp,liu2023sngp} and DUQ \citep{vanamersfoort2020} and last-layer Laplace approximations \citep{kristiadi2020} become uncertain away from the data, following the moderated outputs of \citet{mackay1992}, but require changes to a network's training. Corruption benchmarks \citep{hendrycks2019} and confidence-based detection of unusual inputs \citep{hendrycks2017} are standard for images; for time series, perturbations are mostly used for augmentation \citep{iwana2021,um2017} and domain adaptation assumes unlabelled target data \citep{ragab2023}. Selective classification studies the trade-off between coverage and risk \citep{geifman2017}.
 
 \subsection{Conformal prediction}
-Conformal prediction gives prediction sets with a coverage guarantee under exchangeability \cite{vovk2022,angelopoulos2023}. Split conformal prediction sets data aside \cite{lei2018}; jackknife+ uses all LOO models \cite{barber2021}. APS \cite{romano2020,angelopoulos2021raps} and LAC \cite{sadinle2019} are common scores. For ridge regression, conformal prediction has a closed form \cite{nouretdinov2001,burnaev2014}; time series work has focused on forecasting \cite{xu2023}.
+Conformal prediction gives prediction sets with a coverage guarantee under exchangeability \citep{angelopoulos2023,vovk2022}. Split conformal prediction sets data aside \citep{lei2018}; jackknife+ uses all LOO models \citep{barber2021}. APS \citep{angelopoulos2021raps,romano2020} and LAC \citep{sadinle2019} are common scores. For ridge regression, conformal prediction has a closed form \citep{burnaev2014,nouretdinov2001}; time series work has focused on forecasting \citep{xu2023}.
 
 \subsection{Motivations}\label{sec:motivations}
 Table~\ref{tab:prior} summarises the properties of the closest methods. Five motivations follow: (i) the fast random-kernel classifiers lack a probabilistic readout that responds to unusual inputs; (ii) held-out calibration data are scarce in small monitoring datasets; (iii) ensembles and distance-aware networks are costly for embedded use; (iv) the closed-form statistics needed for an input-dependent readout already exist but have not been combined for this purpose; and (v) no study has evaluated readouts for fault-aware triage with real sensor noise.
@@ -87,18 +92,18 @@ Table~\ref{tab:prior} summarises the properties of the closest methods. Five mot
 \begin{table}[t]
 \caption{Properties of the closest methods. \cmark: yes; (\checkmark): partly; --: no. ``Fault-aware'' means that confidence decreases for inputs far from the training data; ``tested on faults'' means an evaluation under sensor faults or corruptions of time series.}\label{tab:prior}
 \centering\footnotesize
-\begin{tabular}{lcccccc}
+\begin{tabular}{P{3.9cm}cccccc}
 \toprule
-Method & Probabilities & No held-out data & No refit / ensemble & Fault-aware & Prediction sets & Tested on faults \\
+Method & \shortstack{Proba-\\bilities} & \shortstack{No held-\\out data} & \shortstack{No refit/\\ensemble} & \shortstack{Fault-\\aware} & \shortstack{Prediction\\sets} & \shortstack{Tested on\\faults} \\
 \midrule
-Ridge readout \cite{dempster2021minirocket} & -- & \cmark & \cmark & -- & -- & -- \\
-Platt / isotonic / temperature \cite{platt1999,zadrozny2002,guo2017} & \cmark & -- & \pmark & -- & -- & -- \\
-PreVal \cite{dempster2025preval} & \cmark & \cmark & \cmark & -- & -- & -- \\
-Arsenal \cite{middlehurst2021hc2} & \cmark & \cmark & -- & \pmark & -- & -- \\
-QUANT \cite{dempster2024quant} & \cmark & \cmark & -- & -- & -- & -- \\
-Deep ensembles \cite{lakshminarayanan2017} & \cmark & \cmark & -- & \pmark & -- & \pmark \\
-SNGP / DUQ / Laplace \cite{liu2020sngp,vanamersfoort2020,kristiadi2020} & \cmark & \cmark & -- & \cmark & -- & -- \\
-Jackknife+ \cite{barber2021} & -- & \cmark & -- & -- & \cmark & -- \\
+Ridge readout \citep{dempster2021minirocket} & -- & \cmark & \cmark & -- & -- & -- \\
+Platt / isotonic / temperature \citep{guo2017,platt1999,zadrozny2002} & \cmark & -- & \pmark & -- & -- & -- \\
+PreVal \citep{dempster2025preval} & \cmark & \cmark & \cmark & -- & -- & -- \\
+Arsenal \citep{middlehurst2021hc2} & \cmark & \cmark & -- & \pmark & -- & -- \\
+QUANT \citep{dempster2024quant} & \cmark & \cmark & -- & -- & -- & -- \\
+Deep ensembles \citep{lakshminarayanan2017} & \cmark & \cmark & -- & \pmark & -- & \pmark \\
+SNGP / DUQ / Laplace \citep{kristiadi2020,liu2020sngp,vanamersfoort2020} & \cmark & \cmark & -- & \cmark & -- & -- \\
+Jackknife+ \citep{barber2021} & -- & \cmark & -- & -- & \cmark & -- \\
 \textbf{LOOM (ours)} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
 \bottomrule
 \end{tabular}
@@ -107,7 +112,7 @@ Jackknife+ \cite{barber2021} & -- & \cmark & -- & -- & \cmark & -- \\
 %=====================================================================
 \section{Preliminary concepts}\label{sec:prelim}
 
-We observe $n$ training series $x_i\in\mathbb{R}^L$ with labels $y_i\in\{1,\dots,K\}$. A random-kernel transform $\varphi:\mathbb{R}^L\to\mathbb{R}^p$ ($p\approx 10^4$) is fitted on the training series. Features are standardised with the training mean and standard deviation; $\psi(x)$ denotes the centred standardised features, $\tilde x(x)=(1,\psi(x))$ the augmented vector, $\tilde X$ the matrix of training vectors, $\Phi_c$ the centred training matrix and $Y\in\{-1,+1\}^{n\times K}$ the one-vs-rest targets. Ridge regression \cite{hoerl1970} with an unpenalised intercept and penalty $\lambda$ gives
+We observe $n$ training series $x_i\in\mathbb{R}^L$ with labels $y_i\in\{1,\dots,K\}$. A random-kernel transform $\varphi:\mathbb{R}^L\to\mathbb{R}^p$ ($p\approx 10^4$) is fitted on the training series. Features are standardised with the training mean and standard deviation; $\psi(x)$ denotes the centred standardised features, $\tilde x(x)=(1,\psi(x))$ the augmented vector, $\tilde X$ the matrix of training vectors, $\Phi_c$ the centred training matrix and $Y\in\{-1,+1\}^{n\times K}$ the one-vs-rest targets. Ridge regression \citep{hoerl1970} with an unpenalised intercept and penalty $\lambda$ gives
 \begin{equation}\label{eq:ridge}
 A=\tilde X^\top\tilde X+\mathrm{diag}(0,\lambda I_p),\qquad B=A^{-1}\tilde X^\top Y,\qquad \hat Y=\tilde XB=HY .
 \end{equation}
@@ -160,14 +165,14 @@ Let $B_{-i}$ denote the fit without example $i$ (same $\lambda$ and standardisat
 z_{-i}:=B_{-i}^\top\tilde x_i=Y_i-\frac{Y_i-\hat Y_i}{1-d_i},\qquad h_{-i}:=\tilde x_i^\top A_{-i}^{-1}\tilde x_i=\frac{d_i}{1-d_i}.
 \end{equation}
 \end{proposition}
-The first identity is the classical PRESS shortcut \cite{allen1974} used by RidgeClassifierCV and PreVal; the second follows from the same Sherman--Morrison update and is the quantity LOOM adds. Proofs are in Supplementary Sect.~\ref{S-sec:proofs}. The pair $(z_{-i},h_{-i})$ is an exact out-of-sample observation of a score and its uncertainty, available for all $n$ examples at $O(nr)$ cost.
+The first identity is the classical PRESS shortcut \citep{allen1974} used by RidgeClassifierCV and PreVal; the second follows from the same Sherman--Morrison update and is the quantity LOOM adds. Proofs are in Supplementary Sect.~\ref{S-sec:proofs}. The pair $(z_{-i},h_{-i})$ is an exact out-of-sample observation of a score and its uncertainty, available for all $n$ examples at $O(nr)$ cost.
 
 \subsection{Leverage-scaled probabilities}
 Under the Bayesian linear model with prior $\beta\sim\mathcal N(0,\sigma^2\lambda^{-1}I)$, the predictive standard deviation of each score is $\sigma\sqrt{h(x)}$. LOOM divides the scores by this quantity relative to $h_{\mathrm{ref}}=\mathrm{median}(h_{-i})$:
 \begin{equation}\label{eq:loom}
 \hat p(y=k\mid x)=\mathrm{softmax}_k\!\left(\frac{a\,z_k(x)}{\sqrt{h(x)/h_{\mathrm{ref}}}}\right).
 \end{equation}
-For recordings like the training data $h(x)\approx h_{\mathrm{ref}}$ and Eq.~\eqref{eq:loom} is a temperature-scaled ridge; when a fault moves a recording away from the training span, $h(x)$ grows and the probabilities move towards uniform. Eq.~\eqref{eq:loom} is the limit $c\to\infty$ of the moderation $\mathrm{softmax}\big(az/\sqrt{1+ch/h_{\mathrm{ref}}}\big)$ \cite{mackay1992,kristiadi2020}; the limit was fixed on eight development datasets before the benchmark, and finite $c$ is an ablation.
+For recordings like the training data $h(x)\approx h_{\mathrm{ref}}$ and Eq.~\eqref{eq:loom} is a temperature-scaled ridge; when a fault moves a recording away from the training span, $h(x)$ grows and the probabilities move towards uniform. Eq.~\eqref{eq:loom} is the limit $c\to\infty$ of the moderation $\mathrm{softmax}\big(az/\sqrt{1+ch/h_{\mathrm{ref}}}\big)$ \citep{kristiadi2020,mackay1992}; the limit was fixed on eight development datasets before the benchmark, and finite $c$ is an ablation.
 
 \subsection{Fitting on exact LOO pairs}
 For each $\lambda$ the temperature minimises the LOO negative log-likelihood
@@ -177,14 +182,14 @@ For each $\lambda$ the temperature minimises the LOO negative log-likelihood
 and the pair $(\lambda,a)$ with the smallest value is kept. When the LOO predictions separate the classes, the optimal temperature is infinite; we therefore smooth the targets following \citet{platt1999}: the true class receives $(n_k+1)/(n_k+2)$, where $n_k$ is its training count, and the rest is spread evenly. The one-dimensional problem in $\log a$ is solved with L-BFGS from three starting values.
 
 \subsection{Closed-form jackknife+ prediction sets}\label{sec:jackknife}
-With a non-conformity score $s(x,y;f)$ (LAC, $1-\hat p(y\mid x)$ \cite{sadinle2019}, or deterministic APS \cite{romano2020}), jackknife+ returns $C(x)=\{y:\#\{i:s_i<s(x,y;f_{-i})\}<(1-\alpha)(n+1)\}$ with $s_i=s(x_i,y_i;f_{-i})$ \cite{barber2021}. It needs every LOO model at every test point.
+With a non-conformity score $s(x,y;f)$ (LAC, $1-\hat p(y\mid x)$ \citep{sadinle2019}, or deterministic APS \citep{romano2020}), jackknife+ returns $C(x)=\{y:\#\{i:s_i<s(x,y;f_{-i})\}<(1-\alpha)(n+1)\}$ with $s_i=s(x_i,y_i;f_{-i})$ \citep{barber2021}. It needs every LOO model at every test point.
 \begin{proposition}[LOO predictions at a new point]\label{prop:jk}
 With $k(x,i)=\tilde x(x)^\top A^{-1}\tilde x_i=1/n+(V^\top\psi)^\top D_\lambda S u_i$ and residuals $E=Y-\hat Y$,
 \begin{equation}\label{eq:jk}
 z_{-i}(x)=z(x)-\frac{k(x,i)E_i}{1-d_i},\qquad h_{-i}(x)=h(x)+\frac{k(x,i)^2}{1-d_i}.
 \end{equation}
 \end{proposition}
-This parallels closed-form conformal ridge regression \cite{nouretdinov2001}. Because $\lambda$, $a$ and the standardisation use all $n$ examples (Assumption~\ref{as:fixed}), the coverage guarantee holds only approximately; we check it empirically (Sect.~\ref{sec:validity}).
+This parallels closed-form conformal ridge regression \citep{nouretdinov2001}. Because $\lambda$, $a$ and the standardisation use all $n$ examples (Assumption~\ref{as:fixed}), the coverage guarantee holds only approximately; we check it empirically (Sect.~\ref{sec:validity}).
 
 \subsection{Complexity}
 The SVD costs $O(np\min(n,p))$, as for RidgeClassifierCV; ten penalties and the temperature fits add $O(10\,nrK)$; prediction costs $O(p(r+K))$ per series instead of $O(pK)$; memory is $O((n+p)r)$. Cross-validated calibration needs $k$ further fits and an $M$-member ensemble $M$ transforms and fits.
@@ -193,19 +198,19 @@ The SVD costs $O(np\min(n,p))$, as for RidgeClassifierCV; ten penalties and the 
 \section{Experimental framework}\label{sec:framework}
 
 \subsection{Setup}
-Code is in Python (NumPy, SciPy, scikit-learn \cite{pedregosa2011}, aeon 1.6.0 \cite{aeon2024}). Every job ran on one core of a 4-core cloud CPU without a GPU (14.3\,GB memory limit); times are single-core wall-clock times. One script regenerates all results, tables, figures and the number macros of this paper; unit tests compare Eqs.~\eqref{eq:leverage}, \eqref{eq:loo} and \eqref{eq:jk} with explicit refits. The method was developed on eight datasets and the pipeline tested on six more; results without them are reported. The protocol was registered before the benchmark, and every later change is logged (Supplementary Sect.~\ref{S-sec:deviations}). An AI assistant (Claude, Anthropic) was used for the literature search, for writing and running code and for drafting text; all numbers come from the released result files, and the authors take responsibility for the content.
+Code is in Python (NumPy, SciPy, scikit-learn \citep{pedregosa2011}, aeon 1.6.0 \citep{aeon2024}). Every job ran on one core of a 4-core cloud CPU without a GPU (14.3\,GB memory limit); times are single-core wall-clock times. One script regenerates all results, tables, figures and the number macros of this paper; unit tests compare Eqs.~\eqref{eq:leverage}, \eqref{eq:loo} and \eqref{eq:jk} with explicit refits. The method was developed on eight datasets and the pipeline tested on six more; results without them are reported. The protocol was registered before the benchmark, and every later change is logged (Supplementary Sect.~\ref{S-sec:deviations}). An AI assistant (Claude, Anthropic) was used for the literature search, for writing and running code and for drafting text; all numbers come from the released result files, and the authors take responsibility for the content.
 
 \subsection{Datasets}
-Table~\ref{tab:datasets} lists the data. The benchmark uses the \NDatasets{} univariate equal-length UCR datasets \cite{dau2019ucr} with the official split and four stratified resamples (three for the four largest datasets), following the bake-off protocol \cite{bagnall2017bakeoff}. A leakage audit found exact train/test duplicates in \NDupExact{} datasets and exact or near duplicates in \NDupNear{}; a planted-leak test confirmed that the audit detects such cases (Supplementary Sect.~\ref{S-sec:leakage}).
+Table~\ref{tab:datasets} lists the data. The benchmark uses the \NDatasets{} univariate equal-length UCR datasets \citep{dau2019ucr} with the official split and four stratified resamples (three for the four largest datasets), following the bake-off protocol \citep{bagnall2017bakeoff}. A leakage audit found exact train/test duplicates in \NDupExact{} datasets and exact or near duplicates in \NDupNear{}; a planted-leak test confirmed that the audit detects such cases (Supplementary Sect.~\ref{S-sec:leakage}).
 
 \begin{table}[t]
 \caption{Data used in each experiment. All datasets are from the UCR archive; real noise is from the MIT-BIH Noise Stress Test Database.}\label{tab:datasets}
 \centering\footnotesize
-\begin{tabular}{llll}
+\begin{tabular}{P{2.8cm}P{3.6cm}P{2.4cm}P{3.4cm}}
 \toprule
 Experiment & Datasets & Splits & Purpose \\
 \midrule
-Benchmark (E1--E9) & \NDatasets{} univariate, equal length & official + 4 resamples & calibration, simulated faults, ablation, sets \\
+Benchmark (E1--E9) & \NDatasets{} univariate, equal length & official + 4 resamples & calibration, faults, ablation, prediction sets \\
 Real ECG noise (E12) & 7 ECG datasets & official + 4 resamples & real recorded noise, 9 conditions \\
 Triage, exploratory (E11) & 12 sensor datasets, 3 domains & official + 4 resamples & review-queue study \\
 Triage, confirmatory (E13) & \CNDatasets{} further sensor datasets & official + 4 resamples & pre-registered replication \\
@@ -216,15 +221,15 @@ Natural change (E10) & UWaveGestureLibrary X/Y/Z & official + 4 resamples & cros
 \end{table}
 
 \subsection{Faults and the triage protocol}\label{sec:faultsetup}
-\emph{Simulated faults} are applied to test series only, with amplitudes relative to each series' standard deviation: noise, baseline wander or drift, dropout (a segment replaced by interpolation), spikes, speed variation (smooth time warp) and misalignment (circular shift), each at three severities (Supplementary Sect.~\ref{S-sec:faults}). \emph{Real noise}: baseline wander, electrode motion and muscle artefact recordings of the MIT-BIH Noise Stress Test Database \cite{moody1984nstdb,goldberger2000physionet} are added at 12, 6 and 0\,dB SNR to the seven ECG datasets. \emph{Triage}: each test recording is faulty with probability 0.3, with a domain-specific fault at a random severity; the share $b$ of recordings with the lowest confidence goes to review.
+\emph{Simulated faults} are applied to test series only, with amplitudes relative to each series' standard deviation: noise, baseline wander or drift, dropout (a segment replaced by interpolation), spikes, speed variation (smooth time warp) and misalignment (circular shift), each at three severities (Supplementary Sect.~\ref{S-sec:faults}). \emph{Real noise}: baseline wander, electrode motion and muscle artefact recordings of the MIT-BIH Noise Stress Test Database \citep{goldberger2000physionet,moody1984nstdb} are added at 12, 6 and 0\,dB SNR to the seven ECG datasets. \emph{Triage}: each test recording is faulty with probability 0.3, with a domain-specific fault at a random severity; the share $b$ of recordings with the lowest confidence goes to review.
 
 \subsection{Metrics}
 With predicted probabilities $\hat p_{ik}$ and true labels $y_i$ on $m$ test recordings, we report the negative log-likelihood, the expected calibration error over 15 equal-width bins $B_1,\dots,B_{15}$ of the top-label confidence, and the Brier score:
-\begin{equation}
-\mathrm{NLL}=-\frac1m\sum_{i}\log\hat p_{iy_i},\quad
-\mathrm{ECE}=\sum_{j}\frac{|B_j|}{m}\big|\mathrm{acc}(B_j)-\mathrm{conf}(B_j)\big|,\quad
-\mathrm{Brier}=\frac1m\sum_{i,k}\big(\hat p_{ik}-\mathbb 1[y_i=k]\big)^2 .
-\end{equation}
+\begin{align}
+\mathrm{NLL}&=-\frac1m\sum_{i}\log\hat p_{iy_i},\qquad
+\mathrm{Brier}=\frac1m\sum_{i,k}\big(\hat p_{ik}-\mathbb 1[y_i=k]\big)^2,\\
+\mathrm{ECE}&=\sum_{j}\frac{|B_j|}{m}\big|\mathrm{acc}(B_j)-\mathrm{conf}(B_j)\big| .
+\end{align}
 Fault detection is measured by the AUROC of $1-\max_k\hat p_{ik}$ for separating faulty from clean recordings. For prediction sets we report coverage $\frac1m\sum_i\mathbb 1[y_i\in C(x_i)]$ and mean set size. For triage with review set $R$ ($|R|=bm$) and faulty set $F$:
 \begin{equation}
 \text{faults caught}=\frac{|R\cap F|}{|F|},\qquad
@@ -232,19 +237,19 @@ Fault detection is measured by the AUROC of $1-\max_k\hat p_{ik}$ for separating
 \end{equation}
 
 \subsection{Baselines}
-All readouts use identical MiniRocket features: ridge one-hot output, softmax of the ridge scores, PreVal \cite{dempster2025preval} (reimplemented without smoothing, as published), hold-out temperature scaling (80/20), five-fold Platt and isotonic calibration \cite{pedregosa2011}, cross-validated logistic regression, and five-seed ensembles of PreVal and LOOM. QUANT \cite{dempster2024quant} and the Arsenal \cite{middlehurst2021hc2} work on the raw series. Eight ablations remove or replace one component of LOOM at a time (Sect.~\ref{sec:ablation}). All methods receive the same data, seeds and fixed hyperparameter grids.
+All readouts use identical MiniRocket features: ridge one-hot output, softmax of the ridge scores, PreVal \citep{dempster2025preval} (reimplemented without smoothing, as published), hold-out temperature scaling (80/20), five-fold Platt and isotonic calibration \citep{pedregosa2011}, cross-validated logistic regression, and five-seed ensembles of PreVal and LOOM. QUANT \citep{dempster2024quant} and the Arsenal \citep{middlehurst2021hc2} work on the raw series. Eight ablations remove or replace one component of LOOM at a time (Sect.~\ref{sec:ablation}). All methods receive the same data, seeds and fixed hyperparameter grids.
 
 \subsection{Hypotheses and tests}
-Table~\ref{tab:hyp} lists the hypotheses with their metrics and outcomes. Datasets are the unit of analysis, with each metric averaged over resamples. We use two-sided Wilcoxon signed-rank tests \cite{wilcoxon1945} with Holm's correction \cite{holm1979}, as recommended for comparisons across datasets \cite{demsar2006,benavoli2016}, report how many datasets a result holds in, means with 95\,\% bootstrap confidence intervals (1{,}000 resamples), and Bayesian signed-rank tests \cite{benavoli2017bayesian} with a region of practical equivalence of $\pm0.01$ nats for NLL and $\pm1$ percentage point for rates. Numeric pass criteria for H1--H3 were written down after the results (deviation D18).
+Table~\ref{tab:hyp} lists the hypotheses with their metrics and outcomes. Datasets are the unit of analysis, with each metric averaged over resamples. We use two-sided Wilcoxon signed-rank tests \citep{wilcoxon1945} with Holm's correction \citep{holm1979}, as recommended for comparisons across datasets \citep{benavoli2016,demsar2006}, report how many datasets a result holds in, means with 95\,\% bootstrap confidence intervals (1{,}000 resamples), and Bayesian signed-rank tests \citep{benavoli2017bayesian} with a region of practical equivalence of $\pm0.01$ nats for NLL and $\pm1$ percentage point for rates. Numeric pass criteria for H1--H3 were written down after the results (deviation D18).
 
 %=====================================================================
 \section{Results and analysis}\label{sec:results}
 
 \subsection{Hypothesis tests}\label{sec:hyp}
-Table~\ref{tab:hyp} summarises the outcomes and Fig.~\ref{fig:main} the main comparison. Eight of the nine pre-specified hypotheses passed; H1b failed.
+Table~\ref{tab:hyp} summarises the outcomes and Fig.~\ref{fig:main} the main comparison. Of the \NHyp{} pre-specified hypotheses, \NHypPass{} passed and \HypFailed{} failed.
 
 \begin{table*}[t]
-\caption{Hypotheses, tests and outcomes. ``Registered'' gives the date the hypothesis was fixed in the repository, before the corresponding results existed. Counts give the datasets (or dataset--noise combinations) in favour of LOOM; $p$ is Holm-adjusted.}\label{tab:hyp}
+\caption{Hypotheses, tests and outcomes. H1--H3 were registered on 13 October 2026 before the benchmark, H4--H7 on 2 November 2026 before the corresponding experiments (Supplementary Sect.~\ref{S-sec:deviations}). Counts give the datasets (or dataset--noise combinations) in favour of LOOM; $p$ is Holm-adjusted.}\label{tab:hyp}
 \centering\footnotesize
 \input{../../code/tables/tab_hypotheses.tex}
 \end{table*}
@@ -389,7 +394,7 @@ An AI assistant (Claude, Anthropic) was used for the literature search, code, ex
 \item Funding: [to be completed by the authors]
 \item Competing interests: [to be completed by the authors]
 \item Ethics approval and consent to participate: not applicable (public, de-identified benchmark data).
-\item Data availability: UCR archive (https://www.timeseriesclassification.com) and MIT-BIH Noise Stress Test Database (https://physionet.org/content/nstdb/1.0.0/).
+\item Data availability: UCR archive (\url{https://www.timeseriesclassification.com}) and MIT-BIH Noise Stress Test Database (\url{https://physionet.org/content/nstdb/1.0.0/}).
 \item Code availability: [public repository link to be inserted by the authors]; all results, tables, figures and the number macros of this paper are regenerated by one script.
 \item Author contribution: [to be completed by the authors]
 \end{itemize}

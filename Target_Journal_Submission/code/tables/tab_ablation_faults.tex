@@ -1,0 +1,16 @@
+\begin{tabular}{lrrrr}
+\toprule
+Variant & NLL & AUROC & W/D/L & $p$ \\
+\midrule
+LOOM & 0.738 & 0.765 & -- & -- \\
+LOOM-lambdaSSE & 0.751 & 0.775 & 42/26/46 & $p=1.000$ \\
+LOOM-kNN & 0.771 & 0.725 & 52/0/62 & $p=1.000$ \\
+LOOM-finite-c1 & 0.775 & 0.729 & 50/0/64 & $p=1.000$ \\
+LOOM-holdout & 0.846 & 0.754 & 94/0/19 & $p<0.001$ \\
+LOOM-free-b & 0.964 & 0.653 & 80/0/34 & $p<0.001$ \\
+LOOM-nosmooth & 1.049 & 0.747 & 71/1/42 & $p=0.003$ \\
+LOOM-insample & 1.096 & 0.770 & 108/0/6 & $p<0.001$ \\
+PreVal-smooth & 1.172 & 0.553 & 94/0/20 & $p<0.001$ \\
+PreVal & 1.728 & 0.563 & 108/0/6 & $p<0.001$ \\
+\bottomrule
+\end{tabular}

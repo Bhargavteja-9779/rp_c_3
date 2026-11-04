@@ -62,6 +62,7 @@ All experiments use univariate equal-length UCR datasets (114 in total), the off
 | E15 | Bayesian signed-rank analysis (ROPE ±0.01) | results of E1, E4, E12–E14 | — | registered 972f1d9 |
 | E16 | Logistic-regression convergence check | 12 random datasets | LogReg-CV default vs long training | **post hoc** (D12) |
 | E17 | Sanity checks: sampling-noise simulation and exchangeability check | results of E1, E9 | — | **post hoc**, added 2026-11-03 (D19) |
+| E18 | Validation of the command-line tool on plain CSV files | 5 datasets, official split | loom-triage vs pipeline | **post hoc**, added 2026-11-04 (D21) |
 
 ## Compute budget and scope cuts
 Hardware: one cloud container, 4 CPU cores, 14.3 GB memory limit, no GPU. Measured wall-clock

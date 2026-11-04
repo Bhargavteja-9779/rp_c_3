@@ -1,0 +1,4 @@
+Build report 2026-11-04T14:52Z
+main: pages=25 overfull=0 underfull=29 undefined_refs=0 undefined_cites=0 multiply_defined=0 macro_or_??_leaks=0
+supplement: pages=9 overfull=0 underfull=9 undefined_refs=0 undefined_cites=0 multiply_defined=0 macro_or_??_leaks=0
+bibtex warnings (main): 0

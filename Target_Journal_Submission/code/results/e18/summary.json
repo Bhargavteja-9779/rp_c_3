@@ -1,0 +1,57 @@
+{
+ "cli": "/usr/bin/python3 -m loom.cli",
+ "datasets": [
+  {
+   "dataset": "ECG200",
+   "n_test": 100,
+   "review": 20,
+   "identical_predictions": true,
+   "max_confidence_difference": 1.1102230246251565e-16,
+   "accuracy": 0.91,
+   "evaluate_output": "accuracy 0.910  NLL 0.254  error of automatic decisions at 20% review: 0.062",
+   "report_written": true
+  },
+  {
+   "dataset": "GunPoint",
+   "n_test": 150,
+   "review": 30,
+   "identical_predictions": true,
+   "max_confidence_difference": 1.1102230246251565e-16,
+   "accuracy": 0.9933333333333333,
+   "evaluate_output": "accuracy 0.993  NLL 0.059  error of automatic decisions at 20% review: 0.000",
+   "report_written": true
+  },
+  {
+   "dataset": "ItalyPowerDemand",
+   "n_test": 1029,
+   "review": 206,
+   "identical_predictions": true,
+   "max_confidence_difference": 1.1102230246251565e-16,
+   "accuracy": 0.9620991253644315,
+   "evaluate_output": "accuracy 0.962  NLL 0.129  error of automatic decisions at 20% review: 0.009",
+   "report_written": true
+  },
+  {
+   "dataset": "TwoLeadECG",
+   "n_test": 1139,
+   "review": 228,
+   "identical_predictions": true,
+   "max_confidence_difference": 1.1102230246251565e-16,
+   "accuracy": 0.9982440737489026,
+   "evaluate_output": "accuracy 0.998  NLL 0.073  error of automatic decisions at 20% review: 0.000",
+   "report_written": true
+  },
+  {
+   "dataset": "Wafer",
+   "n_test": 6164,
+   "review": 1233,
+   "identical_predictions": true,
+   "max_confidence_difference": 1.1102230246251565e-16,
+   "accuracy": 0.9993510707332901,
+   "evaluate_output": "accuracy 0.999  NLL 0.007  error of automatic decisions at 20% review: 0.000",
+   "report_written": true
+  }
+ ],
+ "all_identical": true,
+ "max_confidence_difference": 1.1102230246251565e-16
+}

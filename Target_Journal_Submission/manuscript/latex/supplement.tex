@@ -1,0 +1,147 @@
+\documentclass[pdflatex,sn-basic]{sn-jnl}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{longtable}
+\usepackage{xr-hyper}
+\usepackage{hyperref}
+\externaldocument[M-]{main}
+
+\graphicspath{{../../code/figures/}}
+\input{../../code/tables/macros.tex}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\theequation}{S\arabic{equation}}
+\theoremstyle{thmstyleone}
+\newtheorem{proposition}{Proposition}
+
+\raggedbottom
+\setlength{\tabcolsep}{3pt}
+
+\begin{document}
+
+\title{Supplementary Material for ``Knowing when to ask a human: reliable confidence for fast time series classifiers under sensor faults''}
+\author{\fnm{Author information removed} \sur{for double-anonymous review}}
+\affil{\orgname{See separate title page}}
+\abstract{Proofs of Propositions~1--2 of the main text, the deviations log, the leakage audit, the definitions of the simulated faults, the validation of the software tool, and additional tables and figures. All numbers are generated from the released result files.}
+\keywords{Supplementary material}
+\maketitle
+
+\section{Proofs}\label{sec:proofs}
+Notation follows Sect.~\ref{M-sec:prelim} of the main text: $A=\tilde X^\top\tilde X+\mathrm{diag}(0,\lambda I_p)$, $B=A^{-1}\tilde X^\top Y$, $\hat Y=\tilde XB$, $d_i=\tilde x_i^\top A^{-1}\tilde x_i$, and $A_{-i}=A-\tilde x_i\tilde x_i^\top$ is the matrix without example $i$ (same $\lambda$ and standardisation, Assumption~A4). The Sherman--Morrison identity gives
+\begin{equation}\label{eq:sm}
+A_{-i}^{-1}=A^{-1}+\frac{A^{-1}\tilde x_i\tilde x_i^\top A^{-1}}{1-d_i},\qquad \tilde x_i^\top A_{-i}^{-1}=\frac{\tilde x_i^\top A^{-1}}{1-d_i}.
+\end{equation}
+
+\begin{proposition}[Proposition 1 of the main text]
+$z_{-i}=Y_i-(Y_i-\hat Y_i)/(1-d_i)$ and $h_{-i}=d_i/(1-d_i)$.
+\end{proposition}
+\begin{proof}
+$B_{-i}=A_{-i}^{-1}(\tilde X^\top Y-\tilde x_iY_i)$, so by \eqref{eq:sm}, $\tilde x_i^\top B_{-i}=(\hat Y_i-d_iY_i)/(1-d_i)=Y_i-(Y_i-\hat Y_i)/(1-d_i)$. This is the classical PRESS identity \citep{allen1974}. For the leverage, $\tilde x_i^\top A_{-i}^{-1}\tilde x_i=d_i+d_i^2/(1-d_i)=d_i/(1-d_i)$.
+\end{proof}
+
+\begin{proposition}[closed forms from one thin SVD; Eq.~(2) of the main text]
+With $\Phi_c=USV^\top$ and $D_\lambda=\mathrm{diag}(1/(s_j^2+\lambda))$: $d_i=1/n+\sum_j u_{ij}^2 s_j^2/(s_j^2+\lambda)$, $h(x)=1/n+\lVert D_\lambda^{1/2}V^\top\psi\rVert^2+(\lVert\psi\rVert^2-\lVert V^\top\psi\rVert^2)/\lambda$ and $k(x,i)=1/n+(V^\top\psi)^\top D_\lambda Su_i$.
+\end{proposition}
+\begin{proof}
+Because $\Phi_c$ is centred, the intercept column is orthogonal to the features and $A$ is block diagonal; the intercept contributes $1/n$. For the feature block, $(\Phi_c^\top\Phi_c+\lambda I)^{-1}=VD_\lambda V^\top+\lambda^{-1}(I-VV^\top)$. Training points lie in the span of $V$, which gives $d_i$ and $k(x,i)$; a test point may not, which gives the last term of $h(x)$.
+\end{proof}
+
+\begin{proposition}[Proposition 2 of the main text]
+With residuals $E=Y-\hat Y$, $z_{-i}(x)=z(x)-k(x,i)E_i/(1-d_i)$ and $h_{-i}(x)=h(x)+k(x,i)^2/(1-d_i)$.
+\end{proposition}
+\begin{proof}
+From \eqref{eq:sm}, $B_{-i}=B-A^{-1}\tilde x_iY_i+A^{-1}\tilde x_i(\hat Y_i-d_iY_i)/(1-d_i)=B-A^{-1}\tilde x_iE_i/(1-d_i)$; multiplying by $\tilde x(x)^\top$ gives the first identity. The second is \eqref{eq:sm} applied to $\tilde x(x)^\top A_{-i}^{-1}\tilde x(x)$.
+\end{proof}
+Under the Bayesian linear model with prior $\beta\sim\mathcal N(0,\sigma^2\lambda^{-1}I)$ and noise variance $\sigma^2$ (flat intercept), the predictive variance of each score is $\sigma^2h(x)$, so $z(x)/\sqrt{h(x)}$ is the predictive mean divided by its standard deviation up to $\sigma$. All identities are checked against explicit refits by unit tests in the code repository. Results 1 and 3 are standard Sherman--Morrison algebra; we state them in the form needed here.
+
+\section{Deviations log}\label{sec:deviations}
+Every change to the registered protocol, with date, reason, timing relative to the results and effect. Entries marked post hoc were made after results were known.
+{\footnotesize\input{deviations_table.tex}}
+
+\section{Leakage audit}\label{sec:leakage}
+Exact duplicates (rounded to six decimals) and near-duplicates (z-normalised RMS distance to the nearest training series below 0.01 standard deviations) between the official training and test sets were searched in all \NDatasets{} datasets (Table~\ref{tab:leakage}). \NDupExact{} datasets contain exact duplicates and \NDupNear{} exact or near duplicates. In ElectricDevices, many duplicated test series carry a different label from their identical training series, a data-quality issue of the archive. \emph{Planted-leak test}: five test series of GunPoint were copied into its training set exactly and five with noise of 0.001 standard deviations; the audit flagged exactly these and nothing else (\PlantedPass). Refitting LOOM after permuting the test labels gave identical parameters and predictions, confirming that the test set is never used for fitting. Results without the affected datasets are in Sect.~\ref{M-sec:general} of the main text.
+
+\begin{table}[h]
+\caption{Datasets with exact or near train/test duplicates in the official splits.}\label{tab:leakage}
+\centering\scriptsize\input{../../code/tables/tab_leakage.tex}
+\end{table}
+
+\section{Simulated faults}\label{sec:faults}
+Faults are applied to test series only, with amplitudes relative to each series' standard deviation sd: noise (Gaussian, $\sigma\in\{0.1,0.3,0.5\}$\,sd); baseline wander (sinusoid of amplitude $\{0.25,0.5,1\}$\,sd, 0.5--2 cycles per series); dropout (a segment of $\{10,20,30\}$\,\% replaced by linear interpolation); spikes ($\pm3$\,sd at $\{1,3,5\}$\,\% of time points); speed variation (smooth monotone time warp with local slope in $[1-s,1+s]$, $s\in\{0.05,0.1,0.2\}$); misalignment (circular shift of $\{5,10,20\}$\,\% of the length). Random draws are seeded by dataset, resample, fault and severity. In the triage studies, cardiac and industrial datasets receive noise, wander, spikes or dropout, and motion datasets noise, spikes, dropout or speed variation. Real noise (MIT-BIH NSTDB records bw, em and ma, both channels) is added as a random window of the series length at its native 360\,Hz sampling, scaled to 12, 6 or 0\,dB SNR relative to each series' variance.
+
+\section{Validation of the software tool}\label{sec:tool}
+The command-line tool was run as a separate process on plain CSV files built directly from the official UCR text files of \ToolN{} datasets (\ToolDatasets), with \texttt{fit}, \texttt{run} (20\,\% review budget, HTML report) and \texttt{evaluate}. Its predictions were identical to those of the research pipeline on \ToolIdentical{} of \ToolN{} datasets, and confidences differed by at most $\ToolMaxDiff$. The package also has unit tests for the API and the command-line interface.
+
+\section{Additional tables and figures}\label{sec:extra}
+
+\begin{table}[h]
+\caption{Prediction sets at $\alpha=0.1$: mean over datasets (faults: over datasets and 18 conditions) of coverage, set size and share of empty sets.}\label{tab:conformal}
+\centering\scriptsize\input{../../code/tables/tab_conformal.tex}
+\end{table}
+
+\begin{table}[h]
+\caption{Fit and prediction time per dataset (single CPU core; mean over resamples, then median or mean over datasets). Readouts include the ridge SVD but not the shared MiniRocket transform, listed separately.}\label{tab:cost}
+\centering\scriptsize\input{../../code/tables/tab_cost.tex}
+\end{table}
+
+\begin{table}[h]
+\caption{Ablation on clean data (median NLL and ECE; W/D/L and Holm-adjusted $p$ for NLL against LOOM).}\label{tab:ablclean}
+\centering\scriptsize\input{../../code/tables/tab_ablation_clean.tex}
+\end{table}
+
+\begin{table}[h]
+\caption{Ablation under simulated faults (median NLL over 18 conditions and detection AUROC).}\label{tab:ablfaults}
+\centering\scriptsize\input{../../code/tables/tab_ablation_faults.tex}
+\end{table}
+
+\begin{table}[h]
+\caption{Training-set size: 25\,\% and 50\,\% of the official training sets; median NLL on clean data and under severity-3 faults.}\label{tab:trainsize}
+\centering\scriptsize\input{../../code/tables/tab_trainsize.tex}
+\end{table}
+
+\begin{table}[h]
+\caption{Other feature extractors (official split): LOOM against each readout in NLL.}\label{tab:extractors}
+\centering\scriptsize\input{../../code/tables/tab_extractors.tex}
+\end{table}
+
+\begin{table}[h]
+\caption{Natural cross-axis change on UWaveGestureLibrary: means over six axis pairs and five resamples.}\label{tab:naturalshift}
+\centering\scriptsize\input{../../code/tables/tab_naturalshift.tex}
+\end{table}
+
+\begin{table}[h]
+\caption{Convergence check of the logistic-regression baseline (\LRN{} random datasets): test NLL with default (300 iterations, tolerance $10^{-3}$) and long training (3{,}000 iterations, $10^{-5}$), and the selected regularisation $C$.}\label{tab:logreg}
+\centering\scriptsize\input{../../code/tables/tab_logreg.tex}
+\end{table}
+
+\begin{figure}[h]
+\centering\includegraphics[width=\textwidth]{fig_datasets.pdf}
+\caption{Training-set size, series length and number of classes of the \NDatasets{} UCR datasets.}\label{fig:datasets}
+\end{figure}
+
+\begin{figure}[h]
+\centering\includegraphics[width=\textwidth]{fig_triage_exploratory.pdf}
+\caption{Exploratory triage study (12 datasets), same layout as Fig.~\ref{M-fig:triage} of the main text.}\label{fig:triagex}
+\end{figure}
+
+\begin{figure}[h]
+\centering\includegraphics[width=\textwidth]{fig_scatter_loom_vs_preval.pdf}
+\caption{Per-dataset NLL of LOOM against PreVal on clean data (left) and averaged over 18 simulated faults (right); points below the diagonal favour LOOM; values below $10^{-3}$ are drawn at $10^{-3}$.}\label{fig:scatter}
+\end{figure}
+
+\begin{figure}[h]
+\centering\includegraphics[width=0.7\textwidth]{fig_efficiency.pdf}
+\caption{Fit time against the number of training series (log--log, single core).}\label{fig:eff}
+\end{figure}
+
+\bibliography{references}
+
+\end{document}

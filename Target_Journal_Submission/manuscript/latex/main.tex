@@ -34,7 +34,7 @@
 
 \begin{document}
 
-\title[Knowing when to ask a human]{Knowing when to ask a human: reliable confidence for fast time series classifiers under sensor faults}
+\title[Knowing when to ask a human]{Knowing when to ask a human: fault-aware confidence for fast time series classifiers}
 
 \author{\fnm{Author information removed} \sur{for double-anonymous review}}
 \affil{\orgname{See separate title page}}
@@ -172,7 +172,7 @@ Under the Bayesian linear model with prior $\beta\sim\mathcal N(0,\sigma^2\lambd
 \begin{equation}\label{eq:loom}
 \hat p(y=k\mid x)=\mathrm{softmax}_k\!\left(\frac{a\,z_k(x)}{\sqrt{h(x)/h_{\mathrm{ref}}}}\right).
 \end{equation}
-For recordings like the training data $h(x)\approx h_{\mathrm{ref}}$ and Eq.~\eqref{eq:loom} is a temperature-scaled ridge; when a fault moves a recording away from the training span, $h(x)$ grows and the probabilities move towards uniform. Eq.~\eqref{eq:loom} is the limit $c\to\infty$ of the moderation $\mathrm{softmax}\big(az/\sqrt{1+ch/h_{\mathrm{ref}}}\big)$ \citep{kristiadi2020,mackay1992}; the limit was fixed on eight development datasets before the benchmark, and finite $c$ is an ablation.
+The leverage is a ridge-regularised Mahalanobis distance of $\psi(x)$ from the training mean, plus $1/n$, computed in the geometry the classifier itself uses. For recordings like the training data $h(x)\approx h_{\mathrm{ref}}$ and Eq.~\eqref{eq:loom} is a temperature-scaled ridge; when a fault moves a recording away from the training span, $h(x)$ grows and the probabilities move towards uniform. Eq.~\eqref{eq:loom} is the limit $c\to\infty$ of the moderation $\mathrm{softmax}\big(az/\sqrt{1+ch/h_{\mathrm{ref}}}\big)$ \citep{kristiadi2020,mackay1992}; the limit was fixed on eight development datasets before the benchmark, and finite $c$ is an ablation.
 
 \subsection{Fitting on exact LOO pairs}
 For each $\lambda$ the temperature minimises the LOO negative log-likelihood
@@ -240,7 +240,7 @@ Fault detection is measured by the AUROC of $1-\max_k\hat p_{ik}$ for separating
 All readouts use identical MiniRocket features: ridge one-hot output, softmax of the ridge scores, PreVal \citep{dempster2025preval} (reimplemented without smoothing, as published), hold-out temperature scaling (80/20), five-fold Platt and isotonic calibration \citep{pedregosa2011}, cross-validated logistic regression, and five-seed ensembles of PreVal and LOOM. QUANT \citep{dempster2024quant} and the Arsenal \citep{middlehurst2021hc2} work on the raw series. Eight ablations remove or replace one component of LOOM at a time (Sect.~\ref{sec:ablation}). All methods receive the same data, seeds and fixed hyperparameter grids.
 
 \subsection{Hypotheses and tests}
-Table~\ref{tab:hyp} lists the hypotheses with their metrics and outcomes. Datasets are the unit of analysis, with each metric averaged over resamples. We use two-sided Wilcoxon signed-rank tests \citep{wilcoxon1945} with Holm's correction \citep{holm1979}, as recommended for comparisons across datasets \citep{benavoli2016,demsar2006}, report how many datasets a result holds in, means with 95\,\% bootstrap confidence intervals (1{,}000 resamples), and Bayesian signed-rank tests \citep{benavoli2017bayesian} with a region of practical equivalence of $\pm0.01$ nats for NLL and $\pm1$ percentage point for rates. Numeric pass criteria for H1--H3 were written down after the results (deviation D18).
+Table~\ref{tab:hyp} lists the hypotheses with their metrics and outcomes. Datasets are the unit of analysis, with each metric averaged over resamples. We use two-sided Wilcoxon signed-rank tests \citep{wilcoxon1945} with Holm's correction \citep{holm1979}, as recommended for comparisons across datasets \citep{benavoli2016,demsar2006}, report how many datasets a result holds in, means with 95\,\% bootstrap confidence intervals (1{,}000 resamples), and Bayesian signed-rank tests \citep{benavoli2017bayesian} with a region of practical equivalence of $\pm0.01$ nats for NLL and $\pm1$ percentage point for rates. Only the hypotheses in Table~\ref{tab:hyp} are confirmatory; all other comparisons are descriptive, with Holm's correction applied within each table. Numeric pass criteria for H1--H3 were written down after the results (deviation D18).
 
 %=====================================================================
 \section{Results and analysis}\label{sec:results}
@@ -304,7 +304,7 @@ Figure~\ref{fig:realnoise} and Table~\ref{tab:realnoise} show the results with r
 \subsection{Case study: triage of faulty recordings (H5, H6)}\label{sec:triage}
 In the exploratory study (12 datasets, 20\,\% review budget), LOOM's review queue contained a median of \XCaughtLoom{} of the faulty recordings, against \XCaughtPreVal{} for PreVal and \XCaughtQuant{} for QUANT, and caught more than PreVal on all twelve datasets (\XCaughtPPreVal). Its automatic error rate was lower in the median (\XErrLoom{} vs \XErrPreVal) but not significantly (\XErrPPreVal), and QUANT made the fewest automatic errors (\XErrQuant).
 
-The pre-registered confirmatory replication on \CNDatasets{} further datasets (Fig.~\ref{fig:triage}, Table~\ref{tab:triage}) confirmed both hypotheses under Holm's correction over all eight primary tests. LOOM's queue caught a median of \CCaughtLoom{} of the faulty recordings, against \CCaughtPreVal{} for PreVal (LOOM \CmpCCaughtPreVal; H5) and \CCaughtQuant{} for QUANT (LOOM \CmpCCaughtQuant). Its automatic error rate was \CErrLoom, against \CErrPreVal{} for PreVal (LOOM \CmpCErrPreVal; H6) and \CErrQuant{} for QUANT (LOOM \CmpCErrQuant). Means with 95\,\% CIs are \CICCaughtLoom{} (LOOM) and \CICCaughtPreVal{} (PreVal) for faults caught. The advantage over PreVal remains after merging datasets from the same source (LOOM \CmpCCaughtGrouped). On fault-free streams the methods behave alike (automatic error \CErrCleanLoom{} vs \CErrCleanPreVal), so LOOM does not change how a system behaves on good data. For an operator, this means that with one recording in five sent to review, about \CCaughtLoom{} instead of \CCaughtPreVal{} of the damaged recordings reach a person.
+The pre-registered confirmatory replication on \CNDatasets{} further datasets (Fig.~\ref{fig:triage}, Table~\ref{tab:triage}) confirmed both hypotheses under Holm's correction over all eight primary tests. LOOM's queue caught a median of \CCaughtLoom{} of the faulty recordings, against \CCaughtPreVal{} for PreVal (LOOM \CmpCCaughtPreVal; H5) and \CCaughtQuant{} for QUANT (LOOM \CmpCCaughtQuant). Its automatic error rate was \CErrLoom, against \CErrPreVal{} for PreVal (LOOM \CmpCErrPreVal; H6) and \CErrQuant{} for QUANT (LOOM \CmpCErrQuant). Means with 95\,\% CIs are \CICCaughtLoom{} (LOOM) and \CICCaughtPreVal{} (PreVal) for faults caught. The advantage over PreVal remains after merging datasets from the same source (LOOM \CmpCCaughtGrouped). On fault-free streams the methods behave alike (automatic error \CErrCleanLoom{} vs \CErrCleanPreVal), so LOOM does not change how a system behaves on good data. A post hoc check (deviation D22) reduced the share of faulty recordings by subsampling the stored outputs: at 10\,\% prevalence LOOM's queue caught \PrevTenCaughtLoom{} against \PrevTenCaughtPreVal{} for PreVal (LOOM \CmpPrevTenCaughtPreVal) and its automatic error was \PrevTenErrLoom{} against \PrevTenErrPreVal{} (LOOM \CmpPrevTenErrPreVal). For an operator, this means that with one recording in five sent to review, about \CCaughtLoom{} instead of \CCaughtPreVal{} of the damaged recordings reach a person.
 
 \begin{figure*}[t]
 \centering\includegraphics[width=\textwidth]{fig_triage.pdf}
@@ -368,7 +368,7 @@ LOOM uses a second quantity that the LOO algebra provides for free, the held-out
 
 The main limitations are:
 \begin{enumerate}
-\item Apart from the real ECG noise, all faults are simulated, and real noise was tested on ECG only. The only real change of sensor we studied barely moves leverage, and LOOM gains little there.
+\item Apart from the real ECG noise, all faults are simulated, and real noise was tested on ECG only; the noise was added at its native 360\,Hz sampling because the UCR files do not record their sampling rates. The only real change of sensor we studied barely moves leverage, and LOOM gains little there.
 \item Leverage does not respond to changes that keep the features within the training range (speed variation, another sensor axis, label noise, changing class frequencies).
 \item On clean data LOOM is not better than PreVal, and target smoothing raises its calibration error on datasets with few training series per class.
 \item QUANT has a lower likelihood loss than LOOM under the strongest faults.
@@ -394,7 +394,7 @@ An AI assistant (Claude, Anthropic) was used for the literature search, code, ex
 \item Funding: [to be completed by the authors]
 \item Competing interests: [to be completed by the authors]
 \item Ethics approval and consent to participate: not applicable (public, de-identified benchmark data).
-\item Data availability: UCR archive (\url{https://www.timeseriesclassification.com}) and MIT-BIH Noise Stress Test Database (\url{https://physionet.org/content/nstdb/1.0.0/}).
+\item Data availability: UCR archive (\url{https://www.timeseriesclassification.com}; free for research use with citation of \citet{dau2019ucr}) and MIT-BIH Noise Stress Test Database (\url{https://physionet.org/content/nstdb/1.0.0/}; Open Data Commons Attribution License v1.0).
 \item Code availability: [public repository link to be inserted by the authors]; all results, tables, figures and the number macros of this paper are regenerated by one script.
 \item Author contribution: [to be completed by the authors]
 \end{itemize}

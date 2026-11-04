@@ -63,6 +63,7 @@ All experiments use univariate equal-length UCR datasets (114 in total), the off
 | E16 | Logistic-regression convergence check | 12 random datasets | LogReg-CV default vs long training | **post hoc** (D12) |
 | E17 | Sanity checks: sampling-noise simulation and exchangeability check | results of E1, E9 | — | **post hoc**, added 2026-11-03 (D19) |
 | E18 | Validation of the command-line tool on plain CSV files | 5 datasets, official split | loom-triage vs pipeline | **post hoc**, added 2026-11-04 (D21) |
+| E19 | Fault-prevalence sensitivity of the confirmatory triage study | E13 outputs, prevalence 10 / 20 / 30 % | as E13 | **post hoc**, added 2026-11-04 (D22) |
 
 ## Compute budget and scope cuts
 Hardware: one cloud container, 4 CPU cores, 14.3 GB memory limit, no GPU. Measured wall-clock

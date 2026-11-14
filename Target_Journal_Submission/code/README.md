@@ -1,9 +1,8 @@
 # LOOM — leverage-moderated leave-one-out calibration for random-kernel time series classifiers
 
 Code, data instructions and machine-generated results for the manuscript
-*"Shift-aware probabilities for random convolutional kernel time series classifiers via
-leverage-moderated leave-one-out calibration"* (submitted to the Journal of King Saud
-University – Computer and Information Sciences).
+*"Can a fast time series classifier tell when a sensor recording is faulty? Leverage-aware confidence and its
+limits"* (prepared for Expert Systems with Applications).
 
 LOOM turns the ridge readout of MiniRocket/ROCKET-type classifiers into a probabilistic
 classifier
@@ -52,66 +51,52 @@ with no GPU. `torch` (CPU build) is needed only for aeon's Hydra transform.
 
 ```bash
 bash scripts/download_data.sh      # UCR 2018 univariate archive, ~550 MB zip, ~1.2 GB extracted
+bash scripts/download_nstdb.sh     # MIT-BIH Noise Stress Test Database noise records (bw, em, ma)
+bash scripts/download_ptbxl.sh     # PTB-XL v1.0.3: metadata + 16,307 100-Hz 12-lead records (~450 MB)
 ```
 
-The script downloads `Univariate2018_arff.zip` from timeseriesclassification.com, extracts
-the `*_TRAIN.txt` / `*_TEST.txt` files into `data/raw/Univariate_arff/`, and writes the list of
-the 114 equal-length datasets without missing values (`data/raw/ucr_equal_length.csv`; a
-copy is committed as `data/ucr_equal_length.csv`). The data are the property of their
-original creators; please cite Dau et al. (2019).
+The UCR script writes the list of the 114 equal-length datasets without missing values
+(`data/raw/ucr_equal_length.csv`; a copy is committed as `data/ucr_equal_length.csv`). Licences: UCR data
+are free for research use with citation of Dau et al. (2019); NSTDB: Open Data Commons Attribution v1.0;
+PTB-XL: CC BY 4.0. Raw data are not committed.
 
 ## 3. Reproduce everything
 
 ```bash
-python run_all.py --mode quick      # ~10 min: 6 small datasets, 1 resample — checks the whole pipeline
-python run_all.py --mode full       # full study: 114 datasets x 5 resamples (+ extractors, train-size, Arsenal/QUANT)
+python run_all.py --mode quick      # ~10 min: 6 small datasets, 1 resample -- checks the whole pipeline
+python run_all.py --mode full       # full study (several days on 4 cores; every stage resumes from its cache)
+bash ../manuscript/latex/build.sh --word    # manuscript + supplement PDFs, layout checks, Word version
+bash ../manuscript/latex/make_submission.sh # submission zip, with a compile test of the LaTeX source
 ```
 
-Stages (`--stages audit,main,raw,extract,trainsize,natural,case,logreg,analyze`; each is resumable because
-finished jobs are cached as `results/raw/*.json`):
+Stages, in order (`--stages ...`; one script per experiment in `experiments/eNN_*.py`):
 
-| Stage | What it runs | Output |
+| Stage | Experiment | Output |
 |---|---|---|
-| `audit` | duplicate / leakage audit of the official splits | `results/leakage_audit.csv` |
-| `main` | MiniRocket features; LOOM, 7 baselines, 8 ablations, 5-seed ensembles (official split), conformal sets; clean + 18 corruption conditions; 5 resamples (3 for the four datasets with > 3,000 training series) | `results/raw/minirocket__*__all.json` |
-| `raw` | QUANT (all resamples) and Arsenal (official split; clean + severity-3) on raw series | `results/raw/raw__*.json` |
-| `extract` | MultiRocket and Hydra features with the core readouts (official split; clean + severity-3 conditions; datasets with ≤ 3,000 training series) | `results/raw/{multirocket,hydra}__*.json` |
-| `trainsize` | 25 % and 50 % of the training data (official split; clean + severity-3; datasets with ≤ 3,000 training series) | `results/raw/minirocket__*__tf*.json` |
-| `natural` | natural cross-axis shift, UWaveGestureLibrary X/Y/Z | `results/natural_shift.json` |
-| `case` | triage case study: 12 sensor datasets, 30 % faulty recordings, human review budget | `results/case_study.json`, `results/case_study/*.npz` |
-| `logreg` | convergence check of the logistic-regression baseline (12 datasets) | `results/check_logreg_convergence.json` |
-| `analyze` | statistics, tables, figures | `results/*.csv|json`, `tables/`, `figures/` |
+| `audit` | E0 leakage audit | `results/e00/` |
+| `main` | E1, E3, E4, E9: MiniRocket readouts, ablations, 18 simulated faults, conformal sets | `results/raw/minirocket__*.json` |
+| `raw` | E2: QUANT, Arsenal | `results/raw/raw__*.json` |
+| `extract`, `trainsize` | E5 other extractors, E7 training-set size | `results/raw/` |
+| `natural` | E10 cross-axis change | `results/natural_shift.json` |
+| `case`, `confirm` | E11 exploratory and E13 confirmatory triage | `results/case_study*.json`, `results/case_study/*.npz` |
+| `realnoise` | E12 recorded ECG noise (NSTDB) | `results/real_noise.json`, `results/real_noise/*.npz` |
+| `quantfeat` | E14 readouts on QUANT features | `results/quant_features.json` |
+| `logreg`, `sanity` | E16 LogReg convergence, E17 sanity checks | `results/check_logreg_convergence.json`, `results/e17/` |
+| `tool`, `prevalence` | E18 tool validation, E19 prevalence sensitivity | `results/e18/`, `results/e19/` |
+| `ptbxl` | E20 PTB-XL expert-annotated noise (H8, H9) | `results/e20/summary.json`, `results/e20/*.npz` |
+| `hybrid` | E21 hybrid triage (H10) | `results/e21/` |
+| `posthoc` | E22 post hoc explanation (D27) | `results/e22/summary.json` |
+| `analyze`, `aggregate`, `figures` | statistics; `tables/macros.tex` and `tables/tab_*.tex`; `figures/fig_*.pdf` | |
 
-Then rebuild the manuscript from the generated results:
-
-```bash
-python ../manuscript/build/build_manuscript.py     # -> ../manuscript/Final_Manuscript.docx (+ .pdf via LibreOffice)
-```
-
-`python -m pytest -q tests` checks every closed-form identity (LOO logits, held-out
-leverage, test leverage, cross-leverage, jackknife+ sets) against explicit refits.
+`python -m pytest -q tests` checks every closed-form identity against explicit refits, the API and CLI, and
+that the memory-bounded QUANT used in E20 equals aeon's QUANTClassifier.
 
 ## 4. Where each paper item comes from
 
-| Paper item | File |
-|---|---|
-| Clean results (Table 1) | `tables/table_main_clean.{md,csv}` |
-| Robustness (Table 2, Figs. 4–7) | `tables/table_robustness_shifted.*`, `tables/table_robustness_by_family.csv`, `figures/fig_robustness_*.png` |
-| Ensembles, Arsenal, QUANT on the official split (Table 3) | `tables/table_rawbaselines_*.md` |
-| Ablation (Fig. 8) | `tables/table_ablation_*.md`, `figures/fig_ablation.png` |
-| Extractors and dataset types | `tables/table_generalisation_*.md`, `tables/table_by_type.csv` |
-| Conformal sets (Table 4) | `tables/table_conformal.csv`, `figures/fig_conformal.png` |
-| Efficiency (Table 5, Fig. 9) | `tables/table_efficiency.csv`, `figures/fig_efficiency.png` |
-| Training-set size (Table S4) | `tables/table_train_size.csv` |
-| Natural cross-axis shift (§6.6) | `experiments/natural_shift.py` → `results/natural_shift.json`, `tables/table_natural_shift*.csv` |
-| Grouped-by-source sensitivity | `results/statistics.json` (`sens_grouped_*`) |
-| Triage case study (§6.1, Fig. 3) | `experiments/case_study.py` → `results/case_study.json`, `results/case_study/*.npz`, `tables/table_case_study_datasets.csv`, `figures/fig_case_study.png` |
-| LogReg convergence check (§6.8) | `experiments/check_logreg_convergence.py` → `results/check_logreg_convergence.json` |
-| Sensitivity subsets | `tables/table_sensitivity_{unseen,nodup}_*.md` |
-| Error analysis | `tables/table_error_analysis_datasets.csv`, `figures/fig_error_analysis.png` |
-| All statistics (Wilcoxon, Holm, effect sizes, CIs, Friedman) | `results/statistics.json` |
-| Headline medians | `results/metrics.json` |
-| Every per-dataset/resample/condition metric | `results/raw_results.csv` |
+Every number in the manuscript, supplement and cover letter is a LaTeX macro in `tables/macros.tex`, written by
+`experiments/aggregate.py` from `results/eNN/summary.json` and the raw result files; no number is typed by hand.
+Every figure has its own script `visualization/fig_*.py`. The claim-by-claim mapping to result files is in
+`../review/claim_evidence_matrix.md`; the hypotheses, deviations and their timing are in `../research_design/`.
 
 ## 5. Code layout
 
@@ -130,7 +115,7 @@ src/loom/
   evaluation/aggregate.py     tidy tables from cached jobs
   statistics/tests.py         Wilcoxon + Holm, rank-biserial, bootstrap CI, Friedman, Nemenyi CD
   visualization/plots.py      all figures
-experiments/                  development pilots (disclosed), leakage audit, analysis
+experiments/                  one script per experiment (eNN_*.py), analysis, aggregation, development pilots
 run_all.py                    single entry point (quick / full)
 config/default.yaml           human-readable record of the configuration
 ```

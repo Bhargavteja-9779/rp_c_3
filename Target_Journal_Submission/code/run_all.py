@@ -102,7 +102,7 @@ def schedule(jobs, workers, raw_dir, heavy_n=3000, log=None, max_retries=2):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["quick", "full"], default="quick")
-    ap.add_argument("--stages", default="audit,main,raw,extract,trainsize,natural,case,realnoise,confirm,quantfeat,logreg,sanity,analyze,aggregate,figures")
+    ap.add_argument("--stages", default="audit,main,raw,extract,trainsize,natural,case,realnoise,confirm,quantfeat,logreg,sanity,tool,prevalence,ptbxl,hybrid,posthoc,analyze,aggregate,figures")
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2)))
     ap.add_argument("--datasets", default=None, help="comma-separated subset (default: mode-dependent)")
     a = ap.parse_args()
@@ -151,7 +151,9 @@ def main():
         import subprocess
         for st, script in (("natural", "natural_shift.py"), ("case", "case_study.py"), ("realnoise", "real_noise.py"),
                            ("confirm", "case_study_confirm.py"), ("quantfeat", "quant_features.py"),
-                           ("logreg", "check_logreg_convergence.py"), ("sanity", "e17_sanity_checks.py")):
+                           ("logreg", "check_logreg_convergence.py"), ("sanity", "e17_sanity_checks.py"),
+                           ("tool", "e18_tool_validation.py"), ("prevalence", "e19_prevalence_sensitivity.py"),
+                           ("ptbxl", "e20_ptbxl.py"), ("hybrid", "e21_hybrid.py"), ("posthoc", "e22_post_hoc_realism.py")):
             cached = st == "logreg" and (ROOT / "results" / "check_logreg_convergence.json").exists()
             if st in stages and not cached:   # natural_shift.py resumes from its own cache
                 subprocess.run([sys.executable, str(ROOT / "experiments" / script)], check=True, cwd=ROOT)

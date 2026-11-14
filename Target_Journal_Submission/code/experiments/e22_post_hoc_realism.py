@@ -31,6 +31,48 @@ def queue(conf, b=0.2):
     return q
 
 
+LEADS = ["I", "II", "III", "AVR", "AVL", "AVF", "V1", "V2", "V3", "V4", "V5", "V6"]
+
+
+def leads_in(text):
+    """Leads named in a PTB-XL noise annotation: single leads, ranges such as 'I-AVF', or 'alles' (all leads).
+    Returns None when the text names no recognisable lead (e.g. a bare comma)."""
+    import re
+    t = str(text).upper().replace("ALLES", "I-V6").replace("ALL", "I-V6")
+    out = set()
+    for tok in re.split(r"[,\s;]+", t):
+        tok = tok.strip("?.: ")
+        if not tok:
+            continue
+        if "-" in tok:
+            a, b = tok.split("-", 1)
+            if a in LEADS and b in LEADS and LEADS.index(a) <= LEADS.index(b):
+                out.update(LEADS[LEADS.index(a):LEADS.index(b) + 1])
+        elif tok in LEADS:
+            out.add(tok)
+    return out or None
+
+
+def lead_coverage():
+    """Number of leads named in the noise annotations of the noisy test records (union over annotation types)."""
+    db = ptbxl.metadata(); X, y, noisy, fold, ids = ptbxl.load()
+    meta = db.loc[ids[(fold >= 9) & noisy]]
+    counts, unparsed = [], 0
+    for _, r in meta.iterrows():
+        u, any_text = set(), False
+        for c in ptbxl.NOISE_COLS:
+            if isinstance(r[c], str) and r[c].strip():
+                any_text = True; L = leads_in(r[c])
+                if L is None:
+                    unparsed += 1; u = None; break
+                u |= L
+        if any_text and u is not None:
+            counts.append(len(u))
+    c = np.array(counts)
+    return dict(n_records=int(len(meta)), n_parsed=int(len(c)), n_unparsed=int(unparsed), median_leads=float(np.median(c)),
+                share_le3=float((c <= 3).mean()), share_all12=float((c == 12).mean()))
+
+
 def by_type():
     from sklearn.metrics import roc_auc_score
     db = ptbxl.metadata()
@@ -96,11 +138,12 @@ def effects():
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    s = {"experiment": "E22 (post hoc, D27)", "by_type": by_type(), "effects": effects()}
+    s = {"experiment": "E22 (post hoc, D27)", "by_type": by_type(), "effects": effects(), "lead_coverage": lead_coverage()}
     json.dump(s, open(OUT / "summary.json", "w"), indent=1)
     for c in ptbxl.NOISE_COLS:
         a = s["by_type"]["mean_over_seeds"]["clean"][c]
         print(c, a["n"], {m: round(a[m]["auroc"], 3) for m in METHODS})
+    print("lead coverage", s["lead_coverage"])
     for r in s["effects"]:
         print(r["study"], r["n"], round(r["diff"], 3), round(r["ci_low"], 3), round(r["ci_high"], 3))
 

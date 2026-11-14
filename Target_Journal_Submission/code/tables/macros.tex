@@ -318,6 +318,14 @@
 \newcommand{\CmpECEFaultsQuant}{better on 75 of 114 datasets, $p=0.005$}
 \newcommand{\CmpECEFaultsSoftmax}{better on 105 of 114 datasets, $p<0.001$}
 \newcommand{\CmpGroupedFaults}{better on 68 of 70 source-level units, $p<0.001$}
+\newcommand{\CmpHTenCaughtHybMin}{better on 25 of 38 datasets, $p=0.010$}
+\newcommand{\CmpHTenCaughtLoom}{not significantly different, with 0 wins and 0 losses of 38 datasets, $p=1.000$}
+\newcommand{\CmpHTenCaughtQuant}{better on 34 of 38 datasets, $p<0.001$}
+\newcommand{\CmpHTenErrHybMin}{worse on 29 of 38 datasets, $p<0.001$}
+\newcommand{\CmpHTenErrLoom}{not significantly different, with 12 wins and 25 losses of 38 datasets, $p=0.071$}
+\newcommand{\CmpHTenErrQuant}{worse on 30 of 38 datasets, $p<0.001$}
+\newcommand{\CmpHTenPrimaryLoom}{not significantly different, with 12 wins and 25 losses of 38 datasets, $p=0.071$}
+\newcommand{\CmpHTenPrimaryQuant}{worse on 30 of 38 datasets, $p<0.001$}
 \newcommand{\CmpHydraClean}{not significantly different, with 43 wins and 67 losses of 110 datasets, $p=0.147$}
 \newcommand{\CmpHydraFaults}{better on 106 of 110 datasets, $p<0.001$}
 \newcommand{\CmpMRClean}{worse on 72 of 110 datasets, $p=0.008$}
@@ -428,6 +436,14 @@
 \newcommand{\ECEFaultsPreVal}{0.185}
 \newcommand{\ECEFaultsQuant}{0.170}
 \newcommand{\ECEFaultsSoftmax}{0.256}
+\newcommand{\EffConfCI}{[14.0, 20.9]}
+\newcommand{\EffConfDiff}{17.3}
+\newcommand{\EffExplCI}{[10.0, 22.6]}
+\newcommand{\EffExplDiff}{16.1}
+\newcommand{\EffPTBCI}{[-0.2, 3.6]}
+\newcommand{\EffPTBDiff}{1.6}
+\newcommand{\EffRNCI}{[15.2, 26.6]}
+\newcommand{\EffRNDiff}{20.7}
 \newcommand{\ExchKS}{0.12}
 \newcommand{\ExchN}{110}
 \newcommand{\ExchQNineLoo}{1.68}
@@ -444,12 +460,40 @@
 \newcommand{\FitPreVal}{0.14}
 \newcommand{\FitQuant}{1.30}
 \newcommand{\FitTransform}{0.17}
-\newcommand{\HypFailed}{H1b}
+\newcommand{\HRNCaughtHyb}{62.7\,\%}
+\newcommand{\HRNCaughtHybMin}{58.5\,\%}
+\newcommand{\HRNCaughtLoom}{62.7\,\%}
+\newcommand{\HRNCaughtQuant}{49.0\,\%}
+\newcommand{\HRNErrHyb}{7.1\,\%}
+\newcommand{\HRNErrHybMin}{6.2\,\%}
+\newcommand{\HRNErrLoom}{7.5\,\%}
+\newcommand{\HRNErrQuant}{4.8\,\%}
+\newcommand{\HTenCaughtHyb}{41.5\,\%}
+\newcommand{\HTenCaughtHybMin}{42.6\,\%}
+\newcommand{\HTenCaughtLoom}{41.5\,\%}
+\newcommand{\HTenCaughtQuant}{33.8\,\%}
+\newcommand{\HTenCleanErrHyb}{8.4\,\%}
+\newcommand{\HTenCleanErrQuant}{8.9\,\%}
+\newcommand{\HTenErrHyb}{13.1\,\%}
+\newcommand{\HTenErrHybMin}{12.1\,\%}
+\newcommand{\HTenErrLoom}{10.1\,\%}
+\newcommand{\HTenErrQuant}{13.2\,\%}
+\newcommand{\HTenErrTenHyb}{16.1\,\%}
+\newcommand{\HTenErrTenQuant}{15.8\,\%}
+\newcommand{\HTenErrThirtyHyb}{10.0\,\%}
+\newcommand{\HTenErrThirtyQuant}{11.5\,\%}
+\newcommand{\HTenPassed}{failed}
+\newcommand{\HypFailed}{H1b, H8, H9, H10}
 \newcommand{\LRMaxDataset}{ShapesAll}
 \newcommand{\LRMaxGain}{0.161}
 \newcommand{\LRMedDefault}{0.2707}
 \newcommand{\LRMedLong}{0.2711}
 \newcommand{\LRN}{12}
+\newcommand{\LeadMedian}{five}
+\newcommand{\LeadParsed}{757}
+\newcommand{\LeadShareAll}{18\,\%}
+\newcommand{\LeadShareLeThree}{32\,\%}
+\newcommand{\LeadUnparsed}{53}
 \newcommand{\LevClean}{1.01}
 \newcommand{\LevMissing}{8.6}
 \newcommand{\LevNoise}{30.3}
@@ -462,7 +506,7 @@
 \newcommand{\NDupNear}{24}
 \newcommand{\NDupNearOnly}{eight}
 \newcommand{\NGrouped}{70}
-\newcommand{\NHyp}{10}
+\newcommand{\NHyp}{13}
 \newcommand{\NHypPass}{nine}
 \newcommand{\NLLAblCleanFiniteC}{0.287}
 \newcommand{\NLLAblCleanFreeB}{0.280}
@@ -537,6 +581,108 @@
 \newcommand{\NoiseFaultsBeyond}{78\,\%}
 \newcommand{\NoiseFaultsLoom}{76\,\%}
 \newcommand{\NoiseFaultsPreVal}{2\,\%}
+\newcommand{\PTBAccCleanHoldoutTS}{78.4\,\%}
+\newcommand{\PTBAccCleanLoom}{78.9\,\%}
+\newcommand{\PTBAccCleanPlatt}{79.5\,\%}
+\newcommand{\PTBAccCleanPreVal}{78.9\,\%}
+\newcommand{\PTBAccCleanQuant}{74.8\,\%}
+\newcommand{\PTBAccHoldoutTS}{77.1\,\%}
+\newcommand{\PTBAccLoom}{77.7\,\%}
+\newcommand{\PTBAccNoisyHoldoutTS}{73.1\,\%}
+\newcommand{\PTBAccNoisyLoom}{73.7\,\%}
+\newcommand{\PTBAccNoisyPlatt}{74.6\,\%}
+\newcommand{\PTBAccNoisyPreVal}{73.7\,\%}
+\newcommand{\PTBAccNoisyQuant}{68.4\,\%}
+\newcommand{\PTBAccPlatt}{78.3\,\%}
+\newcommand{\PTBAccPreVal}{77.7\,\%}
+\newcommand{\PTBAccQuant}{73.3\,\%}
+\newcommand{\PTBCaughtHoldoutTS}{22.8\,\%}
+\newcommand{\PTBCaughtLoom}{24.8\,\%}
+\newcommand{\PTBCaughtPlatt}{22.2\,\%}
+\newcommand{\PTBCaughtPreVal}{23.2\,\%}
+\newcommand{\PTBCaughtQuant}{21.9\,\%}
+\newcommand{\PTBCaughtRangeHoldoutTS}{22.8--22.8\,\%}
+\newcommand{\PTBCaughtRangeLoom}{24.8--24.8\,\%}
+\newcommand{\PTBCaughtRangePlatt}{22.2--22.2\,\%}
+\newcommand{\PTBCaughtRangePreVal}{23.2--23.2\,\%}
+\newcommand{\PTBCaughtRangeQuant}{21.9--21.9\,\%}
+\newcommand{\PTBDetHoldoutTS}{0.527}
+\newcommand{\PTBDetLoom}{0.545}
+\newcommand{\PTBDetPlatt}{0.529}
+\newcommand{\PTBDetPreVal}{0.526}
+\newcommand{\PTBDetQuant}{0.545}
+\newcommand{\PTBErrHoldoutTS}{16.0\,\%}
+\newcommand{\PTBErrLoom}{16.7\,\%}
+\newcommand{\PTBErrNoisyHoldoutTS}{18.2\,\%}
+\newcommand{\PTBErrNoisyLoom}{18.2\,\%}
+\newcommand{\PTBErrNoisyPlatt}{18.3\,\%}
+\newcommand{\PTBErrNoisyPreVal}{18.6\,\%}
+\newcommand{\PTBErrNoisyQuant}{23.4\,\%}
+\newcommand{\PTBErrPlatt}{15.3\,\%}
+\newcommand{\PTBErrPreVal}{15.9\,\%}
+\newcommand{\PTBErrQuant}{19.4\,\%}
+\newcommand{\PTBHEightBoth}{164}
+\newcommand{\PTBHEightCaughtLoom}{24.8\,\%}
+\newcommand{\PTBHEightCaughtPreVal}{23.2\,\%}
+\newcommand{\PTBHEightLoomOnly}{37}
+\newcommand{\PTBHEightP}{$p=0.124$}
+\newcommand{\PTBHEightPreValOnly}{24}
+\newcommand{\PTBHEightSeedsPass}{zero}
+\newcommand{\PTBHNineCI}{[0.015, 0.051]}
+\newcommand{\PTBHNineDiff}{0.034}
+\newcommand{\PTBHNineLoom}{0.801}
+\newcommand{\PTBHNinePreVal}{0.768}
+\newcommand{\PTBHNineSeedsPass}{zero}
+\newcommand{\PTBHybCaught}{24.8\,\%}
+\newcommand{\PTBHybErr}{19.9\,\%}
+\newcommand{\PTBHybMinCaught}{24.0\,\%}
+\newcommand{\PTBHybMinErr}{19.0\,\%}
+\newcommand{\PTBMacroAUROCHoldoutTS}{0.896}
+\newcommand{\PTBMacroAUROCLoom}{0.889}
+\newcommand{\PTBMacroAUROCPlatt}{0.914}
+\newcommand{\PTBMacroAUROCPreVal}{0.896}
+\newcommand{\PTBMacroAUROCQuant}{0.895}
+\newcommand{\PTBN}{16{,}307}
+\newcommand{\PTBNLLCleanHoldoutTS}{0.649}
+\newcommand{\PTBNLLCleanLoom}{0.674}
+\newcommand{\PTBNLLCleanPlatt}{0.608}
+\newcommand{\PTBNLLCleanPreVal}{0.646}
+\newcommand{\PTBNLLCleanQuant}{0.754}
+\newcommand{\PTBNLLNoisyHoldoutTS}{0.759}
+\newcommand{\PTBNLLNoisyLoom}{0.801}
+\newcommand{\PTBNLLNoisyPlatt}{0.721}
+\newcommand{\PTBNLLNoisyPreVal}{0.768}
+\newcommand{\PTBNLLNoisyQuant}{0.843}
+\newcommand{\PTBNSeeds}{one}
+\newcommand{\PTBNoisy}{3{,}735}
+\newcommand{\PTBNoisyShareTest}{24.5\,\%}
+\newcommand{\PTBNoisyShareTrain}{22.5\,\%}
+\newcommand{\PTBTest}{3{,}303}
+\newcommand{\PTBTestNoisy}{810}
+\newcommand{\PTBTimeLoom}{15}
+\newcommand{\PTBTimeQuant}{55}
+\newcommand{\PTBTrainAll}{13{,}004}
+\newcommand{\PTBTrainClean}{10{,}079}
+\newcommand{\PTBTypeBurstAUROCLoom}{0.594}
+\newcommand{\PTBTypeBurstAUROCPlatt}{0.590}
+\newcommand{\PTBTypeBurstAUROCPreVal}{0.578}
+\newcommand{\PTBTypeBurstAUROCQuant}{0.583}
+\newcommand{\PTBTypeBurstN}{67}
+\newcommand{\PTBTypeDriftAUROCLoom}{0.589}
+\newcommand{\PTBTypeDriftAUROCPlatt}{0.529}
+\newcommand{\PTBTypeDriftAUROCPreVal}{0.520}
+\newcommand{\PTBTypeDriftAUROCQuant}{0.557}
+\newcommand{\PTBTypeDriftN}{348}
+\newcommand{\PTBTypeElectrodeAUROCLoom}{0.748}
+\newcommand{\PTBTypeElectrodeAUROCPlatt}{0.601}
+\newcommand{\PTBTypeElectrodeAUROCPreVal}{0.594}
+\newcommand{\PTBTypeElectrodeAUROCQuant}{0.575}
+\newcommand{\PTBTypeElectrodeN}{4}
+\newcommand{\PTBTypeStaticAUROCLoom}{0.507}
+\newcommand{\PTBTypeStaticAUROCPlatt}{0.519}
+\newcommand{\PTBTypeStaticAUROCPreVal}{0.521}
+\newcommand{\PTBTypeStaticAUROCQuant}{0.532}
+\newcommand{\PTBTypeStaticN}{504}
 \newcommand{\PlantedPass}{passed}
 \newcommand{\PrevTenCaughtLoom}{55\,\%}
 \newcommand{\PrevTenCaughtPreVal}{27\,\%}
@@ -606,6 +752,7 @@
 \newcommand{\RNNLLZeroPlatt}{1.31}
 \newcommand{\RNNLLZeroPreVal}{5.78}
 \newcommand{\RNNLLZeroQuant}{0.76}
+\newcommand{\ReproMaxDiff}{0}
 \newcommand{\RhoCleanClasses}{-0.39}
 \newcommand{\RhoCleanClassesP}{$p<0.001$}
 \newcommand{\RhoGainAcc}{-0.24}

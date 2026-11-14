@@ -12,5 +12,8 @@ H4 & Real ECG noise: NLL lower than PreVal & NLL, 63 cells & LOOM better on 50/6
 H5 & Triage: more faulty recordings caught than PreVal & 20\,\% budget & LOOM better on 38/38, $p<0.001$ & pass \\
 H6 & Triage: fewer automatic errors than PreVal & 20\,\% budget & LOOM better on 35/38, $p<0.001$ & pass \\
 H7 & QUANT features: NLL under faults lower than PreVal & NLL, severity 3 & LOOM better on 110/110, $p<0.001$ & pass \\
+H8 & PTB-XL: LOOM's queue holds more annotated-noisy records than PreVal's & 20\,\% budget & 24.8\,\% vs 23.2\,\%; discordant 37/24, McNemar $p=0.124$ & \textbf{fail} \\
+H9 & PTB-XL: NLL on annotated-noisy records lower than PreVal & NLL & LOOM $-$ PreVal $=+0.034$, 95\,\% CI [0.015, 0.051] (LOOM worse) & \textbf{fail} \\
+H10 & Hybrid: fewer automatic errors than QUANT and than LOOM & 20\,\% budget & better than QUANT on 7/38, $p<0.001$; than LOOM on 12/38, $p=0.071$ & \textbf{fail} \\
 \bottomrule
 \end{tabular}

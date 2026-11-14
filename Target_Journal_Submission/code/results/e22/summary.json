@@ -239,5 +239,13 @@
    ],
    "n_seeds": 1
   }
- ]
+ ],
+ "lead_coverage": {
+  "n_records": 810,
+  "n_parsed": 757,
+  "n_unparsed": 53,
+  "median_leads": 5.0,
+  "share_le3": 0.31836195508586523,
+  "share_all12": 0.17701453104359313
+ }
 }

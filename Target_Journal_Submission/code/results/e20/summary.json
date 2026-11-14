@@ -22,7 +22,8 @@
    2387
   ],
   "noisy_share_train": 0.224930790525992,
-  "noisy_share_test": 0.2452316076294278
+  "noisy_share_test": 0.2452316076294278,
+  "patients_in_more_than_one_fold": 0
  },
  "clean": {
   "n_seeds": 1,

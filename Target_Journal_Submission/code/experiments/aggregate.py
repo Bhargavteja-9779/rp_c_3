@@ -432,7 +432,7 @@ def hypotheses_table():
             return f"{r['ref_wins']}/{n}, {pv(r['p_holm'])}"
         add("H10", "Hybrid: fewer automatic errors than QUANT and than LOOM", "20\\,\\% budget",
             f"better than QUANT on {hres(rq)}; than LOOM on {hres(rl)}", E21["H10"]["passed"])
-    latex_table(pd.DataFrame(rows), "hypotheses", colspec="P{0.6cm}P{4.0cm}P{1.6cm}P{4.6cm}l")
+    latex_table(pd.DataFrame(rows), "hypotheses", colspec="P{0.75cm}P{4.0cm}P{1.6cm}P{4.6cm}l")
     put("NHypPass", count(sum(1 for x in rows if x["Outcome"] == "pass"))); put("NHyp", count(len(rows)))
     put("HypFailed", ", ".join(x["ID"] for x in rows if x["Outcome"] != "pass") or "none")
 
@@ -517,15 +517,15 @@ def ptbxl():
     S20 = E20["clean"]; rows = []
     for m in PTB_METHODS:
         M = S20["methods"][m]
-        rows.append({"Method": NAMES[m], "Acc.": pct(M["acc"]["mean"]), "Macro AUROC": num(M["macro_auroc"]["mean"]),
-                     "NLL clean": num(M["nll_clean"]["mean"]), "NLL noisy": num(M["nll_noisy"]["mean"]),
+        rows.append({"Method": NAMES[m], "Acc.": pct(M["acc"]["mean"]), "AUROC": num(M["macro_auroc"]["mean"]),
+                     "Clean": num(M["nll_clean"]["mean"]), "Noisy": num(M["nll_noisy"]["mean"]),
                      "Det. AUROC": num(M["detect_auroc"]["mean"]), "Caught": pct(M["caught@20"]["mean"]),
                      "Auto err.": pct(M["auto_err@20"]["mean"])})
-    for rule, nm in (("primary", "Hybrid (QUANT label, LOOM queue)"), ("secondary", "Hybrid-min")):
+    for rule, nm in (("primary", "Hybrid"), ("secondary", "Hybrid-min")):
         H = S20["hybrid"][rule]
-        rows.append({"Method": nm, "Acc.": "--", "Macro AUROC": "--", "NLL clean": "--", "NLL noisy": "--", "Det. AUROC": "--",
+        rows.append({"Method": nm, "Acc.": "--", "AUROC": "--", "Clean": "--", "Noisy": "--", "Det. AUROC": "--",
                      "Caught": pct(H["caught@20"]["mean"]), "Auto err.": pct(H["auto_err@20"]["mean"])})
-    latex_table(pd.DataFrame(rows), "ptbxl")
+    latex_table(pd.DataFrame(rows), "ptbxl", header_top="& \\multicolumn{2}{c}{Diagnosis} & \\multicolumn{2}{c}{NLL} & & \\multicolumn{2}{c}{Triage, 20\\,\\% budget} \\\\ \\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){7-8}")
     if "all" in E20:
         S20 = E20["all"]; rows = []
         for m in PTB_METHODS:
@@ -560,18 +560,18 @@ def hybrid():
     rep = max(E21["E13_reproduction"]["max_abs_diff"].values()), max(E21["E12_reproduction"]["max_abs_diff"].values())
     put("ReproMaxDiff", f"{max(rep):.1g}" if max(rep) > 0 else "0")
     rows = []
-    for m, nm in (("LOOM", "LOOM"), ("QUANT", "QUANT"), ("Hybrid", "Hybrid (QUANT label, LOOM queue)"), ("Hybrid-min", "Hybrid-min")):
-        row = {"Method": nm, "E13 caught": pct(H["fault_caught@20"]["medians"][m]), "E13 auto err.": pct(H["auto_err@20"]["medians"][m]),
-               "E12 caught": pct(E["fault_caught@20"]["medians"][m]), "E12 auto err.": pct(E["auto_err@20"]["medians"][m])}
+    for m, nm in (("LOOM", "LOOM"), ("QUANT", "QUANT"), ("Hybrid", "Hybrid"), ("Hybrid-min", "Hybrid-min")):
+        row = {"Method": nm, "Caught": pct(H["fault_caught@20"]["medians"][m]), "Auto err.": pct(H["auto_err@20"]["medians"][m]),
+               "Caught ": pct(E["fault_caught@20"]["medians"][m]), "Auto err. ": pct(E["auto_err@20"]["medians"][m])}
         if E20 is not None:
             S20 = E20["clean"]
             if m in S20["methods"]:
-                row["E20 caught"], row["E20 auto err."] = pct(S20["methods"][m]["caught@20"]["mean"]), pct(S20["methods"][m]["auto_err@20"]["mean"])
+                row["Caught  "], row["Auto err.  "] = pct(S20["methods"][m]["caught@20"]["mean"]), pct(S20["methods"][m]["auto_err@20"]["mean"])
             else:
                 hh = S20["hybrid"]["primary" if m == "Hybrid" else "secondary"]
-                row["E20 caught"], row["E20 auto err."] = pct(hh["caught@20"]["mean"]), pct(hh["auto_err@20"]["mean"])
+                row["Caught  "], row["Auto err.  "] = pct(hh["caught@20"]["mean"]), pct(hh["auto_err@20"]["mean"])
         rows.append(row)
-    latex_table(pd.DataFrame(rows), "hybrid")
+    latex_table(pd.DataFrame(rows), "hybrid", header_top="& \\multicolumn{2}{c}{Confirmatory (E13)} & \\multicolumn{2}{c}{Real ECG noise (E12)} & \\multicolumn{2}{c}{PTB-XL (E20)} \\\\ \\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}")
 
 
 E22 = json.load(open(RES / "e22" / "summary.json")) if (RES / "e22" / "summary.json").exists() else None

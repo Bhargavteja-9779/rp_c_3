@@ -14,6 +14,8 @@
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
 \usepackage{pifont}
+\usepackage{microtype}
+\usepackage{xurl}
 \usepackage{xr-hyper}
 \usepackage{hyperref}
 \externaldocument[S-]{supplement}
@@ -29,6 +31,7 @@
 \renewcommand{\theassumption}{A\arabic{assumption}}
 
 \raggedbottom
+\setlength{\emergencystretch}{2em}
 \journal{Expert Systems with Applications}
 \biboptions{authoryear}
 \setlength{\tabcolsep}{3pt}
@@ -38,7 +41,7 @@
 \begin{frontmatter}
 \title{Can a fast time series classifier tell when a sensor recording is faulty? Leverage-aware confidence and its limits}
 
-\author{Author information removed for review (see separate title page)}
+\author{Authors removed for review}
 
 \begin{abstract}
 Monitoring systems often let a time series classifier decide alone and pass uncertain recordings to a person. This works only if the classifier's confidence drops for recordings damaged by sensor faults. We propose LOOM, a closed-form readout for fast random-kernel classifiers such as MiniRocket. It divides each ridge score by the square root of its leverage, a measure of how far a recording lies from the training data, and fits a temperature on exact leave-one-out scores and leverages, without held-out data, refitting or ensembles. In pre-registered studies with strong artefacts LOOM helped: under 18 simulated faults on \NDatasets{} UCR datasets it lowered the median log-loss from \NLLFaultsPreVal{} to \NLLFaultsLoom{} compared with prevalidated ridge (PreVal), and with a 20\,\% review budget its queue caught \CCaughtLoom{} of the faulty recordings on \CNDatasets{} further datasets, against \CCaughtPreVal{} for PreVal. On \PTBN{} clinical 12-lead ECGs from PTB-XL, whose noise was annotated by experts, it did not help: its queue held \PTBHEightCaughtLoom{} of the noisy records against \PTBHEightCaughtPreVal{} for PreVal (not significant), its log-loss on these records was higher, and no method separated noisy from clean records much better than chance. A pre-registered hybrid that took the label from the QUANT classifier and the review queue from LOOM made more automatic errors than QUANT alone. Leverage-aware confidence catches strong artefacts but not the milder noise of routine clinical recordings, so triage systems should be validated on real, annotated faults before they are trusted.

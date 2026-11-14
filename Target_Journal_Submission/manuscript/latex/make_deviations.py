@@ -10,14 +10,14 @@ rows = [l for l in md if re.match(r"^\| D\d+", l)]
 
 def tex(s):
     s = s.strip().replace("**", "")
-    s = re.sub(r"`([^`]*)`", r"\\texttt{\1}", s)
+    s = re.sub(r"`([^`]*)`", lambda m: "\\texttt{" + m.group(1).replace("/", "/\\allowbreak{}").replace(".", ".\\allowbreak{}").replace("_", "_\\allowbreak{}") + "}", s)
     for a, b in (("&", "\\&"), ("%", "\\%"), ("_", "\\_"), ("~", "$\\sim$"), ("≤", "$\\le$"), ("×", "$\\times$"),
                  ("→", "$\\to$"), ("−", "--"), ("–", "--"), ("^", "\\^{}")):
         s = s.replace(a, b)
     return s.replace("\\texttt{", "\\texttt{").replace("10\\^{}13", "$10^{13}$")
 
 
-out = ["\\begin{longtable}{P{0.5cm}P{1.4cm}P{3.3cm}P{2.6cm}P{1.5cm}P{2.5cm}}", "\\toprule",
+out = ["\\begin{longtable}{P{0.65cm}P{1.5cm}P{4.2cm}P{3.2cm}P{1.8cm}P{3.0cm}}", "\\toprule",
        "ID & Date & Change & Reason & Timing & Effect \\\\", "\\midrule", "\\endhead"]
 for r in rows:
     cells = [tex(c) for c in r.strip().strip("|").split("|")]

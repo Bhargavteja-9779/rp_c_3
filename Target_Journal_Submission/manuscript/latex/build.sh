@@ -16,13 +16,14 @@ report=build_report.txt
   echo "Build report $(date -u +%Y-%m-%dT%H:%MZ)"
   for d in main supplement; do
     pages=$(pdfinfo $d.pdf | awk '/^Pages/{print $2}')
-    overfull=$(grep -c "^Overfull" $d.log || true)
+    overfull=$(grep "^Overfull" $d.log | grep -vc "while \\\\output is active" || true)
+    classart=$(grep -c "^Overfull.*while \\\\output is active" $d.log || true)  # elsarticle title-page footer; occurs in an empty elsarticle document
     underfull=$(grep -c "^Underfull" $d.log || true)
     undef_ref=$(grep -c "Reference .* undefined" $d.log || true)
     undef_cit=$(grep -c "Citation .* undefined" $d.log || true)
     multiply=$(grep -c "multiply defined" $d.log || true)
     leak=$(pdftotext $d.pdf - | grep -cE '\\[A-Za-z]{3,}|\?\?' || true)
-    echo "$d: pages=$pages overfull=$overfull underfull=$underfull undefined_refs=$undef_ref undefined_cites=$undef_cit multiply_defined=$multiply macro_or_??_leaks=$leak"
+    echo "$d: pages=$pages overfull=$overfull class_footer_overfull=$classart underfull=$underfull undefined_refs=$undef_ref undefined_cites=$undef_cit multiply_defined=$multiply macro_or_??_leaks=$leak"
   done
   bibwarn=$(grep -c "^Warning" main.blg || true)
   echo "bibtex warnings (main): $bibwarn"

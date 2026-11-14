@@ -69,6 +69,7 @@ All experiments use univariate equal-length UCR datasets (114 in total), the off
 | E19 | Fault-prevalence sensitivity of the confirmatory triage study | E13 outputs, prevalence 10 / 20 / 30 % | as E13 | **post hoc**, added 2026-11-04 (D22) |
 | E20 | Expert-annotated real faults in clinical 12-lead ECG (PTB-XL v1.0.3, 100 Hz) | 16,307 single-superclass records; train folds 1–8 (clean records: primary; all: secondary), test folds 9–10; seeds 0–4 | multivariate MiniRocket + LOOM / PreVal / Holdout-TS / Ridge-Platt-CV5; QUANT | registered 6b05cb1 |
 | E21 | Leverage-gated hybrid triage (QUANT label, LOOM review queue) | outputs of E13 (confirmatory), E12 and E20 (descriptive) | Hybrid, Hybrid-min, LOOM, QUANT | registered 6b05cb1 |
+| E22 | Post hoc explanation of E20/E21: detection by annotation type; LOOM − PreVal effect across studies | outputs of E11, E12, E13, E20 | LOOM, PreVal, Holdout-TS, Platt, QUANT | **post hoc** (D27) |
 
 ## Compute budget and scope cuts
 Hardware: one cloud container, 4 CPU cores, 14.3 GB memory limit, no GPU. Measured wall-clock

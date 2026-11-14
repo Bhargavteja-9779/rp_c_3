@@ -53,8 +53,8 @@ def main():
     order = np.argsort(o["ecg_id"])
     pick_good = next(i for i in order if nz[i] and qL[i] and not qP[i])
     pick_fail = next(i for i in order if nz[i] and not qL[i])
-    fig = plt.figure(figsize=(PAGE_W, 3.9))
-    gs = fig.add_gridspec(2, 2, height_ratios=[1, 1.25], hspace=0.55, wspace=0.25)
+    fig = plt.figure(figsize=(PAGE_W, 4.6))
+    gs = fig.add_gridspec(2, 2, height_ratios=[1, 1.25], hspace=0.75, wspace=0.25)
     for j, (i, tag) in enumerate(((pick_good, "a"), (pick_fail, "b"))):
         ax = fig.add_subplot(gs[0, j]); eid = int(o["ecg_id"][i])
         sig = X[np.where(ids == eid)[0][0], 1]
@@ -62,8 +62,9 @@ def main():
         ann = [c.replace("_", " ") for c in ptbxl.NOISE_COLS if isinstance(db.loc[eid, c], str) and db.loc[eid, c].strip()]
         outcome = "to review" if qL[i] else "decided automatically"
         ax.set_title(f"({tag}) ecg_id {eid}, lead II; annotated: {', '.join(ann)}\n"
-                     f"LOOM conf. {o['P_LOOM'][i].max():.2f} ({outcome}), PreVal conf. {o['P_PreVal'][i].max():.2f}; "
-                     f"true {ptbxl.CLASSES[o['y'][i]]}, LOOM {ptbxl.CLASSES[o['P_LOOM'][i].argmax()]}", loc="left", fontsize=6.5)
+                     f"LOOM {o['P_LOOM'][i].max():.2f} ({outcome}); PreVal {o['P_PreVal'][i].max():.2f}\n"
+                     f"true class {ptbxl.CLASSES[o['y'][i]]}, LOOM predicts {ptbxl.CLASSES[o['P_LOOM'][i].argmax()]}",
+                     loc="left", fontsize=6.5)
         ax.set_xlabel("time (s)"); ax.set_ylabel("mV")
     axc, axe = fig.add_subplot(gs[1, 0]), fig.add_subplot(gs[1, 1])
     for m in METHODS:
@@ -77,7 +78,10 @@ def main():
     axc.set_xlabel("review budget (%)"); axc.set_ylabel("annotated-noisy records in queue (%)")
     axe.set_xlabel("review budget (%)"); axe.set_ylabel("error of automatic decisions (%)")
     axc.set_title("(c) Noisy records sent to review", loc="left"); axe.set_title("(d) Errors among automatic decisions", loc="left")
-    axc.legend(loc="lower right", ncol=1); axe.legend(loc="upper right", ncol=1)
+    axc.plot(100 * BUDGETS, 100 * BUDGETS, color="#999999", lw=0.8, ls="--", label="random queue (chance)")
+    h1, l1 = axc.get_legend_handles_labels(); h2, l2 = axe.get_legend_handles_labels()
+    extra = [(h, l) for h, l in zip(h2, l2) if l not in l1]
+    fig.legend(h1 + [h for h, _ in extra], l1 + [l for _, l in extra], loc="lower center", ncol=4, bbox_to_anchor=(0.5, -0.06))
     _save(fig, ROOT / "figures", "fig_ptbxl")
     print("examples:", int(o["ecg_id"][pick_good]), int(o["ecg_id"][pick_fail]))
 

@@ -4,7 +4,7 @@
 Pre-processing of main.tex: inline \\input tables, resolve every \\ref (main and supplement) from the .aux
 files of the LaTeX build, number captions as "Fig. N" / "Table N", use PNG figures, and turn the
 algorithm box into a numbered list. Pandoc expands the number macros and renders equations as native
-Word equations; citations are formatted by citeproc with the Springer basic (author-date) style.
+Word equations; citations are formatted by citeproc with the Elsevier Harvard (author-date) style.
 Post-processing: fixed table widths, compact table font, centred figures.
 """
 import re
@@ -58,12 +58,17 @@ def main():
     tex = re.sub(r"\\shortstack\{([^}]*)\}", lambda m: m.group(1).replace("\\\\", " ").replace("-\\", ""), tex)
     tex = re.sub(r"P\{([0-9.]+cm)\}", r"p{\1}", tex)
     tex = re.sub(r"\\newcolumntype\{P\}.*\n", "", tex)
-    for cmd in ("\\maketitle", "\\backmatter", "\\raggedbottom"):
+    for cmd in ("\\maketitle", "\\backmatter", "\\raggedbottom", "\\begin{frontmatter}", "\\end{frontmatter}"):
         tex = tex.replace(cmd, "")
+    # elsarticle front matter
+    tex = re.sub(r"\\(journal|biboptions)\{[^}]*\}\n", "", tex)
+    tex = re.sub(r"\\setlength\{\\emergencystretch\}\{[^}]*\}\n", "", tex)
+    tex = re.sub(r"\\begin\{keyword\}(.*?)\\end\{keyword\}",
+                 lambda m: "\\paragraph{Keywords} " + "; ".join(k.strip() for k in m.group(1).split("\\sep")), tex, flags=re.S)
     flat = HERE / "_word_flat.tex"; flat.write_text(tex)
     out = HERE / "main_word.docx"
     subprocess.run(["pandoc", str(flat), "-o", str(out), "--citeproc", f"--bibliography={BUILD / 'references.json'}",
-                    f"--csl={BUILD / 'springer-basic-author-date.csl'}", f"--reference-doc={BUILD / 'reference_springer.docx'}",
+                    f"--csl={BUILD / 'elsevier-harvard.csl'}", f"--reference-doc={BUILD / 'reference_springer.docx'}",
                     "--resource-path", str(HERE)], check=True)
     flat.unlink()
     from docx import Document

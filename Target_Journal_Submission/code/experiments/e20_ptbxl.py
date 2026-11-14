@@ -32,40 +32,70 @@ SEEDS, TRAINS, BUDGETS = range(5), ("clean", "all"), (0.1, 0.2, 0.3)
 N_BOOT = 10_000
 
 
+def quant_fit_predict(Xtr, ytr, Xte, seed, chunk=500):
+    """QUANT (aeon 1.6.0) with its default configuration, computed in chunks to bound memory.
+
+    QUANTClassifier fits QUANTTransformer (intervals depend only on the series length) and then an ExtraTrees
+    classifier (200 trees, max_features 0.1, entropy) cloned with aeon's own _clone_estimator(random_state).
+    We do the same, but transform the series in chunks into one float32 array: QUANT's transform is computed
+    per series, so the features are identical (checked against QUANTClassifier in tests/test_quant_chunked.py).
+    """
+    from aeon.base._base import _clone_estimator
+    from aeon.transformations.collection.interval_based import QUANTTransformer
+    from sklearn.ensemble import ExtraTreesClassifier
+    tf = QUANTTransformer(interval_depth=6, quantile_divisor=4).fit(Xtr[:chunk], ytr[:chunk])
+    d = np.asarray(tf.transform(Xtr[:1])).shape[1]
+
+    def T(X):
+        F = np.empty((len(X), d), np.float32)
+        for i in range(0, len(X), chunk):
+            F[i:i + chunk] = np.asarray(tf.transform(X[i:i + chunk]))
+        return F
+    et = ExtraTreesClassifier(n_estimators=200, max_features=0.1, criterion="entropy", n_jobs=4)
+    et = _clone_estimator(et, seed)
+    Ftr = T(Xtr); et.fit(Ftr, ytr); del Ftr
+    return et.predict_proba(T(Xte)), et.classes_
+
+
 def run(train, seed):
     path = OUT / f"{train}_s{seed}.npz"
     if path.exists():
         return dict(np.load(path))
-    from aeon.classification.interval_based import QUANTClassifier
-    from aeon.transformations.collection.convolution_based import MiniRocket
-    from sklearn.ensemble import ExtraTreesClassifier
+    part = OUT / f"{train}_s{seed}_readouts.npz"          # checkpoint written before QUANT
     X, y, noisy, fold, ids = ptbxl.load()
     tr = (fold <= 8) & (~noisy if train == "clean" else True)
     te = fold >= 9
-    Xtr, ytr, Xte = X[tr].astype(np.float64), y[tr], X[te].astype(np.float64)
     classes = np.arange(len(ptbxl.CLASSES))
-    out = {"y": y[te], "noisy": noisy[te], "ecg_id": ids[te]}
-    t0 = time.time()
-    tf = MiniRocket(random_state=seed, n_jobs=4).fit(Xtr)
-    Ftr = np.asarray(tf.transform(Xtr), np.float64); Fte = np.asarray(tf.transform(Xte), np.float64)
-    out["time_minirocket"] = time.time() - t0
-    base = ClosedFormRidge().fit(Ftr, ytr)
-    for m in READOUTS:
+    if part.exists():
+        out = dict(np.load(part))
+    else:
+        from aeon.transformations.collection.convolution_based import MiniRocket
+        Xtr, ytr, Xte = X[tr].astype(np.float64), y[tr], X[te].astype(np.float64)
+        out = {"y": y[te], "noisy": noisy[te], "ecg_id": ids[te]}
         t0 = time.time()
-        mod = MAIN_METHODS[m]().fit(Ftr, ytr, ridge=base)
-        out[f"P_{m}"] = align(mod.predict_proba(Fte), mod.classes_, classes)
-        out[f"time_{m}"] = time.time() - t0
-        print(train, seed, m, round(out[f"time_{m}"], 1), flush=True)
-    del Ftr, Fte, base
+        tf = MiniRocket(random_state=seed, n_jobs=4).fit(Xtr)
+        Ftr = np.asarray(tf.transform(Xtr), np.float64); Fte = np.asarray(tf.transform(Xte), np.float64)
+        out["time_minirocket"] = time.time() - t0
+        del Xtr, Xte
+        base = ClosedFormRidge().fit(Ftr, ytr)
+        for m in READOUTS:
+            t0 = time.time()
+            mod = MAIN_METHODS[m]().fit(Ftr, ytr, ridge=base)
+            out[f"P_{m}"] = align(mod.predict_proba(Fte), mod.classes_, classes)
+            out[f"time_{m}"] = time.time() - t0
+            print(train, seed, m, round(out[f"time_{m}"], 1), flush=True)
+        del Ftr, Fte, base
+        OUT.mkdir(parents=True, exist_ok=True)
+        np.savez_compressed(part, **out)
+    Xtr, ytr, Xte = X[tr], y[tr], X[te]                   # float32: QUANT converts to float32 itself
+    del X
     t0 = time.time()
-    # QUANT's default estimator (aeon 1.6.0), with n_jobs added; results do not depend on n_jobs.
-    et = ExtraTreesClassifier(n_estimators=200, max_features=0.1, criterion="entropy", n_jobs=4)
-    q = QUANTClassifier(estimator=et, random_state=seed).fit(Xtr, ytr)
-    out["P_QUANT"] = align(q.predict_proba(Xte), q.classes_, classes)
+    P, cls = quant_fit_predict(Xtr, ytr, Xte, seed)
+    out["P_QUANT"] = align(P, cls, classes)
     out["time_QUANT"] = time.time() - t0
     print(train, seed, "QUANT", round(out["time_QUANT"], 1), flush=True)
-    OUT.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(path, **out)
+    part.unlink()
     return out
 
 

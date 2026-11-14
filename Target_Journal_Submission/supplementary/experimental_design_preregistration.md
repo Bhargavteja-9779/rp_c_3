@@ -226,3 +226,41 @@ endpoints) we add the Bayesian signed-rank test of Benavoli et al. (2017) with p
 s = 0.5 at zero, reporting the posterior probabilities that LOOM is better, practically
 equivalent, or worse. Regions of practical equivalence (fixed now): ±0.01 nats for NLL and
 ±1 percentage point for triage rates and AUROC.
+
+## 12. Second revision (after desk rejection for limited novelty; fixed and committed before any of these experiments was run, 2026-11-14)
+
+Only the PTB-XL metadata table (column names and annotation counts) had been inspected; no signal and no
+result of the experiments below existed.
+
+### 12.1 E20 — Naturally occurring, expert-annotated faults in clinical 12-lead ECG (PTB-XL)
+*Data.* PTB-XL v1.0.3 (PhysioNet; CC BY 4.0), 100 Hz, 12 leads, 10 s (1,000 samples per lead).
+*Task.* Diagnostic superclass (NORM, MI, STTC, CD, HYP from scp_statements.csv, likelihood > 0),
+restricted to records with exactly one superclass: a 5-class problem.
+*Faults.* A record is "noisy" if any of baseline_drift, static_noise, burst_noise or electrodes_problems
+is annotated. These annotations were made by the PTB-XL annotators, not by us.
+*Split.* The recommended stratified folds: training = folds 1–8, test = folds 9–10. Primary analysis:
+training on the clean (non-noisy) records of folds 1–8, testing on all records of folds 9–10 (clean and
+noisy). Secondary: training on all records of folds 1–8.
+*Features.* Multivariate MiniRocket (aeon) on the 12-lead input; readouts LOOM, PreVal, Holdout-TS,
+Ridge-Platt-CV5; QUANT on the raw 12-lead series. Five repetitions with seeds 0–4 (MiniRocket and QUANT
+seeds), same split.
+*Hypotheses (confirmatory).*
+H8: with a 20 % review budget (least confident test records), LOOM's review queue contains a larger share
+of the annotated-noisy test records than PreVal's. Test: exact McNemar test on the annotated-noisy test
+records (in LOOM's queue vs in PreVal's queue), seed 0; the five-seed mean and range are reported.
+H9: on the annotated-noisy test records, LOOM's mean NLL is lower than PreVal's. Test: paired bootstrap
+(10,000 resamples of records) 95 % CI of the mean difference excludes zero, seed 0.
+*Reported descriptively:* accuracy and macro AUROC of the diagnosis; NLL, accuracy and detection AUROC of
+noisy vs clean records; comparison with Holdout-TS, Platt and QUANT; the secondary training set.
+*Rejection.* If H8 or H9 fails, it is reported as a failure of the method on real clinical noise.
+
+### 12.2 E21 — Leverage-gated hybrid triage (new method)
+*Rule (fixed now).* The automatic decision uses the label of the more accurate raw-series classifier
+(QUANT); the review queue uses LOOM's confidence: the share b of recordings with the lowest LOOM
+confidence goes to review. Secondary rule: review the recordings with the lowest min(LOOM confidence,
+QUANT confidence). No parameter is fitted.
+*Data.* The stored per-recording outputs of E13 (38 datasets, 30 % faults), E12 (7 ECG datasets, real
+noise stream) and E20.
+*Hypothesis H10 (confirmatory, E13).* At a 20 % budget the hybrid's automatic error rate is lower than
+both QUANT's and LOOM's. Test: two-sided Wilcoxon over the 38 datasets, Holm over the two comparisons.
+Faults caught by the primary hybrid equal LOOM's by construction and are reported, not tested.

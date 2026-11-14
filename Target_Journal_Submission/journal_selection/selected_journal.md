@@ -1,4 +1,32 @@
-# Selected target journal
+# Selected target journal (second submission, 2026-11-14)
+
+**Target: Expert Systems with Applications (ESWA), Elsevier.** Article type: full-length article.
+
+History: the first submission to *Journal of King Saud University – Computer and Information Sciences* (JKSU-CIS)
+was desk-rejected for "limited new contribution and novelty". The user then chose to strengthen the paper and to
+target the best-fitting journal with the highest impact, with no time limit and excluding MDPI.
+
+| Field | Value | Source / verification status |
+|---|---|---|
+| Journal Impact Factor | 7.5 (journalmetrics.org, Manusights) or 9.4 (another Manusights page citing ScienceDirect Insights; earlier note in `eswa_alternative.md`) | Sources disagree; **not verified in the JCR database** (subscription required) |
+| Time to first decision | about 5–7 days (mostly the desk screen); about 187 days to acceptance (Elsevier figures as quoted by Manusights, July 2026) | Secondary sources, not verified on the journal page |
+| Why it fits | Scope covers intelligent decision-support systems and their applications; the paper concerns when an automatic system should hand a case to a human expert, evaluated on real applications with a validated tool | Judgement |
+| Template | Elsevier `elsarticle` (preprint, 12 pt, author–year, `elsarticle-harv`) | Standard Elsevier LaTeX class |
+| Guide for authors | Could not be retrieved automatically (ScienceDirect returns HTTP 403 to automated access). Highlights (3–5 × 85 characters), abstract length, review anonymity, graphical abstract and length rules were set from Elsevier's usual requirements and must be confirmed by the authors (package README, item 6). | **Not verified** |
+
+Alternatives considered (not chosen): Engineering Applications of Artificial Intelligence (Elsevier; IF reported
+8.0–9.0 by secondary sources, slower publication reported), Knowledge-Based Systems (IF reported 7.2–8.0; more
+methods-oriented), Artificial Intelligence in Medicine (clinical focus too narrow for the UCR benchmark).
+
+Sources: https://www.journalmetrics.org/journal/expert-systems-with-applications ,
+https://manusights.com/blog/expert-systems-with-applications-review-time ,
+https://www.journalmetrics.org/journal/engineering-applications-of-artificial-intelligence ,
+https://manusights.com/blog/knowledge-based-systems-submission-guide
+
+---
+*Previous selection (first submission), kept for the record:*
+
+## JKSU-CIS selection (first submission)
 
 | Field | Value | Source / how verified |
 |---|---|---|

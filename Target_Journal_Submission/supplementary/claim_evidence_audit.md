@@ -1,3 +1,6 @@
+> **Superseded.** This audit belongs to an earlier version. The current claim-by-claim mapping is
+> `review/claim_evidence_matrix.md` (ESWA version, 2026-11-14).
+
 # Claim–evidence audit
 
 Every claim in the title, abstract, highlights, contributions, discussion and conclusion is

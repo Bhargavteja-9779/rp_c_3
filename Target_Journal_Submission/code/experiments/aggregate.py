@@ -419,6 +419,19 @@ def hypotheses_table():
         add(hid, hyp, "20\\,\\% budget", res(r, lower)[0], r["p_holm"] < 0.05 and better)
     r = find(S["E14_quant_features"]["metrics"]["shifted:nll"]["pairwise"], "PreVal-QF")
     add("H7", "QUANT features: NLL under faults lower than PreVal", "NLL, severity 3", res(r)[0], r["p_holm"] < 0.05 and r["median_diff"] > 0)
+    if E20 is not None:
+        h8, h9 = E20["clean"]["H8_seed0"], E20["clean"]["H9_seed0"]
+        add("H8", "PTB-XL: LOOM's queue holds more annotated-noisy records than PreVal's", "20\\,\\% budget",
+            f"{100*h8['caught_loom']:.1f}\\,\\% vs {100*h8['caught_preval']:.1f}\\,\\%; discordant {h8['loom_only']}/{h8['preval_only']}, McNemar {pv(h8['p'])}", h8["passed"])
+        add("H9", "PTB-XL: NLL on annotated-noisy records lower than PreVal", "NLL",
+            f"difference {h9['mean_diff']:.3f}, 95\\,\\% CI [{h9['ci_low']:.3f}, {h9['ci_high']:.3f}]", h9["passed"])
+    if E21 is not None:
+        rq, rl = find(E21["H10"]["pairwise"], "QUANT"), find(E21["H10"]["pairwise"], "LOOM")
+        def hres(r):
+            n = r["ref_wins"] + r["draws"] + r["ref_losses"]
+            return f"{r['ref_wins']}/{n}, {pv(r['p_holm'])}"
+        add("H10", "Hybrid: fewer automatic errors than QUANT and than LOOM", "20\\,\\% budget",
+            f"better than QUANT on {hres(rq)}; than LOOM on {hres(rl)}", E21["H10"]["passed"])
     latex_table(pd.DataFrame(rows), "hypotheses", colspec="P{0.6cm}P{4.0cm}P{1.6cm}P{4.6cm}l")
     put("NHypPass", count(sum(1 for x in rows if x["Outcome"] == "pass"))); put("NHyp", count(len(rows)))
     put("HypFailed", ", ".join(x["ID"] for x in rows if x["Outcome"] != "pass") or "none")
@@ -459,8 +472,100 @@ def supplement_tables():
     latex_table(lk, "leakage")
 
 
+
+# ------------------------------------------------------------------ E20 (PTB-XL) and E21 (hybrid); second revision
+E20 = json.load(open(RES / "e20" / "summary.json")) if (RES / "e20" / "summary.json").exists() else None
+E21 = json.load(open(RES / "e21" / "summary.json")) if (RES / "e21" / "summary.json").exists() else None
+PTB_METHODS = ["LOOM", "PreVal", "Holdout-TS", "Ridge-Platt-CV5", "QUANT"]
+
+
+def ptbxl():
+    if E20 is None:
+        return
+    d = E20["data"]
+    put("PTBN", f"{d['n_records']:,}".replace(",", "{,}")); put("PTBNoisy", f"{d['n_noisy']:,}".replace(",", "{,}"))
+    put("PTBTrainClean", f"{d['n_train_clean']:,}".replace(",", "{,}")); put("PTBTrainAll", f"{d['n_train_all']:,}".replace(",", "{,}"))
+    put("PTBTest", f"{d['n_test']:,}".replace(",", "{,}")); put("PTBTestNoisy", str(d["n_test_noisy"]))
+    put("PTBNoisyShareTest", pct(d["noisy_share_test"])); put("PTBNoisyShareTrain", pct(d["noisy_share_train"]))
+    for tr, T in (("clean", ""), ("all", "All")):
+        if tr not in E20:
+            continue
+        S20 = E20[tr]
+        for m in PTB_METHODS:
+            M = S20["methods"][m]; k = METHODS[m]
+            put(f"PTB{T}Acc{k}", pct(M["acc"]["mean"])); put(f"PTB{T}MacroAUROC{k}", num(M["macro_auroc"]["mean"]))
+            put(f"PTB{T}NLLNoisy{k}", num(M["nll_noisy"]["mean"])); put(f"PTB{T}NLLClean{k}", num(M["nll_clean"]["mean"]))
+            put(f"PTB{T}Det{k}", num(M["detect_auroc"]["mean"])); put(f"PTB{T}Caught{k}", pct(M["caught@20"]["mean"]))
+            put(f"PTB{T}Err{k}", pct(M["auto_err@20"]["mean"])); put(f"PTB{T}ErrNoisy{k}", pct(M["auto_err_noisy@20"]["mean"]))
+            put(f"PTB{T}AccNoisy{k}", pct(M["acc_noisy"]["mean"])); put(f"PTB{T}AccClean{k}", pct(M["acc_clean"]["mean"]))
+            put(f"PTB{T}CaughtRange{k}", f"{100*M['caught@20']['min']:.1f}--{100*M['caught@20']['max']:.1f}\\,\\%")
+        for rule, R in (("primary", "Hyb"), ("secondary", "HybMin")):
+            H = S20["hybrid"][rule]
+            put(f"PTB{T}{R}Caught", pct(H["caught@20"]["mean"])); put(f"PTB{T}{R}Err", pct(H["auto_err@20"]["mean"]))
+        h8, h9 = S20["H8_seed0"], S20["H9_seed0"]
+        put(f"PTB{T}HEightLoomOnly", str(h8["loom_only"])); put(f"PTB{T}HEightPreValOnly", str(h8["preval_only"]))
+        put(f"PTB{T}HEightBoth", str(h8["both"])); put(f"PTB{T}HEightP", pv(h8["p"]))
+        put(f"PTB{T}HEightCaughtLoom", pct(h8["caught_loom"])); put(f"PTB{T}HEightCaughtPreVal", pct(h8["caught_preval"]))
+        put(f"PTB{T}HEightSeedsPass", count(sum(x["passed"] for x in S20["H8_all_seeds"])))
+        put(f"PTB{T}HNineDiff", num(h9["mean_diff"])); put(f"PTB{T}HNineCI", f"[{h9['ci_low']:.3f}, {h9['ci_high']:.3f}]")
+        put(f"PTB{T}HNineLoom", num(h9["nll_noisy_loom"])); put(f"PTB{T}HNinePreVal", num(h9["nll_noisy_preval"]))
+        put(f"PTB{T}HNineSeedsPass", count(sum(x["passed"] for x in S20["H9_all_seeds"])))
+        put(f"PTB{T}NSeeds", count(S20["n_seeds"]))
+    put("PTBTimeQuant", f"{E20['clean']['methods']['QUANT']['time_s']/60:.0f}")
+    put("PTBTimeLoom", f"{E20['clean']['methods']['LOOM']['time_s']:.0f}")
+    S20 = E20["clean"]; rows = []
+    for m in PTB_METHODS:
+        M = S20["methods"][m]
+        rows.append({"Method": NAMES[m], "Acc.": pct(M["acc"]["mean"]), "Macro AUROC": num(M["macro_auroc"]["mean"]),
+                     "NLL clean": num(M["nll_clean"]["mean"]), "NLL noisy": num(M["nll_noisy"]["mean"]),
+                     "Det. AUROC": num(M["detect_auroc"]["mean"]), "Caught": pct(M["caught@20"]["mean"]),
+                     "Auto err.": pct(M["auto_err@20"]["mean"])})
+    for rule, nm in (("primary", "Hybrid (QUANT label, LOOM queue)"), ("secondary", "Hybrid-min")):
+        H = S20["hybrid"][rule]
+        rows.append({"Method": nm, "Acc.": "--", "Macro AUROC": "--", "NLL clean": "--", "NLL noisy": "--", "Det. AUROC": "--",
+                     "Caught": pct(H["caught@20"]["mean"]), "Auto err.": pct(H["auto_err@20"]["mean"])})
+    latex_table(pd.DataFrame(rows), "ptbxl")
+
+
+def hybrid():
+    if E21 is None:
+        return
+    H = E21["E13"]
+    for met, nm, lower in (("auto_err@20", "Err", True), ("fault_caught@20", "Caught", False)):
+        for m, k in (("Hybrid", "Hyb"), ("Hybrid-min", "HybMin"), ("LOOM", "Loom"), ("QUANT", "Quant")):
+            put(f"HTen{nm}{k}", pct(H[met]["medians"][m]))
+        for c, k in (("QUANT", "Quant"), ("LOOM", "Loom"), ("Hybrid-min", "HybMin")):
+            put(f"CmpHTen{nm}{k}", cmp_phrase(find(H[met]["vs_hybrid"], c), lower=lower))
+    for c, k in (("QUANT", "Quant"), ("LOOM", "Loom")):
+        r = find(E21["H10"]["pairwise"], c)
+        put(f"CmpHTenPrimary{k}", cmp_phrase(r))
+    put("HTenPassed", "passed" if E21["H10"]["passed"] else "failed")
+    put("HTenCleanErrHyb", pct(H["clean:auto_err@20"]["medians"]["Hybrid"])); put("HTenCleanErrQuant", pct(H["clean:auto_err@20"]["medians"]["QUANT"]))
+    for b in ("10", "30"):
+        put(f"HTenErr{'Ten' if b == '10' else 'Thirty'}Hyb", pct(H[f"auto_err@{b}"]["medians"]["Hybrid"]))
+        put(f"HTenErr{'Ten' if b == '10' else 'Thirty'}Quant", pct(H[f"auto_err@{b}"]["medians"]["QUANT"]))
+    E = E21["E12"]
+    for met, nm in (("auto_err@20", "Err"), ("fault_caught@20", "Caught")):
+        for m, k in (("Hybrid", "Hyb"), ("Hybrid-min", "HybMin"), ("LOOM", "Loom"), ("QUANT", "Quant")):
+            put(f"HRN{nm}{k}", pct(E[met]["medians"][m]))
+    rep = max(E21["E13_reproduction"]["max_abs_diff"].values()), max(E21["E12_reproduction"]["max_abs_diff"].values())
+    put("ReproMaxDiff", f"{max(rep):.1g}" if max(rep) > 0 else "0")
+    rows = []
+    for m, nm in (("LOOM", "LOOM"), ("QUANT", "QUANT"), ("Hybrid", "Hybrid (QUANT label, LOOM queue)"), ("Hybrid-min", "Hybrid-min")):
+        row = {"Method": nm, "E13 caught": pct(H["fault_caught@20"]["medians"][m]), "E13 auto err.": pct(H["auto_err@20"]["medians"][m]),
+               "E12 caught": pct(E["fault_caught@20"]["medians"][m]), "E12 auto err.": pct(E["auto_err@20"]["medians"][m])}
+        if E20 is not None:
+            S20 = E20["clean"]
+            if m in S20["methods"]:
+                row["E20 caught"], row["E20 auto err."] = pct(S20["methods"][m]["caught@20"]["mean"]), pct(S20["methods"][m]["auto_err@20"]["mean"])
+            else:
+                hh = S20["hybrid"]["primary" if m == "Hybrid" else "secondary"]
+                row["E20 caught"], row["E20 auto err."] = pct(hh["caught@20"]["mean"]), pct(hh["auto_err@20"]["mean"])
+        rows.append(row)
+    latex_table(pd.DataFrame(rows), "hybrid")
+
 def main():
-    general(); main_tables(); official(); ablation(); generality(); errors(); conformal_cost(); application(); sanity(); tables(); hypotheses_table(); supplement_tables(); tool(); prevalence()
+    general(); main_tables(); official(); ablation(); generality(); errors(); conformal_cost(); application(); sanity(); tables(); hypotheses_table(); supplement_tables(); tool(); prevalence(); ptbxl(); hybrid()
     lines = ["% Generated by code/experiments/aggregate.py -- do not edit by hand."]
     lines += [f"\\newcommand{{\\{k}}}{{{v}}}" for k, v in sorted(MAC.items())]
     (TAB / "macros.tex").write_text("\n".join(lines) + "\n")

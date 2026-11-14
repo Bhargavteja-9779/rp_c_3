@@ -3784,5 +3784,276 @@
     ]
    ]
   }
+ },
+ {
+  "type": "journal-article",
+  "title": "PTB-XL, a large publicly available electrocardiography dataset",
+  "author": [
+   {
+    "given": "Patrick",
+    "family": "Wagner",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-4447-0162",
+    "authenticated-orcid": false,
+    "given": "Nils",
+    "family": "Strodthoff",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Ralf-Dieter",
+    "family": "Bousseljot",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Dieter",
+    "family": "Kreiseler",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Fatima I.",
+    "family": "Lunze",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-6283-3265",
+    "authenticated-orcid": false,
+    "given": "Wojciech",
+    "family": "Samek",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-1310-2631",
+    "authenticated-orcid": false,
+    "given": "Tobias",
+    "family": "Schaeffter",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Scientific Data",
+  "volume": "7",
+  "issue": "1",
+  "issued": {
+   "date-parts": [
+    [
+     2020,
+     5,
+     25
+    ]
+   ]
+  },
+  "DOI": "10.1038/s41597-020-0495-6",
+  "publisher": "Springer Science and Business Media LLC",
+  "id": "wagner2020ptbxl"
+ },
+ {
+  "type": "journal-article",
+  "title": "Deep Learning for ECG Analysis: Benchmarks and Insights from PTB-XL",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0003-4447-0162",
+    "authenticated-orcid": false,
+    "given": "Nils",
+    "family": "Strodthoff",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Patrick",
+    "family": "Wagner",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Tobias",
+    "family": "Schaeffter",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-6283-3265",
+    "authenticated-orcid": false,
+    "given": "Wojciech",
+    "family": "Samek",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "IEEE Journal of Biomedical and Health Informatics",
+  "volume": "25",
+  "issue": "5",
+  "page": "1519-1528",
+  "issued": {
+   "date-parts": [
+    [
+     2021,
+     5
+    ]
+   ]
+  },
+  "DOI": "10.1109/jbhi.2020.3022989",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "id": "strodthoff2021ptbxl"
+ },
+ {
+  "type": "journal-article",
+  "title": "Note on the Sampling Error of the Difference Between Correlated Proportions or Percentages",
+  "author": [
+   {
+    "given": "Quinn",
+    "family": "McNemar",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Psychometrika",
+  "volume": "12",
+  "issue": "2",
+  "page": "153-157",
+  "issued": {
+   "date-parts": [
+    [
+     1947,
+     6
+    ]
+   ]
+  },
+  "DOI": "10.1007/bf02295996",
+  "publisher": "Cambridge University Press (CUP)",
+  "id": "mcnemar1947"
+ },
+ {
+  "id": "mozannar2020",
+  "type": "paper-conference",
+  "title": "Consistent estimators for learning to defer to an expert",
+  "author": [
+   {
+    "family": "Mozannar",
+    "given": "Hussein"
+   },
+   {
+    "family": "Sontag",
+    "given": "David"
+   }
+  ],
+  "container-title": "Proceedings of the 37th International Conference on Machine Learning",
+  "collection-title": "PMLR",
+  "volume": "119",
+  "page": "7076-7087",
+  "issued": {
+   "date-parts": [
+    [
+     2020
+    ]
+   ]
+  }
+ },
+ {
+  "id": "madras2018",
+  "type": "paper-conference",
+  "title": "Predict responsibly: improving fairness and accuracy by learning to defer",
+  "author": [
+   {
+    "family": "Madras",
+    "given": "David"
+   },
+   {
+    "family": "Pitassi",
+    "given": "Toniann"
+   },
+   {
+    "family": "Zemel",
+    "given": "Richard"
+   }
+  ],
+  "container-title": "Advances in Neural Information Processing Systems",
+  "volume": "31",
+  "issued": {
+   "date-parts": [
+    [
+     2018
+    ]
+   ]
+  }
  }
 ]

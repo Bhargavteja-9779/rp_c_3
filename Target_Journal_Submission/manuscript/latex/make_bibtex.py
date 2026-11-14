@@ -27,8 +27,30 @@ def protect(title):
     return " ".join(out)
 
 
+ACC = {"\u0301": "'", "\u0300": "`", "\u0308": '"', "\u0302": "^", "\u030c": "v", "\u0327": "c", "\u0303": "~"}
+SYM = {"\u2019": "'", "\u2018": "`", "\u00ae": "", "\u2013": "--", "\u2014": "---", "\u00df": "{\\ss}"}
+
+
+def latexify(s):
+    """Write accented letters as LaTeX commands, so that BibTeX styles can abbreviate given names safely."""
+    import unicodedata
+    out = []
+    for ch in s:
+        if ord(ch) < 128:
+            out.append(ch); continue
+        if ch in SYM:
+            out.append(SYM[ch]); continue
+        d = unicodedata.normalize("NFD", ch)
+        if len(d) == 2 and d[1] in ACC:
+            a = ACC[d[1]]
+            out.append("{\\" + a + (" " if a.isalpha() else "") + d[0] + "}")
+        else:
+            raise ValueError(f"no LaTeX form for {ch!r} in {s!r}")
+    return "".join(out)
+
+
 def esc(s):
-    return s.replace("&", "\\&").replace("%", "\\%").replace("_", "\\_")
+    return latexify(s.replace("&", "\\&").replace("%", "\\%").replace("_", "\\_"))
 
 
 def main():
@@ -37,8 +59,8 @@ def main():
     for r in refs:
         t = TYPE[r["type"]]
         f = {}
-        f["author"] = " and ".join(f"{a['family']}, {a.get('given', '')}".strip(", ") if "family" in a else "{" + a["literal"] + "}"
-                                   for a in r.get("author", []))
+        f["author"] = latexify(" and ".join(f"{a['family']}, {a.get('given', '')}".strip(", ") if "family" in a else "{" + a["literal"] + "}"
+                                   for a in r.get("author", [])))
         f["title"] = protect(esc(r["title"]))
         f["year"] = str(r["issued"]["date-parts"][0][0])
         ct = esc(r.get("container-title", ""))
@@ -54,7 +76,7 @@ def main():
         if r.get("issue"):
             f["number"] = str(r["issue"])
         if "editor" in r:
-            f["editor"] = " and ".join(f"{a['family']}, {a.get('given', '')}" for a in r["editor"])
+            f["editor"] = latexify(" and ".join(f"{a['family']}, {a.get('given', '')}" for a in r["editor"]))
         body = ",\n".join(f"  {k} = {{{v}}}" for k, v in f.items() if v)
         out.append(f"@{t}{{{r['id']},\n{body}\n}}")
     (HERE / "references.bib").write_text("\n\n".join(out) + "\n")

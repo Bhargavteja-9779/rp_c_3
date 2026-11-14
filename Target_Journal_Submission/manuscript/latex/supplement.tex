@@ -1,4 +1,5 @@
-\documentclass[pdflatex,sn-basic]{sn-jnl}
+\documentclass[11pt]{article}
+\usepackage[authoryear,round]{natbib}
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -9,6 +10,7 @@
 \usepackage{array}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \usepackage{longtable}
+\usepackage[margin=2.5cm]{geometry}
 \usepackage{xr-hyper}
 \usepackage{hyperref}
 \externaldocument[M-]{main}
@@ -19,7 +21,7 @@
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\theequation}{S\arabic{equation}}
-\theoremstyle{thmstyleone}
+
 \newtheorem{proposition}{Proposition}
 
 \raggedbottom
@@ -27,12 +29,13 @@
 
 \begin{document}
 
-\title{Supplementary Material for ``Knowing when to ask a human: fault-aware confidence for fast time series classifiers''}
-\author{\fnm{Author information removed} \sur{for double-anonymous review}}
-\affil{\orgname{See separate title page}}
-\abstract{Proofs of Propositions~1--2 of the main text, the deviations log, the leakage audit, the definitions of the simulated faults, the validation of the software tool, and additional tables and figures. All numbers are generated from the released result files.}
-\keywords{Supplementary material}
+\title{Supplementary Material for ``TITLE''}
+\author{Author information removed for review}
+\date{}
 \maketitle
+\begin{abstract}
+Proofs of Propositions~1--2 of the main text, the deviations log, the leakage audit, the definitions of the simulated faults, the validation of the software tool, and additional tables and figures. All numbers are generated from the released result files.
+\end{abstract}
 
 \section{Proofs}\label{sec:proofs}
 Notation follows Sect.~\ref{M-sec:prelim} of the main text: $A=\tilde X^\top\tilde X+\mathrm{diag}(0,\lambda I_p)$, $B=A^{-1}\tilde X^\top Y$, $\hat Y=\tilde XB$, $d_i=\tilde x_i^\top A^{-1}\tilde x_i$, and $A_{-i}=A-\tilde x_i\tilde x_i^\top$ is the matrix without example $i$ (same $\lambda$ and standardisation, Assumption~A4). The Sherman--Morrison identity gives
@@ -142,6 +145,7 @@ The command-line tool was run as a separate process on plain CSV files built dir
 \caption{Fit time against the number of training series (log--log, single core).}\label{fig:eff}
 \end{figure}
 
+\bibliographystyle{elsarticle-harv}
 \bibliography{references}
 
 \end{document}

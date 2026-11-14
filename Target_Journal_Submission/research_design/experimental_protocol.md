@@ -35,6 +35,9 @@ form on 2026-11-03, after the results were known. They are marked **(formalised 
 | H5 | In confirmatory triage, LOOM's review queue catches more faulty recordings than PreVal's | E13 | share of faulty recordings in the 20 % least confident | Wilcoxon, Holm over 8 primary tests | p < 0.05, LOOM higher | 972f1d9 | **pass** (38/38) |
 | H6 | In confirmatory triage, LOOM's automatic decisions make fewer errors than PreVal's | E13 | error rate of the 80 % most confident | as H5 | p < 0.05, LOOM lower | 972f1d9 | **pass** (35/38) |
 | H7 | On QUANT features, LOOM's NLL under faults is lower than PreVal's | E14 | NLL, severity-3 mean | Wilcoxon, Holm | p < 0.05, LOOM lower | 972f1d9 | **pass** (110/110) |
+| H8 | On PTB-XL, LOOM's 20 % review queue contains a larger share of the expert-annotated noisy test records than PreVal's | E20 | share of annotated-noisy records in the 20 % least confident | exact McNemar test, seed 0 | p < 0.05, LOOM higher | 6b05cb1, 2026-11-14 | see `results/e20/summary.json` |
+| H9 | On PTB-XL, LOOM's mean NLL on the annotated-noisy test records is lower than PreVal's | E20 | NLL | paired bootstrap of records (10,000), seed 0 | 95 % CI of LOOM − PreVal below 0 | 6b05cb1 | see `results/e20/summary.json` |
+| H10 | The hybrid (QUANT label, LOOM review queue) has a lower automatic error rate than QUANT and than LOOM | E21 on E13 outputs | error rate of the 80 % most confident | Wilcoxon over 38 datasets, Holm over 2 | p < 0.05 against both, hybrid lower | 6b05cb1 | see `results/e21/summary.json` |
 | X1 | (exploratory) LOOM on QUANT features vs the QUANT classifier | E14 | NLL under faults | Wilcoxon | none (exploratory) | 972f1d9 | QUANT better (97/110) |
 
 ## Experiments
@@ -64,6 +67,8 @@ All experiments use univariate equal-length UCR datasets (114 in total), the off
 | E17 | Sanity checks: sampling-noise simulation and exchangeability check | results of E1, E9 | — | **post hoc**, added 2026-11-03 (D19) |
 | E18 | Validation of the command-line tool on plain CSV files | 5 datasets, official split | loom-triage vs pipeline | **post hoc**, added 2026-11-04 (D21) |
 | E19 | Fault-prevalence sensitivity of the confirmatory triage study | E13 outputs, prevalence 10 / 20 / 30 % | as E13 | **post hoc**, added 2026-11-04 (D22) |
+| E20 | Expert-annotated real faults in clinical 12-lead ECG (PTB-XL v1.0.3, 100 Hz) | 16,307 single-superclass records; train folds 1–8 (clean records: primary; all: secondary), test folds 9–10; seeds 0–4 | multivariate MiniRocket + LOOM / PreVal / Holdout-TS / Ridge-Platt-CV5; QUANT | registered 6b05cb1 |
+| E21 | Leverage-gated hybrid triage (QUANT label, LOOM review queue) | outputs of E13 (confirmatory), E12 and E20 (descriptive) | Hybrid, Hybrid-min, LOOM, QUANT | registered 6b05cb1 |
 
 ## Compute budget and scope cuts
 Hardware: one cloud container, 4 CPU cores, 14.3 GB memory limit, no GPU. Measured wall-clock

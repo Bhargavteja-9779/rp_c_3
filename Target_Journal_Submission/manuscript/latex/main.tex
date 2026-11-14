@@ -1,4 +1,4 @@
-\documentclass[pdflatex,sn-basic]{sn-jnl}
+\documentclass[preprint,12pt,authoryear]{elsarticle}
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -24,26 +24,31 @@
 \newcommand{\xmark}{--}
 \newcommand{\pmark}{($\checkmark$)}
 
-\theoremstyle{thmstyleone}
 \newtheorem{proposition}{Proposition}
 \newtheorem{assumption}{Assumption}
 \renewcommand{\theassumption}{A\arabic{assumption}}
 
 \raggedbottom
+\journal{Expert Systems with Applications}
+\biboptions{authoryear}
 \setlength{\tabcolsep}{3pt}
 
 \begin{document}
 
-\title[Knowing when to ask a human]{Knowing when to ask a human: fault-aware confidence for fast time series classifiers}
+\begin{frontmatter}
+\title{TITLE}
 
-\author{\fnm{Author information removed} \sur{for double-anonymous review}}
-\affil{\orgname{See separate title page}}
+\author{Author information removed for review (see separate title page)}
 
-\abstract{Monitoring systems, from heart monitors to industrial sensors, often let a time series classifier decide on its own and pass uncertain cases to a person. This only works if the classifier's confidence drops when a recording is damaged by noise, drift, spikes or dropouts. Fast random convolutional kernel classifiers such as MiniRocket are accurate and cheap, but their ridge readout gives scores rather than probabilities, and existing calibration methods rescale all scores in the same way. We propose LOOM, a closed-form readout that divides each ridge score by the square root of its leverage, a measure of how far a recording lies from the training data, and fits one temperature and the ridge penalty on exact leave-one-out pairs of scores and leverages, without held-out data, refitting or ensembles. We tested it on \NDatasets{} UCR datasets with 18 simulated sensor faults, on seven ECG datasets with real recorded noise from the MIT-BIH Noise Stress Test Database, and in a pre-registered triage study on \CNDatasets{} sensor datasets. Under simulated faults LOOM lowered the median negative log-likelihood from \NLLFaultsPreVal{} to \NLLFaultsLoom{} compared with prevalidated ridge (PreVal), the strongest previous readout; under real ECG noise from \RNNLLPreVal{} to \RNNLLLoom{}; and with a 20\,\% review budget its review queue caught \CCaughtLoom{} of the faulty recordings, against \CCaughtPreVal{} for PreVal and \CCaughtQuant{} for the tree-based QUANT classifier. On clean data LOOM is not better than PreVal, and QUANT has a lower likelihood loss under the strongest faults.}
+\begin{abstract}
+Monitoring systems, from heart monitors to industrial sensors, often let a time series classifier decide on its own and pass uncertain cases to a person. This only works if the classifier's confidence drops when a recording is damaged by noise, drift, spikes or dropouts. Fast random convolutional kernel classifiers such as MiniRocket are accurate and cheap, but their ridge readout gives scores rather than probabilities, and existing calibration methods rescale all scores in the same way. We propose LOOM, a closed-form readout that divides each ridge score by the square root of its leverage, a measure of how far a recording lies from the training data, and fits one temperature and the ridge penalty on exact leave-one-out pairs of scores and leverages, without held-out data, refitting or ensembles. We tested it on \NDatasets{} UCR datasets with 18 simulated sensor faults, on seven ECG datasets with real recorded noise from the MIT-BIH Noise Stress Test Database, and in a pre-registered triage study on \CNDatasets{} sensor datasets. Under simulated faults LOOM lowered the median negative log-likelihood from \NLLFaultsPreVal{} to \NLLFaultsLoom{} compared with prevalidated ridge (PreVal), the strongest previous readout; under real ECG noise from \RNNLLPreVal{} to \RNNLLLoom{}; and with a 20\,\% review budget its review queue caught \CCaughtLoom{} of the faulty recordings, against \CCaughtPreVal{} for PreVal and \CCaughtQuant{} for the tree-based QUANT classifier. On clean data LOOM is not better than PreVal, and QUANT has a lower likelihood loss under the strongest faults.
+\end{abstract}
 
-\keywords{Time series classification, Sensor faults, Uncertainty estimation, Probability calibration, Human-in-the-loop triage, Conformal prediction}
+\begin{keyword}
+Time series classification \sep Sensor faults \sep Uncertainty estimation \sep Probability calibration \sep Human-in-the-loop triage \sep Conformal prediction
+\end{keyword}
 
-\maketitle
+\end{frontmatter}
 
 %=====================================================================
 \section{Introduction}\label{sec:intro}
@@ -381,24 +386,25 @@ The main limitations are:
 \section{Conclusion and future scope}\label{sec:conclusion}
 We showed that a closed-form change to the readout of fast random-kernel classifiers makes their confidence drop for recordings far from the training data, without held-out data, refitting or ensembles. LOOM lowered the likelihood loss under simulated faults and real ECG noise compared with the strongest previous readout, and in a pre-registered triage study its review queue caught \CCaughtLoom{} instead of \CCaughtPreVal{} of the faulty recordings. We did not show an advantage on clean data or over the tree-based QUANT classifier under the strongest faults, and leverage does not detect changes that keep the features in range. Next steps are a study with expert-labelled real faulty recordings, multivariate signals, combining QUANT's trees with LOOM's leverage, and adaptive target smoothing for problems with many classes and few examples.
 
-\backmatter
+\section*{Supplementary material}
+Supplementary material associated with this article (proofs, deviations log, leakage audit, fault definitions, software validation and additional tables and figures) is provided as a separate file.
 
-\bmhead{Supplementary information}
-Supplementary Material: proofs, deviations log, leakage audit, fault definitions, software validation and additional tables and figures.
+\section*{CRediT authorship contribution statement}
+[To be completed by the authors.]
 
-\bmhead{Acknowledgements}
-An AI assistant (Claude, Anthropic) was used for the literature search, code, experiments and drafting, as described in Sect.~\ref{sec:framework}. [Further acknowledgements to be completed by the authors.]
+\section*{Declaration of competing interest}
+[To be completed by the authors.]
 
-\section*{Declarations}
-\begin{itemize}
-\item Funding: [to be completed by the authors]
-\item Competing interests: [to be completed by the authors]
-\item Ethics approval and consent to participate: not applicable (public, de-identified benchmark data).
-\item Data availability: UCR archive (\url{https://www.timeseriesclassification.com}; free for research use with citation of \citet{dau2019ucr}) and MIT-BIH Noise Stress Test Database (\url{https://physionet.org/content/nstdb/1.0.0/}; Open Data Commons Attribution License v1.0).
-\item Code availability: [public repository link to be inserted by the authors]; all results, tables, figures and the number macros of this paper are regenerated by one script.
-\item Author contribution: [to be completed by the authors]
-\end{itemize}
+\section*{Data availability}
+All data are public: the UCR archive (\url{https://www.timeseriesclassification.com}; free for research use with citation of \citet{dau2019ucr}), the MIT-BIH Noise Stress Test Database (\url{https://physionet.org/content/nstdb/1.0.0/}; Open Data Commons Attribution License v1.0) and PTB-XL v1.0.3 (\url{https://physionet.org/content/ptb-xl/1.0.3/}; Creative Commons Attribution 4.0). Code: [public repository link to be inserted by the authors]; one script regenerates all results, tables, figures and the number macros of this paper.
 
+\section*{Funding}
+[To be completed by the authors.]
+
+\section*{Declaration of generative AI and AI-assisted technologies in the research and writing process}
+During the preparation of this work the authors used Claude (Anthropic) for the literature search, for writing and running the experiment code and for drafting the text, as described in Sect.~\ref{sec:framework}. After using this tool, the authors reviewed and edited the content as needed and take full responsibility for the content of the publication. [The authors must check and confirm this statement.]
+
+\bibliographystyle{elsarticle-harv}
 \bibliography{references}
 
 \end{document}

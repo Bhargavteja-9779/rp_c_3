@@ -1,0 +1,30 @@
+[
+ {
+  "id": "wagner2020ptbxl",
+  "doi": "10.1038/s41597-020-0495-6",
+  "source": "crossref",
+  "title": "PTB-XL, a large publicly available electrocardiography dataset"
+ },
+ {
+  "id": "strodthoff2021ptbxl",
+  "doi": "10.1109/JBHI.2020.3022989",
+  "source": "crossref",
+  "title": "Deep Learning for ECG Analysis: Benchmarks and Insights from PTB-XL"
+ },
+ {
+  "id": "mcnemar1947",
+  "doi": "10.1007/BF02295996",
+  "source": "crossref",
+  "title": "Note on the Sampling Error of the Difference Between Correlated Proportions or Percentages"
+ },
+ {
+  "id": "mozannar2020",
+  "source": "https://proceedings.mlr.press/v119/mozannar20b.html",
+  "title": "Consistent estimators for learning to defer to an expert"
+ },
+ {
+  "id": "madras2018",
+  "source": "https://papers.nips.cc/paper_files/paper/2018/hash/09d37c08f7b129e96277388757530c72-Abstract.html",
+  "title": "Predict responsibly: improving fairness and accuracy by learning to defer"
+ }
+]

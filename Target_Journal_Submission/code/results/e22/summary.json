@@ -260,5 +260,19 @@
    "loom_err_in_loom_queue": 0.5807116598541839,
    "loom_err_in_quant_queue": 0.40355319824108077
   }
+ },
+ "patient_cluster_bootstrap": {
+  "n_records": 810,
+  "n_patients": 757,
+  "nll_diff": {
+   "mean": 0.03355703603550802,
+   "ci_low": 0.015319719464783853,
+   "ci_high": 0.05080650974268118
+  },
+  "caught_diff": {
+   "mean": 0.016049382716049384,
+   "ci_low": -0.0024600246002460025,
+   "ci_high": 0.03456896946390146
+  }
  }
 }

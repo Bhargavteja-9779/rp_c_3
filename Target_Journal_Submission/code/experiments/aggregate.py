@@ -590,6 +590,10 @@ def realism():
     C = E22["error_capture"]
     put("CapDiff", f"{100*C['quant_err_in_quant_queue_minus_loom_queue_median']:.1f}"); put("CapOwnBetter", str(C["own_better"]))
     put("CapN", str(C["n_datasets"])); put("CapP", pv(C["p"]))
+    K = E22["patient_cluster_bootstrap"]
+    put("ClusterNLLCI", f"[{K['nll_diff']['ci_low']:.3f}, {K['nll_diff']['ci_high']:.3f}]")
+    put("ClusterCaughtCI", f"[{100*K['caught_diff']['ci_low']:.1f}, {100*K['caught_diff']['ci_high']:.1f}]")
+    put("ClusterPatients", str(K["n_patients"]))
     L = E22["lead_coverage"]
     put("LeadMedian", count(L["median_leads"])); put("LeadShareLeThree", pct(L["share_le3"], 0))
     put("LeadShareAll", pct(L["share_all12"], 0)); put("LeadUnparsed", str(L["n_unparsed"])); put("LeadParsed", str(L["n_parsed"]))

@@ -163,14 +163,35 @@ def error_capture():
                                   "loom_err_in_quant_queue"], np.nanmedian(R, 0).tolist())))
 
 
+def patient_cluster_bootstrap():
+    """Sensitivity of the H9 interval (and of the LOOM - PreVal difference in noisy records caught) to patients with
+    several test records: bootstrap over patients instead of records, seed 0."""
+    o = dict(np.load(ROOT / "results" / "e20" / "clean_s0.npz"))
+    db = pd.read_csv(ptbxl.RAW / "ptbxl_database.csv", index_col="ecg_id")
+    nz = o["noisy"].astype(bool); pid = db.loc[o["ecg_id"][nz], "patient_id"].to_numpy(); y = o["y"][nz]
+    nll = lambda P: -np.log(np.clip(P[np.arange(len(y)), y], 1e-15, 1.0))
+    d_nll = nll(o["P_LOOM"][nz]) - nll(o["P_PreVal"][nz])
+    d_cau = queue(o["P_LOOM"].max(1))[nz].astype(float) - queue(o["P_PreVal"].max(1))[nz].astype(float)
+    up, inv = np.unique(pid, return_inverse=True)
+    S = np.zeros((len(up), 3)); np.add.at(S, inv, np.c_[d_nll, d_cau, np.ones(len(inv))])
+    rng = np.random.default_rng(0); out = {"n_records": int(nz.sum()), "n_patients": int(len(up))}
+    for j, k in ((0, "nll_diff"), (1, "caught_diff")):
+        bs = []
+        for _ in range(N_BOOT):
+            idx = rng.integers(0, len(up), len(up)); bs.append(S[idx, j].sum() / S[idx, 2].sum())
+        out[k] = dict(mean=float(S[:, j].sum() / S[:, 2].sum()), ci_low=float(np.percentile(bs, 2.5)), ci_high=float(np.percentile(bs, 97.5)))
+    return out
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    s = {"experiment": "E22 (post hoc, D27)", "by_type": by_type(), "effects": effects(), "lead_coverage": lead_coverage(), "error_capture": error_capture()}
+    s = {"experiment": "E22 (post hoc, D27)", "by_type": by_type(), "effects": effects(), "lead_coverage": lead_coverage(), "error_capture": error_capture(),
+         "patient_cluster_bootstrap": patient_cluster_bootstrap()}
     json.dump(s, open(OUT / "summary.json", "w"), indent=1)
     for c in ptbxl.NOISE_COLS:
         a = s["by_type"]["mean_over_seeds"]["clean"][c]
         print(c, a["n"], {m: round(a[m]["auroc"], 3) for m in METHODS})
-    print("lead coverage", s["lead_coverage"]); print("error capture", s["error_capture"])
+    print("lead coverage", s["lead_coverage"]); print("error capture", s["error_capture"]); print("cluster", s["patient_cluster_bootstrap"])
     for r in s["effects"]:
         print(r["study"], r["n"], round(r["diff"], 3), round(r["ci_low"], 3), round(r["ci_high"], 3))
 

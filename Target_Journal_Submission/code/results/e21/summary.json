@@ -1,0 +1,544 @@
+{
+ "experiment": "E21",
+ "rule": "label from QUANT, review queue by lowest LOOM confidence (secondary: lowest min)",
+ "E13_reproduction": {
+  "n_rows_compared": 760,
+  "n_rows_stored": 760,
+  "max_abs_diff": {
+   "auto_err@20": 0.0,
+   "fault_caught@20": 0.0
+  }
+ },
+ "H10": {
+  "pairwise": [
+   {
+    "competitor": "QUANT",
+    "n": 38,
+    "ref_wins": 7,
+    "draws": 1,
+    "ref_losses": 30,
+    "median_diff": -0.011079545454545467,
+    "ci_low": -0.015072809984974104,
+    "ci_high": -0.005524090210148642,
+    "rank_biserial": -0.6671408250355618,
+    "p": 0.00040357640095270756,
+    "p_holm": 0.0008071528019054151
+   },
+   {
+    "competitor": "LOOM",
+    "n": 38,
+    "ref_wins": 12,
+    "draws": 1,
+    "ref_losses": 25,
+    "median_diff": -0.0032258064516129392,
+    "ci_low": -0.016723930408140936,
+    "ci_high": -7.588404917286459e-05,
+    "rank_biserial": -0.3399715504978663,
+    "p": 0.07141787934002694,
+    "p_holm": 0.07141787934002694
+   }
+  ],
+  "passed": false
+ },
+ "E13": {
+  "auto_err@10": {
+   "medians": {
+    "Hybrid": 0.16130343993845475,
+    "Hybrid-min": 0.1561236467979653,
+    "LOOM": 0.153291570502253,
+    "QUANT": 0.1581591889992974
+   },
+   "means": {
+    "Hybrid": 0.2002930581127956,
+    "Hybrid-min": 0.1962992196037835,
+    "LOOM": 0.18317892329885227,
+    "QUANT": 0.19222781637629616
+   },
+   "vs_hybrid": [
+    {
+     "competitor": "Hybrid-min",
+     "n": 38,
+     "ref_wins": 7,
+     "draws": 5,
+     "ref_losses": 26,
+     "median_diff": -0.004123587219889542,
+     "ci_low": -0.007519142922869634,
+     "ci_high": -0.0009174311926605505,
+     "rank_biserial": -0.6755793226381461,
+     "p": 0.0007093136988715628,
+     "p_holm": 0.0014186273977431255
+    },
+    {
+     "competitor": "LOOM",
+     "n": 38,
+     "ref_wins": 17,
+     "draws": 2,
+     "ref_losses": 19,
+     "median_diff": -0.0010526315789473675,
+     "ci_low": -0.01782758323388161,
+     "ci_high": 0.004461205603551718,
+     "rank_biserial": -0.12912912912912913,
+     "p": 0.49932339699053974,
+     "p_holm": 0.49932339699053974
+    },
+    {
+     "competitor": "QUANT",
+     "n": 38,
+     "ref_wins": 8,
+     "draws": 2,
+     "ref_losses": 28,
+     "median_diff": -0.009144179369891509,
+     "ci_low": -0.013670781177678561,
+     "ci_high": -0.006226858407543771,
+     "rank_biserial": -0.6756756756756757,
+     "p": 0.0004079613697085951,
+     "p_holm": 0.0012238841091257854
+    }
+   ]
+  },
+  "auto_err@20": {
+   "medians": {
+    "Hybrid": 0.131,
+    "Hybrid-min": 0.12097069597069597,
+    "LOOM": 0.10133333333333333,
+    "QUANT": 0.13176543209876543
+   },
+   "means": {
+    "Hybrid": 0.17703507653342862,
+    "Hybrid-min": 0.16925223889346058,
+    "LOOM": 0.1556163825523705,
+    "QUANT": 0.16801762495724876
+   },
+   "vs_hybrid": [
+    {
+     "competitor": "Hybrid-min",
+     "n": 38,
+     "ref_wins": 7,
+     "draws": 2,
+     "ref_losses": 29,
+     "median_diff": -0.007509546686375962,
+     "ci_low": -0.01261233019853708,
+     "ci_high": -0.004461942257217841,
+     "rank_biserial": -0.8138138138138138,
+     "p": 2.066648374780766e-05,
+     "p_holm": 6.199945124342297e-05
+    },
+    {
+     "competitor": "LOOM",
+     "n": 38,
+     "ref_wins": 12,
+     "draws": 1,
+     "ref_losses": 25,
+     "median_diff": -0.0032258064516129392,
+     "ci_low": -0.016723930408140936,
+     "ci_high": -7.588404917286459e-05,
+     "rank_biserial": -0.3399715504978663,
+     "p": 0.07141787934002694,
+     "p_holm": 0.07141787934002694
+    },
+    {
+     "competitor": "QUANT",
+     "n": 38,
+     "ref_wins": 7,
+     "draws": 1,
+     "ref_losses": 30,
+     "median_diff": -0.011079545454545467,
+     "ci_low": -0.015072809984974104,
+     "ci_high": -0.005524090210148642,
+     "rank_biserial": -0.6671408250355618,
+     "p": 0.00040357640095270756,
+     "p_holm": 0.0008071528019054151
+    }
+   ]
+  },
+  "auto_err@30": {
+   "medians": {
+    "Hybrid": 0.10040111979275479,
+    "Hybrid-min": 0.09475274725274725,
+    "LOOM": 0.059270324099221436,
+    "QUANT": 0.11511675824175825
+   },
+   "means": {
+    "Hybrid": 0.156499683051436,
+    "Hybrid-min": 0.14613118768505662,
+    "LOOM": 0.13211333924409002,
+    "QUANT": 0.14661875951006484
+   },
+   "vs_hybrid": [
+    {
+     "competitor": "Hybrid-min",
+     "n": 38,
+     "ref_wins": 3,
+     "draws": 2,
+     "ref_losses": 33,
+     "median_diff": -0.009750977685760293,
+     "ci_low": -0.014881882525967435,
+     "ci_high": -0.005252763124843006,
+     "rank_biserial": -0.8558558558558559,
+     "p": 7.551732796107439e-06,
+     "p_holm": 2.2655198388322316e-05
+    },
+    {
+     "competitor": "LOOM",
+     "n": 38,
+     "ref_wins": 10,
+     "draws": 4,
+     "ref_losses": 24,
+     "median_diff": -0.004934140072820727,
+     "ci_low": -0.016798361135498978,
+     "ci_high": 0.0,
+     "rank_biserial": -0.3915966386554622,
+     "p": 0.04639915206676906,
+     "p_holm": 0.04639915206676906
+    },
+    {
+     "competitor": "QUANT",
+     "n": 38,
+     "ref_wins": 8,
+     "draws": 2,
+     "ref_losses": 28,
+     "median_diff": -0.010422417834262204,
+     "ci_low": -0.01852242664742664,
+     "ci_high": -0.0028571428571428636,
+     "rank_biserial": -0.5855855855855856,
+     "p": 0.0021871879664163776,
+     "p_holm": 0.004374375932832755
+    }
+   ]
+  },
+  "fault_caught@10": {
+   "medians": {
+    "Hybrid": 0.24006108798445797,
+    "Hybrid-min": 0.22958671204208964,
+    "LOOM": 0.24006108798445797,
+    "QUANT": 0.1855137293504574
+   },
+   "means": {
+    "Hybrid": 0.2341747803866685,
+    "Hybrid-min": 0.2259570982046263,
+    "LOOM": 0.2341747803866685,
+    "QUANT": 0.18702979666922126
+   },
+   "vs_hybrid": [
+    {
+     "competitor": "Hybrid-min",
+     "n": 38,
+     "ref_wins": 22,
+     "draws": 5,
+     "ref_losses": 11,
+     "median_diff": -0.001965518391517637,
+     "ci_low": -0.009794744665454047,
+     "ci_high": 0.0,
+     "rank_biserial": -0.49019607843137253,
+     "p": 0.01401703616449333,
+     "p_holm": 0.02803407232898666
+    },
+    {
+     "competitor": "LOOM",
+     "n": 38,
+     "ref_wins": 0,
+     "draws": 38,
+     "ref_losses": 0,
+     "median_diff": 0.0,
+     "ci_low": 0.0,
+     "ci_high": 0.0,
+     "rank_biserial": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "competitor": "QUANT",
+     "n": 38,
+     "ref_wins": 35,
+     "draws": 0,
+     "ref_losses": 3,
+     "median_diff": -0.04445029076974093,
+     "ci_low": -0.07041640070311622,
+     "ci_high": -0.019821947148241995,
+     "rank_biserial": -0.8947368421052632,
+     "p": 5.517358658835292e-08,
+     "p_holm": 1.6552075976505876e-07
+    }
+   ]
+  },
+  "fault_caught@20": {
+   "medians": {
+    "Hybrid": 0.41450786969882136,
+    "Hybrid-min": 0.42576479452510885,
+    "LOOM": 0.41450786969882136,
+    "QUANT": 0.3384212814934445
+   },
+   "means": {
+    "Hybrid": 0.4337857845344469,
+    "Hybrid-min": 0.4178096639602879,
+    "LOOM": 0.4337857845344469,
+    "QUANT": 0.3480705395998117
+   },
+   "vs_hybrid": [
+    {
+     "competitor": "Hybrid-min",
+     "n": 38,
+     "ref_wins": 25,
+     "draws": 2,
+     "ref_losses": 11,
+     "median_diff": -0.007681983779544738,
+     "ci_low": -0.01918918918918916,
+     "ci_high": -0.001226024383919111,
+     "rank_biserial": -0.5345345345345346,
+     "p": 0.005166223468725871,
+     "p_holm": 0.010332446937451742
+    },
+    {
+     "competitor": "LOOM",
+     "n": 38,
+     "ref_wins": 0,
+     "draws": 38,
+     "ref_losses": 0,
+     "median_diff": 0.0,
+     "ci_low": 0.0,
+     "ci_high": 0.0,
+     "rank_biserial": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "competitor": "QUANT",
+     "n": 38,
+     "ref_wins": 34,
+     "draws": 0,
+     "ref_losses": 4,
+     "median_diff": -0.0721876217131003,
+     "ci_low": -0.11925755098063731,
+     "ci_high": -0.0322112748428538,
+     "rank_biserial": -0.8758434547908233,
+     "p": 1.3897079043090343e-07,
+     "p_holm": 4.169123712927103e-07
+    }
+   ]
+  },
+  "fault_caught@30": {
+   "medians": {
+    "Hybrid": 0.5668262610701433,
+    "Hybrid-min": 0.5618294912777344,
+    "LOOM": 0.5668262610701433,
+    "QUANT": 0.45944901887109313
+   },
+   "means": {
+    "Hybrid": 0.5823796796057765,
+    "Hybrid-min": 0.5607413927256473,
+    "LOOM": 0.5823796796057765,
+    "QUANT": 0.48024685562221714
+   },
+   "vs_hybrid": [
+    {
+     "competitor": "Hybrid-min",
+     "n": 38,
+     "ref_wins": 25,
+     "draws": 1,
+     "ref_losses": 12,
+     "median_diff": -0.011496528388976857,
+     "ci_low": -0.026592273499234875,
+     "ci_high": -0.0017659653008490483,
+     "rank_biserial": -0.4594594594594595,
+     "p": 0.014832829052305317,
+     "p_holm": 0.029665658104610634
+    },
+    {
+     "competitor": "LOOM",
+     "n": 38,
+     "ref_wins": 0,
+     "draws": 38,
+     "ref_losses": 0,
+     "median_diff": 0.0,
+     "ci_low": 0.0,
+     "ci_high": 0.0,
+     "rank_biserial": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "competitor": "QUANT",
+     "n": 38,
+     "ref_wins": 33,
+     "draws": 0,
+     "ref_losses": 5,
+     "median_diff": -0.076914325830644,
+     "ci_low": -0.12284655615339879,
+     "ci_high": -0.0384961067853169,
+     "rank_biserial": -0.8704453441295547,
+     "p": 1.7856655176728964e-07,
+     "p_holm": 5.356996553018689e-07
+    }
+   ]
+  },
+  "clean:auto_err@20": {
+   "medians": {
+    "Hybrid": 0.0837912087912088,
+    "Hybrid-min": 0.07582417582417583,
+    "LOOM": 0.04435341365461848,
+    "QUANT": 0.08859890109890109
+   },
+   "vs_hybrid": [
+    {
+     "competitor": "Hybrid-min",
+     "n": 38,
+     "ref_wins": 6,
+     "draws": 3,
+     "ref_losses": 29,
+     "median_diff": -0.006671761775362311,
+     "ci_low": -0.011333333333333334,
+     "ci_high": -0.0025580480756369228,
+     "rank_biserial": -0.8158730158730159,
+     "p": 2.560047022947568e-05,
+     "p_holm": 7.680141068842704e-05
+    },
+    {
+     "competitor": "LOOM",
+     "n": 38,
+     "ref_wins": 12,
+     "draws": 6,
+     "ref_losses": 20,
+     "median_diff": -0.0020555212556109537,
+     "ci_low": -0.014562962902806634,
+     "ci_high": 0.0,
+     "rank_biserial": -0.3068181818181818,
+     "p": 0.12987015331443963,
+     "p_holm": 0.12987015331443963
+    },
+    {
+     "competitor": "QUANT",
+     "n": 38,
+     "ref_wins": 8,
+     "draws": 4,
+     "ref_losses": 26,
+     "median_diff": -0.007364457831325312,
+     "ci_low": -0.013915001958480212,
+     "ci_high": -0.0010057326209299516,
+     "rank_biserial": -0.6907563025210084,
+     "p": 0.00044252106507398735,
+     "p_holm": 0.0008850421301479747
+    }
+   ]
+  }
+ },
+ "E12_reproduction": {
+  "n_rows_compared": 70,
+  "n_rows_stored": 70,
+  "max_abs_diff": {
+   "auto_err@20": 0.0,
+   "fault_caught@20": 0.0
+  }
+ },
+ "E12": {
+  "auto_err@20": {
+   "medians": {
+    "Hybrid": 0.07119565217391303,
+    "Hybrid-min": 0.0625,
+    "LOOM": 0.075,
+    "QUANT": 0.0483695652173913
+   },
+   "means": {
+    "Hybrid": 0.07191438746646238,
+    "Hybrid-min": 0.0672114528993452,
+    "LOOM": 0.07941581741908207,
+    "QUANT": 0.06756928672960098
+   },
+   "vs_hybrid": [
+    {
+     "competitor": "Hybrid-min",
+     "n": 7,
+     "ref_wins": 0,
+     "draws": 0,
+     "ref_losses": 7,
+     "median_diff": -0.0035126234906695947,
+     "ci_low": -0.008695652173913035,
+     "ci_high": -0.0012777777777777735,
+     "rank_biserial": -1.0,
+     "p": 0.015625,
+     "p_holm": 0.046875
+    },
+    {
+     "competitor": "LOOM",
+     "n": 7,
+     "ref_wins": 1,
+     "draws": 0,
+     "ref_losses": 6,
+     "median_diff": -0.00592755214050494,
+     "ci_low": -0.013994910941475841,
+     "ci_high": -0.00016666666666666566,
+     "rank_biserial": -0.5,
+     "p": 0.296875,
+     "p_holm": 0.59375
+    },
+    {
+     "competitor": "QUANT",
+     "n": 7,
+     "ref_wins": 2,
+     "draws": 0,
+     "ref_losses": 5,
+     "median_diff": -0.004166666666666662,
+     "ci_low": -0.011450381679389318,
+     "ci_high": 0.0050000000000000044,
+     "rank_biserial": -0.35714285714285715,
+     "p": 0.46875,
+     "p_holm": 0.59375
+    }
+   ]
+  },
+  "fault_caught@20": {
+   "medians": {
+    "Hybrid": 0.6266139296377865,
+    "Hybrid-min": 0.5848251365380658,
+    "LOOM": 0.6266139296377865,
+    "QUANT": 0.49005892627878256
+   },
+   "means": {
+    "Hybrid": 0.5591345912551049,
+    "Hybrid-min": 0.5375540542822403,
+    "LOOM": 0.5591345912551049,
+    "QUANT": 0.5095013590234686
+   },
+   "vs_hybrid": [
+    {
+     "competitor": "Hybrid-min",
+     "n": 7,
+     "ref_wins": 6,
+     "draws": 0,
+     "ref_losses": 1,
+     "median_diff": -0.008023348499690663,
+     "ci_low": -0.04178879309972072,
+     "ci_high": -1.3032676721702607e-05,
+     "rank_biserial": -0.7142857142857143,
+     "p": 0.109375,
+     "p_holm": 0.328125
+    },
+    {
+     "competitor": "LOOM",
+     "n": 7,
+     "ref_wins": 0,
+     "draws": 7,
+     "ref_losses": 0,
+     "median_diff": 0.0,
+     "ci_low": 0.0,
+     "ci_high": 0.0,
+     "rank_biserial": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "competitor": "QUANT",
+     "n": 7,
+     "ref_wins": 6,
+     "draws": 0,
+     "ref_losses": 1,
+     "median_diff": -0.05708824911307919,
+     "ci_low": -0.10226626513391213,
+     "ci_high": -0.006226432033214158,
+     "rank_biserial": -0.6428571428571429,
+     "p": 0.15625,
+     "p_holm": 0.328125
+    }
+   ]
+  }
+ }
+}

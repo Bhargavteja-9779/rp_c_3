@@ -7,8 +7,19 @@ import json, urllib.request
 from pathlib import Path
 B = Path(__file__).resolve().parents[1] / "build" / "references.json"
 DOIS = {"wagner2020ptbxl": "10.1038/s41597-020-0495-6", "strodthoff2021ptbxl": "10.1109/JBHI.2020.3022989",
-        "mcnemar1947": "10.1007/BF02295996"}
+        "mcnemar1947": "10.1007/BF02295996", "bender2023noise": "10.3233/SHTI230321"}
 MANUAL = [
+ {"id": "han2025diffusion", "type": "article", "title": "Diffusion-based electrocardiography noise quantification via anomaly detection",
+  "author": [{"family": "Han", "given": "Tae-Seong"}, {"family": "Heo", "given": "Jae-Wook"}, {"family": "Kim", "given": "Hakseung"},
+             {"family": "Lee", "given": "Cheol-Hui"}, {"family": "Huh", "given": "Hyub"}, {"family": "Choi", "given": "Eue-Keun"},
+             {"family": "Kim", "given": "Hye Jin"}, {"family": "Kim", "given": "Dong-Joo"}],
+  "container-title": "arXiv preprint arXiv:2506.11815", "issued": {"date-parts": [[2025]]}, "URL": "https://arxiv.org/abs/2506.11815",
+  "_verified": "https://export.arxiv.org/api/query?id_list=2506.11815"},
+ {"id": "ibrahim2025uad", "type": "article", "title": "Enhancing ECG classification robustness with lightweight unsupervised anomaly detection filters",
+  "author": [{"family": "Ibrahim", "given": "Mustafa Fuad Rifet"}, {"family": "Meijer", "given": "Maurice"},
+             {"family": "Schlaefer", "given": "Alexander"}, {"family": "Stelldinger", "given": "Peer"}],
+  "container-title": "arXiv preprint arXiv:2510.26501", "issued": {"date-parts": [[2025]]}, "URL": "https://arxiv.org/abs/2510.26501",
+  "_verified": "https://export.arxiv.org/api/query?id_list=2510.26501"},
  {"id": "mozannar2020", "type": "paper-conference", "title": "Consistent estimators for learning to defer to an expert",
   "author": [{"family": "Mozannar", "given": "Hussein"}, {"family": "Sontag", "given": "David"}],
   "container-title": "Proceedings of the 37th International Conference on Machine Learning", "collection-title": "PMLR",
@@ -31,6 +42,9 @@ for k, d in DOIS.items():
 for m in MANUAL:
     if m["id"] in have: continue
     src = m.pop("_verified"); items.append(m); log.append({"id": m["id"], "source": src, "title": m["title"]})
+for e in items:                      # sentence case, as for the other references
+    if e["id"] == "bender2023noise":
+        e["title"] = "Benchmarking the impact of noise on deep learning-based classification of atrial fibrillation in 12-lead ECG"
 json.dump(items, open(B, "w"), indent=1, ensure_ascii=False)
 p = Path(__file__).with_name("revision2_verified.json")
 old = json.load(open(p)) if p.exists() else []

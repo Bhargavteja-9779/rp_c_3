@@ -4055,5 +4055,209 @@
     ]
    ]
   }
+ },
+ {
+  "type": "book-chapter",
+  "title": "Benchmarking the impact of noise on deep learning-based classification of atrial fibrillation in 12-lead ECG",
+  "author": [
+   {
+    "given": "Theresa",
+    "family": "Bender",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Department of Medical Informatics, University Medical Center Göttingen, Göttingen, Germany"
+     },
+     {
+      "name": "DZHK (German Centre for Cardiovascular Research), partner site Göttingen, Göttingen, Germany"
+     }
+    ],
+    "role": [
+     {
+      "role": "author",
+      "vocabulary": "crossref"
+     }
+    ]
+   },
+   {
+    "given": "Philip",
+    "family": "Gemke",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Medical Informatics, University Medical Center Göttingen, Göttingen, Germany"
+     }
+    ],
+    "role": [
+     {
+      "role": "author",
+      "vocabulary": "crossref"
+     }
+    ]
+   },
+   {
+    "given": "Ennio",
+    "family": "Idrobo-Avila",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Medical Informatics, University Medical Center Göttingen, Göttingen, Germany"
+     }
+    ],
+    "role": [
+     {
+      "role": "author",
+      "vocabulary": "crossref"
+     }
+    ]
+   },
+   {
+    "given": "Henning",
+    "family": "Dathe",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Medical Informatics, University Medical Center Göttingen, Göttingen, Germany"
+     }
+    ],
+    "role": [
+     {
+      "role": "author",
+      "vocabulary": "crossref"
+     }
+    ]
+   },
+   {
+    "given": "Dagmar",
+    "family": "Krefting",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Medical Informatics, University Medical Center Göttingen, Göttingen, Germany"
+     },
+     {
+      "name": "DZHK (German Centre for Cardiovascular Research), partner site Göttingen, Göttingen, Germany"
+     }
+    ],
+    "role": [
+     {
+      "role": "author",
+      "vocabulary": "crossref"
+     }
+    ]
+   },
+   {
+    "given": "Nicolai",
+    "family": "Spicher",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Medical Informatics, University Medical Center Göttingen, Göttingen, Germany"
+     },
+     {
+      "name": "DZHK (German Centre for Cardiovascular Research), partner site Göttingen, Göttingen, Germany"
+     }
+    ],
+    "role": [
+     {
+      "role": "author",
+      "vocabulary": "crossref"
+     }
+    ]
+   }
+  ],
+  "container-title": "Studies in Health Technology and Informatics",
+  "issued": {
+   "date-parts": [
+    [
+     2023,
+     5,
+     18
+    ]
+   ]
+  },
+  "DOI": "10.3233/shti230321",
+  "publisher": "IOS Press",
+  "id": "bender2023noise"
+ },
+ {
+  "id": "han2025diffusion",
+  "type": "article",
+  "title": "Diffusion-based electrocardiography noise quantification via anomaly detection",
+  "author": [
+   {
+    "family": "Han",
+    "given": "Tae-Seong"
+   },
+   {
+    "family": "Heo",
+    "given": "Jae-Wook"
+   },
+   {
+    "family": "Kim",
+    "given": "Hakseung"
+   },
+   {
+    "family": "Lee",
+    "given": "Cheol-Hui"
+   },
+   {
+    "family": "Huh",
+    "given": "Hyub"
+   },
+   {
+    "family": "Choi",
+    "given": "Eue-Keun"
+   },
+   {
+    "family": "Kim",
+    "given": "Hye Jin"
+   },
+   {
+    "family": "Kim",
+    "given": "Dong-Joo"
+   }
+  ],
+  "container-title": "arXiv preprint arXiv:2506.11815",
+  "issued": {
+   "date-parts": [
+    [
+     2025
+    ]
+   ]
+  },
+  "URL": "https://arxiv.org/abs/2506.11815"
+ },
+ {
+  "id": "ibrahim2025uad",
+  "type": "article",
+  "title": "Enhancing ECG classification robustness with lightweight unsupervised anomaly detection filters",
+  "author": [
+   {
+    "family": "Ibrahim",
+    "given": "Mustafa Fuad Rifet"
+   },
+   {
+    "family": "Meijer",
+    "given": "Maurice"
+   },
+   {
+    "family": "Schlaefer",
+    "given": "Alexander"
+   },
+   {
+    "family": "Stelldinger",
+    "given": "Peer"
+   }
+  ],
+  "container-title": "arXiv preprint arXiv:2510.26501",
+  "issued": {
+   "date-parts": [
+    [
+     2025
+    ]
+   ]
+  },
+  "URL": "https://arxiv.org/abs/2510.26501"
  }
 ]

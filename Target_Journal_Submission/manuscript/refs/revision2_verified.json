@@ -26,5 +26,21 @@
   "id": "madras2018",
   "source": "https://papers.nips.cc/paper_files/paper/2018/hash/09d37c08f7b129e96277388757530c72-Abstract.html",
   "title": "Predict responsibly: improving fairness and accuracy by learning to defer"
+ },
+ {
+  "id": "bender2023noise",
+  "doi": "10.3233/SHTI230321",
+  "source": "crossref",
+  "title": "Benchmarking the Impact of Noise on Deep Learning-Based Classification of Atrial Fibrillation in 12-Lead ECG"
+ },
+ {
+  "id": "han2025diffusion",
+  "source": "https://export.arxiv.org/api/query?id_list=2506.11815",
+  "title": "Diffusion-based electrocardiography noise quantification via anomaly detection"
+ },
+ {
+  "id": "ibrahim2025uad",
+  "source": "https://export.arxiv.org/api/query?id_list=2510.26501",
+  "title": "Enhancing ECG classification robustness with lightweight unsupervised anomaly detection filters"
  }
 ]

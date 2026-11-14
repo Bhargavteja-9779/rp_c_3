@@ -46,6 +46,14 @@ Descriptions summarise what each paper does; no result is quoted that is not sta
 | 38 | Barber et al. (2021) | Jackknife+ predictive inference | Requires n refits in general |
 | 39 | Nouretdinov et al. (2001) / Burnaev & Vovk (2014) | Closed-form conformal ridge regression | Regression only |
 | 40 | Moody et al. (1984) | Noise stress test for ECG algorithms with recorded noise (NSTDB) | Used here as real-noise test |
+| 41 | PTB-XL (Wagner et al. 2020, Sci. Data) | 21,799 clinical 12-lead ECGs with diagnostic statements, recommended patient-separated folds and signal-quality annotations by a technical expert | Quality annotations not used to test whether classifier confidence identifies noisy recordings |
+| 42 | PTB-XL benchmarks (Strodthoff et al. 2021, IEEE JBHI) | Benchmarks deep and classical ECG classifiers on PTB-XL tasks | Reports diagnostic accuracy; no evaluation of confidence on noisy records |
+| 43 | Learning to defer (Madras et al. 2018, NeurIPS) | Trains a model jointly with a rule that defers cases to a human decision maker | Needs joint training; does not separate label choice from review choice |
+| 44 | Consistent learning to defer (Mozannar & Sontag 2020, ICML) | Consistent surrogate loss for deferring to an expert | Same; deep-network setting, no sensor faults |
+| 45 | McNemar (1947, Psychometrika) | Test for paired proportions | Used for H8 |
+| 46 | Bender et al. 2023 (Stud. Health Technol. Inform.) | Uses the PTB-XL noise annotations to measure how four noise types affect a deep atrial-fibrillation classifier's accuracy | Accuracy only; no confidence or triage |
+| 47 | Han et al. 2025 (arXiv 2506.11815) | Diffusion-based anomaly detector for ECG noise, evaluated with PTB-XL lead-level noise labels; notes annotation inconsistencies | Dedicated noise detector, not the classifier's own confidence |
+| 48 | Ibrahim et al. 2025 (arXiv 2510.26501) | Lightweight unsupervised anomaly-detection filters in front of ECG classifiers; noise injected into PTB-XL | Injected, not annotated, noise; filters rather than classifier confidence |
 
 Further references used for methods and statistics (not counted above): Romano et al. 2020 and
 Angelopoulos et al. 2021 (APS), Sadinle et al. 2019 (LAC), Vovk et al. 2022, Angelopoulos & Bates
@@ -60,3 +68,11 @@ which lowers confidence specifically for recordings that lie far from the traini
 closed-form ingredients for doing so (LOO identities, leverage, moderated outputs) exist
 separately in classical statistics but have not been combined, fitted without held-out data, or
 evaluated for fault-aware triage of sensor recordings.
+
+**Second revision (2026-11-14).** Rows 41–48 were added for the PTB-XL study and the hybrid triage design. The gap
+sentence is extended: it is also not known whether a classifier's own confidence catches the faults of real clinical
+recordings. A web search on 2026-11-14 (queries combining "PTB-XL" with "static_noise", "baseline_drift", "signal
+quality", "uncertainty", "out-of-distribution", "noisy ECG") found rows 46–48, which use the annotations (or injected
+noise) for accuracy studies and dedicated noise detectors, but no study testing classifier confidence for triage. The
+paper therefore states the novelty narrowly and hedged ("to our knowledge"), and cites rows 46–48. Full texts of rows
+47–48 were not read; they are cited for what their abstracts state.

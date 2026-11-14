@@ -11,7 +11,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 PROPER = {"Bayesian", "Bayes", "Laplace", "Gaussian", "Python", "ImageNet", "Parkinson's", "Parkinson’s", "AlexNet",
           "PhysioBank", "PhysioToolkit", "PhysioNet", "ReLU", "ANOVA", "Bake", "UCR", "Dirichlet", "Hessian", "Sherman", "Morrison"}
-TYPE = {"journal-article": "article", "article-journal": "article", "paper-conference": "inproceedings",
+TYPE = {"journal-article": "article", "book-chapter": "incollection", "article-journal": "article", "paper-conference": "inproceedings",
         "proceedings-article": "inproceedings", "chapter": "incollection", "book": "book", "article": "misc"}
 
 

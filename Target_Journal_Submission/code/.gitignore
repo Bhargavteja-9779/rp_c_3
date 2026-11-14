@@ -9,3 +9,5 @@ examples/out/*.csv
 examples/out/*.pkl
 src/*.egg-info/
 results/logs/ucr_download.log
+results/logs/e20_run.log
+results/logs/e21_run.log

@@ -4,7 +4,8 @@ set -euo pipefail
 cd "$(dirname "$0")"
 SUB=../../submission; NAME=LOOM; STAGE=$(mktemp -d); SRC=$STAGE/latex_source
 mkdir -p $SUB $SRC/figures $SRC/tables
-for f in main.tex supplement.tex sn-jnl.cls sn-basic.bst references.bib deviations_table.tex; do cp $f $SRC/; done
+for f in main.tex supplement.tex references.bib deviations_table.tex; do cp $f $SRC/; done
+cp $(kpsewhich elsarticle.cls) $(kpsewhich elsarticle-harv.bst) $SRC/
 cp ../../code/tables/macros.tex ../../code/tables/tab_*.tex $SRC/tables/
 for f in $(grep -ohE 'includegraphics\[[^]]*\]\{[^}]*\}' main.tex supplement.tex | sed -E 's/.*\{([^}]*)\}/\1/'); do cp ../../code/figures/$f $SRC/figures/; done
 sed -i 's#\.\./\.\./code/figures/#figures/#; s#\.\./\.\./code/tables/#tables/#g' $SRC/main.tex $SRC/supplement.tex
@@ -16,6 +17,7 @@ cp main.pdf $STAGE/1_Main_Manuscript.pdf; cp supplement.pdf $STAGE/2_Supplementa
 cp cover_letter.docx $STAGE/3_Cover_Letter.docx; cp cover_letter.pdf $STAGE/3_Cover_Letter.pdf
 cp main_word.docx $STAGE/4_Main_Manuscript_Word_version.docx
 cp title_page.pdf $STAGE/6_Title_Page.pdf; cp title_page.docx $STAGE/6_Title_Page.docx
+cp highlights.docx $STAGE/7_Highlights.docx; cp highlights.txt $STAGE/7_Highlights.txt
 cp submission_README.txt $STAGE/README.txt
 rm -rf $SRC
 (cd $STAGE && zip -qr - .) > $SUB/${NAME}_Submission.zip

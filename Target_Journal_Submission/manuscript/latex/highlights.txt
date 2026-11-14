@@ -1,0 +1,6 @@
+Highlights
+- A closed-form, leverage-aware confidence for fast random-kernel classifiers
+- Pre-registered tests on 114 datasets, recorded noise and 16,307 clinical ECGs
+- With strong faults, its review queue catches many more faulty recordings
+- On expert-annotated clinical ECG noise, no tested confidence beats chance by much
+- Taking labels from one model and the review queue from another made triage worse

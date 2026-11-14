@@ -486,6 +486,7 @@ def ptbxl():
     put("PTBN", f"{d['n_records']:,}".replace(",", "{,}")); put("PTBNoisy", f"{d['n_noisy']:,}".replace(",", "{,}"))
     put("PTBTrainClean", f"{d['n_train_clean']:,}".replace(",", "{,}")); put("PTBTrainAll", f"{d['n_train_all']:,}".replace(",", "{,}"))
     put("PTBTest", f"{d['n_test']:,}".replace(",", "{,}")); put("PTBTestNoisy", str(d["n_test_noisy"]))
+    put("PTBPatientsAcross", count(d["patients_in_more_than_one_fold"]))
     put("PTBNoisyShareTest", pct(d["noisy_share_test"])); put("PTBNoisyShareTrain", pct(d["noisy_share_train"]))
     for tr, T in (("clean", ""), ("all", "All")):
         if tr not in E20:
@@ -525,6 +526,14 @@ def ptbxl():
         rows.append({"Method": nm, "Acc.": "--", "Macro AUROC": "--", "NLL clean": "--", "NLL noisy": "--", "Det. AUROC": "--",
                      "Caught": pct(H["caught@20"]["mean"]), "Auto err.": pct(H["auto_err@20"]["mean"])})
     latex_table(pd.DataFrame(rows), "ptbxl")
+    if "all" in E20:
+        S20 = E20["all"]; rows = []
+        for m in PTB_METHODS:
+            M = S20["methods"][m]
+            rows.append({"Method": NAMES[m], "Acc.": pct(M["acc"]["mean"]), "NLL noisy": num(M["nll_noisy"]["mean"]),
+                         "Det. AUROC": num(M["detect_auroc"]["mean"]), "Caught": pct(M["caught@20"]["mean"]),
+                         "Auto err.": pct(M["auto_err@20"]["mean"])})
+        latex_table(pd.DataFrame(rows), "ptbxl_all")
 
 
 def hybrid():
@@ -578,6 +587,9 @@ def realism():
         put(f"PTBType{k}N", str(T[t]["n"]))
         for m in ("LOOM", "PreVal", "QUANT", "Ridge-Platt-CV5"):
             put(f"PTBType{k}AUROC{METHODS[m]}", num(T[t][m]["auroc"]))
+    C = E22["error_capture"]
+    put("CapDiff", f"{100*C['quant_err_in_quant_queue_minus_loom_queue_median']:.1f}"); put("CapOwnBetter", str(C["own_better"]))
+    put("CapN", str(C["n_datasets"])); put("CapP", pv(C["p"]))
     L = E22["lead_coverage"]
     put("LeadMedian", count(L["median_leads"])); put("LeadShareLeThree", pct(L["share_le3"], 0))
     put("LeadShareAll", pct(L["share_all12"], 0)); put("LeadUnparsed", str(L["n_unparsed"])); put("LeadParsed", str(L["n_parsed"]))

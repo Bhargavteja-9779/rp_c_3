@@ -35,9 +35,9 @@ form on 2026-11-03, after the results were known. They are marked **(formalised 
 | H5 | In confirmatory triage, LOOM's review queue catches more faulty recordings than PreVal's | E13 | share of faulty recordings in the 20 % least confident | Wilcoxon, Holm over 8 primary tests | p < 0.05, LOOM higher | 972f1d9 | **pass** (38/38) |
 | H6 | In confirmatory triage, LOOM's automatic decisions make fewer errors than PreVal's | E13 | error rate of the 80 % most confident | as H5 | p < 0.05, LOOM lower | 972f1d9 | **pass** (35/38) |
 | H7 | On QUANT features, LOOM's NLL under faults is lower than PreVal's | E14 | NLL, severity-3 mean | Wilcoxon, Holm | p < 0.05, LOOM lower | 972f1d9 | **pass** (110/110) |
-| H8 | On PTB-XL, LOOM's 20 % review queue contains a larger share of the expert-annotated noisy test records than PreVal's | E20 | share of annotated-noisy records in the 20 % least confident | exact McNemar test, seed 0 | p < 0.05, LOOM higher | 6b05cb1, 2026-11-14 | see `results/e20/summary.json` |
-| H9 | On PTB-XL, LOOM's mean NLL on the annotated-noisy test records is lower than PreVal's | E20 | NLL | paired bootstrap of records (10,000), seed 0 | 95 % CI of LOOM − PreVal below 0 | 6b05cb1 | see `results/e20/summary.json` |
-| H10 | The hybrid (QUANT label, LOOM review queue) has a lower automatic error rate than QUANT and than LOOM | E21 on E13 outputs | error rate of the 80 % most confident | Wilcoxon over 38 datasets, Holm over 2 | p < 0.05 against both, hybrid lower | 6b05cb1 | see `results/e21/summary.json` |
+| H8 | On PTB-XL, LOOM's 20 % review queue contains a larger share of the expert-annotated noisy test records than PreVal's | E20 | share of annotated-noisy records in the 20 % least confident | exact McNemar test, seed 0 | p < 0.05, LOOM higher | 6b05cb1, 2026-11-14 | **fail** (24.8 % vs 23.2 %, McNemar p = 0.12) |
+| H9 | On PTB-XL, LOOM's mean NLL on the annotated-noisy test records is lower than PreVal's | E20 | NLL | paired bootstrap of records (10,000), seed 0 | 95 % CI of LOOM − PreVal below 0 | 6b05cb1 | **fail**, opposite direction (LOOM − PreVal = +0.034, CI [0.015, 0.051]) |
+| H10 | The hybrid (QUANT label, LOOM review queue) has a lower automatic error rate than QUANT and than LOOM | E21 on E13 outputs | error rate of the 80 % most confident | Wilcoxon over 38 datasets, Holm over 2 | p < 0.05 against both, hybrid lower | 6b05cb1 | **fail** (hybrid worse than QUANT on 30/38, p < 0.001; vs LOOM p = 0.071) |
 | X1 | (exploratory) LOOM on QUANT features vs the QUANT classifier | E14 | NLL under faults | Wilcoxon | none (exploratory) | 972f1d9 | QUANT better (97/110) |
 
 ## Experiments
@@ -86,3 +86,6 @@ E2 raw-series classifiers about 6 CPU-hours; E5 and E7 about 8 CPU-hours; E11–
   primary tests of E13; a non-significant result would have been reported as a failed replication.
 * H7 is supported by a significant improvement on QUANT features; a failure would have limited
   the claim to convolutional features.
+* H8 and H9 were the test on real faults annotated by experts. They were supported only by a significant
+  improvement over PreVal on PTB-XL; both failed, which limits the practical claim to strong artefacts.
+* H10 was supported only by a significantly lower automatic error than both QUANT and LOOM; it failed.

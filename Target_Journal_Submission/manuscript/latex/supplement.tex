@@ -83,6 +83,16 @@ Faults are applied to test series only, with amplitudes relative to each series'
 \section{Validation of the software tool}\label{sec:tool}
 The command-line tool was run as a separate process on plain CSV files built directly from the official UCR text files of \ToolN{} datasets (\ToolDatasets), with \texttt{fit}, \texttt{run} (20\,\% review budget, HTML report) and \texttt{evaluate}. Its predictions were identical to those of the research pipeline on \ToolIdentical{} of \ToolN{} datasets, and confidences differed by at most $\ToolMaxDiff$. The package also has unit tests for the API and the command-line interface.
 
+\section{PTB-XL: data handling and secondary analysis}\label{sec:ptbxl}
+\emph{Reading the signals.} The 100\,Hz records of PTB-XL v1.0.3 were read with our own WFDB format-16 reader (deviation D23). Every one of the \PTBN{} records used was checked against the initial values and checksums stored in its header; none disagreed. \emph{Labels.} Diagnostic statements with likelihood above zero were mapped to the five superclasses with \texttt{scp\_statements.csv}; records with no or with several superclasses were excluded. \emph{Leakage.} The recommended folds keep each patient in one fold: \PTBPatientsAcross{} patients appear in more than one fold. \emph{Noise annotations.} A record is noisy if any of the columns \texttt{baseline\_drift}, \texttt{static\_noise}, \texttt{burst\_noise} or \texttt{electrodes\_problems} is filled. To count the leads that an annotation names, we expanded ranges such as ``I-AVF'' in the standard lead order and read ``alles'' (German for ``all'') as all twelve leads; \LeadUnparsed{} of the noisy test records name no recognisable lead and were left out of that count only. \emph{QUANT.} QUANT's features (about 107{,}000 per record) were computed in chunks to fit in memory; the result equals aeon's QUANTClassifier exactly (deviation D26).
+
+\emph{Secondary analysis.} Table~\ref{tab:ptbxl_all} repeats the main analysis with models trained on all records of folds 1--8, including the noisy ones.
+
+\begin{table}[h]
+\caption{PTB-XL, secondary analysis: training on all \PTBTrainAll{} records of folds 1--8; test folds 9--10. Means over \PTBAllNSeeds{} seeds. Columns as in Table~\ref{M-tab:ptbxl}.}\label{tab:ptbxl_all}
+\centering\scriptsize\input{../../code/tables/tab_ptbxl_all.tex}
+\end{table}
+
 \section{Additional tables and figures}\label{sec:extra}
 
 \begin{table}[h]

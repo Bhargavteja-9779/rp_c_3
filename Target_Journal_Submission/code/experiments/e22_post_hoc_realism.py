@@ -136,14 +136,41 @@ def effects():
     return rows
 
 
+def error_capture():
+    """Share of QUANT's errors (faulty stream, E13) that fall into LOOM's 20 % queue vs into QUANT's own queue,
+    and the same for LOOM's errors: explains why the hybrid (QUANT label, LOOM queue) fails."""
+    import case_study as cs
+    import case_study_confirm as csc
+    rows = []
+    for dom, (dsets, faults) in csc.DOMAINS.items():
+        for d in dsets:
+            v = []
+            for r in cs.RESAMPLES:
+                o = np.load(cs.OUT / f"{d}__r{r}.npz", allow_pickle=True); y = o["y"]
+                PL, PQ = o["P_stream_LOOM"], o["P_stream_QUANT"]
+                eq, el = PQ.argmax(1) != y, PL.argmax(1) != y
+                qL, qQ = queue(PL.max(1)), queue(PQ.max(1))
+                v.append([qL[eq].mean() if eq.any() else np.nan, qQ[eq].mean() if eq.any() else np.nan,
+                          qL[el].mean() if el.any() else np.nan, qQ[el].mean() if el.any() else np.nan])
+            rows.append(np.nanmean(v, axis=0))
+    from scipy.stats import wilcoxon
+    R = np.array(rows)                       # columns: QUANT errors in LOOM queue, in QUANT queue; LOOM errors in ...
+    R = R[~np.isnan(R[:, :2]).any(1)]       # datasets on which QUANT made no error have no share
+    d = R[:, 1] - R[:, 0]                    # paired, per dataset: own queue minus LOOM queue, QUANT's errors
+    return dict(n_datasets=int(len(R)), quant_err_in_quant_queue_minus_loom_queue_median=float(np.median(d)),
+                own_better=int((d > 0).sum()), own_worse=int((d < 0).sum()), p=float(wilcoxon(R[:, 1], R[:, 0]).pvalue),
+                medians=dict(zip(["quant_err_in_loom_queue", "quant_err_in_quant_queue", "loom_err_in_loom_queue",
+                                  "loom_err_in_quant_queue"], np.nanmedian(R, 0).tolist())))
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    s = {"experiment": "E22 (post hoc, D27)", "by_type": by_type(), "effects": effects(), "lead_coverage": lead_coverage()}
+    s = {"experiment": "E22 (post hoc, D27)", "by_type": by_type(), "effects": effects(), "lead_coverage": lead_coverage(), "error_capture": error_capture()}
     json.dump(s, open(OUT / "summary.json", "w"), indent=1)
     for c in ptbxl.NOISE_COLS:
         a = s["by_type"]["mean_over_seeds"]["clean"][c]
         print(c, a["n"], {m: round(a[m]["auroc"], 3) for m in METHODS})
-    print("lead coverage", s["lead_coverage"])
+    print("lead coverage", s["lead_coverage"]); print("error capture", s["error_capture"])
     for r in s["effects"]:
         print(r["study"], r["n"], round(r["diff"], 3), round(r["ci_low"], 3), round(r["ci_high"], 3))
 

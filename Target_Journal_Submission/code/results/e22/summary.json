@@ -247,5 +247,18 @@
   "median_leads": 5.0,
   "share_le3": 0.31836195508586523,
   "share_all12": 0.17701453104359313
+ },
+ "error_capture": {
+  "n_datasets": 37,
+  "quant_err_in_quant_queue_minus_loom_queue_median": 0.05355439881755664,
+  "own_better": 30,
+  "own_worse": 7,
+  "p": 4.0184197132475674e-05,
+  "medians": {
+   "quant_err_in_loom_queue": 0.45113233580053363,
+   "quant_err_in_quant_queue": 0.44968137254901963,
+   "loom_err_in_loom_queue": 0.5807116598541839,
+   "loom_err_in_quant_queue": 0.40355319824108077
+  }
  }
 }

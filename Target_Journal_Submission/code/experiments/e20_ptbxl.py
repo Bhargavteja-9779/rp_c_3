@@ -175,6 +175,12 @@ def agg(dicts):
                     max=float(np.nanmax([d[k] for d in dicts])), per_seed=[d[k] for d in dicts]) for k in keys}
 
 
+def _patients_across_folds():
+    import pandas as pd
+    db = pd.read_csv(ptbxl.RAW / "ptbxl_database.csv")
+    return int((db.groupby("patient_id").strat_fold.nunique() > 1).sum())
+
+
 def analyze():
     X, y, noisy, fold, _ = ptbxl.load()
     summ = {"experiment": "E20", "classes": ptbxl.CLASSES,
@@ -182,7 +188,8 @@ def analyze():
                          n_train_all=int((fold <= 8).sum()), n_train_clean=int(((fold <= 8) & ~noisy).sum()),
                          n_test=int((fold >= 9).sum()), n_test_noisy=int(((fold >= 9) & noisy).sum()),
                          class_counts=np.bincount(y).tolist(),
-                         noisy_share_train=float(noisy[fold <= 8].mean()), noisy_share_test=float(noisy[fold >= 9].mean()))}
+                         noisy_share_train=float(noisy[fold <= 8].mean()), noisy_share_test=float(noisy[fold >= 9].mean()),
+                         patients_in_more_than_one_fold=_patients_across_folds())}
     for train in TRAINS:
         runs = [run(train, s) for s in SEEDS if (OUT / f"{train}_s{s}.npz").exists()]
         if not runs:

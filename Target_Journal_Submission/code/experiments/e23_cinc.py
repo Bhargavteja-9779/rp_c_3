@@ -162,6 +162,23 @@ def deep_scores():
     return {m: 1 - z[f"P_{m}"].max(1) for m in DEEP if f"P_{m}" in z}
 
 
+def rules(X):
+    """Post-hoc, hand-made quality rules (exploratory, not registered): added after seed 0 of the registered
+    analysis was seen, to ask whether a trivial rule explains the result. Higher = review first."""
+    return {"Rule-amplitude": np.abs(X).max(axis=(1, 2)).astype(np.float64),     # largest |value| in mV
+            "Rule-flat": (X.std(-1) < 0.01).sum(1).astype(np.float64)}         # number of flat leads
+
+
+def exploratory(S, X, unacc):
+    """AUROC of every score on all records and on the records without extreme amplitude (max |x| < T mV)."""
+    amp = np.abs(X).max(axis=(1, 2)); out = {}
+    for T in (5, 10, 20):
+        m = amp < T
+        out[f"amp_lt_{T}"] = {"n": int(m.sum()), "n_unacc": int(unacc[m].sum()),
+                              **{k: auroc(v[m], unacc[m]) for k, v in S.items()}}
+    return out
+
+
 def analyze():
     runs = {s: dict(np.load(OUT / f"s{s}.npz")) for s in SEEDS if (OUT / f"s{s}.npz").exists()}
     o0 = runs[0]; unacc = o0["unacc"].astype(bool)
@@ -181,12 +198,21 @@ def analyze():
     if D:
         summ["deep"] = {m: describe(v, unacc) for m, v in D.items()}
         summ["deep_vs_loom_seed0"] = {m: h11(S0["LOOM"], v, unacc) for m, v in D.items()}
+    X = load()[0]; R = rules(X)
+    summ["rules"] = {m: describe(v, unacc) for m, v in R.items()}
+    summ["leverage_vs_loom_seed0"] = h11(S0["Leverage"], S0["LOOM"], unacc)
+    summ["rule_vs_loom_seed0"] = h11(S0["LOOM"], R["Rule-amplitude"], unacc)
+    allS = {k: v for k, v in S0.items()}; allS.update(D); allS.update(R)
+    summ["exploratory_seed0"] = exploratory(allS, X, unacc)
+    summ["exploratory_all_seeds"] = {m: [exploratory({m: scores(o)[m]}, X, unacc)["amp_lt_10"][m] for o in runs.values()]
+                                     for m in ("LOOM", "PreVal", "Leverage")}
     json.dump(summ, open(OUT / "summary.json", "w"), indent=1)
     print("H11", summ["H11_seed0"]); print("H12", summ["H12_seed0"])
     for m in names:
         print(f"  {m:16s} AUROC {mean[m]['detect_auroc']:.3f} caught@20 {mean[m]['caught@20']:.3f}")
-    for m, d in summ.get("deep", {}).items():
+    for m, d in {**summ.get("deep", {}), **summ["rules"]}.items():
         print(f"  {m:16s} AUROC {d['detect_auroc']:.3f} caught@20 {d['caught@20']:.3f}")
+    print("amp<10:", {k: round(v, 3) if isinstance(v, float) else v for k, v in summ["exploratory_seed0"]["amp_lt_10"].items()})
     return summ
 
 

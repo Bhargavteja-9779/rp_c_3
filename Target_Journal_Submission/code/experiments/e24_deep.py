@@ -11,7 +11,8 @@ analysis) with per-lead standardisation from training statistics, Adam (learning
 Reported: Deep-single (network 0, dropout off), Deep-ensemble (mean of the five networks' probabilities),
 MC-dropout (network 0, dropout on, mean of 20 stochastic passes).
 Outputs: results/e24/ptbxl.npz (PTB-XL test folds 9-10) and results/e24/cinc.npz (CinC 2011 set A).
-Usage: python experiments/e24_deep.py [train|predict]   (default: both)
+Usage: python experiments/e24_deep.py [train|predict|analyze]   (default: all three)
+analyze: E20 metrics of the deep baselines on the PTB-XL test folds -> results/e24/summary.json
 """
 import sys
 import time
@@ -125,10 +126,26 @@ def predict():
         print(name, {k: v.shape for k, v in out.items() if k.startswith("P_")}, flush=True)
 
 
+def analyze():
+    import json
+    from e20_ptbxl import describe
+    z = dict(np.load(OUT / "ptbxl.npz")); y, noisy = z["y"], z["noisy"].astype(bool)
+    summ = {m: describe(z[f"P_{m}"], y, noisy) for m in ("Deep-single", "Deep-ensemble", "MC-dropout")}
+    summ["single_nets"] = [describe(z[f"P_net{s}"], y, noisy) for s in SEEDS]
+    summ["n_params"] = sum(p.numel() for p in ResNet1d().parameters())
+    json.dump(summ, open(OUT / "summary.json", "w"), indent=1)
+    for m in ("Deep-single", "Deep-ensemble", "MC-dropout"):
+        d = summ[m]
+        print(f"{m:14s} acc {d['acc']:.3f} nll_noisy {d['nll_noisy']:.3f} det {d['detect_auroc']:.3f} "
+              f"caught@20 {d['caught@20']:.3f} err@20 {d['auto_err@20']:.3f}")
+
+
 if __name__ == "__main__":
-    what = sys.argv[1] if len(sys.argv) > 1 else "both"
-    if what in ("train", "both"):
+    what = sys.argv[1] if len(sys.argv) > 1 else "all"
+    if what in ("train", "all"):
         for s in SEEDS:
             train(s)
-    if what in ("predict", "both"):
+    if what in ("predict", "all"):
         predict()
+    if what in ("analyze", "all"):
+        analyze()

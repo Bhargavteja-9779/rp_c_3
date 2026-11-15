@@ -40,6 +40,6 @@ judged; it is not evidence about the chance of acceptance.
 ## Outcome of the actions (2026-11-15)
 | Point | Result |
 |---|---|
-| Real data with strong, expert-judged artefacts | E23: H11 and H12 pass on the registered seed (AUROC 0.863 vs 0.344; queue 59.1 % vs 13.3 %). Caveats reported: an amplitude rule matches LOOM over all records; leverage alone is better than LOOM. |
+| Real data with strong, expert-judged artefacts | E23: H11 and H12 pass on the registered seed (AUROC 0.863 vs 0.344; queue 59.1 % vs 13.3 %) and on each of the five seeds (AUROC difference 0.380–0.519). Caveats reported: an amplitude rule matches LOOM over all records; leverage alone is better than LOOM. |
 | Comparison with deep uncertainty methods | E24: deep ensemble most accurate on PTB-XL (78.5 %) but near-chance noise detection like every method; on CinC single network and MC dropout below chance, ensemble AUROC 0.693 vs LOOM 0.863. |
 | Positioning against ESWA work | Eight ESWA papers cited in the related work. |

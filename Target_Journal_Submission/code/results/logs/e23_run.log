@@ -9,3 +9,18 @@ cinc 1 PreVal
 cinc 1 Holdout-TS
 cinc 1 Ridge-Platt-CV5
 cinc 1 QUANT 3731.7
+cinc 2 LOOM
+cinc 2 PreVal
+cinc 2 Holdout-TS
+cinc 2 Ridge-Platt-CV5
+cinc 2 QUANT 1625.1
+cinc 3 LOOM
+cinc 3 PreVal
+cinc 3 Holdout-TS
+cinc 3 Ridge-Platt-CV5
+cinc 3 QUANT 1624.0
+cinc 4 LOOM
+cinc 4 PreVal
+cinc 4 Holdout-TS
+cinc 4 Ridge-Platt-CV5
+cinc 4 QUANT 1533.8

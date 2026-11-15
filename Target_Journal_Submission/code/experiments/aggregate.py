@@ -508,6 +508,11 @@ def ptbxl():
         put(f"PTB{T}HEightBoth", str(h8["both"])); put(f"PTB{T}HEightP", pv(h8["p"]))
         put(f"PTB{T}HEightCaughtLoom", pct(h8["caught_loom"])); put(f"PTB{T}HEightCaughtPreVal", pct(h8["caught_preval"]))
         put(f"PTB{T}HEightSeedsPass", count(sum(x["passed"] for x in S20["H8_all_seeds"])))
+        dif = [100 * (x["caught_loom"] - x["caught_preval"]) for x in S20["H8_all_seeds"]]
+        put(f"PTB{T}HEightDiffRange", f"{min(dif):.1f}--{max(dif):.1f}")
+        put(f"PTB{T}HEightPRange", f"{min(x['p'] for x in S20['H8_all_seeds']):.3f}--{max(x['p'] for x in S20['H8_all_seeds']):.3f}")
+        nd = [x["mean_diff"] for x in S20["H9_all_seeds"]]
+        put(f"PTB{T}HNineDiffRange", f"{min(nd):.3f}--{max(nd):.3f}")
         put(f"PTB{T}HNineDiff", num(h9["mean_diff"])); put(f"PTB{T}HNineCI", f"[{h9['ci_low']:.3f}, {h9['ci_high']:.3f}]")
         put(f"PTB{T}HNineLoom", num(h9["nll_noisy_loom"])); put(f"PTB{T}HNinePreVal", num(h9["nll_noisy_preval"]))
         put(f"PTB{T}HNineSeedsPass", count(sum(x["passed"] for x in S20["H9_all_seeds"])))

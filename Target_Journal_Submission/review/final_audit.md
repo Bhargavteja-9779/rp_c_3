@@ -1,4 +1,76 @@
-# Final audit (LaTeX version, 2026-11-04)
+# Final audit (ESWA version, 2026-11-15)
+
+Manuscript: *Can a fast time series classifier tell when a sensor recording is faulty? Leverage-aware
+confidence and its limits*. Target: Expert Systems with Applications (Elsevier, `elsarticle`), full-length
+article. Package: `submission/LOOM_Submission.zip` (11 files). Previous submission: JKSU-CIS, desk-rejected
+for limited novelty; this version adds three pre-registered studies (E20-E22) and reports their negative
+outcomes.
+
+## Build and layout checks (`manuscript/latex/build_report.txt`)
+| Check | Main | Supplement |
+|---|---|---|
+| Pages (12-pt preprint layout) | 40 | 10 |
+| Overfull boxes | 0 (plus 1 from the elsarticle title-page footer, which also appears in an empty elsarticle document) | 0 |
+| Undefined references / citations / multiply defined labels | 0 / 0 / 0 | 0 / 0 / 0 |
+| Macro names or "??" in PDF text | 0 | 0 |
+| BibTeX warnings | 11, all "empty pages" for conference papers or article-number journals that have no page numbers | -- |
+| Standalone LaTeX zip compiles from fresh extraction | yes (40 pp., 0 undefined refs) | yes (10 pp.) |
+| Word version: tables / macro leaks | 10 / 0 | -- |
+| Abstract | 249 words (limit 250, to be confirmed in the guide for authors) | -- |
+| Highlights | 5 bullets, each at most 85 characters | -- |
+
+## Reproducibility
+* One command: `python run_all.py --mode full`; the new stages are `ptbxl` (E20), `hybrid` (E21) and
+  `posthoc` (E22). PTB-XL is downloaded by `code/scripts/download_ptbxl.sh` and every record is checked
+  against the checksums in its header.
+* Unit tests: 17/17 pass, including a test that the chunked QUANT transform equals aeon's QUANTClassifier.
+* E21 regenerated the E12 and E13 outputs from scratch; they equal the stored ones (0 difference over 830 rows).
+* Every number in the paper, supplement, cover letter and tables comes from `code/tables/macros.tex`
+  (890 macros, 19 tables), written by `code/experiments/aggregate.py`. Minus signs are now typeset as such.
+* Every figure has its own script in `code/visualization/`; the PTB-XL example records are chosen by fixed rules.
+* E20: 10 runs (primary and secondary analysis, seeds 0-4) with logs in `code/results/e20/run.log`;
+  the first attempt ran out of memory and its log is kept (`results/logs/e20_run_oom_attempt1.log`, D26).
+
+## Integrity
+* H1-H7 were registered before their results; H8-H10 were registered at commit 6b05cb1 (2026-11-14),
+  before E20 and E21 were run. Outcomes: 9 of 13 hypotheses pass; H1b, H8, H9 and H10 fail and are
+  reported as failures in the abstract, results, discussion and conclusion.
+* H8 fails on the registered seed 0 (p = 0.12). In the primary analysis LOOM caught 1.6-2.5 points
+  more noisy records in all five seeds (p < 0.05 in three, reported as descriptive only). In the
+  secondary analysis (training on all records) the difference ranged from -1.0 to +1.9 points with no seed
+  significant. The paper says LOOM "helped at most marginally" and does not claim H8.
+* H9 fails in the opposite direction in every seed of both analyses.
+* 27 deviations are logged (`research_design/deviations.md`, Supplementary Sect. S2); E22 is post hoc
+  (D27) and labelled so wherever it is used.
+* Citations: 69 references, each checked against Crossref, an official proceedings page, arXiv or PhysioNet
+  (`manuscript/refs/`, `refs/revision2_verified.json`). The literature search for the new related-work
+  subsection was actually run (2026-11-14) and the novelty claim narrowed accordingly.
+* Wording checked against the data source: the PTB-XL noise annotations are by "a technical expert"
+  (PhysioNet), not cardiologists; annotations name a median of five of 12 leads.
+* AI use is disclosed in the generative-AI declaration. The authors must read and approve everything.
+
+## Risk ratings (honest judgement; no probability of acceptance is claimed)
+| Area | Risk | Reason |
+|---|---|---|
+| Novelty | **High** | Same method as the desk-rejected version; the new content is mainly a careful negative result on real annotated noise. |
+| Negative evidence | **High** | The main real-world test fails; some reviewers will read this as a reason to reject rather than a contribution. |
+| Data realism | Medium | Now includes expert-annotated clinical noise (PTB-XL), but annotation quality is uncertain and only one such data set is used. |
+| Statistics | Low-medium | Pre-registration, exact tests, Holm, bootstrap and patient-cluster bootstrap; post hoc parts are labelled. |
+| Length | Medium | 40 pages, 12 figures, 10 tables in the 12-pt preprint layout; ESWA's limits could not be retrieved. |
+| Journal fit | Medium | Decision-support and human-in-the-loop framing fits ESWA's scope; the methods content may be judged specialised. |
+| Ethics | Low | Public, de-identified data; authors must confirm whether their institution needs an ethics statement. |
+
+## Readiness decision
+**READY** as far as content, analysis, layout and package are concerned. **NOT READY to submit until the
+authors complete the author-only items:** names and affiliations, CRediT statement, funding, competing
+interests, repository link, the generative-AI declaration, confirmation of the ethics position, a check
+of ESWA's current guide for authors (abstract, highlights, length, anonymity), a full read-through and
+approval by all authors. Acceptance cannot be promised.
+
+---
+*Previous audit (JKSU-CIS submission), kept for the record:*
+
+## Final audit (LaTeX version, 2026-11-04)
 
 Manuscript: *Knowing when to ask a human: fault-aware confidence for fast time series classifiers*.
 Target: JKSU-CIS (Springer Nature, sn-jnl template), regular article. Package:

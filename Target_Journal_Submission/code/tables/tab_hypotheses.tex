@@ -15,5 +15,7 @@ H7 & QUANT features: NLL under faults lower than PreVal & NLL, severity 3 & LOOM
 H8 & PTB-XL: LOOM's queue holds more annotated-noisy records than PreVal's & 20\,\% budget & 24.8\,\% vs 23.2\,\%; discordant 37/24, McNemar $p=0.124$ & \textbf{fail} \\
 H9 & PTB-XL: NLL on annotated-noisy records lower than PreVal & NLL & LOOM $-$ PreVal $=+0.034$, 95\,\% CI [0.015, 0.051] (LOOM worse) & \textbf{fail} \\
 H10 & Hybrid: fewer automatic errors than QUANT and than LOOM & 20\,\% budget & better than QUANT on 7/38, $p<0.001$; than LOOM on 12/38, $p=0.071$ & \textbf{fail} \\
+H11 & CinC 2011: LOOM's low confidence separates unacceptable records better than PreVal's & AUROC & 0.863 vs 0.344; difference 95\,\% CI [0.475, 0.564] & pass \\
+H12 & CinC 2011: LOOM's queue holds more unacceptable records than PreVal's & 20\,\% budget & 59.1\,\% vs 13.3\,\%; discordant 107/4, McNemar $p<0.001$ & pass \\
 \bottomrule
 \end{tabular}

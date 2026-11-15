@@ -204,6 +204,14 @@ def analyze():
     summ["rule_vs_loom_seed0"] = h11(S0["LOOM"], R["Rule-amplitude"], unacc)
     allS = {k: v for k, v in S0.items()}; allS.update(D); allS.update(R)
     summ["exploratory_seed0"] = exploratory(allS, X, unacc)
+    # same summary as the E22 realism forest plot (post hoc, D27/D29): LOOM - PreVal share caught at 20 %
+    from e22_post_hoc_realism import boot_mean
+    per_seed = [float(queue(-scores(o)["LOOM"], 0.2)[unacc].mean() - queue(-scores(o)["PreVal"], 0.2)[unacc].mean())
+                for o in runs.values()]
+    dl = queue(-S0["LOOM"], 0.2)[unacc].astype(float) - queue(-S0["PreVal"], 0.2)[unacc].astype(float)
+    _, lo, hi = boot_mean(dl)
+    summ["effect"] = dict(study="E23", unit="record (seed 0 CI)", n=int(unacc.sum()), diff=float(np.mean(per_seed)),
+                          diff_seed0=float(dl.mean()), ci_low=lo, ci_high=hi, per_seed=per_seed, n_seeds=len(per_seed))
     summ["exploratory_all_seeds"] = {m: [exploratory({m: scores(o)[m]}, X, unacc)["amp_lt_10"][m] for o in runs.values()]
                                      for m in ("LOOM", "PreVal", "Leverage")}
     json.dump(summ, open(OUT / "summary.json", "w"), indent=1)

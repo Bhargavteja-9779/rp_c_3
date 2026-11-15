@@ -432,6 +432,12 @@ def hypotheses_table():
             return f"{r['ref_wins']}/{n}, {pv(r['p_holm'])}"
         add("H10", "Hybrid: fewer automatic errors than QUANT and than LOOM", "20\\,\\% budget",
             f"better than QUANT on {hres(rq)}; than LOOM on {hres(rl)}", E21["H10"]["passed"])
+    if E23 is not None:
+        h11, h12 = E23["H11_seed0"], E23["H12_seed0"]
+        add("H11", "CinC 2011: LOOM's low confidence separates unacceptable records better than PreVal's", "AUROC",
+            f"{h11['auroc_loom']:.3f} vs {h11['auroc_preval']:.3f}; difference 95\\,\\% CI [{h11['ci_low']:.3f}, {h11['ci_high']:.3f}]", h11["passed"])
+        add("H12", "CinC 2011: LOOM's queue holds more unacceptable records than PreVal's", "20\\,\\% budget",
+            f"{100*h12['caught_loom']:.1f}\\,\\% vs {100*h12['caught_preval']:.1f}\\,\\%; discordant {h12['loom_only']}/{h12['preval_only']}, McNemar {pv(h12['p'])}", h12["passed"])
     latex_table(pd.DataFrame(rows), "hypotheses", colspec="P{0.75cm}P{4.0cm}P{1.6cm}P{4.6cm}l")
     put("NHypPass", count(sum(1 for x in rows if x["Outcome"] == "pass"))); put("NHyp", count(len(rows)))
     put("HypFailed", ", ".join(x["ID"] for x in rows if x["Outcome"] != "pass") or "none")
@@ -477,6 +483,10 @@ def supplement_tables():
 E20 = json.load(open(RES / "e20" / "summary.json")) if (RES / "e20" / "summary.json").exists() else None
 E21 = json.load(open(RES / "e21" / "summary.json")) if (RES / "e21" / "summary.json").exists() else None
 PTB_METHODS = ["LOOM", "PreVal", "Holdout-TS", "Ridge-Platt-CV5", "QUANT"]
+E23 = json.load(open(RES / "e23" / "summary.json")) if (RES / "e23" / "summary.json").exists() else None
+E24 = json.load(open(RES / "e24" / "summary.json")) if (RES / "e24" / "summary.json").exists() else None
+DEEP = {"Deep-single": "DeepSingle", "Deep-ensemble": "DeepEns", "MC-dropout": "MCDrop"}
+DEEP_NAMES = {"Deep-single": "1-D ResNet, single", "Deep-ensemble": "1-D ResNet, ensemble of 5", "MC-dropout": "1-D ResNet, MC dropout"}
 
 
 def ptbxl():
@@ -526,6 +536,19 @@ def ptbxl():
                      "Clean": num(M["nll_clean"]["mean"]), "Noisy": num(M["nll_noisy"]["mean"]),
                      "Det. AUROC": num(M["detect_auroc"]["mean"]), "Caught": pct(M["caught@20"]["mean"]),
                      "Auto err.": pct(M["auto_err@20"]["mean"])})
+    for m in (DEEP if E24 else {}):
+        M = E24[m]; k = DEEP[m]
+        put(f"PTBAcc{k}", pct(M["acc"])); put(f"PTBNLLNoisy{k}", num(M["nll_noisy"])); put(f"PTBNLLClean{k}", num(M["nll_clean"]))
+        put(f"PTBDet{k}", num(M["detect_auroc"])); put(f"PTBCaught{k}", pct(M["caught@20"])); put(f"PTBErr{k}", pct(M["auto_err@20"]))
+        put(f"PTBMacroAUROC{k}", num(M["macro_auroc"]))
+        rows.append({"Method": DEEP_NAMES[m], "Acc.": pct(M["acc"]), "AUROC": num(M["macro_auroc"]),
+                     "Clean": num(M["nll_clean"]), "Noisy": num(M["nll_noisy"]),
+                     "Det. AUROC": num(M["detect_auroc"]), "Caught": pct(M["caught@20"]),
+                     "Auto err.": pct(M["auto_err@20"])})
+    import e24_deep                                      # parameter count from the model definition itself
+    put("DeepParams", f"{sum(q.numel() for q in e24_deep.ResNet1d().parameters()):,}".replace(",", "{,}"))
+    if E24:
+        put("PTBAccDeepRange", f"{100*min(d['acc'] for d in E24['single_nets']):.1f}--{100*max(d['acc'] for d in E24['single_nets']):.1f}\\,\\%")
     for rule, nm in (("primary", "Hybrid"), ("secondary", "Hybrid-min")):
         H = S20["hybrid"][rule]
         rows.append({"Method": nm, "Acc.": "--", "AUROC": "--", "Clean": "--", "Noisy": "--", "Det. AUROC": "--",
@@ -606,8 +629,67 @@ def realism():
         k = STUDY_MAC[r["study"]]
         put(f"Eff{k}Diff", f"{100*r['diff']:.1f}"); put(f"Eff{k}CI", f"[{100*r['ci_low']:.1f}, {100*r['ci_high']:.1f}]")
 
+CINC_ROWS = [("LOOM", "LOOM (ours)", "Loom"), ("PreVal", "PreVal", "PreVal"), ("Holdout-TS", "Hold-out TS", "HoldoutTS"),
+             ("Ridge-Platt-CV5", "Ridge + Platt (5-fold)", "Platt"), ("QUANT", "QUANT", "Quant")]
+
+
+def cinc():
+    if E23 is None:
+        return
+    C = E23; mean, rng_ = C["mean_over_seeds"], C["range_over_seeds"]
+    put("CincN", str(C["n_records"])); put("CincUnacc", str(C["n_unacceptable"])); put("CincAcc", str(C["n_records"] - C["n_unacceptable"]))
+    e = C["effect"]; put("EffCincDiff", f"{100*e['diff']:.1f}"); put("EffCincCI", f"[{100*e['ci_low']:.1f}, {100*e['ci_high']:.1f}]")
+    put("CincNSeeds", count(C["n_seeds"])); put("CincUnaccShare", pct(C["n_unacceptable"] / C["n_records"]))
+    h11, h12 = C["H11_seed0"], C["H12_seed0"]
+    put("CincHElevenLoom", num(h11["auroc_loom"])); put("CincHElevenPreVal", num(h11["auroc_preval"]))
+    put("CincHElevenDiff", num(h11["diff"])); put("CincHElevenCI", f"[{h11['ci_low']:.3f}, {h11['ci_high']:.3f}]")
+    put("CincHElevenPassed", "passed" if h11["passed"] else "failed")
+    put("CincHElevenSeedsPass", count(sum(x["passed"] for x in C["H11_all_seeds"])))
+    put("CincHElevenDiffRange", f"{min(x['diff'] for x in C['H11_all_seeds']):.3f}--{max(x['diff'] for x in C['H11_all_seeds']):.3f}")
+    put("CincHTwelveLoomOnly", str(h12["loom_only"])); put("CincHTwelvePreValOnly", str(h12["preval_only"]))
+    put("CincHTwelveBoth", str(h12["both"])); put("CincHTwelveP", pv(h12["p"]))
+    put("CincHTwelveCaughtLoom", pct(h12["caught_loom"])); put("CincHTwelveCaughtPreVal", pct(h12["caught_preval"]))
+    put("CincHTwelvePassed", "passed" if h12["passed"] else "failed")
+    put("CincHTwelveSeedsPass", count(sum(x["passed"] for x in C["H12_all_seeds"])))
+    put("CincHTwelvePMax", pv(max(x["p"] for x in C["H12_all_seeds"])))
+    def mac(k, d, r=None):
+        put(f"CincDet{k}", num(d["detect_auroc"])); put(f"CincCaught{k}", pct(d["caught@20"]))
+        put(f"CincCaughtTen{k}", pct(d["caught@10"])); put(f"CincCaughtThirty{k}", pct(d["caught@30"]))
+        put(f"CincPrec{k}", pct(d["precision@20"]))
+        if r:
+            put(f"CincDetRange{k}", f"{r['detect_auroc'][0]:.3f}--{r['detect_auroc'][1]:.3f}")
+            put(f"CincCaughtRange{k}", f"{100*r['caught@20'][0]:.1f}--{100*r['caught@20'][1]:.1f}\\,\\%")
+    rows = []
+    def row(nm, d, r=None, kind=""):
+        rows.append({"Score": nm, "Kind": kind, "Det. AUROC": num(d["detect_auroc"]) + (f" ({r['detect_auroc'][0]:.2f}--{r['detect_auroc'][1]:.2f})" if r and C["n_seeds"] > 1 else ""),
+                     "10\\,\\%": pct(d["caught@10"]), "20\\,\\%": pct(d["caught@20"]), "30\\,\\%": pct(d["caught@30"]),
+                     "Prec. 20\\,\\%": pct(d["precision@20"])})
+    for m, nm, k in CINC_ROWS:
+        mac(k, mean[m], rng_[m]); row(nm, mean[m], rng_[m], "1 $-$ max $p$")
+    for m in C.get("deep", {}):
+        mac(DEEP[m], C["deep"][m]); row(DEEP_NAMES[m], C["deep"][m], None, "1 $-$ max $p$")
+    mac("Lev", mean["Leverage"], rng_["Leverage"]); row("Leverage $h/h_{\\mathrm{ref}}$", mean["Leverage"], rng_["Leverage"], "inside LOOM")
+    for m, nm, k in (("Rule-amplitude", "Largest $|x|$", "RuleAmp"), ("Rule-flat", "Flat leads", "RuleFlat")):
+        mac(k, C["rules"][m]); row(nm, C["rules"][m], None, "hand-made rule$^{\\dagger}$")
+    latex_table(pd.DataFrame(rows), "cinc", header_top="& & & \\multicolumn{3}{c}{Unacceptable caught at budget} & \\\\ \\cmidrule(lr){4-6}")
+    L = C["leverage_vs_loom_seed0"]; put("CincLevMinusLoom", num(L["diff"])); put("CincLevMinusLoomCI", f"[{L['ci_low']:.3f}, {L['ci_high']:.3f}]")
+    R = C["rule_vs_loom_seed0"]; put("CincLoomMinusRule", num(R["diff"])); put("CincLoomMinusRuleCI", f"[{R['ci_low']:.3f}, {R['ci_high']:.3f}]")
+    for m, k in DEEP.items():
+        if m in C.get("deep_vs_loom_seed0", {}):
+            D = C["deep_vs_loom_seed0"][m]; put(f"CincLoomMinus{k}", num(D["diff"])); put(f"CincLoomMinus{k}CI", f"[{D['ci_low']:.3f}, {D['ci_high']:.3f}]")
+    for T in (5, 10, 20):
+        E = C["exploratory_seed0"][f"amp_lt_{T}"]; t = {5: "Five", 10: "Ten", 20: "Twenty"}[T]
+        put(f"CincSub{t}N", str(E["n"])); put(f"CincSub{t}Unacc", str(E["n_unacc"]))
+        for m, k in (("LOOM", "Loom"), ("PreVal", "PreVal"), ("Leverage", "Lev"), ("Rule-amplitude", "RuleAmp"),
+                     ("Rule-flat", "RuleFlat"), ("QUANT", "Quant"), *[(m, DEEP[m]) for m in DEEP]):
+            if m in E:
+                put(f"CincSub{t}{k}", num(E[m]))
+    for m, k in (("LOOM", "Loom"), ("PreVal", "PreVal"), ("Leverage", "Lev")):
+        v = C["exploratory_all_seeds"][m]; put(f"CincSubTenRange{k}", f"{min(v):.3f}--{max(v):.3f}")
+
+
 def main():
-    general(); main_tables(); official(); ablation(); generality(); errors(); conformal_cost(); application(); sanity(); tables(); hypotheses_table(); supplement_tables(); tool(); prevalence(); ptbxl(); hybrid(); realism()
+    general(); main_tables(); official(); ablation(); generality(); errors(); conformal_cost(); application(); sanity(); tables(); hypotheses_table(); supplement_tables(); tool(); prevalence(); ptbxl(); hybrid(); realism(); cinc()
     lines = ["% Generated by code/experiments/aggregate.py -- do not edit by hand."]
     # a hyphen before a digit (not part of a range "--" or a date) is a minus sign: typeset it as one, in text or math
     minus = lambda v: re.sub(r"(?<![\w\-$])-(?=\d)", r"\\ensuremath{-}", str(v))

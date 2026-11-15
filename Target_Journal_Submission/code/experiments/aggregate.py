@@ -529,6 +529,9 @@ def ptbxl():
         put(f"PTB{T}NSeeds", count(S20["n_seeds"]))
     put("PTBTimeQuant", f"{E20['clean']['methods']['QUANT']['time_s']/60:.0f}")
     put("PTBTimeLoom", f"{E20['clean']['methods']['LOOM']['time_s']:.0f}")
+    tt = [float(np.load(f)["time_minirocket"]) for f in sorted((RES / "e20").glob("clean_s[0-9].npz"))]
+    if tt:
+        put("PTBTimeTransform", f"{np.mean(tt)/60:.0f}")                # minutes, MiniRocket fit + transform
     S20 = E20["clean"]; rows = []
     for m in PTB_METHODS:
         M = S20["methods"][m]
@@ -548,6 +551,8 @@ def ptbxl():
     import e24_deep                                      # parameter count from the model definition itself
     put("DeepParams", f"{sum(q.numel() for q in e24_deep.ResNet1d().parameters()):,}".replace(",", "{,}"))
     if E24:
+        ep = [int(m) for m in re.findall(r"loss [\d.]+ (\d+)s", (RES / "logs" / "e24_run.log").read_text())]
+        put("DeepTrainMin", f"{sum(ep) / 5 / 60:.0f}")                # minutes per network (5 networks)
         put("PTBAccDeepRange", f"{100*min(d['acc'] for d in E24['single_nets']):.1f}--{100*max(d['acc'] for d in E24['single_nets']):.1f}\\,\\%")
     for rule, nm in (("primary", "Hybrid"), ("secondary", "Hybrid-min")):
         H = S20["hybrid"][rule]
@@ -665,12 +670,12 @@ def cinc():
                      "10\\,\\%": pct(d["caught@10"]), "20\\,\\%": pct(d["caught@20"]), "30\\,\\%": pct(d["caught@30"]),
                      "Prec. 20\\,\\%": pct(d["precision@20"])})
     for m, nm, k in CINC_ROWS:
-        mac(k, mean[m], rng_[m]); row(nm, mean[m], rng_[m], "1 $-$ max $p$")
+        mac(k, mean[m], rng_[m]); row(nm, mean[m], rng_[m], "confidence")
     for m in C.get("deep", {}):
-        mac(DEEP[m], C["deep"][m]); row(DEEP_NAMES[m], C["deep"][m], None, "1 $-$ max $p$")
+        mac(DEEP[m], C["deep"][m]); row(DEEP_NAMES[m], C["deep"][m], None, "confidence")
     mac("Lev", mean["Leverage"], rng_["Leverage"]); row("Leverage $h/h_{\\mathrm{ref}}$", mean["Leverage"], rng_["Leverage"], "inside LOOM")
     for m, nm, k in (("Rule-amplitude", "Largest $|x|$", "RuleAmp"), ("Rule-flat", "Flat leads", "RuleFlat")):
-        mac(k, C["rules"][m]); row(nm, C["rules"][m], None, "hand-made rule$^{\\dagger}$")
+        mac(k, C["rules"][m]); row(nm, C["rules"][m], None, "rule$^{\\dagger}$")
     latex_table(pd.DataFrame(rows), "cinc", header_top="& & & \\multicolumn{3}{c}{Unacceptable caught at budget} & \\\\ \\cmidrule(lr){4-6}")
     L = C["leverage_vs_loom_seed0"]; put("CincLevMinusLoom", num(L["diff"])); put("CincLevMinusLoomCI", f"[{L['ci_low']:.3f}, {L['ci_high']:.3f}]")
     R = C["rule_vs_loom_seed0"]; put("CincLoomMinusRule", num(R["diff"])); put("CincLoomMinusRuleCI", f"[{R['ci_low']:.3f}, {R['ci_high']:.3f}]")

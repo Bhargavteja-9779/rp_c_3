@@ -1,6 +1,6 @@
 Highlights
 - A closed-form, leverage-aware confidence for fast random-kernel classifiers
-- Pre-registered tests on 114 datasets, recorded noise and 16,307 clinical ECGs
-- With strong faults, its review queue catches many more faulty recordings
-- On expert-annotated clinical ECG noise, no tested confidence beats chance by much
-- Taking labels from one model and the review queue from another made triage worse
+- Pre-registered tests on 114 datasets and two real 12-lead ECG collections
+- Its review queue caught 59 % of ECGs graded unusable; PreVal's caught 13 %
+- Deep ensembles and MC dropout were less reliable judges of unusable ECGs
+- No tested method flagged mild expert-annotated ECG noise much above chance

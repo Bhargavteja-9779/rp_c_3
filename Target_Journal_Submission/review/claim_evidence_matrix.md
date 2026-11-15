@@ -1,4 +1,4 @@
-# Claim–evidence matrix (ESWA version, 2026-11-14)
+# Claim–evidence matrix (ESWA version, third revision, 2026-11-15)
 
 Type: **proven** (mathematical result, proof in Supplementary Sect. S1), **empirical-confirmatory**
 (registered hypothesis), **empirical-descriptive** (not a registered hypothesis), **post hoc**
@@ -26,7 +26,7 @@ Type: **proven** (mathematical result, proof in Supplementary Sect. S1), **empir
 | 17 | Fit cost equals PreVal's; end-to-end ~0.31 s vs QUANT 1.30 s (Sect. 6.14, intro) | empirical-descriptive | `results/e06/summary.json` | `\FitLoom`, `\FitEndToEndLoom`, `\FitQuant` | ✔ (single machine; stated) |
 | 18 | The tool reproduces the pipeline on plain files (Sect. 6.15) | post hoc (D21) | `results/e18/summary.json` | `\ToolIdentical`, `\ToolMaxDiff` | ✔ |
 | 19 | Only the natural cross-axis change was tested and LOOM gains little there (limitations) | post hoc (D11) | `results/e10/summary.json` | `\NSNLLLoom`, `\NSNLLPreVal` | ✔ (negative) |
-| 20 | "9 of 13 hypotheses passed; H1b, H8, H9, H10 failed" (Sect. 6.1, cover letter) | summary | `code/tables/tab_hypotheses.tex` | `\NHypPass`, `\HypFailed` | ✔ |
+| 20 | "11 of 15 hypotheses passed; H1b, H8, H9, H10 failed" (Sect. 6.1, cover letter) | summary | `code/tables/tab_hypotheses.tex` | `\NHypPass`, `\HypFailed` | ✔ |
 
 | 21 | On PTB-XL, LOOM helps at most marginally: not significant on the registered seed; +1.6 to +2.5 points in all five seeds, p < 0.05 in three (abstract, Sect. 6.6, conclusion) | empirical-confirmatory (H8, **fail**) + descriptive per-seed tests | `results/e20/summary.json` → clean.H8_seed0, clean.H8_all_seeds | `\PTBHEightCaughtLoom`, `\PTBHEightP`, `\PTBHEightDiffRange`, `\PTBHEightSeedsPass`, `\PTBHEightPRange` | ✔ (negative, nuance reported) |
 | 22 | LOOM's NLL on annotated-noisy records is higher than PreVal's (abstract, Sect. 6.6) | empirical-confirmatory (H9, **fail**, opposite direction) + post hoc patient bootstrap | `results/e20/summary.json` → clean.H9_seed0; `results/e22/summary.json` → patient_cluster_bootstrap | `\PTBHNineLoom`, `\PTBHNineCI`, `\ClusterNLLCI` | ✔ (negative) |
@@ -34,9 +34,20 @@ Type: **proven** (mathematical result, proof in Supplementary Sect. S1), **empir
 | 24 | First use of PTB-XL quality annotations to test whether a classifier's own confidence routes noisy records to review (contributions, Sect. 2, cover letter) | literature claim | `research_design/literature_review.md` rows 41–48 and the search note; prior uses (accuracy study, dedicated noise detectors) cited | — | ◐ narrow and hedged ("to our knowledge"); a web search is not exhaustive |
 | 25 | The hybrid (QUANT label, LOOM queue) makes more automatic errors than QUANT and is not better than LOOM (abstract, Sect. 6.7, highlights) | empirical-confirmatory (H10, **fail**) | `results/e21/summary.json` → H10 | `\CmpHTenErrQuant`, `\CmpHTenErrLoom` | ✔ (negative) |
 | 26 | A model's own queue catches more of its errors than another model's queue (Sect. 6.7, discussion) | post hoc (D27) | `results/e22/summary.json` → error_capture | `\CapOwnBetter`, `\CapN`, `\CapDiff`, `\CapP` | ✔ labelled post hoc |
-| 27 | LOOM's gain shrinks as faults become more realistic; annotated noise covers a median of five of 12 leads (Sect. 6.8, discussion) | post hoc (D27) | `results/e22/summary.json` → effects, lead_coverage | `\EffConfDiff`, `\EffPTBDiff`, `\EffPTBCI`, `\LeadMedian` | ✔ labelled post hoc; "milder" rests on the small accuracy drop (`\PTBAccCleanLoom` → `\PTBAccNoisyLoom`) |
+| 27 | LOOM's gain is large for strong faults, simulated or real, and small on PTB-XL; annotated noise covers a median of five of 12 leads (Sect. 6.8, discussion) | post hoc (D27; CinC row added after E23) | `results/e22/summary.json` → effects, lead_coverage | `\EffConfDiff`, `\EffPTBDiff`, `\EffPTBCI`, `\LeadMedian` | ✔ labelled post hoc; "milder" rests on the small accuracy drop (`\PTBAccCleanLoom` → `\PTBAccNoisyLoom`) |
 | 28 | Failure on PTB-XL not specific to MiniRocket features or ridge readout (Sect. 6.8) | empirical-descriptive | QUANT and Platt detection AUROCs | `\PTBDetQuant`, `\PTBDetPlatt` | ✔ |
 | 29 | Regenerated E12/E13 outputs equal the stored results (Supplement S2, D25) | verification | `results/e21/summary.json` → E13_reproduction, E12_reproduction | `\ReproMaxDiff` | ✔ (max. difference 0) |
+| 30 | On CinC 2011, LOOM separates unacceptable records better than PreVal (abstract, Sect. 6.7, conclusion, cover letter) | empirical-confirmatory (H11, pass) | `results/e23/summary.json` → H11_seed0, H11_all_seeds | `\CincHElevenLoom`, `\CincHElevenPreVal`, `\CincHElevenCI`, `\CincHElevenSeedsPass` | ✔ |
+| 31 | LOOM's 20 % queue holds 59 % vs 13 % of unacceptable records (abstract, highlights, conclusion, cover letter) | empirical-confirmatory (H12, pass) | `results/e23/summary.json` → H12_seed0 | `\CincHTwelveCaughtLoom`, `\CincHTwelveCaughtPreVal`, `\CincHTwelveP` | ✔ (highlight rounds 59.1/13.3 to 59/13) |
+| 32 | Deep ensemble catches fewer unacceptable records than LOOM; single network and MC dropout below chance (abstract, highlights, Sect. 6.7, discussion) | empirical-descriptive (E24 registered as comparator) | `results/e23/summary.json` → deep, deep_vs_loom_seed0 | `\CincCaughtDeepEns`, `\CincDetDeepEns`, `\CincDetDeepSingle`, `\CincDetMCDrop`, `\CincLoomMinusDeepEnsCI` | ✔ |
+| 33 | Deep ensemble is the most accurate model on PTB-XL with fewest automatic errors, but detects noise near chance (Sect. 6.6, discussion) | empirical-descriptive | `results/e24/summary.json` | `\PTBAccDeepEns`, `\PTBErrDeepEns`, `\PTBDetDeepEns` | ✔ |
+| 34 | An amplitude rule matches LOOM over all CinC records; LOOM is better on records below 10 mV (abstract, Sect. 6.7) | post hoc (D29) | `results/e23/summary.json` → rules, rule_vs_loom_seed0, exploratory_seed0 | `\CincDetRuleAmp`, `\CincLoomMinusRuleCI`, `\CincSubTenLoom`, `\CincSubTenRuleAmp` | ✔ labelled post hoc in text, table, figure; abstract says "including unusable recordings that a simple amplitude rule missed" |
+| 35 | Leverage alone is a better quality score than LOOM's confidence (Sect. 6.7, discussion, cover letter) | post hoc comparison of registered secondary outputs | `results/e23/summary.json` → leverage_vs_loom_seed0 | `\CincDetLev`, `\CincLevMinusLoomCI` | ✔ (negative for the method, reported) |
+| 36 | Deep ensemble costs tens of times LOOM's CPU time (Sect. 6.14, discussion) | empirical-descriptive | `results/logs/e24_run.log`, `results/e20/clean_s*.npz` | `\DeepTrainMin`, `\PTBTimeTransform`, `\PTBTimeLoom` | ◐ different thread counts and a shared CPU; stated in the text; ratio ≈ 70 (330 thread-min vs about 5) |
+
+Claims removed or softened in the 2026-11-15 version: "no confidence beats chance" now explicitly includes deep
+ensembles and MC dropout (tested); "gain shrinks steadily as faults become more realistic" replaced by "gain follows
+fault strength" after CinC; "Platt gave the lowest NLL" restricted to MiniRocket readouts after E24.
 
 Claims removed or softened in the 2026-11-14 version: "fault-aware confidence" in the title replaced by a question
 that admits the limits; the planned claim that the hybrid is a better triage design was not made (H10 failed); "noise

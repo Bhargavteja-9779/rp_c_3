@@ -54,6 +54,11 @@ Descriptions summarise what each paper does; no result is quoted that is not sta
 | 46 | Bender et al. 2023 (Stud. Health Technol. Inform.) | Uses the PTB-XL noise annotations to measure how four noise types affect a deep atrial-fibrillation classifier's accuracy | Accuracy only; no confidence or triage |
 | 47 | Han et al. 2025 (arXiv 2506.11815) | Diffusion-based anomaly detector for ECG noise, evaluated with PTB-XL lead-level noise labels; notes annotation inconsistencies | Dedicated noise detector, not the classifier's own confidence |
 | 48 | Ibrahim et al. 2025 (arXiv 2510.26501) | Lightweight unsupervised anomaly-detection filters in front of ECG classifiers; noise injected into PTB-XL | Injected, not annotated, noise; filters rather than classifier confidence |
+| 49 | Silva, Moody & Celi 2011 (Computing in Cardiology) | PhysioNet/CinC Challenge 2011: 12-lead ECGs graded acceptable/unacceptable by several annotators | Data source for E23; no classifier-confidence triage |
+| 50 | Clifford et al. 2012 (Physiol. Meas.) | Signal-quality indices plus a classifier trained on the graded challenge records; 97 % accuracy | Trained with quality labels; LOOM needs none |
+| 51 | Wang, Yan & Oates 2017 (IJCNN) | Deep baselines for time series classification (FCN, ResNet) | Architecture template for the E24 baseline |
+| 52 | Gal & Ghahramani 2016 (ICML) | Monte Carlo dropout as approximate Bayesian inference | E24 comparator |
+| 53 | Eight ESWA papers 2025–2027 (see `journal_selection/eswa_benchmark.md`) | MiniRocket fault diagnosis, kernel grouping for TSC, risk-aware classification, evidential bearing diagnosis, score-calibrated deferral, confidence-based routing, wearable ECG denoising, human-in-the-loop fault diagnosis | Each designs a new model for its application; titles (and one abstract) only were verified |
 
 Further references used for methods and statistics (not counted above): Romano et al. 2020 and
 Angelopoulos et al. 2021 (APS), Sadinle et al. 2019 (LAC), Vovk et al. 2022, Angelopoulos & Bates

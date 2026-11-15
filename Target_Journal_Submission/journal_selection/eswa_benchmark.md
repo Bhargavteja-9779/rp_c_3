@@ -36,3 +36,10 @@ numbers are verified.** Statements about what these papers do are limited to wha
 
 Limitation of this benchmark: it cannot show what reviewers of these papers asked for or how the papers were
 judged; it is not evidence about the chance of acceptance.
+
+## Outcome of the actions (2026-11-15)
+| Point | Result |
+|---|---|
+| Real data with strong, expert-judged artefacts | E23: H11 and H12 pass on the registered seed (AUROC 0.863 vs 0.344; queue 59.1 % vs 13.3 %). Caveats reported: an amplitude rule matches LOOM over all records; leverage alone is better than LOOM. |
+| Comparison with deep uncertainty methods | E24: deep ensemble most accurate on PTB-XL (78.5 %) but near-chance noise detection like every method; on CinC single network and MC dropout below chance, ensemble AUROC 0.693 vs LOOM 0.863. |
+| Positioning against ESWA work | Eight ESWA papers cited in the related work. |

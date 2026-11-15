@@ -4259,5 +4259,797 @@
    ]
   },
   "URL": "https://arxiv.org/abs/2510.26501"
+ },
+ {
+  "type": "journal-article",
+  "title": "Signal quality indices and data fusion for determining clinical acceptability of electrocardiograms",
+  "author": [
+   {
+    "given": "G D",
+    "family": "Clifford",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "J",
+    "family": "Behar",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Q",
+    "family": "Li",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "I",
+    "family": "Rezek",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Physiological Measurement",
+  "volume": "33",
+  "issue": "9",
+  "page": "1419-1433",
+  "issued": {
+   "date-parts": [
+    [
+     2012,
+     8,
+     17
+    ]
+   ]
+  },
+  "DOI": "10.1088/0967-3334/33/9/1419",
+  "publisher": "IOP Publishing",
+  "id": "clifford2012sqi"
+ },
+ {
+  "type": "proceedings-article",
+  "title": "Time series classification from scratch with deep neural networks: a strong baseline",
+  "author": [
+   {
+    "given": "Zhiguang",
+    "family": "Wang",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Weizhong",
+    "family": "Yan",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Tim",
+    "family": "Oates",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "2017 International Joint Conference on Neural Networks (IJCNN)",
+  "page": "1578-1585",
+  "issued": {
+   "date-parts": [
+    [
+     2017,
+     5
+    ]
+   ]
+  },
+  "DOI": "10.1109/ijcnn.2017.7966039",
+  "publisher": "IEEE",
+  "id": "wang2017baseline"
+ },
+ {
+  "type": "journal-article",
+  "title": "Novel engine fault diagnosis framework based on machine learning and MiniRocket feature extraction using multi-correlation feature selection and predictive power score",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0002-9087-5921",
+    "authenticated-orcid": false,
+    "given": "Lucas",
+    "family": "de Azevedo Takara",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-2490-4568",
+    "authenticated-orcid": false,
+    "given": "Viviana",
+    "family": "Cocco Mariani",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-5728-943X",
+    "authenticated-orcid": false,
+    "given": "Leandro",
+    "family": "dos Santos Coelho",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Expert Systems with Applications",
+  "volume": "293",
+  "page": "128662",
+  "issued": {
+   "date-parts": [
+    [
+     2025,
+     12
+    ]
+   ]
+  },
+  "DOI": "10.1016/j.eswa.2025.128662",
+  "publisher": "Elsevier BV",
+  "id": "takara2025minirocket"
+ },
+ {
+  "type": "journal-article",
+  "title": "Kernel grouping for time series classification with multiple transformations and pooling operators",
+  "author": [
+   {
+    "given": "Panjie",
+    "family": "Wang",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-2432-4547",
+    "authenticated-orcid": false,
+    "given": "Jiang",
+    "family": "Wu",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Yuan",
+    "family": "Wei",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-1546-8015",
+    "authenticated-orcid": false,
+    "given": "Taiyong",
+    "family": "Li",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Expert Systems with Applications",
+  "volume": "293",
+  "page": "128693",
+  "issued": {
+   "date-parts": [
+    [
+     2025,
+     12
+    ]
+   ]
+  },
+  "DOI": "10.1016/j.eswa.2025.128693",
+  "publisher": "Elsevier BV",
+  "id": "wang2025kernelgroup"
+ },
+ {
+  "type": "journal-article",
+  "title": "Risk-aware classification via uncertainty quantification",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0001-8806-4508",
+    "authenticated-orcid": false,
+    "given": "Murat",
+    "family": "Şensoy",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-3627-4471",
+    "authenticated-orcid": false,
+    "given": "Lance M.",
+    "family": "Kaplan",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-4380-137X",
+    "authenticated-orcid": false,
+    "given": "Simon",
+    "family": "Julier",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-1021-5078",
+    "authenticated-orcid": false,
+    "given": "Maryam",
+    "family": "Saleki",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-0755-0358",
+    "authenticated-orcid": false,
+    "given": "Federico",
+    "family": "Cerutti",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Expert Systems with Applications",
+  "volume": "265",
+  "page": "125906",
+  "issued": {
+   "date-parts": [
+    [
+     2025,
+     3
+    ]
+   ]
+  },
+  "DOI": "10.1016/j.eswa.2024.125906",
+  "publisher": "Elsevier BV",
+  "id": "sensoy2025risk"
+ },
+ {
+  "type": "journal-article",
+  "title": "Multi-sensor bearing fault diagnosis based on evidential neural network with sensor weights and reliability",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0002-2505-5601",
+    "authenticated-orcid": false,
+    "given": "Peng",
+    "family": "Han",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Zhiqiu",
+    "family": "Huang",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Weiwei",
+    "family": "Li",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Wei",
+    "family": "He",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "You",
+    "family": "Cao",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Expert Systems with Applications",
+  "volume": "269",
+  "page": "126533",
+  "issued": {
+   "date-parts": [
+    [
+     2025,
+     4
+    ]
+   ]
+  },
+  "DOI": "10.1016/j.eswa.2025.126533",
+  "publisher": "Elsevier BV",
+  "id": "han2025evidential"
+ },
+ {
+  "type": "journal-article",
+  "title": "MMAP-Net: Missing-aware multimodal fusion for multi-label retinal disease classification with score-calibrated deferral",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0001-7445-3510",
+    "authenticated-orcid": false,
+    "given": "İsmail Hakkı",
+    "family": "Kınalıoğlu",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Expert Systems with Applications",
+  "volume": "332",
+  "page": "133628",
+  "issued": {
+   "date-parts": [
+    [
+     2027,
+     1
+    ]
+   ]
+  },
+  "DOI": "10.1016/j.eswa.2026.133628",
+  "publisher": "Elsevier BV",
+  "id": "kinalioglu2027mmap"
+ },
+ {
+  "type": "journal-article",
+  "title": "CCA-ID: Confidence-calibrated adaptive intrusion detection with selective routing for IoT networks",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0009-0009-0263-5943",
+    "authenticated-orcid": false,
+    "given": "Aamir",
+    "family": "Munir",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-5128-8604",
+    "authenticated-orcid": false,
+    "given": "Bin",
+    "family": "Luo",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0009-0006-2269-4391",
+    "authenticated-orcid": false,
+    "given": "Jin",
+    "family": "Zhang",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-0667-077X",
+    "authenticated-orcid": false,
+    "given": "Yong",
+    "family": "Yu",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Expert Systems with Applications",
+  "volume": "334",
+  "page": "134403",
+  "issued": {
+   "date-parts": [
+    [
+     2027,
+     2
+    ]
+   ]
+  },
+  "DOI": "10.1016/j.eswa.2026.134403",
+  "publisher": "Elsevier BV",
+  "id": "munir2027ccaid"
+ },
+ {
+  "type": "journal-article",
+  "title": "Multi-task learning with signal denoising and self-distilled representations for wearable ECG arrhythmia detection",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0009-0001-6761-2066",
+    "authenticated-orcid": false,
+    "given": "Zhongyu",
+    "family": "Wang",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-3482-5145",
+    "authenticated-orcid": false,
+    "given": "Maarten",
+    "family": "De Vos",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-5429-8760",
+    "authenticated-orcid": false,
+    "given": "Caiyun",
+    "family": "Ma",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-9920-7076",
+    "authenticated-orcid": false,
+    "given": "Jianghai",
+    "family": "Qian",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-3524-8933",
+    "authenticated-orcid": false,
+    "given": "Jianqing",
+    "family": "Li",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-1965-3020",
+    "authenticated-orcid": false,
+    "given": "Chengyu",
+    "family": "Liu",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Expert Systems with Applications",
+  "volume": "326",
+  "page": "132601",
+  "issued": {
+   "date-parts": [
+    [
+     2026,
+     9
+    ]
+   ]
+  },
+  "DOI": "10.1016/j.eswa.2026.132601",
+  "publisher": "Elsevier BV",
+  "id": "wang2026wearable"
+ },
+ {
+  "type": "journal-article",
+  "title": "LLM-TSFD: An industrial time series human-in-the-loop fault diagnosis method based on a large language model",
+  "author": [
+   {
+    "given": "Qi",
+    "family": "Zhang",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Chao",
+    "family": "Xu",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Jie",
+    "family": "Li",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Yicheng",
+    "family": "Sun",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Jinsong",
+    "family": "Bao",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Dan",
+    "family": "Zhang",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "container-title": "Expert Systems with Applications",
+  "volume": "264",
+  "page": "125861",
+  "issued": {
+   "date-parts": [
+    [
+     2025,
+     3
+    ]
+   ]
+  },
+  "DOI": "10.1016/j.eswa.2024.125861",
+  "publisher": "Elsevier BV",
+  "id": "zhang2025llmtsfd"
+ },
+ {
+  "id": "silva2011challenge",
+  "type": "paper-conference",
+  "title": "Improving the quality of ECGs collected using mobile phones: the PhysioNet/Computing in Cardiology Challenge 2011",
+  "author": [
+   {
+    "family": "Silva",
+    "given": "Ikaro"
+   },
+   {
+    "family": "Moody",
+    "given": "George B."
+   },
+   {
+    "family": "Celi",
+    "given": "Leo"
+   }
+  ],
+  "container-title": "Computing in Cardiology",
+  "volume": "38",
+  "page": "273-276",
+  "issued": {
+   "date-parts": [
+    [
+     2011
+    ]
+   ]
+  }
+ },
+ {
+  "id": "gal2016dropout",
+  "type": "paper-conference",
+  "title": "Dropout as a Bayesian approximation: representing model uncertainty in deep learning",
+  "author": [
+   {
+    "family": "Gal",
+    "given": "Yarin"
+   },
+   {
+    "family": "Ghahramani",
+    "given": "Zoubin"
+   }
+  ],
+  "container-title": "Proceedings of the 33rd International Conference on Machine Learning",
+  "collection-title": "PMLR",
+  "volume": "48",
+  "page": "1050-1059",
+  "issued": {
+   "date-parts": [
+    [
+     2016
+    ]
+   ]
+  }
  }
 ]

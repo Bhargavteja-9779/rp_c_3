@@ -1,0 +1,1826 @@
+{
+ "time series classification uncertainty": [
+  {
+   "doi": "10.1016/j.eswa.2025.127379",
+   "title": "Uncertainty-informed dynamic threshold for time series anomaly detection",
+   "year": 2025,
+   "cites": 19
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133008",
+   "title": "TS-CoDesign: Structure\u2013efficiency co-design for multivariate time-series classification",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133430",
+   "title": "CORTEX: an uncertainty-conditioned correction-and-fusion model for multivariate time series forecasting under distribution shift",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127493",
+   "title": "A contrastive clustering loss function increases class-balanced in time series classification",
+   "year": 2025,
+   "cites": 5
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130052",
+   "title": "Negative samples filter of contrastive learning for time series classification",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127364",
+   "title": "Multimodal selective state space model-based time series classification for electricity theft detection",
+   "year": 2025,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127301",
+   "title": "WhisPrompt: Audio classification of Chinese opera genres by transferring time-series features",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133932",
+   "title": "Large language models for time-series analysis: A survey with experimental evaluation for classification",
+   "year": 2027,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128693",
+   "title": "Kernel grouping for time series classification with multiple transformations and pooling operators",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127889",
+   "title": "Intelligently Augmented Contrastive Tensor Factorization: Empowering multi-dimensional time series classification in low-data environments",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127954",
+   "title": "An end-to-end model for time series classification in the presence of missing values",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134761",
+   "title": "Transductive few-shot learning for ecosystem classification from satellite time series: A systematic study",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125755",
+   "title": "A novel two-enhancive aspect module in convolutional neural networks for multivariate time series classification",
+   "year": 2025,
+   "cites": 12
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130328",
+   "title": "Multivariate time-series classification model based on enhanced multi-objective optimization algorithm",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134813",
+   "title": "Boundary-repelling regularization for robust feature spaces in long-tailed time series classification",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133376",
+   "title": "Time series classification method based on cross-domain echo state network",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125906",
+   "title": "Risk-aware classification via uncertainty quantification",
+   "year": 2025,
+   "cites": 13
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132671",
+   "title": "Task acceptance and scheduling in cloud manufacturing considering uncertainty in release time and processing time",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133657",
+   "title": "Enhancing skin lesion classification via uncertainty-guided adaptive gated fusion of multiple backbones",
+   "year": 2027,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133450",
+   "title": "GraphUAT: An uncertainty-driven pseudo-labeling method for class-imbalanced node classification",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133746",
+   "title": "Tackling indirect expression with uncertainty-aware distribution optimization for hateful memes classification",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.129313",
+   "title": "Probabilistic approach for the prediction of flight processes with uncertainty quantification \u2013 Application to block time",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127898",
+   "title": "Investigating the time-varying and conditional causality network among Bitcoin, oil, gold and economic uncertainty",
+   "year": 2025,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127459",
+   "title": "Time-synchrosqueezing generalized W transform for high-resolution time\u2013frequency representation and application in dual-domain ECG classification",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127125",
+   "title": "Applying time delay convergent cross mapping to Bitcoin time series",
+   "year": 2025,
+   "cites": 6
+  }
+ ],
+ "time series classification": [
+  {
+   "doi": "10.1016/j.eswa.2026.133008",
+   "title": "TS-CoDesign: Structure\u2013efficiency co-design for multivariate time-series classification",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127493",
+   "title": "A contrastive clustering loss function increases class-balanced in time series classification",
+   "year": 2025,
+   "cites": 5
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130052",
+   "title": "Negative samples filter of contrastive learning for time series classification",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127364",
+   "title": "Multimodal selective state space model-based time series classification for electricity theft detection",
+   "year": 2025,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127301",
+   "title": "WhisPrompt: Audio classification of Chinese opera genres by transferring time-series features",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133932",
+   "title": "Large language models for time-series analysis: A survey with experimental evaluation for classification",
+   "year": 2027,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128693",
+   "title": "Kernel grouping for time series classification with multiple transformations and pooling operators",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127889",
+   "title": "Intelligently Augmented Contrastive Tensor Factorization: Empowering multi-dimensional time series classification in low-data environments",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127954",
+   "title": "An end-to-end model for time series classification in the presence of missing values",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134761",
+   "title": "Transductive few-shot learning for ecosystem classification from satellite time series: A systematic study",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125755",
+   "title": "A novel two-enhancive aspect module in convolutional neural networks for multivariate time series classification",
+   "year": 2025,
+   "cites": 12
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130328",
+   "title": "Multivariate time-series classification model based on enhanced multi-objective optimization algorithm",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134813",
+   "title": "Boundary-repelling regularization for robust feature spaces in long-tailed time series classification",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133376",
+   "title": "Time series classification method based on cross-domain echo state network",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127459",
+   "title": "Time-synchrosqueezing generalized W transform for high-resolution time\u2013frequency representation and application in dual-domain ECG classification",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127125",
+   "title": "Applying time delay convergent cross mapping to Bitcoin time series",
+   "year": 2025,
+   "cites": 6
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131087",
+   "title": "Contrastive domain adaptation with time-lag attention for wearable sensor time-series",
+   "year": 2026,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.126211",
+   "title": "Real-time monitoring and prediction of water content in concrete members through time series modeling",
+   "year": 2025,
+   "cites": 16
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127739",
+   "title": "Overcoming time delays challenges: Decomposition\u2013Reconstruction approaches for time-series TBM performance predictions",
+   "year": 2025,
+   "cites": 15
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130402",
+   "title": "RTS-LLM: Restoring time structure for time series forecasting with LLMs",
+   "year": 2026,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125666",
+   "title": "Measuring time series heterogeneity for global learning",
+   "year": 2025,
+   "cites": 5
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128086",
+   "title": "Optimized efficient predefined time adaptive neural network for stream traffic classification in software defined network",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126655",
+   "title": "Intelligent video-based fire detection: A novel dataset and real-time multi-stage classification approach",
+   "year": 2025,
+   "cites": 16
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134915",
+   "title": "TSFFA-LLM: Frequency-time fusion for LLM-empowered time series forecasting",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134588",
+   "title": "Time-frequency decomposition with latent diffusion for non-stationary multivariate time-series anomaly detection",
+   "year": 2027,
+   "cites": 0
+  }
+ ],
+ "ECG signal quality": [
+  {
+   "doi": "10.1016/j.eswa.2024.125764",
+   "title": "Knowledge-enhanced meta-transfer learning for few-shot ECG signal classification",
+   "year": 2025,
+   "cites": 17
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132601",
+   "title": "Multi-task learning with signal denoising and self-distilled representations for wearable ECG arrhythmia detection",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127955",
+   "title": "Y-Net-ECG: A Multi-Lead informed and interpretable architecture for ECG segmentation across diverse rhythms",
+   "year": 2025,
+   "cites": 9
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128538",
+   "title": "Graph signal processing meets machine learning: Multi-scale spatial-temporal ensemble learning methodology for air quality forecasting",
+   "year": 2025,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125691",
+   "title": "YOLO-ResTinyECG: ECG-based lightweight embedded AI arrhythmia small object detector with pruning methods",
+   "year": 2025,
+   "cites": 12
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132360",
+   "title": "FM-FECG: An observation-informed flow matching framework for non-invasive fetal ECG extraction",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130091",
+   "title": "Consciousness-ECG transformer for conscious state estimation system with real-time monitoring",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133149",
+   "title": "Patient-conditioned ECG beat classification via self-supervised embeddings for robust inter-patient arrhythmia detection",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134641",
+   "title": "Robust and interpretable ECG denoising via stage-aware conditional diffusion with co-evolving guidance",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134714",
+   "title": "Improved interpretability and feature attribution for hybrid\u2013AI ECG models by controlling metadata leakage and feature interactions",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131374",
+   "title": "AWBIFS: An incremental fusion system for arrhythmia recognition on imbalanced ECG data with adaptive weighting",
+   "year": 2026,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126824",
+   "title": "Class-specific weighted broad learning system-based domain adaptation for patient-specific ECG classification",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130634",
+   "title": "CFWF-Net: A cross-lead fractional wavelet frequency-aware framework for morphology-perturbation-resilient and domain-adaptive ECG arrhythmia classification",
+   "year": 2026,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127459",
+   "title": "Time-synchrosqueezing generalized W transform for high-resolution time\u2013frequency representation and application in dual-domain ECG classification",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.131064",
+   "title": "ECG-Text multi-modal learning for zero-shot detection via time-frequency alignment and medical prompt learning",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133409",
+   "title": "Dual-branch bidirectional attention fusion of temporal and hierarchical representations for robust ECG arrhythmia classification",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130096",
+   "title": "One model, dual tasks: a novel distributionally adaptive learning framework for ECG classification and generation addressing intra- and inter-patient variability",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126544",
+   "title": "Combining multi-sensor signal fusion with signal decomposition for data augmentation in circuit breaker state recognition",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126714",
+   "title": "Heterogeneous feature fusion based machine learning strategy for ECG diagnosis",
+   "year": 2025,
+   "cites": 11
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134955",
+   "title": "SRPM: A lightweight and high-precision ECG super-resolution method via multi-scale modulated parallel Mamba",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127039",
+   "title": "Automatic grading assessments of wearable ECG critical value via deep adaptive-asymmetric PRank algorithm",
+   "year": 2025,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134644",
+   "title": "FedGNN: Decentralized federated GNN with gradient masking and dynamic feature pruning for heterogeneous ECG classification",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128360",
+   "title": "Noncontact capacitive coupling ECG-Derived respiratory signals using the conformer based time\u2013frequency domain generative adversarial network",
+   "year": 2025,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130452",
+   "title": "Enhancing blind video quality assessment with rich quality-aware features",
+   "year": 2026,
+   "cites": 7
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126800",
+   "title": "Joint optimization of quality control and maintenance policy for a production system with quality-dependent failures",
+   "year": 2025,
+   "cites": 25
+  }
+ ],
+ "ECG classification noise robust": [
+  {
+   "doi": "10.1016/j.eswa.2026.133149",
+   "title": "Patient-conditioned ECG beat classification via self-supervised embeddings for robust inter-patient arrhythmia detection",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133409",
+   "title": "Dual-branch bidirectional attention fusion of temporal and hierarchical representations for robust ECG arrhythmia classification",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125764",
+   "title": "Knowledge-enhanced meta-transfer learning for few-shot ECG signal classification",
+   "year": 2025,
+   "cites": 17
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134641",
+   "title": "Robust and interpretable ECG denoising via stage-aware conditional diffusion with co-evolving guidance",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131330",
+   "title": "KRAM: Knowledge-driven robust training against label noise for medication recommendation",
+   "year": 2026,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130827",
+   "title": "A noise-robust xLSTM-based method for fault diagnosis in gas-insulated Switchgear using acoustic signals under strong noise interference",
+   "year": 2026,
+   "cites": 6
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126948",
+   "title": "Adaptive gradient-based noise variance estimation algorithm for robust face image reconstruction",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128573",
+   "title": "A robust machine learning framework for stock market classification",
+   "year": 2025,
+   "cites": 11
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132572",
+   "title": "NoiseLLM: JoT-guided LLM reasoning for label noise-robust cybersecurity event detection",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130634",
+   "title": "CFWF-Net: A cross-lead fractional wavelet frequency-aware framework for morphology-perturbation-resilient and domain-adaptive ECG arrhythmia classification",
+   "year": 2026,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126824",
+   "title": "Class-specific weighted broad learning system-based domain adaptation for patient-specific ECG classification",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127459",
+   "title": "Time-synchrosqueezing generalized W transform for high-resolution time\u2013frequency representation and application in dual-domain ECG classification",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130096",
+   "title": "One model, dual tasks: a novel distributionally adaptive learning framework for ECG classification and generation addressing intra- and inter-patient variability",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.126000",
+   "title": "A robust wavelet domain multi-scale texture descriptor for image classification",
+   "year": 2025,
+   "cites": 6
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130749",
+   "title": "Adaptve dual-branch compensatory gating for noise-robust modeling of irregularly sampled time series",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130841",
+   "title": "Structural enhanced robust discriminative least squares regression for image classification",
+   "year": 2026,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132961",
+   "title": "DeepTrust: Multi-step classification through dissimilar adversarial representations for robust android malware detection",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134104",
+   "title": "Alleviating gradient conflict via bias disentanglement and noise suppression for robust autoencoder recommendation",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134683",
+   "title": "Robust and sparse support vector machine via hybrid truncated loss for supervised classification",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131128",
+   "title": "Decoupling Mixture-of-experts Routing from Gradient Noise: A Framework for Structured Specialization and Soft Generalization Toward Robust and Efficient Inference",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131462",
+   "title": "Transformer-masked autoencoder (MAE) for robust medical image classification: A comprehensive survey",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133064",
+   "title": "Broad fractional order fuzzy system for noise and outlier resistant data classification",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131438",
+   "title": "Label-wise reliability-aware classifier for robust chest X-ray multi-label classification",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133946",
+   "title": "LAABC: Label-aware adversarial margin learning via soft prompting for robust short text classification",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128802",
+   "title": "Revisiting fine-grained classification: A dual-branch method for noise-resilient and global-local discriminative learning",
+   "year": 2026,
+   "cites": 8
+  }
+ ],
+ "reject option classification": [
+  {
+   "doi": "10.1016/j.eswa.2025.126448",
+   "title": "Reject inference for default prediction based on three-way decision theory and bagging ensemble model: Evidence from Chinese MSEs",
+   "year": 2025,
+   "cites": 6
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132216",
+   "title": "Variational autoencoders for option pricing: A semi-parametric approach to eliminating traditional assumptions",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133332",
+   "title": "Extracting available information from non-evaluable datasets in multi-option stochastic paired comparison models",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128226",
+   "title": "European option pricing in regime switching framework via physics-informed residual learning",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128279",
+   "title": "Barrier option pricing and volatility surface predicting with an extended physics-informed neural network",
+   "year": 2025,
+   "cites": 19
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133444",
+   "title": "Fine-grained visual classification based on auxiliary dynamic classification signals and shallow-deep feature interaction",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130071",
+   "title": "GATOC: Learning temporal abstraction with the option transition graph attention mechanism",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133266",
+   "title": "Flexible capacity option governance model and hedging strategies for disruption risk in diamond-structured supply chains",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126431",
+   "title": "Category-aware self-training for extremely weakly supervised text classification",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125287",
+   "title": "Classification of painting styles based on the difference component",
+   "year": 2025,
+   "cites": 10
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.129204",
+   "title": "Accuracy evaluation of classification models on partially labeled datasets",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128573",
+   "title": "A robust machine learning framework for stock market classification",
+   "year": 2025,
+   "cites": 11
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132532",
+   "title": "Action timing and classification for human-robot collaborative processes",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128048",
+   "title": "Classifier chain networks for multi-label classification",
+   "year": 2025,
+   "cites": 9
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128508",
+   "title": "Revolutionizing lung cancer classification through Artificial Intelligence: A Concise review",
+   "year": 2025,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127625",
+   "title": "Leveraging convolutional neural networks for image-based classification of feature matrix data",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134195",
+   "title": "Base-knowledge enhanced cross-modal fusion for few-shot image classification",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128426",
+   "title": "Class-weighted reinforcement learning for skin cancer image classification",
+   "year": 2025,
+   "cites": 6
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.126163",
+   "title": "Unmasking encryption effects and modified Deep learning approaches for attack classification in WSN",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128276",
+   "title": "EEG-based listened-language classification",
+   "year": 2025,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128292",
+   "title": "Long-tailed classification based on dynamic class average loss",
+   "year": 2025,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128640",
+   "title": "Enhancing mammogram classification using explainable Conditional Self-Attention Generative Adversarial Network",
+   "year": 2025,
+   "cites": 9
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133008",
+   "title": "TS-CoDesign: Structure\u2013efficiency co-design for multivariate time-series classification",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128001",
+   "title": "Powder particle classification with scanning electron microscopy images using machine learning techniques",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128690",
+   "title": "Graph classification by converting static graphs into dynamic evolutionary sequences",
+   "year": 2025,
+   "cites": 0
+  }
+ ],
+ "selective prediction confidence": [
+  {
+   "doi": "10.1016/j.eswa.2026.134442",
+   "title": "Confidence-aware semantic\u2013numerical fusion via selective prediction for mutual fund style classification",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134403",
+   "title": "CCA-ID: Confidence-calibrated adaptive intrusion detection with selective routing for IoT networks",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128083",
+   "title": "S3-Fire: Enhanced generalization in spatiotemporal fire prediction with selective state and spectral spaces",
+   "year": 2025,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130987",
+   "title": "RETRACTED: SLOcc: Selective interaction and long-range modelling for occupancy prediction",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130297",
+   "title": "DSSTN: Dynamic selective spatio-temporal modeling network for traffic flow prediction",
+   "year": 2026,
+   "cites": 5
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134532",
+   "title": "BSPSAM-Net: dual-stage pansharpening network based on blind spot prediction and selective attention mechanism",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134412",
+   "title": "Retraction notice to \u201cSLOcc: Selective interaction and long-range modelling for occupancy prediction\u201d [Expert Syst. Appl. 308 (2026) 130987]",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132875",
+   "title": "MTGFormer: A novel multi-task gated transformer with multi-head selective fusion attention for aeroengine gas-path parameter deviations parallel prediction",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133052",
+   "title": "Confidence aware Mamba interaction hashing for cross-modal retrieval",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128965",
+   "title": "Semi-supervised semantic segmentation with confidence-driven consistency learning",
+   "year": 2026,
+   "cites": 5
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126987",
+   "title": "CMiNER: Named entity recognition on imperfectly annotated data via confidence and meta weight adaptation",
+   "year": 2025,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134067",
+   "title": "Teacher-anchored, disagreement-weighted confidence learning: Suppressing overconfident bypasses in budgeted small-to-large language model cascades",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130504",
+   "title": "Unsupervised domain adaptation without source data for visual classification via adaptive confidence-driven mechanism",
+   "year": 2026,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133824",
+   "title": "A confidence-guided semantic constraint framework for 3D scene generation from UAV image segmentation",
+   "year": 2027,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132247",
+   "title": "GFPP: A confidence-aware file system prefetching method based on deep graph networks",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133703",
+   "title": "Calibrating graph neural networks for trustworthy graph-level predictions with confidence backward-readout",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134774",
+   "title": "SpecBrush: A two-stage diffusion mural restoration method with spectral material color prior and confidence gating",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128922",
+   "title": "Strongly correlated nodes and confidence feedbacks based CNN and transformer combined multi-person pose estimation",
+   "year": 2026,
+   "cites": 5
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131277",
+   "title": "Neural CDE and optimal control tools for prediction of some time series. Application to prediction osteoporosis",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134068",
+   "title": "CPDC: Confidence-agreement guided semantic-physical progressive data curation for multi-source diabetic retinopathy",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132623",
+   "title": "A cloud-edge collaborative framework with confidence-aware perception and cognitive dual-stream memory for proactive service robot decision-making",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132505",
+   "title": "A reliability-aware hybrid expert system via rule confidence learning: Application to transformer fault diagnosis",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132443",
+   "title": "New large group approach for quality function deployment based on bounded confidence and social network analysis",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134823",
+   "title": "An ensemble surrogate-assisted particle swarm optimizer with adaptive lower confidence bound and Cauchy mutation for expensive black-box optimization",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132472",
+   "title": "A polar complex Z\u2013rough confidence-based framework for multi\u2013group multi\u2013attribute decision making in healthcare human\u2013robot interaction",
+   "year": 2026,
+   "cites": 5
+  }
+ ],
+ "calibration uncertainty classification": [
+  {
+   "doi": "10.1016/j.eswa.2025.129659",
+   "title": "MCAD-EUC: Multi-context adaptive decoding with entropy-based uncertainty calibration for knowledge conflict mitigation",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125906",
+   "title": "Risk-aware classification via uncertainty quantification",
+   "year": 2025,
+   "cites": 13
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133066",
+   "title": "AUC-Net: an alignment-aware gating framework for robust uncertainty calibration in medical image segmentation",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133657",
+   "title": "Enhancing skin lesion classification via uncertainty-guided adaptive gated fusion of multiple backbones",
+   "year": 2027,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133450",
+   "title": "GraphUAT: An uncertainty-driven pseudo-labeling method for class-imbalanced node classification",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133746",
+   "title": "Tackling indirect expression with uncertainty-aware distribution optimization for hateful memes classification",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128389",
+   "title": "Scatterometer data calibration using the precision-converged calibration method for improved predictions",
+   "year": 2025,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130578",
+   "title": "Robust treatment assignment with uncertainty-aware causal forests: Joint optimization of accuracy and estimation uncertainty",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134918",
+   "title": "DHA-YOLO: Directional detail calibration for lightweight small traffic sign detection",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132206",
+   "title": "Integrating a Genetic Algorithm-Based calibration module into EPANET 3.0 for enhanced hydraulic modeling",
+   "year": 2026,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133444",
+   "title": "Fine-grained visual classification based on auxiliary dynamic classification signals and shallow-deep feature interaction",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131621",
+   "title": "Uncertainty-aware evidential fusion learning framework for reliable commonsense reasoning",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134818",
+   "title": "Reflectance\u2013illumination interaction transformer for learning-based automatic spectral calibration of hyperspectral images",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134649",
+   "title": "Exploiting Cross-Granularity Vision-Language Prototype Calibration for Few-shot Medical Image Segmentation",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132517",
+   "title": "Reducing value estimation uncertainty in continuous control via gated quantile critics",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.129447",
+   "title": "CPT-SFM: Conical-planar target-based stepwise feature matching calibration for heterogeneous multi-LiDAR systems",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125460",
+   "title": "BiPC: Bidirectional Probability Calibration for Unsupervised Domain Adaption",
+   "year": 2025,
+   "cites": 7
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127313",
+   "title": "Physics-informed calibration model for enhanced accuracy in particulate matter monitoring integrating clustering algorithms with field validation",
+   "year": 2025,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127093",
+   "title": "Enhancing group recommendation performance by integrating individual prediction uncertainty",
+   "year": 2025,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125593",
+   "title": "MEFDPN: Mixture exponential family distribution posterior networks for evaluating data uncertainty",
+   "year": 2025,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134209",
+   "title": "BRC-Net: Few-shot medical image segmentation via region calibration and boundary purification",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134890",
+   "title": "Vision Guides Semantics and Semantics Calibrates Vision: Symbiotic Vision-Language Calibration for Zero-Shot Medical Segmentation",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127651",
+   "title": "Pessimistic policy iteration with bounded uncertainty",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126643",
+   "title": "Dynamic self-training with less uncertainty for graph imbalance learning",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134180",
+   "title": "D-CTT: A deterministic and scalable heuristic for real-time item calibration in adaptive learning systems",
+   "year": 2027,
+   "cites": 0
+  }
+ ],
+ "MiniRocket ROCKET convolutional kernels": [
+  {
+   "doi": "10.1016/j.eswa.2025.128662",
+   "title": "Novel engine fault diagnosis framework based on machine learning and MiniRocket feature extraction using multi-correlation feature selection and predictive power score",
+   "year": 2025,
+   "cites": 15
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130817",
+   "title": "Enhanced quantum support vector regression with quantum kernels and virtual sampling for ABX3 perovskite formation energy",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128893",
+   "title": "Frequency domain complex-valued convolutional neural network",
+   "year": 2026,
+   "cites": 14
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128820",
+   "title": "Convolutional neural network for groundwater contamination source identification",
+   "year": 2025,
+   "cites": 11
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.129815",
+   "title": "Multi-scale fusion graph convolutional networks",
+   "year": 2026,
+   "cites": 6
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131568",
+   "title": "Hyperbolic simplicial convolutional network",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126393",
+   "title": "LGFCTR: Local and Global Feature Convolutional Transformer for Image Matching",
+   "year": 2025,
+   "cites": 6
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127625",
+   "title": "Leveraging convolutional neural networks for image-based classification of feature matrix data",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127613",
+   "title": "ShuiAttNet: Fully convolutional attention network for Shuishu character recognition",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125420",
+   "title": "Interactive multi-agent convolutional broad learning system for EEG emotion recognition",
+   "year": 2025,
+   "cites": 17
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125140",
+   "title": "Reconstruction of dynamic protein\u2013protein interaction network via graph convolutional network",
+   "year": 2025,
+   "cites": 6
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134439",
+   "title": "AirGFFormer: Air pollution concentration forecasting with graph convolutional networks and frequency transformer",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.129688",
+   "title": "A hybrid fusion network using convolutional vision transformers for landslide identification",
+   "year": 2026,
+   "cites": 6
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.129764",
+   "title": "Improved convolutional neural networks for the bullwhip effect in supply chains",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132515",
+   "title": "A global-to-local state space model with context-mixing dynamic kernels for medical image classification",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125507",
+   "title": "Cascaded capsule twin attentional dilated convolutional network for malicious URL detection",
+   "year": 2025,
+   "cites": 5
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127798",
+   "title": "BioCNN: Bi-Objective Model to Optimize Convolutional Neural Networks Structure",
+   "year": 2025,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131153",
+   "title": "Adaptive tucker decomposition-based progressive model compression for convolutional neural networks",
+   "year": 2026,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126669",
+   "title": "A convolutional-transformer reinforcement learning agent for rotating machinery fault diagnosis",
+   "year": 2025,
+   "cites": 39
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125711",
+   "title": "Improving brain MRI denoising using convolutional AutoEncoder and sparse representations",
+   "year": 2025,
+   "cites": 11
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126553",
+   "title": "DCNN-SBiL: EEG signal based mild cognitive impairment classification using compact convolutional network",
+   "year": 2025,
+   "cites": 11
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.126326",
+   "title": "Metaheuristics for pruning convolutional neural networks: A comparative study",
+   "year": 2025,
+   "cites": 31
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125502",
+   "title": "Graph convolutional network for water network partitioning",
+   "year": 2025,
+   "cites": 5
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125274",
+   "title": "Beyond Homophily: Neighborhood Distribution-guided Graph Convolutional Networks",
+   "year": 2025,
+   "cites": 8
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133487",
+   "title": "Hierarchical local-global tensor layer(HLGTL) in deep convolutional neural networks",
+   "year": 2027,
+   "cites": 0
+  }
+ ],
+ "sensor fault detection classification": [
+  {
+   "doi": "10.1016/j.eswa.2025.130393",
+   "title": "A physically inspired and bounded metric learning framework for fault detection and multi-class classification in mechanical systems",
+   "year": 2026,
+   "cites": 28
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126533",
+   "title": "Multi-sensor bearing fault diagnosis based on evidential neural network with sensor weights and reliability",
+   "year": 2025,
+   "cites": 29
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128157",
+   "title": "Machine fault diagnosis method using Ghost-AdderNet and WSNs with sensor computing",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128866",
+   "title": "Non-uniform spiking touch sensor for classification of movement patterns using neural networks",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128586",
+   "title": "Deep-learning based optimal PMU placement and fault classification for power system",
+   "year": 2025,
+   "cites": 20
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131790",
+   "title": "Reinforcement learning-based fault detection for self-triggered Boolean control networks",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134342",
+   "title": "Lifelong dictionary learning for dynamical system fault detection: A Bayesian perspective",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125531",
+   "title": "Cluster-guided denoising graph auto-encoder for enhanced traffic data imputation and fault detection",
+   "year": 2025,
+   "cites": 14
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128641",
+   "title": "A pretraining and fine-tuning framework for 3D fault detection based on global-local feature learning",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125214",
+   "title": "MRCFN: A multi-sensor residual convolutional fusion network for intelligent fault diagnosis of bearings in noisy and small sample scenarios",
+   "year": 2025,
+   "cites": 151
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128615",
+   "title": "Graph isomorphism wavelet convolutional networks for small-sample fault diagnosis of rotating machinery using multi-sensor information fusion",
+   "year": 2025,
+   "cites": 15
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133103",
+   "title": "TriP-Net: A shared spectral-pattern dual-perception backbone with task-specific priors for long-term PV power forecasting and fault classification in PV systems",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.126109",
+   "title": "A normal-fault sample translator for fault diagnosis with insufficient fault samples",
+   "year": 2025,
+   "cites": 10
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127364",
+   "title": "Multimodal selective state space model-based time series classification for electricity theft detection",
+   "year": 2025,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126927",
+   "title": "Vessel-guided and graph-based retinal vessel junction detection and classification",
+   "year": 2025,
+   "cites": 9
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126655",
+   "title": "Intelligent video-based fire detection: A novel dataset and real-time multi-stage classification approach",
+   "year": 2025,
+   "cites": 16
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127303",
+   "title": "An efficient genetic disorder detection framework using adaptive segmentation and classification mechanism from chromosome images",
+   "year": 2025,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127709",
+   "title": "Automated diabetic retinopathy detection using a multi-step framework with stacked ensemble-based classification model",
+   "year": 2025,
+   "cites": 15
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128975",
+   "title": "An explainable autoencoder integrating regression and classification trees for anomaly detection",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127533",
+   "title": "Acoustic signal detection of search-phase echolocation bat calls using hybrid classification model",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.126208",
+   "title": "Deep learning-based smoker classification and detection: An overview and evaluation",
+   "year": 2025,
+   "cites": 14
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132961",
+   "title": "DeepTrust: Multi-step classification through dissimilar adversarial representations for robust android malware detection",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134058",
+   "title": "Entropy-driven sensor deployment and source detection in hypergraphs",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.129135",
+   "title": "Real-time classification model for anomalous sensor data in dam safety monitoring based on convolutional neural networks and transfer learning",
+   "year": 2026,
+   "cites": 12
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128116",
+   "title": "Enhanced multi-grade diabetic retinopathy detection and classification via ensembled deep learning model from retinal fundus images",
+   "year": 2025,
+   "cites": 32
+  }
+ ],
+ "human-in-the-loop deferral expert": [
+  {
+   "doi": "10.1016/j.eswa.2026.133628",
+   "title": "MMAP-Net: Missing-aware multimodal fusion for multi-label retinal disease classification with score-calibrated deferral",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132522",
+   "title": "AgriField-Manipur: A human-in-the-loop knowledge-based expert system for farm-level decision support under data scarcity",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134441",
+   "title": "Human-in-the-loop expert system for multi-task robotic motor training: integrating adaptive task scheduling with dynamic difficulty regulation",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131118",
+   "title": "Human-in-the-loop reinforcement learning with risk-aware intervention and imitation",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125861",
+   "title": "LLM-TSFD: An industrial time series human-in-the-loop fault diagnosis method based on a large language model",
+   "year": 2025,
+   "cites": 104
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131147",
+   "title": "LogiFusion: a semantic-kinetic-dynamic expert system for closed-loop intralogistics decision intelligence",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126996",
+   "title": "Sequential wafer map inspection via feedback loop with reinforcement learning",
+   "year": 2025,
+   "cites": 5
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132115",
+   "title": "Blockchain-embedded closed loop supply chains: Optimization under off-chain risks",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133585",
+   "title": "GLC-SLAM: Robust loop closure for monocular Gaussian splatting SLAM",
+   "year": 2027,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.135071",
+   "title": "CLEAR: Closed-Loop Error-Aware Restoration for Unpaired All-in-One Bad-Weather Removal",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.129182",
+   "title": "Towards sustainable closed-loop photovoltaic supply chains: A hybrid framework integrating reinforcement learning and mathematical models",
+   "year": 2026,
+   "cites": 13
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.135090",
+   "title": "Risk-focused Bottleneck Prediction of Closed-Loop Supply Chains with Hidden Links Based on Neighborhood-Aware Graph Neural Networks",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125659",
+   "title": "GCENet: A geometric correspondence estimation network for tracking and loop detection in visual\u2013inertial SLAM",
+   "year": 2025,
+   "cites": 5
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131383",
+   "title": "Closed-loop feedback optimization for autonomous vehicles using deep reinforcement learning",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125949",
+   "title": "Cross-loop contrast of heterogeneous graphs for interdisciplinary journal recommendation",
+   "year": 2025,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130251",
+   "title": "Optimized nonlinear control for attitude and heading control of a UAV and controller-in-loop using Redfox algorithm",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127170",
+   "title": "Balanced Uncertainty Sets for Closed-Loop Supply Chain Design: A Data-Driven Robust Optimization Framework with Fairness Considerations",
+   "year": 2025,
+   "cites": 6
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131453",
+   "title": "Prediction of mechanical properties and inner-outer loop control strategy for galvannealed steel strips",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.126155",
+   "title": "Double-loop compensated active disturbance rejection control of electromechanical servo system based on composite disturbance observer",
+   "year": 2025,
+   "cites": 14
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125262",
+   "title": "Design of closed-loop manufacturing-remanufacturing system network considering uncertain defect and waste rate: Scenario-based chance-constrained programming",
+   "year": 2025,
+   "cites": 7
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.126205",
+   "title": "A novel high performance in-situ training scheme for open-loop tuning of the memristor neural networks",
+   "year": 2025,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131902",
+   "title": "Adaptive closed-loop dual-factor multi-objective evolutionary algorithm for Wind/PV-based integrated energy systems dispatch",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131951",
+   "title": "A multi-feature source-tracing and closed-loop inference model for transmission line defect detection",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131269",
+   "title": "Adaptive integration of closed-loop manufacturing scheduling and predictive maintenance based on RUL prediction by CNN-SVR model",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126554",
+   "title": "Optimal novel nonlinear control law for attitude and heading control of a bi-copter system with controller-in-loop",
+   "year": 2025,
+   "cites": 5
+  }
+ ],
+ "out-of-distribution detection time series": [
+  {
+   "doi": "10.1016/j.eswa.2025.126507",
+   "title": "WSOE: Weakly Supervised Outlier Exposure for Object-level Out-of-distribution detection",
+   "year": 2025,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127774",
+   "title": "CEDL+: Exploiting evidential deep learning for continual out-of-distribution detection",
+   "year": 2025,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128759",
+   "title": "Out-of-distribution detection under the paradigm of pre-training and fine-tuning: A regularization-based approach",
+   "year": 2025,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.126031",
+   "title": "Your data is not perfect: Towards cross-domain out-of-distribution detection in class-imbalanced data",
+   "year": 2025,
+   "cites": 56
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134588",
+   "title": "Time-frequency decomposition with latent diffusion for non-stationary multivariate time-series anomaly detection",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127379",
+   "title": "Uncertainty-informed dynamic threshold for time series anomaly detection",
+   "year": 2025,
+   "cites": 19
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133430",
+   "title": "CORTEX: an uncertainty-conditioned correction-and-fusion model for multivariate time series forecasting under distribution shift",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131782",
+   "title": "Pretrained large model enhanced limited-sample multivariate time series anomaly detection",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.129285",
+   "title": "A data attribution approach for unsupervised anomaly detection on multivariate time series",
+   "year": 2026,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127364",
+   "title": "Multimodal selective state space model-based time series classification for electricity theft detection",
+   "year": 2025,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128756",
+   "title": "ColonOOD: A complete pipeline for optical diagnosis of colorectal polyps integrating out-of-distribution detection and uncertainty quantification",
+   "year": 2026,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128917",
+   "title": "Large-model-based smart agent for time series anomaly detection in power systems",
+   "year": 2026,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130996",
+   "title": "Multi-entity time series anomaly detection method based on graph attention and cross-correlation analysis",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132680",
+   "title": "Pre-trained conditional encoding guided diffusion for time series anomaly detection",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132707",
+   "title": "Heterogeneous graph distributional reinforcement learning for out-of-distribution traffic signal control",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130883",
+   "title": "Pre-departure ship fuel consumption prediction under out-of-distribution condition",
+   "year": 2026,
+   "cites": 2
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.131049",
+   "title": "PrivTSAD-FedWGAN: A novel federated learning and WGAN framework for privacy-preserving multivariate time series anomaly detection",
+   "year": 2026,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126667",
+   "title": "Graph-enhanced anomaly detection framework in multivariate time series using Graph Attention and Enhanced Generative Adversarial Networks",
+   "year": 2025,
+   "cites": 16
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128088",
+   "title": "Enhancing one-Class classifiers performance in multivariate time series through dynamic clustering: A case study on hydraulic system fault detection",
+   "year": 2025,
+   "cites": 4
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128905",
+   "title": "BOOST: Out-of-distribution-informed adaptive sampling for bias mitigation in stylistic convolutional neural networks",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.133354",
+   "title": "Out-of-distribution generalization on molecular graphs via causal-spurious subgraph decoupling and counterfactual generation",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127125",
+   "title": "Applying time delay convergent cross mapping to Bitcoin time series",
+   "year": 2025,
+   "cites": 6
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131087",
+   "title": "Contrastive domain adaptation with time-lag attention for wearable sensor time-series",
+   "year": 2026,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.126211",
+   "title": "Real-time monitoring and prediction of water content in concrete members through time series modeling",
+   "year": 2025,
+   "cites": 16
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127739",
+   "title": "Overcoming time delays challenges: Decomposition\u2013Reconstruction approaches for time-series TBM performance predictions",
+   "year": 2025,
+   "cites": 15
+  }
+ ],
+ "conformal prediction": [
+  {
+   "doi": "10.1016/j.eswa.2024.126231",
+   "title": "Carbonation depth assessment of recycled aggregate concrete: An application of conformal prediction intervals",
+   "year": 2025,
+   "cites": 24
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.135089",
+   "title": "Uncertainty-aware conformal prediction of compressive strength in low-carbon UHPC: Framework development and experimental validation",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130417",
+   "title": "Personalized federated learning with mixture of experts and conformal prediction for household energy forecasting",
+   "year": 2026,
+   "cites": 9
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.132721",
+   "title": "Cooperative optimization of heterogeneous autonomous vehicles at intersections using graph neural networks and conformal prediction",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.135042",
+   "title": "Physics-informed Kolmogorov-Arnold networks with conformal prediction for multi-objective engine optimization",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130582",
+   "title": "Reliable inverse optimization of rice husk ash concrete via copula-based design spaces and conformal quantile surrogates",
+   "year": 2026,
+   "cites": 19
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.134356",
+   "title": "Robust conformal gaussian process regression for CO2 laser engraving: Distribution-free uncertainty quantification and automated quality gating",
+   "year": 2027,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.135041",
+   "title": "Decision-aware hybrid intelligent process planning for constant-height conformal laser wire additive manufacturing",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2026.131277",
+   "title": "Neural CDE and optimal control tools for prediction of some time series. Application to prediction osteoporosis",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130516",
+   "title": "Enhancing rainfall prediction accuracy through image fusion of radar and numerical weather prediction models",
+   "year": 2026,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126979",
+   "title": "A short-term power prediction method based on numerical weather prediction correction and the fusion of adaptive spatiotemporal graph feature information for wind farm cluster",
+   "year": 2025,
+   "cites": 53
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.129289",
+   "title": "Enhancing performance transformer models algorithm for prediction from storytelling",
+   "year": 2026,
+   "cites": 0
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.129520",
+   "title": "Towards CPU performance prediction: New challenge benchmark dataset and novel approach",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128286",
+   "title": "Mineral resource prediction based on representation learning",
+   "year": 2025,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128724",
+   "title": "Leveraging graph neural network for learner performance prediction",
+   "year": 2025,
+   "cites": 13
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130757",
+   "title": "BioSalNet: Biologically inspired saliency prediction",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126799",
+   "title": "Traffic prediction by graph transformer embedded with subgraphs",
+   "year": 2025,
+   "cites": 25
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126512",
+   "title": "Adaptive adversarial augmentation for molecular property prediction",
+   "year": 2025,
+   "cites": 3
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127799",
+   "title": "TRGNet: a deep transfer learning approach for software defect prediction",
+   "year": 2025,
+   "cites": 6
+  },
+  {
+   "doi": "10.1016/j.eswa.2024.125986",
+   "title": "Data-Driven purchasing strategies: Price prediction models and strategy development",
+   "year": 2025,
+   "cites": 7
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126845",
+   "title": "XAI in hindsight: Shapley values for explaining prediction accuracy",
+   "year": 2025,
+   "cites": 7
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.126773",
+   "title": "Relation enhancement for noise resistance in open-world link prediction",
+   "year": 2025,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.127501",
+   "title": "A survey on knowledge graph-based click-through rate prediction",
+   "year": 2025,
+   "cites": 10
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.130988",
+   "title": "Hybrid multivariate time series prediction system based on PD-XGBoost-KRVFL",
+   "year": 2026,
+   "cites": 1
+  },
+  {
+   "doi": "10.1016/j.eswa.2025.128937",
+   "title": "Efficient and privacy-preserved link prediction via condensed graphs",
+   "year": 2026,
+   "cites": 2
+  }
+ ]
+}

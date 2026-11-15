@@ -1,0 +1,72 @@
+[
+ {
+  "id": "clifford2012sqi",
+  "doi": "10.1088/0967-3334/33/9/1419",
+  "source": "crossref",
+  "title": "Signal quality indices and data fusion for determining clinical acceptability of electrocardiograms"
+ },
+ {
+  "id": "wang2017baseline",
+  "doi": "10.1109/IJCNN.2017.7966039",
+  "source": "crossref",
+  "title": "Time series classification from scratch with deep neural networks: a strong baseline"
+ },
+ {
+  "id": "takara2025minirocket",
+  "doi": "10.1016/j.eswa.2025.128662",
+  "source": "crossref",
+  "title": "Novel engine fault diagnosis framework based on machine learning and MiniRocket feature extraction using multi-correlation feature selection and predictive power score"
+ },
+ {
+  "id": "wang2025kernelgroup",
+  "doi": "10.1016/j.eswa.2025.128693",
+  "source": "crossref",
+  "title": "Kernel grouping for time series classification with multiple transformations and pooling operators"
+ },
+ {
+  "id": "sensoy2025risk",
+  "doi": "10.1016/j.eswa.2024.125906",
+  "source": "crossref",
+  "title": "Risk-aware classification via uncertainty quantification"
+ },
+ {
+  "id": "han2025evidential",
+  "doi": "10.1016/j.eswa.2025.126533",
+  "source": "crossref",
+  "title": "Multi-sensor bearing fault diagnosis based on evidential neural network with sensor weights and reliability"
+ },
+ {
+  "id": "kinalioglu2027mmap",
+  "doi": "10.1016/j.eswa.2026.133628",
+  "source": "crossref",
+  "title": "MMAP-Net: Missing-aware multimodal fusion for multi-label retinal disease classification with score-calibrated deferral"
+ },
+ {
+  "id": "munir2027ccaid",
+  "doi": "10.1016/j.eswa.2026.134403",
+  "source": "crossref",
+  "title": "CCA-ID: Confidence-calibrated adaptive intrusion detection with selective routing for IoT networks"
+ },
+ {
+  "id": "wang2026wearable",
+  "doi": "10.1016/j.eswa.2026.132601",
+  "source": "crossref",
+  "title": "Multi-task learning with signal denoising and self-distilled representations for wearable ECG arrhythmia detection"
+ },
+ {
+  "id": "zhang2025llmtsfd",
+  "doi": "10.1016/j.eswa.2024.125861",
+  "source": "crossref",
+  "title": "LLM-TSFD: An industrial time series human-in-the-loop fault diagnosis method based on a large language model"
+ },
+ {
+  "id": "silva2011challenge",
+  "source": "https://www.cinc.org/archives/2011/pdf/0273.pdf",
+  "title": "Improving the quality of ECGs collected using mobile phones: the PhysioNet/Computing in Cardiology Challenge 2011"
+ },
+ {
+  "id": "gal2016dropout",
+  "source": "https://proceedings.mlr.press/v48/gal16.html",
+  "title": "Dropout as a Bayesian approximation: representing model uncertainty in deep learning"
+ }
+]

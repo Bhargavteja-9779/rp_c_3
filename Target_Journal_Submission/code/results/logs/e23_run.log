@@ -1,1 +1,9 @@
 CinC set A: (998, 12, 1000) unacceptable 225
+cinc 0 LOOM
+cinc 0 PreVal
+cinc 0 Holdout-TS
+cinc 0 Ridge-Platt-CV5
+cinc 0 QUANT 4311.1
+cinc 1 LOOM
+cinc 1 PreVal
+cinc 1 Holdout-TS
